@@ -2,6 +2,7 @@
 
 import gsap from "gsap";
 import React, { useLayoutEffect } from "react";
+import { AnimatedText } from "./Storytelling";
 
 const cardConfigs = [
   {
@@ -231,9 +232,9 @@ export default function CardsSec() {
   return (
     <div
       data-color="cyan"
-      className="craft section justify-between items-start py-10 w-full flex gap-10 px-10 relative"
+      className="craft section justify-between items-start w-full flex gap-10 px-10 relative"
     >
-      <div className="ltext section w-[40%] sticky top-0 left-0">
+      <div className="ltext section w-[40%] sticky -top-10 left-0">
         <p className="text-2xl font-light leading-[2rem] pt-10">
           Significo is a custom health software developer founded on the belief
           that technology can transform healthcare to put people first. We put
@@ -241,11 +242,14 @@ export default function CardsSec() {
           accelerating capacity, and improving outcomes.
         </p>
         <h1 className="text-[4.5rem] leading-[6rem]">
-          We Craft Human-Centric Health Software
+          We Craft Human-Centric
+          <AnimatedText text={"Health Software"} />
         </h1>
         <div className="w-fit px-10 py-5 border-[1px] border-black">
           <div className="texthover masker h-[1.5rem] overflow-hidden">
-            <h1 className="text-xl">OUR SOLUTIONS</h1>
+            <h1 className="text-xl">
+              <AnimatedText text={"OUR SOLUTIONS"} />
+            </h1>
           </div>
         </div>
       </div>

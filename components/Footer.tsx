@@ -1,6 +1,37 @@
-import React from "react";
+"use client";
+
+import gsap from "gsap";
+import React, { useEffect, useRef } from "react";
 
 export default function Footer() {
+  const footerH1Ref = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    if (footerH1Ref.current) {
+      const text = footerH1Ref.current.textContent || "";
+      let clutter = "";
+
+      text.split("").forEach((char) => {
+        if (char === " ") clutter += `<span>&nbsp;</span>`;
+        else clutter += `<span>${char}</span>`;
+      });
+
+      footerH1Ref.current.innerHTML = clutter;
+
+      gsap.from(".footertext h1 span", {
+        opacity: 0,
+        stagger: 0.3,
+        ease: "Power4.easeOut",
+        scrollTrigger: {
+          trigger: ".footer",
+          scrub: 1,
+          start: "70% 70%",
+          end: "70% 90%",
+        },
+      });
+    }
+  }, []);
+
   return (
     <div data-color="black" className="footer section w-full h-screen">
       <div className="top w-full h-[50%] flex justify-between px-10 py-10 text-xl font-semibold leading-10">
@@ -24,13 +55,16 @@ export default function Footer() {
           <h1>Careers</h1>
         </div>
       </div>
-      <div className=" bottom w-full sticky bottom-0 ">
-        <div className="footertext w-full relative overflow-hidden ">
-          <h1 className="w-full h-fit text-[20rem] -tracking-[2rem] leading-none">
-            Significo
+      <div className="bottom w-full sticky bottom-0">
+        <div className="footertext w-full relative overflow-hidden">
+          <h1
+            ref={footerH1Ref}
+            className="w-full h-fit text-[10rem] my-28 -tracking-[2rem] leading-none"
+          >
+            B e {"  "} F o u n d {"  "} O n l i n e
           </h1>
           <div className="cover w-full h-[7rem] px-10 flex justify-between items-center border-white border-t-2 bg-black absolute bottom-0">
-            <div className="fleft flex justify-between items-center gap-5 text-[.9rem] ">
+            <div className="fleft flex justify-between items-center gap-5 text-[.9rem]">
               <h1 className="font-light border-b-2 border-white">
                 Privacy Policy
               </h1>
@@ -41,7 +75,7 @@ export default function Footer() {
             </div>
             <div className="fmid">
               <h1 className="text-[.8rem] font-light">
-                © 2024 Significo. All rights reserved.
+                © 2024 BeFoundOnline. All rights reserved.
               </h1>
             </div>
             <div className="fright text-2xl">

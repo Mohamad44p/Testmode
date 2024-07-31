@@ -62,7 +62,7 @@ body {
 /* Scroll  */
 
 .scrolldown {
-  --color: green;
+  --color: #000;
   --sizeX: 30px;
   --sizeY: 50px;
   position: fixed;
@@ -71,7 +71,7 @@ body {
   width: var(--sizeX);
   height: var(--sizeY);
   margin-left: var(sizeX / 2);
-  border: calc(var(--sizeX) / 10) solid var(--color);
+  border: calc(var(--sizeX) / 10) solid #000;
   border-radius: 50px;
   box-sizing: border-box;
   margin-bottom: 16px;

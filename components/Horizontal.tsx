@@ -11,12 +11,13 @@ export default function Horizontal() {
         trigger: ".real",
         scroller: "body",
         start: "top top",
-        end: "bottom top",
-        pin: true,
-        scrub: 2,
+        end: "+=300vh",
+        scrub: 4,
+        fastScrollEnd: false,
+        markers: true,
       },
-      xPercent: -320,
-      ease: "power4",
+      xPercent: -500,
+      ease: "power2.out",
     });
   }, []);
 

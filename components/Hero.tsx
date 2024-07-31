@@ -4,6 +4,7 @@
 import React, { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { AnimatedText } from "./Storytelling";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -118,10 +119,12 @@ const HomeSection = () => {
       <div className="w-full sticky top-0 left-0">
         <div className="btntext absolute bottom-[5%] left-[3%] z-[4]">
           <h1>
-            We build big ideas. <br />
-            Software. Apps. Tools. <br />
-            For real people. Real <br />
-            lives.
+            <AnimatedText
+              text={`We build big ideas.
+                  Software. Apps. Tools.
+                  For real people. Real
+                  lives.`}
+            />
           </h1>
         </div>
         <div
@@ -139,8 +142,10 @@ const HomeSection = () => {
         <div className="marquees w-full h-screen relative overflow-hidden">
           <div className="heading absolute top-[5%] left-1/2 -translate-x-1/2">
             <h1 className="text-xl font-regular text-center">
-              Crafting a new paradigm of <br />
-              healthcare, one that is
+              <AnimatedText
+                className="max-w-[70%] mx-auto"
+                text={`Crafting a new paradigm of healthcare one that is`}
+              />
             </h1>
           </div>
           <div className="slidesm scale-[1] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[35%] w-[90%]">
