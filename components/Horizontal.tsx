@@ -1,28 +1,36 @@
 /* eslint-disable @next/next/no-img-element */
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
+
 export default function Horizontal() {
   useLayoutEffect(() => {
-    gsap.to(".slide", {
+    const pin = gsap.to(".slide", {
       scrollTrigger: {
         trigger: ".real",
         scroller: "body",
         start: "top top",
-        end: "+=300vh",
-        scrub: 4,
-        fastScrollEnd: false,
-        markers: true,
+        end: "bottom top",
+        pin: true,
+        scrub: 6,
       },
-      xPercent: -500,
-      ease: "power2.out",
+
+      xPercent: -320,
+      ease: "power4",
     });
+
+    return () => {
+      pin.kill();
+    };
   }, []);
 
   return (
-    <div data-color="salmon" className="real section w-full sticky">
+    <div
+      data-color="salmon"
+      className="real mt-[50vh] mb-[10vh] section w-full sticky"
+    >
       <div className="cont h-[100vh] relative">
         <div className="slides w-full h-[100vh] flex sticky top-0 left-0 gap-20">
           <div className="slide w-full h-screen flex-shrink-0 items-center justify-center flex">

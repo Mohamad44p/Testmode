@@ -34,16 +34,16 @@ export default function Footer() {
 
   return (
     <div data-color="black" className="footer section w-full h-screen">
-      <div className="top w-full h-[50%] flex justify-between px-10 py-10 text-xl font-semibold leading-10">
-        <div className="left">
+      <div className="top w-full h-[50%] flex flex-col md:flex-row justify-between px-4 sm:px-10 py-4 sm:py-10 text-sm sm:text-xl font-semibold leading-6 sm:leading-10">
+        <div className="left mb-4 md:mb-0">
           <h1>Home</h1>
           <h1>Solutions</h1>
           <h1>About</h1>
           <h1>Team</h1>
         </div>
-        <div className="mid text-2xl">
+        <div className="mid text-lg sm:text-2xl mb-4 md:mb-0">
           <h1>
-            Join our mailing list for <br />
+            Join our mailing list for <br className="hidden sm:block" />
             the latest updates.
           </h1>
         </div>
@@ -59,26 +59,22 @@ export default function Footer() {
         <div className="footertext w-full relative overflow-hidden">
           <h1
             ref={footerH1Ref}
-            className="w-full h-fit text-[10rem] my-28 -tracking-[2rem] leading-none"
+            className="w-full h-fit hidden md:flex text-4xl sm:text-[10rem] my-10 sm:my-28 tracking-tighter sm:-tracking-[2rem] leading-none"
           >
             B e {"  "} F o u n d {"  "} O n l i n e
           </h1>
-          <div className="cover w-full h-[7rem] px-10 flex justify-between items-center border-white border-t-2 bg-black absolute bottom-0">
-            <div className="fleft flex justify-between items-center gap-5 text-[.9rem]">
-              <h1 className="font-light border-b-2 border-white">
-                Privacy Policy
-              </h1>
-              <h1 className="font-light border-b-2 border-white">
-                Terms of Use
-              </h1>
+          <div className="cover w-full h-16 sm:h-[7rem] px-4 sm:px-10 flex flex-col sm:flex-row justify-between items-center border-white border-t-2 bg-black absolute bottom-0">
+            <div className="fleft flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-5 text-xs sm:text-[.9rem]">
+              <h1 className="font-light border-b-2 border-white">Privacy Policy</h1>
+              <h1 className="font-light border-b-2 border-white">Terms of Use</h1>
               <h1 className="font-light border-b-2 border-white">Trust</h1>
             </div>
-            <div className="fmid">
-              <h1 className="text-[.8rem] font-light">
+            <div className="fmid mt-2 sm:mt-0">
+              <h1 className="text-xs sm:text-[.8rem] font-light">
                 © 2024 BeFoundOnline. All rights reserved.
               </h1>
             </div>
-            <div className="fright text-2xl">
+            <div className="fright text-xl sm:text-2xl mt-2 sm:mt-0">
               <i className="ri-instagram-line"></i>
               <i className="ri-linkedin-box-fill"></i>
               <i className="ri-github-fill"></i>

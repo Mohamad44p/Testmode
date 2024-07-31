@@ -232,10 +232,10 @@ export default function CardsSec() {
   return (
     <div
       data-color="cyan"
-      className="craft section justify-between items-start w-full flex gap-10 px-10 relative"
+      className="craft section justify-between items-start w-full flex md:flex-row flex-col gap-10 px-10 relative"
     >
       <div className="ltext section w-[40%] sticky -top-10 left-0">
-        <p className="text-2xl font-light leading-[2rem] pt-10">
+        <p className="text-2xl hidden md:flex font-light leading-[2rem] pt-10">
           Significo is a custom health software developer founded on the belief
           that technology can transform healthcare to put people first. We put
           humanity back at the center of healthcare by simplifying complexity,
@@ -245,7 +245,7 @@ export default function CardsSec() {
           We Craft Human-Centric
           <AnimatedText text={"Health Software"} />
         </h1>
-        <div className="w-fit px-10 py-5 border-[1px] border-black">
+        <div className="w-fit px-10 hidden md:flex  py-5 border-[1px] border-black">
           <div className="texthover masker h-[1.5rem] overflow-hidden">
             <h1 className="text-xl">
               <AnimatedText text={"OUR SOLUTIONS"} />
@@ -253,7 +253,7 @@ export default function CardsSec() {
           </div>
         </div>
       </div>
-      <div className="cards w-1/2 py-10">
+      <div className="cards md:w-1/2 w-full py-10">
         <div className="cardlist pt-[38.59rem] pb-[22.09rem]">
           {cardConfigs.map((config, index) => (
             <div

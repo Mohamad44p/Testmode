@@ -1,8 +1,27 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import gsap from "gsap";
+import React, { useLayoutEffect, useRef } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function LastSec() {
+  const Ref = useRef(null);
+
+  useLayoutEffect(() => {
+    gsap.to(".disappear", {
+      scrollTrigger: {
+        trigger: ".real",
+        scrub: 1,
+        start: "-85% -90%",
+        end: "bottom 20%",
+      },
+      opacity: 0,
+    });
+  }, []);
+
   return (
     <div
       data-color="white"
