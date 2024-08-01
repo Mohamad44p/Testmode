@@ -3,6 +3,7 @@
 import gsap from "gsap";
 import React, { useLayoutEffect } from "react";
 import { AnimatedText } from "./Storytelling";
+import GibberishText from "./ui/GibberishText";
 
 const cardConfigs = [
   {
@@ -248,7 +249,7 @@ export default function CardsSec() {
         <div className="w-fit px-10 hidden md:flex  py-5 border-[1px] border-black">
           <div className="texthover masker h-[1.5rem] overflow-hidden">
             <h1 className="text-xl">
-              <AnimatedText text={"OUR SOLUTIONS"} />
+              <GibberishText className="cursor-pointer" text="OUR SOLUTIONS" />
             </h1>
           </div>
         </div>

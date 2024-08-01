@@ -3,7 +3,7 @@
 import gsap from "gsap";
 import React, { useLayoutEffect, useRef } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import GibberishText from "./ui/GibberishText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,7 +40,10 @@ export default function LastSec() {
           </h1>
           <div className="capbtn text-xl py-3 px-3 text-center border-2 mt-5 border-black">
             {" "}
-            VIEW ALL ARTICALS
+            <GibberishText
+              text="VIEW ALL ARTICALS"
+              className="cursor-pointer"
+            />
           </div>
         </div>
       </div>
@@ -58,6 +61,10 @@ export default function LastSec() {
             They're Worth Your Attention
           </h1>
           <h1 className="text-xl">Thought Leadership</h1>
+
+          <button className="capbtn text-xl py-3 px-3 text-center border-2 border-black">
+            <GibberishText text="READ MORE" className="cursor-pointer" />
+          </button>
         </div>
         <div className="cap1 border-[1px] border-black w-[35%] h-[90%] -rotate-[15deg] rounded-full flex flex-col-reverse gap-20 items-center">
           <div className="image w-[15rem] h-[15rem]  mb-10 rounded-full overflow-hidden">
@@ -76,6 +83,9 @@ export default function LastSec() {
             5 Key Takeaways from the Reuters Digital Health ‘24 Summit
           </h1>
           <h1 className="text-xl">Thounght Leadership</h1>
+          <button className="capbtn text-xl py-3 px-3 text-center border-2 border-black">
+            <GibberishText text="READ MORE" className="cursor-pointer" />
+          </button>
         </div>
       </div>
     </div>

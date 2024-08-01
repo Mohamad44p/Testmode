@@ -4,6 +4,7 @@ import "./globals.css";
 import ScrollButton from "@/components/ScrollButton";
 import Footer from "@/components/Footer";
 import MobileMenu from "@/components/header/MobileMenu";
+import Navbar from "@/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,9 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-    
+        <Navbar />
         <ScrollButton />
+        <main>
         {children}
+        </main>
         <section data-color="black">
           <Footer />
         </section>

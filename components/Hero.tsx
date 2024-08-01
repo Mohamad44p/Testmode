@@ -93,16 +93,17 @@ const HomeSection = () => {
       .to(".slidesm", { ease: "power2", scale: 1 }, "a")
       .to(".lft", { ease: "power4", xPercent: -10 }, "b")
       .to(".rgt", { ease: "power4", xPercent: 10, stagger: 0.0002 }, "b")
-      .to(".third-row", { ease: "power4", xPercent: -10 }, "c")
+      .to(".third-row", { ease: "power4", xPercent: -10 }, "b")
       .to(
         ".fourth-row",
-        { ease: "power4", xPercent: 10, stagger: 0.0002 },
-        "c"
+        { ease: "power4", xPercent: 10},
+        "b"
       );
   }, []);
 
   const renderElements = (classNameName: any) => (
     <div
+      data-color="transparent"
       className={`row ${classNameName} w-full flex items-center gap-3 pb-7 whitespace-nowrap`}
     >
       {words.map((word, index) => (

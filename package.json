@@ -9,16 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.1.0",
+    "@types/lodash": "^4.17.7",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "framer-motion": "^11.3.19",
     "gsap": "^3.12.5",
     "lenis": "^1.1.9",
+    "lodash": "^4.17.21",
+    "lucide-react": "^0.418.0",
     "next": "14.2.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.2.1",
+    "react-rough-notation": "^1.0.5",
     "react-slick": "^0.30.2",
+    "rough-notation": "^0.5.1",
     "sass": "^1.77.8",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "tailwind-merge": "^2.4.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^20.14.13",
