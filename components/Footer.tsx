@@ -5,6 +5,7 @@ import React, { useEffect, useRef } from "react";
 import GibberishText from "./ui/GibberishText";
 import { SiFacebook, SiGithub, SiInstagram, SiLinkedin } from "react-icons/si";
 import Magnetic from "./ui/Magnetic";
+import { TextReveal } from "./ui/typography";
 
 export default function Footer() {
   const footerH1Ref = useRef<HTMLHeadingElement>(null);
@@ -40,16 +41,16 @@ export default function Footer() {
       <div className="top w-full h-[50%] flex flex-col md:flex-row justify-between px-4 sm:px-10 py-4 sm:py-10 text-sm sm:text-xl font-semibold leading-6 sm:leading-10">
         <div className="left mb-4 md:mb-0">
           <h1>
-            <GibberishText text="Home" className="cursor-pointer" />
+            <TextReveal>Home</TextReveal>
           </h1>
           <h1>
-            <GibberishText text="About" className="cursor-pointer" />
+            <TextReveal>About</TextReveal>
           </h1>
           <h1>
-            <GibberishText text="Services" className="cursor-pointer" />
+            <TextReveal>Services</TextReveal>
           </h1>
           <h1>
-            <GibberishText text="Contact" className="cursor-pointer" />
+            <TextReveal>Contact</TextReveal>
           </h1>
         </div>
         <div className="mid text-lg sm:text-2xl mb-4 md:mb-0">
@@ -60,19 +61,19 @@ export default function Footer() {
         </div>
         <div className="right text-end">
           <h1>
-            <GibberishText text="Blog" className="cursor-pointer" />
+            <TextReveal>Blog</TextReveal>
           </h1>
           <h1>
-            <GibberishText text="Resources" className="cursor-pointer" />
+            <TextReveal>Resources</TextReveal>
           </h1>
           <h1>
-            <GibberishText text="Careers" className="cursor-pointer" />
+            <TextReveal>Careers</TextReveal>
           </h1>
           <h1>
-            <GibberishText text="Privacy Policy" className="cursor-pointer" />
+            <TextReveal>Privacy Policy</TextReveal>
           </h1>
           <h1>
-            <GibberishText text="Terms of Use" className="cursor-pointer" />
+            <TextReveal>Terms of Use</TextReveal>
           </h1>
         </div>
       </div>

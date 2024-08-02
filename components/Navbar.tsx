@@ -5,6 +5,7 @@ import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import Link from "next/link";
 import GibberishText from "./ui/GibberishText";
 import { RoughNotation } from "react-rough-notation";
+import { TextReveal } from "./ui/typography";
 
 const navItems = [
   { title: "Digital Marketing Services", href: "/digital-marketing-services" },
@@ -70,7 +71,7 @@ export default function Navbar() {
                   strokeWidth={2}
                   show={hoveredIndex === index}
                 >
-                  {item.title}
+                  <TextReveal>{item.title}</TextReveal>
                 </RoughNotation>
               </span>
             </Link>

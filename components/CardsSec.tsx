@@ -6,6 +6,7 @@ import { AnimatedText } from "./Storytelling";
 import GibberishText from "./ui/GibberishText";
 import { RoughNotation } from "react-rough-notation";
 import { useInView } from "framer-motion";
+import { TextReveal } from "./ui/typography";
 
 const cardConfigs = [
   {
@@ -263,7 +264,7 @@ export default function CardsSec() {
         <div className="w-fit px-10 hidden md:flex py-5 border-[1px] border-black">
           <div className="texthover masker h-[1.5rem] overflow-hidden">
             <h1 className="text-xl">
-              <GibberishText className="cursor-pointer" text="OUR SOLUTIONS" />
+              <TextReveal className="cursor-pointer">OUR SOLUTIONS</TextReveal>
             </h1>
           </div>
         </div>

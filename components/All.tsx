@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import HomeSection from "./Hero";
 import CardsSec from "./CardsSec";
-import Lenis from "lenis";
+import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Horizontal from "./Horizontal";
@@ -11,6 +11,7 @@ import OurTeam from "./OurTeam";
 import Testimonial from "./Testimonial";
 import LastSec from "./LastSec";
 import MobileMenu from "./header/MobileMenu";
+import CardCase from "./CardCase";
 
 // Ensure gsap and ScrollTrigger are registered
 gsap.registerPlugin(ScrollTrigger);
@@ -70,6 +71,9 @@ export default function All() {
       </section>
       <section data-color="white">
         <Testimonial />
+      </section>
+      <section data-color="black">
+        <CardCase />
       </section>
       <section data-color="white">
         <LastSec />
