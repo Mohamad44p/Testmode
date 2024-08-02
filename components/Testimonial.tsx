@@ -1,164 +1,113 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
-"use client";
-
-import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import React, { useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
-// Register the ScrollTrigger plugin if it's not already registered
-gsap.registerPlugin(ScrollTrigger);
-
-const TestimonialAr = [
+const testimonials = [
   {
-    text: "Working with BeFoundOnline and their recommendation service has been a game-changer for our occupational prevention efforts. Our customers are extremely satisfied with the tool's impressive technical.",
-    img: "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483190/659dbdfd5a080be8d3483253_EmekAltun.jpg",
+    text: "Working with Significo and their recommendation service has been a game-changer for our occupational prevention efforts. Our customers are extremely satisfied with the tool's impressive technical capabilities and data-driven approach. But what truly sets it apart is the intuitive and modern user experience it offers, making it a breeze for our clients to navigate. By leveraging this service, our customers have successfully tackled presenteeism and absenteeism.",
     name: "Emek Altun",
+    imgSrc:
+      "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483190/659dbdfd5a080be8d3483253_EmekAltun.jpg",
   },
   {
-    text: "The tool's impressive technical capabilities have been a game-changer for our prevention efforts. Our customers are extremely satisfied.",
-    img: "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483190/659dbdfd5a080be8d3483253_EmekAltun.jpg",
-    name: "John Doe",
+    text: "Working with Significo and their recommendation service has been a game-changer for our occupational prevention efforts. Our customers are extremely satisfied with the tool's impressive technical capabilities and data-driven approach. But what truly sets it apart is the intuitive and modern user experience it offers, making it a breeze for our clients to navigate. By leveraging this service, our customers have successfully tackled presenteeism and absenteeism.",
+    name: "Emek Altun",
+    imgSrc:
+      "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483190/659dbdfd5a080be8d3483253_EmekAltun.jpg",
   },
   {
-    text: "BeFoundOnline's recommendation service has revolutionized our approach to occupational prevention. Our customers love it.",
-    img: "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483190/659dbdfd5a080be8d3483253_EmekAltun.jpg",
-    name: "Jane Smith",
-  },
-  {
-    text: "Our customers are extremely satisfied with the tool's impressive technical capabilities and the service provided by BeFoundOnline.",
-    img: "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483190/659dbdfd5a080be8d3483253_EmekAltun.jpg",
-    name: "Alex Johnson",
+    text: "Working with Significo and their recommendation service has been a game-changer for our occupational prevention efforts. Our customers are extremely satisfied with the tool's impressive technical capabilities and data-driven approach. But what truly sets it apart is the intuitive and modern user experience it offers, making it a breeze for our clients to navigate. By leveraging this service, our customers have successfully tackled presenteeism and absenteeism.",
+    name: "Emek Altun",
+    imgSrc:
+      "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483190/659dbdfd5a080be8d3483253_EmekAltun.jpg",
   },
 ];
 
-const NextArrow = ({ onClick }: { onClick: () => void }) => {
-  return (
-    <div className="arrow next" onClick={onClick}>
-      <FaArrowRight />
-    </div>
-  );
-};
-
-const PrevArrow = ({ onClick }: { onClick: () => void }) => {
-  return (
-    <div className="arrow prev" onClick={onClick}>
-      <FaArrowLeft />
-    </div>
-  );
-};
-
 export default function Testimonial() {
-  const sliderRef = useRef<Slider | null>(null);
-  const infoRefs = useRef<(HTMLHeadingElement | null)[]>([]);
+  const sliderRef = useRef<Slider>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    nextArrow: <NextArrow onClick={() => sliderRef.current?.slickNext()} />,
-    prevArrow: <PrevArrow onClick={() => sliderRef.current?.slickPrev()} />,
-    appendDots: (
-      dots:
-        | string
-        | number
-        | bigint
-        | boolean
-        | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-        | Iterable<React.ReactNode>
-        | React.ReactPortal
-        | Promise<React.AwaitedReactNode>
-        | null
-        | undefined
-    ) => (
-      <div style={{ position: "relative", bottom: "-50px" }}>
-        <ul> {dots} </ul>
-      </div>
-    ),
-    customPaging: (i: number) => (
-      <div
-        style={{
-          width: "30px",
-          color: "blue",
-          border: "1px blue solid",
-          borderRadius: "50%",
-          padding: "5px",
-        }}
-      >
-        {i + 1}
-      </div>
-    ),
+    arrows: false,
+    afterChange: (current: number) => setCurrentSlide(current),
   };
 
-  useEffect(() => {
-    infoRefs.current.forEach((ref) => {
-      if (ref) {
-        const text = ref.textContent || "";
-        let clutter = "";
+  const next = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickNext();
+    }
+  };
 
-        text.split("").forEach((char) => {
-          if (char === " ") clutter += `<span>&nbsp;</span>`;
-          else clutter += `<span>${char}</span>`;
-        });
-
-        ref.innerHTML = clutter;
-
-        gsap.set(".info span", { opacity: 0.1 });
-        gsap.to(".info span", {
-          opacity: 1,
-          stagger: 0.03,
-          ease: "Power4.easeOut",
-          scrollTrigger: {
-            trigger: ".slider-container",
-            scrub: 2,
-            start: "top 70%",
-            end: "bottom 90%",
-          },
-        });
-      }
-    });
-  }, []);
+  const prev = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickPrev();
+    }
+  };
 
   return (
     <div
       data-color="white"
-      className="flex flex-col slider-container justify-center items-center h-screen w-full"
+      className="para section w-full min-h-screen flex flex-col gap-y-11 justify-center items-center p-4"
     >
-      <Slider ref={sliderRef} {...settings}>
-        {TestimonialAr.map((item, index) => (
+      <Slider ref={sliderRef} {...settings} className="w-full md:w-4/5 lg:w-2/3">
+        {testimonials.map((testimonial, index) => (
           <div
             key={index}
-            className="relative flex flex-col items-center justify-center border-2 border-black w-3/4 py-8 px-8 text-center"
+            className="paratext relative flex justify-center items-center flex-col border-[2px] border-black p-4 md:p-8 lg:p-12"
           >
-            <h3
-              ref={(el) => {
-                infoRefs.current[index] = el;
-              }}
-              className="info text-center font-semibold w-full"
-            >
-              {item.text}
+            <h3 className="info text-center text-sm md:text-base lg:text-lg font-semibold mt-10 px-4 md:px-10 lg:px-20">
+              {testimonial.text}
             </h3>
-            <div className="img w-24 h-24 rounded-full mt-10 overflow-hidden">
-              <img
-                className="object-cover w-full h-full"
-                src={item.img}
-                alt={item.name}
-              />
+            <div className="flex items-center justify-center flex-col gap-y-4 md:gap-y-6 lg:gap-y-9">
+              <div className="img w-20 h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 rounded-full mt-10 mb-4 overflow-hidden">
+                <img
+                  className="object-cover w-full h-full"
+                  src={testimonial.imgSrc}
+                  alt={testimonial.name}
+                />
+              </div>
+              <h1 className="mt-2 text-sm md:text-base lg:text-lg">{testimonial.name}</h1>
             </div>
-            <h1 className="mt-8">{item.name}</h1>
           </div>
         ))}
       </Slider>
-      <div className="flex justify-center items-center mt-4">
-        <PrevArrow onClick={() => sliderRef.current?.slickPrev()} />
-        <div className="mx-4">{/* Dots will be appended here */}</div>
-        <NextArrow onClick={() => sliderRef.current?.slickNext()} />
+      <div className="flex items-center justify-between w-full max-w-4xl border border-black ">
+        <div className="border-black">
+          <div
+            className="flex items-center justify-center bg-orange-500 w-16 h-12 md:w-24 md:h-16 lg:w-32 lg:h-20 cursor-pointer"
+            onClick={prev}
+          >
+            <ArrowLeft size={32} />
+          </div>
+        </div>
+        <div className="flex items-center justify-center gap-x-2 md:gap-x-4 lg:gap-x-8">
+          {testimonials.map((_, index) => (
+            <div
+              key={index}
+              className={`w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 rounded-full ${
+                index === currentSlide ? "bg-black" : "bg-gray-300"
+              } cursor-pointer`}
+              onClick={() => (sliderRef.current as Slider)?.slickGoTo(index)}
+            />
+          ))}
+        </div>
+        <div className="border-black">
+          <div
+            className="flex items-center justify-center bg-orange-500 w-16 h-12 md:w-24 md:h-16 lg:w-32 lg:h-20 cursor-pointer"
+            onClick={next}
+          >
+            <ArrowRight size={32} />
+          </div>
+        </div>
       </div>
     </div>
   );

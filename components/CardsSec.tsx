@@ -1,9 +1,11 @@
 "use client";
 
 import gsap from "gsap";
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import { AnimatedText } from "./Storytelling";
 import GibberishText from "./ui/GibberishText";
+import { RoughNotation } from "react-rough-notation";
+import { useInView } from "framer-motion";
 
 const cardConfigs = [
   {
@@ -214,6 +216,9 @@ const cardConfigs = [
 ];
 
 export default function CardsSec() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: false });
+
   useLayoutEffect(() => {
     cardConfigs.forEach(({ className, background, color }) => {
       gsap.to(`.${className}`, {
@@ -235,18 +240,27 @@ export default function CardsSec() {
       data-color="cyan"
       className="craft section justify-between items-start w-full flex md:flex-row flex-col gap-10 px-10 relative"
     >
-      <div className="ltext section w-[40%] sticky -top-10 left-0">
+      <div ref={ref} className="ltext section w-[40%] sticky -top-10 left-0">
         <p className="text-2xl hidden md:flex font-light leading-[2rem] pt-10">
-          Significo is a custom health software developer founded on the belief
-          that technology can transform healthcare to put people first. We put
-          humanity back at the center of healthcare by simplifying complexity,
-          accelerating capacity, and improving outcomes.
+          <RoughNotation
+            type="underline"
+            color="#000"
+            animate
+            animationDelay={900}
+            strokeWidth={2}
+            show={inView}
+          >
+            Be Found Online is a custom health software developer founded on the
+            belief that technology can transform healthcare to put people first.
+            We put humanity back at the center of healthcare by simplifying
+            complexity, accelerating capacity, and improving outcomes.
+          </RoughNotation>
         </p>
         <h1 className="text-[4.5rem] leading-[6rem]">
           We Craft Human-Centric
           <AnimatedText text={"Health Software"} />
         </h1>
-        <div className="w-fit px-10 hidden md:flex  py-5 border-[1px] border-black">
+        <div className="w-fit px-10 hidden md:flex py-5 border-[1px] border-black">
           <div className="texthover masker h-[1.5rem] overflow-hidden">
             <h1 className="text-xl">
               <GibberishText className="cursor-pointer" text="OUR SOLUTIONS" />

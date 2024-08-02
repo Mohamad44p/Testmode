@@ -45,7 +45,7 @@ export default function Navbar() {
       onHoverEnd={() => setHidden(true)}
       variants={{
         visible: { y: "0%" },
-        hidden: { y: "-80%" },
+        hidden: { y: "-90%" },
       }}
       transition={{ duration: 0.2 }}
       className="fixed top-0 z-[1000] w-full backdrop-blur-md bg-white/30 border-b border-white/30 shadow-md"
@@ -53,7 +53,7 @@ export default function Navbar() {
       <div className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
         <h1 className="text-3xl font-bold text-black">
           <RoughNotation type="box" color="#000" show>
-          BE FOUND ONLINE
+            BE FOUND ONLINE
           </RoughNotation>
         </h1>
         <div className="hidden md:flex items-center gap-x-8 text-black">
