@@ -29,7 +29,7 @@ export default function Horizontal() {
   return (
     <div
       data-color="salmon"
-      className="real mt-[50vh] mb-[10vh] section w-full sticky"
+      className="real overflow-y-hidden mt-[50vh] mb-[10vh] section w-full sticky"
     >
       <div className="cont h-[100vh] relative">
         <div className="slides w-full h-[100vh] flex sticky top-0 left-0 gap-20">

@@ -5,22 +5,33 @@
 *::selection {
   background-color: #ef9d71;
 }
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
 @font-face {
   font-family: "neue";
   src: url(./Neue\ Machina\ Inktrap\ Medium.ttf);
 }
+
 body[theme="black"] {
   background-color: #000;
 }
+
 body[theme="black"] .section {
   color: #fff;
 }
+
 body[theme="cyan"] {
   background-color: #aedee0;
 }
+
 body[theme="salmon"] {
   background-color: #ef9d71;
 }
+
 body[theme="white"] {
   background-color: #fff;
 }
@@ -28,35 +39,39 @@ body[theme="white"] {
 body {
   transition: background-color ease-out 0.5s;
 }
+
 .section {
   font-family: "neue";
 }
+
 .videos {
   clip-path: circle(var(--clip) at 50% 50%);
 }
+
 .listelem:hover .bluelayer {
   height: 100%;
   transition: 0.2s all ease-in-out;
 }
+
 .listelem:hover {
   color: #fff;
 }
+
 .card:hover {
   background: #000;
   color: #fff;
   transition: 0.2s all ease-in-out;
 }
+
 .cards {
   transition: 1s all ease-in-out;
 }
+
 .real,
 .para,
 .capsule,
 .team {
   overflow-x: hidden;
-}
-*::-webkit-scrollbar {
-  display: none;
 }
 
 .home {

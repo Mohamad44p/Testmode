@@ -62,8 +62,8 @@ export default function LastSec() {
           </h1>
           <h1 className="text-xl">Thought Leadership</h1>
 
-          <button className="capbtn text-xl py-3 px-3 text-center border-2 border-black">
-            <GibberishText text="READ MORE" className="cursor-pointer" />
+          <button className="capbtn cursor-pointer text-xl py-3 px-3 text-center border-2 border-black">
+            READ MORE
           </button>
         </div>
         <div className="cap1 border-[1px] border-black w-[35%] h-[90%] -rotate-[15deg] rounded-full flex flex-col-reverse gap-20 items-center">
@@ -83,8 +83,8 @@ export default function LastSec() {
             5 Key Takeaways from the Reuters Digital Health ‘24 Summit
           </h1>
           <h1 className="text-xl">Thounght Leadership</h1>
-          <button className="capbtn text-xl py-3 px-3 text-center border-2 border-black">
-            <GibberishText text="READ MORE" className="cursor-pointer" />
+          <button className="capbtn cursor-pointer text-xl py-3 px-3 text-center border-2 border-black">
+            READ MORE
           </button>
         </div>
       </div>

@@ -56,7 +56,7 @@ export default function Testimonial() {
   return (
     <div
       data-color="white"
-      className="para section w-full min-h-screen flex flex-col gap-y-11 justify-center items-center p-4"
+      className="para section md:mb-[15rem] w-full min-h-screen flex flex-col gap-y-11 justify-center items-center p-4"
     >
       <Slider ref={sliderRef} {...settings} className="w-full md:w-4/5 lg:w-2/3">
         {testimonials.map((testimonial, index) => (

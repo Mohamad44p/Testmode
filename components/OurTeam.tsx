@@ -107,7 +107,7 @@ export default function OurTeam() {
     <div
       ref={listRef}
       data-color="white"
-      className="team section w-full mt-[30vh] mb-[30vh] relative"
+      className="team section overflow-y-hidden w-full mt-[30vh] mb-[30vh] relative"
     >
       <h1 className="text-center text-4xl sm:text-6xl tracking-tight">
         Our Team

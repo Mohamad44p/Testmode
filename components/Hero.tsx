@@ -94,11 +94,7 @@ const HomeSection = () => {
       .to(".lft", { ease: "power4", xPercent: -10 }, "b")
       .to(".rgt", { ease: "power4", xPercent: 10, stagger: 0.0002 }, "b")
       .to(".third-row", { ease: "power4", xPercent: -10 }, "b")
-      .to(
-        ".fourth-row",
-        { ease: "power4", xPercent: 10},
-        "b"
-      );
+      .to(".fourth-row", { ease: "power4", xPercent: 10 }, "b");
   }, []);
 
   const renderElements = (classNameName: any) => (
@@ -122,16 +118,13 @@ const HomeSection = () => {
   );
 
   return (
-    <div data-color="black" className="home section w-full h-[200vh] relative">
+    <div data-color="black" className="home section w-full pb-20 h-[200vh] relative">
       <div className="w-full sticky top-0 left-0">
         <div className="btntext absolute bottom-[5%] left-[3%] z-[4]">
           <h1>
             <AnimatedText
-              className="hidden md:flex"
-              text={`We build big ideas.
-                Software. Apps. Tools.
-                For real people. Real
-                lives.`}
+              className="hidden md:flex max-w-[30%]"
+              text={`We’re more than a digital marketing agency—we’re a growth partner. Our innovative strategies and advanced technology drive business success and boost your revenue in the digital world.`}
             />
           </h1>
         </div>
