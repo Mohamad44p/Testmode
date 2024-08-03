@@ -1,12 +1,11 @@
-/* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import { useState, useRef } from "react";
+/* eslint-disable react/no-unescaped-entities */
+import { useState, useEffect, useRef } from "react";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import Link from "next/link";
 import { RoughNotation } from "react-rough-notation";
-import { TextReveal } from "./ui/typography";
-import MegaMenu from "./MegaMenu"; // Import the MegaMenu component
+import MegaMenu from "./MegaMenu";
 
 const navItems = [
   { title: "UI/UX", href: "/ui-ux" },
@@ -21,6 +20,7 @@ export default function Navbar() {
   const { scrollY } = useScroll();
   const lastYRef = useRef(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [textColor, setTextColor] = useState("black");
 
   useMotionValueEvent(scrollY, "change", (y) => {
     const difference = y - lastYRef.current;
@@ -29,6 +29,36 @@ export default function Navbar() {
       lastYRef.current = y;
     }
   });
+
+  useEffect(() => {
+    const updateTextColor = () => {
+      const currentTheme = document.body.getAttribute("theme");
+      switch (currentTheme) {
+        case "black":
+          setTextColor("white");
+          break;
+        case "cyan":
+        case "salmon":
+          setTextColor("black");
+          break;
+        case "white":
+          setTextColor("black");
+          break;
+        default:
+          setTextColor("black");
+      }
+    };
+
+    updateTextColor();
+
+    const observer = new MutationObserver(updateTextColor);
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["theme"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleMouseEnter = (index: number) => {
     setHoveredIndex(index);
@@ -43,16 +73,18 @@ export default function Navbar() {
       animate={hidden ? "hidden" : "visible"}
       initial="visible"
       transition={{ duration: 0.2 }}
-      className="fixed top-0 z-[1000] w-full backdrop-blur-md bg-white/30 border-b border-white/30 shadow-md"
+      className="fixed hidden md:block top-0 z-[1000] w-full backdrop-blur-md bg-white/30 border-b border-white/30 shadow-md"
     >
       <div className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-black">
+        <h1 className={`text-3xl font-bold text-${textColor}`}>
           <RoughNotation type="box" color="#000" show>
             BE FOUND <span className="">ONLINE</span>
-          </RoughNotation> 
+          </RoughNotation>
         </h1>
-        <div className="hidden md:flex items-center gap-x-8 text-black">
-          <MegaMenu/>
+        <div
+          className={`hidden md:flex items-center gap-x-8 text-${textColor}`}
+        >
+          <MegaMenu />
           {navItems.map((item, index) => (
             <div
               key={index}
@@ -61,10 +93,12 @@ export default function Navbar() {
               className="relative"
             >
               <Link href={item.href}>
-                <span className="font-bold cursor-pointer py-2 relative">
+                <span
+                  className={`font-bold cursor-pointer py-2 relative text-${textColor}`}
+                >
                   <RoughNotation
                     type="underline"
-                    color="#000"
+                    color={textColor}
                     strokeWidth={2}
                     show={hoveredIndex === index}
                   >
@@ -75,7 +109,9 @@ export default function Navbar() {
             </div>
           ))}
         </div>
-        <button className="hidden md:block px-6 py-2 border border-black text-black rounded-lg font-bold hover:bg-white hover:text-black transition">
+        <button
+          className={`hidden md:block px-6 py-2 border border-${textColor} text-${textColor} rounded-lg font-bold hover:text-${textColor} transition`}
+        >
           Let's Start
         </button>
       </div>

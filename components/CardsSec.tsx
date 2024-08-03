@@ -239,9 +239,9 @@ export default function CardsSec() {
   return (
     <div
       data-color="cyan"
-      className="craft section justify-between items-start w-full flex md:flex-row flex-col gap-10 px-10 relative"
+      className="craft section justify-between  items-start w-full flex md:flex-row flex-col gap-10 px-10 relative"
     >
-      <div ref={ref} className="ltext section w-[40%] sticky -top-10 left-0">
+      <div ref={ref} className="ltext section w-[40%] sticky top-10 left-0">
         <p className="text-2xl hidden md:flex font-light leading-[2rem] pt-10">
           <RoughNotation
             type="underline"
@@ -257,7 +257,7 @@ export default function CardsSec() {
             complexity, accelerating capacity, and improving outcomes.
           </RoughNotation>
         </p>
-        <h1 className="text-[4.5rem] leading-[6rem]">
+        <h1 className="text-[4.5rem] hidden md:flex leading-[6rem]">
           We Craft Human-Centric
           <AnimatedText text={"Health Software"} />
         </h1>

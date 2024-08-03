@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   FaBook,
@@ -63,16 +63,42 @@ const digitalMarketingServices = [
 ];
 
 const MegaMenu = () => {
+  const [textColor, setTextColor] = useState("black");
+
+  useEffect(() => {
+    const updateTextColor = () => {
+      const currentTheme = document.body.getAttribute("theme");
+      switch (currentTheme) {
+        case "black":
+          setTextColor("white");
+          break;
+        case "cyan":
+        case "salmon":
+          setTextColor("black");
+          break;
+        case "white":
+          setTextColor("black");
+          break;
+        default:
+          setTextColor("black");
+      }
+    };
+
+    updateTextColor();
+
+    const observer = new MutationObserver(updateTextColor);
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["theme"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="flex justify-center px-3">
       <FlyoutLink href="#" FlyoutContent={PricingContent}>
-        <RoughNotation
-          type="underline"
-          color="#000"
-          strokeWidth={2}
-        >
-         Digital Marketing Services
-        </RoughNotation>
+        <p className={`text-${textColor}`}>Digital Marketing Services</p>
       </FlyoutLink>
     </div>
   );
@@ -127,7 +153,7 @@ const FlyoutLink = ({
 
 const PricingContent = () => {
   return (
-    <div className="absolute left-[13.5rem] z-[10000] transform -translate-x-1/2 mt-4 p-6 w-[1580px] bg-white shadow-xl">
+    <div className="absolute left-[11.6rem] z-[10000] transform -translate-x-1/2 mt-4 p-6 w-[1860px] bg-white shadow-xl">
       <div className="grid grid-cols-4 gap-6">
         {digitalMarketingServices.map((service, index) => (
           <div key={index}>

@@ -118,7 +118,7 @@ const HomeSection = () => {
   );
 
   return (
-    <div data-color="black" className="home section w-full pb-20 h-[200vh] relative">
+    <div data-color="black" className="home section w-full  h-[200vh] relative">
       <div className="w-full sticky top-0 left-0">
         <div className="btntext absolute bottom-[5%] left-[3%] z-[4]">
           <h1>
@@ -144,7 +144,7 @@ const HomeSection = () => {
           <div className="heading absolute top-[5%] left-1/2 -translate-x-1/2">
             <h1 className="text-xl font-regular text-center">
               <AnimatedText
-                className="max-w-[70%] mx-auto hidden md:flex"
+                className="max-w-[70%] mt-28 mx-auto hidden md:flex"
                 text={`Crafting a new paradigm of healthcare one that is`}
               />
             </h1>

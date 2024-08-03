@@ -15,6 +15,9 @@
     border-radius: 25px;
     padding: 50px;
     transform-origin: top;
+    @media (max-width: 768px) {
+      height: 100%;
+    }
     h2 {
       text-align: center;
       margin: 0px;

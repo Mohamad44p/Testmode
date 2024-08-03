@@ -23,9 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Navbar />
         <ScrollButton />
-        <main>
-        {children}
-        </main>
+        <main>{children}</main>
         <section data-color="black">
           <Footer />
         </section>

@@ -13,7 +13,6 @@ import LastSec from "./LastSec";
 import MobileMenu from "./header/MobileMenu";
 import CardCase from "./CardCase";
 
-// Ensure gsap and ScrollTrigger are registered
 gsap.registerPlugin(ScrollTrigger);
 
 const changeBodyBackgroundColor = () => {
