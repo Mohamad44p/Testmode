@@ -16,8 +16,9 @@ export default function Horizontal() {
         pin: true,
         scrub: 6,
       },
-
       xPercent: -320,
+      duration: 6,
+      delay: 0.5,
       ease: "power4",
     });
 
@@ -29,7 +30,7 @@ export default function Horizontal() {
   return (
     <div
       data-color="salmon"
-      className="real overflow-y-hidden mt-[50vh] mb-[10vh] section w-full sticky"
+      className="real overflow-y-hidden mt-[30vh] mb-[10vh] section w-full sticky"
     >
       <div className="cont h-[100vh] relative">
         <div className="slides w-full h-[100vh] flex sticky top-0 left-0 gap-20">
@@ -67,13 +68,13 @@ export default function Horizontal() {
             </div>
             <div className="img1 w-[10rem] h-[10rem] bg-blue-500 overflow-hidden absolute top-[63%] z-[3] left-1/4 rounded-full">
               <img
-                className="object-cover w-full h-full"
+                className="object-cover mt w-full h-full"
                 src="https://images.unsplash.com/photo-1614204424926-196a80bf0be8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt=""
               />
             </div>
             <div className="w-[60%] text-center relative">
-              <h3 className="top-0 left-0 absolute w-[13rem] text-start font-semibold">
+              <h3 className="top-4 left-0 absolute w-[13rem] text-start font-semibold">
                 We’re on a mission to impact as many lives as possible and build
                 a better company while we do it. Here’s our progress.
               </h3>

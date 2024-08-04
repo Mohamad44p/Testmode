@@ -7,126 +7,41 @@ import GibberishText from "./ui/GibberishText";
 import { RoughNotation } from "react-rough-notation";
 import { useInView } from "framer-motion";
 import { TextReveal } from "./ui/typography";
+import { TbSeo } from "react-icons/tb";
+import Image from "next/image";
 
 const cardConfigs = [
   {
     className: "no1",
     background: "#000",
     color: "#fff",
-    title: "Driven by Purpose",
-    text: "We believe technology can dramatically improve the experience of managing health, and — when crafted with empathy, intention, and expertise — impact lives at scale.",
+    title: "SEO & Lead Generation",
+    text: "Drive organic traffic, improve search rankings, and convert leads into loyal customers with our comprehensive solutions tailored to your business.",
     svgPath: (
-      <svg
-        width="100%"
-        height="100%"
-        viewBox="0 0 64 64"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          opacity="0.2"
-          d="M45.9998 10H31.9998L19.7271 26L31.9998 56L59.9998 26L45.9998 10Z"
-          fill="currentColor"
-        ></path>
-        <path
-          d="M18 10H46L60 26L32 56L4 26L18 10Z"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        ></path>
-        <path
-          d="M44.2726 26L31.9998 56L19.7271 26L31.9998 10L44.2726 26Z"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        ></path>
-        <path
-          d="M4 26H60"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        ></path>
-      </svg>
+      <Image
+        src="/test1.svg"
+        alt="SEO & Lead Generation"
+        width={100}
+        height={100}
+      />
     ),
   },
   {
     className: "no2",
     background: "#000",
     color: "#fff",
-    title: "Custom Products",
-    text: "We build mobile and web-based apps, platforms, and infrastructure fitted to your needs. We have an open solutions framework, so we work to fit your business, not the other way around.",
+    title: "UI/UX Interactive",
+    text: "We craft immersive digital experiences with sleek designs and user-friendly interfaces, enhancing engagement and satisfaction for your audience.",
     svgPath: (
-      <svg
-        width="100%"
-        height="100%"
-        viewBox="0 0 64 64"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          opacity="0.2"
-          d="M49.0005 54C52.8665 54 56.0005 50.866 56.0005 47C56.0005 43.134 52.8665 40 49.0005 40C45.1345 40 42.0005 43.134 42.0005 47C42.0005 50.866 45.1345 54 49.0005 54Z"
-          fill="currentColor"
-        ></path>
-        <path
-          opacity="0.2"
-          d="M15 24C18.866 24 22 20.866 22 17C22 13.134 18.866 10 15 10C11.134 10 8 13.134 8 17C8 20.866 11.134 24 15 24Z"
-          fill="currentColor"
-        ></path>
-        <path
-          d="M49.0005 54C52.8665 54 56.0005 50.866 56.0005 47C56.0005 43.134 52.8665 40 49.0005 40C45.1345 40 42.0005 43.134 42.0005 47C42.0005 50.866 45.1345 54 49.0005 54Z"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        ></path>
-        <path
-          d="M49.0006 40L49.0002 29.9703C49.0001 26.7878 47.7358 23.7358 45.4855 21.4855L36 12"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        ></path>
-        <path
-          d="M36 22V12H46"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        ></path>
-        <path
-          d="M15 24C18.866 24 22 20.866 22 17C22 13.134 18.866 10 15 10C11.134 10 8 13.134 8 17C8 20.866 11.134 24 15 24Z"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        ></path>
-        <path
-          d="M15 24L15.0004 34.0297C15.0005 37.2122 16.2648 40.2642 18.5151 42.5145L28.0006 52"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        ></path>
-        <path
-          d="M28.0003 42V52H18.0003"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        ></path>
-      </svg>
+        <TbSeo/>
     ),
   },
   {
     className: "no3",
     background: "#000",
     color: "#fff",
-    title: "Partnerships",
-    text: "We work with payers, providers, and pharma to help internal teams through ground-up builds, product optimizations, and streamlining data/analytics.",
+    title: "Content Marketing",
+    text: "We craft captivating narratives and deliver strategic content to captivate your audience, spark conversations, and drive impactful results for your brand.",
     svgPath: (
       <svg
         width="100%"
@@ -168,8 +83,8 @@ const cardConfigs = [
     className: "no4",
     background: "#000",
     color: "#fff",
-    title: "Client-Centric",
-    text: "Our clients come first, and we take pride in our reputation for communication, transparency, and partnership.",
+    title: "Branding & Creative Media",
+    text: "Transforming visions into compelling stories and striking visuals that define and amplify your brand's unique identity and market presence.",
     svgPath: (
       <svg
         width="100%"
@@ -214,6 +129,46 @@ const cardConfigs = [
       </svg>
     ),
   },
+  {
+    className: "no5",
+    background: "#000",
+    color: "#fff",
+    title: "Digital Strategy and Consulting",
+    text: "Crafting Revenue-Driven Strategies to Propel Your Business Forward, Leveraging Data Insights and Innovation for Sustainable Growth.",
+    svgPath: (
+        <TbSeo/>
+    ),
+  },
+  {
+    className: "no6",
+    background: "#000",
+    color: "#fff",
+    title: "E-commerce Solutions",
+    text: "Streamlined online stores designed for seamless customer experiences, enhanced conversions, and scalable growth.",
+    svgPath: (
+        <TbSeo/>
+    ),
+  },
+  {
+    className: "no7",
+    background: "#000",
+    color: "#fff",
+    title: "Digital Training and Workshops",
+    text: "Transforming Teams into Digital Experts with Customized Learning Experiences and Practical Strategies for Success.",
+    svgPath: (
+        <TbSeo/>
+    ),
+  },
+  {
+    className: "no8",
+    background: "#000",
+    color: "#fff",
+    title: "Software Development",
+    text: "Transforming Ideas into Powerful Solutions, Tailored to Your Needs for Seamless Performance and Efficiency.",
+    svgPath: (
+        <TbSeo/>
+    ),
+  },
 ];
 
 export default function CardsSec() {
@@ -242,7 +197,7 @@ export default function CardsSec() {
       className="craft section justify-between  items-start w-full flex md:flex-row flex-col gap-10 px-10 relative"
     >
       <div ref={ref} className="ltext section w-[40%] sticky top-10 left-0">
-        <p className="text-2xl hidden md:flex font-light leading-[2rem] pt-10">
+        <p className="text-xl hidden md:flex font-light leading-[2rem] pt-10">
           <RoughNotation
             type="underline"
             color="#000"
@@ -251,20 +206,21 @@ export default function CardsSec() {
             strokeWidth={2}
             show={inView}
           >
-            Be Found Online is a custom health software developer founded on the
-            belief that technology can transform healthcare to put people first.
-            We put humanity back at the center of healthcare by simplifying
-            complexity, accelerating capacity, and improving outcomes.
+            Be Found Online is a digital marketing agency that conduct proven
+            marketing strategies and cutting-edge technology empower businesses
+            and drive seals. <br /> With our talented team, we push the
+            boundaries by solving complex problems, delivering tailored
+            solutions that exceed expectations and engage audiences.
           </RoughNotation>
         </p>
-        <h1 className="text-[4.5rem] hidden md:flex leading-[6rem]">
-          We Craft Human-Centric
-          <AnimatedText text={"Health Software"} />
+        <h1 className="text-[2.5rem] hidden md:flex leading-[6rem]">
+          We craft digital marketing and tech solutions that drive profit
+          growth.{" "}
         </h1>
         <div className="w-fit px-10 hidden md:flex py-5 border-[1px] border-black">
           <div className="texthover masker h-[1.5rem] overflow-hidden">
             <h1 className="text-xl">
-              <TextReveal className="cursor-pointer">OUR SOLUTIONS</TextReveal>
+              <TextReveal className="cursor-pointer">EXPLORE OUR SOLUTIONS</TextReveal>
             </h1>
           </div>
         </div>

@@ -96,7 +96,7 @@ const MegaMenu = () => {
   }, []);
 
   return (
-    <div className="flex justify-center px-3">
+    <div className="flex justify-center items-center">
       <FlyoutLink href="#" FlyoutContent={PricingContent}>
         <p className={`text-${textColor}`}>Digital Marketing Services</p>
       </FlyoutLink>
@@ -123,7 +123,7 @@ const FlyoutLink = ({
       onMouseLeave={() => setOpen(false)}
       className="relative w-fit h-fit"
     >
-      <a href={href} className="relative text-black font-bold">
+      <a href={href} className="relative text-black">
         {children}
         <span
           style={{
@@ -153,7 +153,7 @@ const FlyoutLink = ({
 
 const PricingContent = () => {
   return (
-    <div className="absolute left-[11.6rem] z-[10000] transform -translate-x-1/2 mt-4 p-6 w-[1860px] bg-white shadow-xl">
+    <div className="absolute md:left-[12.4rem] z-[10000] transform -translate-x-1/2 mt-4 p-6 w-[90vw] md:w-[1560px] bg-white shadow-xl">
       <div className="grid grid-cols-4 gap-6">
         {digitalMarketingServices.map((service, index) => (
           <div key={index}>

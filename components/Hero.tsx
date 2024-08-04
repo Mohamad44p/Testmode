@@ -10,52 +10,52 @@ gsap.registerPlugin(ScrollTrigger);
 
 const words = [
   {
-    text: "empathetic",
+    text: "Strategize",
     imgSrc:
       "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483184_Ellipse%20845.png",
   },
   {
-    text: "intuitive",
+    text: "Influence",
     imgSrc:
       "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483180_Ellipse%20845-4.png",
   },
   {
-    text: "useful",
+    text: "Creativity",
     imgSrc:
       "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483195_Ellipse%20845.png",
   },
   {
-    text: "empathetic",
+    text: "Engagement",
     imgSrc:
       "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483184_Ellipse%20845.png",
   },
   {
-    text: "intuitive",
+    text: "conversions",
     imgSrc:
       "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483180_Ellipse%20845-4.png",
   },
   {
-    text: "useful",
+    text: "Growth",
     imgSrc:
       "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483195_Ellipse%20845.png",
   },
   {
-    text: "empathetic",
+    text: "Lead Generation",
     imgSrc:
       "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483184_Ellipse%20845.png",
   },
   {
-    text: "useful",
+    text: "Strategize",
     imgSrc:
       "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483195_Ellipse%20845.png",
   },
   {
-    text: "useful",
+    text: "Creativity",
     imgSrc:
       "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483195_Ellipse%20845.png",
   },
   {
-    text: "intuitive",
+    text: "Engagement",
     imgSrc:
       "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483180_Ellipse%20845-4.png",
   },
@@ -95,12 +95,34 @@ const HomeSection = () => {
       .to(".rgt", { ease: "power4", xPercent: 10, stagger: 0.0002 }, "b")
       .to(".third-row", { ease: "power4", xPercent: -10 }, "b")
       .to(".fourth-row", { ease: "power4", xPercent: 10 }, "b");
+
+    // Opacity animations for elements
+    gsap.to([".videos", ".slidesm", ".lft", ".rgt", ".third-row", ".fourth-row"], {
+      scrollTrigger: {
+        trigger: ".home",
+        start: "bottom+=400px bottom",
+        end: "bottom+=400px bottom",
+        scrub: true,
+      },
+      opacity: 0.5,
+    });
+
+    // Opacity animation for btntext h1
+    gsap.to(".btntext h1", {
+      scrollTrigger: {
+        trigger: ".home",
+        start: "bottom+=400px bottom",
+        end: "bottom+=400px bottom",
+        scrub: true,
+      },
+      opacity: 0.5,
+    });
   }, []);
 
-  const renderElements = (classNameName: any) => (
+  const renderElements = (className: any) => (
     <div
       data-color="transparent"
-      className={`row ${classNameName} w-full flex items-center gap-3 pb-7 whitespace-nowrap`}
+      className={`row ${className} w-full flex items-center gap-3 pb-7 whitespace-nowrap`}
     >
       {words.map((word, index) => (
         <div key={index} className="elem flex items-center gap-5">
@@ -118,7 +140,7 @@ const HomeSection = () => {
   );
 
   return (
-    <div data-color="black" className="home section w-full  h-[200vh] relative">
+    <div data-color="black" className="home section w-full h-[200vh] relative">
       <div className="w-full sticky top-0 left-0">
         <div className="btntext absolute bottom-[5%] left-[3%] z-[4]">
           <h1>
@@ -145,7 +167,7 @@ const HomeSection = () => {
             <h1 className="text-xl font-regular text-center">
               <AnimatedText
                 className="max-w-[70%] mt-28 mx-auto hidden md:flex"
-                text={`Crafting a new paradigm of healthcare one that is`}
+                text={`We Are Always Here To Help You Grow Your Business`}
               />
             </h1>
           </div>

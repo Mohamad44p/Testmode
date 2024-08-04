@@ -3,23 +3,26 @@ import gsap from "gsap";
 import React, { useLayoutEffect, useRef } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import GibberishText from "./ui/GibberishText";
+import { Button } from "./ui/button";
+import { ArrowRight } from "lucide-react";
+import { TextReveal } from "./ui/typography";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const teamMembers = [
   {
     id: "01",
-    name: "Dr. Rick McCartney",
+    name: "BASHAR AL-BAKRI",
     position: "CEO",
-    imgSrc:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cG9ydHJhaXR8ZW58MHx8MHx8fDA%3D",
+    imgSrc: "/BA.jpeg",
+    bg: "#DAB78F",
   },
   {
     id: "02",
-    name: "Chris Koha",
+    name: "MOHAMMAD LEILA",
     position: "COO",
-    imgSrc:
-      "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MHx8fHBvcnRyYWl0fGVufDB8fDB8fHww",
+    imgSrc: "/Testme.jpeg",
+    bg: "#FC5529",
   },
   {
     id: "03",
@@ -109,7 +112,7 @@ export default function OurTeam() {
       data-color="white"
       className="team section overflow-y-hidden w-full mt-[30vh] mb-[30vh] relative"
     >
-      <h1 className="text-center text-4xl sm:text-6xl tracking-tight">
+      <h1 className="text-center mb-12 text-4xl sm:text-6xl tracking-tight">
         Our Team
       </h1>
       <div className="list w-full mt-10 px-4 sm:px-10">
@@ -122,7 +125,10 @@ export default function OurTeam() {
               <div className="left w-full flex items-center gap-4 sm:gap-10">
                 <h3>{member.id}</h3>
                 <h1>
-                  <GibberishText className="cursor-pointer" text={member.name} />
+                  <GibberishText
+                    className="cursor-pointer"
+                    text={member.name}
+                  />
                 </h1>
               </div>
               <div className="right">
@@ -138,9 +144,20 @@ export default function OurTeam() {
                 alt={member.name}
               />
             </div>
-            <div className="bluelayer top-0 left-0 w-full h-0 bg-[#2544EE] absolute z-5"></div>
+            <div
+              className="bluelayer top-0 left-0 w-full h-0 absolute z-5"
+              style={{ backgroundColor: member.bg }}
+            ></div>
           </div>
         ))}
+      </div>
+      <div className="flex items-center justify-center my-10 mt-16">
+        <Button
+          size={"lg"}
+          className="border flex items-center justify-center gap-x-3 bg-[#F5F19C] hover:bg-[#F5F19C] border-black text-black rounded-lg font-bold transition"
+        >
+          <TextReveal>Meet the Team &#8594;</TextReveal>
+        </Button>
       </div>
     </div>
   );
