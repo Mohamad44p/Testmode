@@ -41,28 +41,38 @@ const changeBodyBackgroundColor = () => {
 
 export default function All() {
   useEffect(() => {
+    const lenis = new Lenis();
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
     changeBodyBackgroundColor();
   }, []);
 
   return (
     <div className="main w-full">
+      {" "}
       <HomeSection />
-      <section className="section" data-color="cyan">
+      <section data-color="cyan">
         <CardsSec />
       </section>
-      <section className="section" data-color="salmon">
+      <section data-color="salmon">
         <Horizontal />
       </section>
-      <section className="section" data-color="white">
+      <section data-color="white">
         <OurTeam />
       </section>
-      <section className="section" data-color="white">
+      <section data-color="white">
         <Testimonial />
       </section>
-      <section className="section" data-color="green">
+      <section data-color="green">
         <CardCase />
       </section>
-      <section className="section" data-color="white">
+      <section data-color="white">
         <LastSec />
       </section>
     </div>
