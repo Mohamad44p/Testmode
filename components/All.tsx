@@ -10,7 +10,6 @@ import Horizontal from "./Horizontal";
 import OurTeam from "./OurTeam";
 import Testimonial from "./Testimonial";
 import LastSec from "./LastSec";
-import MobileMenu from "./header/MobileMenu";
 import CardCase from "./CardCase";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -57,7 +56,6 @@ export default function All() {
   return (
     <div className="main w-full">
       {" "}
-      {/*  <MobileMenu /> */}
       <HomeSection />
       <section data-color="cyan">
         <CardsSec />
