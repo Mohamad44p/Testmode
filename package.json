@@ -15,6 +15,7 @@
     "@radix-ui/react-separator": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@studio-freight/lenis": "^1.0.42",
+    "@studio-freight/react-lenis": "^0.0.47",
     "@types/lodash": "^4.17.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

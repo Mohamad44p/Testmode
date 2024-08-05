@@ -5,6 +5,7 @@ import ScrollButton from "@/components/ScrollButton";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import MobileNavbar from "@/components/MobileNavbar";
+import { Lenis } from "@/components/Lenis";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,16 +20,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Navbar />
-       {/*  <MobileNavbar/> */}
-        <ScrollButton />
-        <main>{children}</main>
-        <section data-color="black">
-          <Footer />
-        </section>
-      </body>
-    </html>
+    <Lenis>
+      <html lang="en">
+        <body className={inter.className}>
+          <Navbar />
+          {/*  <MobileNavbar/> */}
+          <ScrollButton />
+          <main>{children}</main>
+          <section data-color="black">
+            <Footer />
+          </section>
+        </body>
+      </html>
+    </Lenis>
   );
 }
