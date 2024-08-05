@@ -14,12 +14,11 @@ export default function Horizontal() {
         start: "top top",
         end: "bottom top",
         pin: true,
-        scrub: 6,
+        scrub: 2,
+        anticipatePin: 4,
       },
       xPercent: -320,
-      duration: 6,
-      delay: 0.5,
-      ease: "power4",
+      ease: "power1.inOut",
     });
 
     return () => {

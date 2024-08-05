@@ -71,7 +71,7 @@ export default function All() {
       <section data-color="white">
         <Testimonial />
       </section>
-      <section data-color="black">
+      <section data-color="green">
         <CardCase />
       </section>
       <section data-color="white">

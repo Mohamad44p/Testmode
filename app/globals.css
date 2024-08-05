@@ -19,6 +19,9 @@ html {
 body[theme="black"] {
   background-color: #000;
 }
+body[theme="green"] {
+  background-color: #004855;
+}
 
 body[theme="black"] .section {
   color: #fff;

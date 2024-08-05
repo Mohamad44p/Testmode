@@ -124,12 +124,7 @@ export default function OurTeam() {
             <div className="relative z-10 flex justify-between sm:justify-around items-center">
               <div className="left w-full flex items-center gap-4 sm:gap-10">
                 <h3>{member.id}</h3>
-                <h1>
-                  <GibberishText
-                    className="cursor-pointer"
-                    text={member.name}
-                  />
-                </h1>
+                <h1 className="cursor-pointer">{member.name}</h1>
               </div>
               <div className="right">
                 <h1 className="text-base sm:text-[1.5rem] text-end w-full">

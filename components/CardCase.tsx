@@ -12,7 +12,9 @@ export default function CardCase() {
   });
 
   return (
-    <section data-color="black" className="section">
+    <section
+      data-color="green"
+    className="section">
       <main ref={container}>
         {projects.map((project, i) => {
           const targetScale = 1 - (projects.length - i) * 0.05;
