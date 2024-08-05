@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navbar />
-        <MobileNavbar/>
+       {/*  <MobileNavbar/> */}
         <ScrollButton />
         <main>{children}</main>
         <section data-color="black">
