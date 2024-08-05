@@ -111,7 +111,7 @@ export default function Navbar() {
           ))}
         </div>
         <Button
-          className={`border border-${textColor} text-${textColor} rounded-lg font-bold hover:text-${textColor} transition`}
+          className={`border border-${textColor} rounded-2xl text-${textColor} font-bold hover:text-${textColor} transition`}
         >
           Let's Start
         </Button>

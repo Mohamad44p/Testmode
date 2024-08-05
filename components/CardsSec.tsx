@@ -230,7 +230,7 @@ export default function CardsSec() {
           {cardConfigs.map((config, index) => (
             <div
               key={index}
-              className={`card ${config.className} border-[2px] border-black w-[30rem] py-5 px-5 h-[15rem] flex justify-between gap-10 mb-10`}
+              className={`card ${config.className} rounded-xl border-[2px] border-black w-[30rem] py-5 px-5 h-[15rem] flex justify-between gap-10 mb-10`}
             >
               <div className="cardelem w-[18.75rem]">
                 <h1 className="text-xl font-semibold">{config.title}</h1>

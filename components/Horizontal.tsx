@@ -74,15 +74,15 @@ export default function Horizontal() {
             </div>
             <div className="w-[60%] text-center relative mt-[10vh]">
               <h3 className="top-4 left-0 absolute w-[13rem] text-start font-semibold">
-                We’re on a mission to impact as many lives as possible and build
-                a better company while we do it. Here’s our progress.
+                We’re on a mission to impact as many business as possible and
+                build a better company while we do it. Here’s our progress.
               </h3>
               <h1 className="font-semibold text-[10rem] pt-[5rem] text-white leading-none">
-                20.4M
+                10K
               </h1>
-              <h3 className="text-[3rem] leading-none">
-                Real people — real lives — we have built products and solutions
-                for.
+              <h3 className="text-[2rem] leading-none">
+                Digital Campinas — Profit-Boosting Tactics — For over 500
+                clients.
               </h3>
             </div>
           </div>
@@ -116,10 +116,13 @@ export default function Horizontal() {
                 experiences make us stronger.
               </h3>
               <h1 className="font-semibold text-[10rem] pt-[5rem] text-white leading-none">
-                49%
+                20
               </h1>
               <h3 className="text-[3rem] leading-none">
-                Expert Women in Tech.
+                Marketing& Tech Experts.
+              </h3>
+              <h3 className="text-[1.2rem] mt-3 leading-none">
+                Our team brings creative ideas to fuel your growth.
               </h3>
             </div>
           </div>
@@ -128,6 +131,13 @@ export default function Horizontal() {
               <img
                 className="object-cover w-full h-full"
                 src="https://images.unsplash.com/photo-1716907997192-5c9fcfcd8bbe?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt=""
+              />
+            </div>
+            <div className="img1 w-[20rem] h-[20rem] overflow-hidden absolute bottom-0 translate-y-[30%] -translate-x-1/4 z-[3] left-1/2 rounded-full opacity-1 disappear">
+              <img
+                className="object-cover w-full h-full"
+                src="/test3.jpeg"
                 alt=""
               />
             </div>
@@ -149,10 +159,10 @@ export default function Horizontal() {
             </div>
             <div className="w-[60%] text-center relative mt-[10vh]">
               <h1 className="font-semibold text-[10rem] pt-[5rem] text-white leading-none">
-                13
+                850
               </h1>
               <h3 className="text-[3rem] leading-none">
-                Nationalities Represented on Our Team.
+                Client Testimonials.
               </h3>
             </div>
           </div>
