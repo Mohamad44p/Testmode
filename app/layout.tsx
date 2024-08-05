@@ -20,6 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <Lenis>
       <html lang="en">
         <body className={inter.className}>
           <Navbar />
@@ -31,5 +32,6 @@ export default function RootLayout({
           </section>
         </body>
       </html>
+    </Lenis>
   );
 }
