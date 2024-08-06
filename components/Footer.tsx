@@ -86,7 +86,7 @@ export default function Footer() {
         <div className="footertext relative overflow-hidden">
           <h1
             ref={footerH1Ref}
-            className="footer-headline text-[10rem] my-10  tracking-tighter leading-none"
+            className="footer-headline  text-[10rem] my-10  tracking-tighter leading-none"
           >
             B e F o u n d Online
           </h1>

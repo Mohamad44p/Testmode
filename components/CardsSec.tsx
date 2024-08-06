@@ -9,6 +9,7 @@ import { useInView } from "framer-motion";
 import { TextReveal } from "./ui/typography";
 import { TbSeo } from "react-icons/tb";
 import Image from "next/image";
+import BoxReveal from "./magicui/box-reveal";
 
 const cardConfigs = [
   {
@@ -221,7 +222,12 @@ export default function CardsSec() {
         </div>
       </div>
       <div className="cards w-full md:w-1/2 py-5 md:py-10">
-        <div className="cardlist pt-[20rem] md:pt-[38.59rem] pb-[10rem] md:pb-[22.09rem]">
+        <BoxReveal>
+          <h1 className="text-3xl font-bold leading-8 mt-12">
+            Our Company Services
+          </h1>
+        </BoxReveal>
+        <div className="cardlist pt-[4rem] md:pt-[38.59rem] pb-[10rem] md:pb-[22.09rem]">
           {cardConfigs.map((config, index) => (
             <div
               key={index}
@@ -242,7 +248,7 @@ export default function CardsSec() {
         <div className="w-fit px-5 md:px-10 mx-auto flex md:hidden py-5 border-[1px] border-black">
           <div className="texthover masker h-[1.5rem] overflow-hidden">
             <h1 className="text-lg md:text-xl">
-              <TextReveal className="cursor-pointer">
+              <TextReveal className="cursor-pointer rounded-2xl">
                 EXPLORE OUR SOLUTIONS
               </TextReveal>
             </h1>
