@@ -86,9 +86,9 @@ export default function Footer() {
         <div className="footertext relative overflow-hidden">
           <h1
             ref={footerH1Ref}
-            className="footer-headline w-full h-fit text-[10rem] my-10  tracking-tighter leading-none"
+            className="footer-headline text-[10rem] my-10  tracking-tighter leading-none"
           >
-            B e {"  "} <br/> F o u n d <br/> {"  "} O n l i n e
+            B e F o u n d Online
           </h1>
           <div className="cover w-full flex flex-col sm:flex-row justify-between items-center border-t-2 border-white bg-black px-4 sm:px-10 py-4 sm:py-7 absolute bottom-0">
             <div className="fleft flex flex-col sm:flex-row items-center gap-2 sm:gap-5 text-xs sm:text-[.9rem]">
