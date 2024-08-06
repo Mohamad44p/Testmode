@@ -11,6 +11,7 @@ import OurTeam from "./OurTeam";
 import Testimonial from "./Testimonial";
 import LastSec from "./LastSec";
 import CardCase from "./CardCase";
+import OurTeamRes from "./mobile/OurTeamRes";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -64,7 +65,7 @@ export default function All() {
         <Horizontal />
       </section>
       <section data-color="white">
-        <OurTeam />
+        <OurTeamRes />
       </section>
       <section data-color="white">
         <Testimonial />
