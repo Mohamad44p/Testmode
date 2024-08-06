@@ -11,9 +11,14 @@ import OurTeam from "./OurTeam";
 import Testimonial from "./Testimonial";
 import LastSec from "./LastSec";
 import CardCase from "./CardCase";
-import OurTeamRes from "./mobile/OurTeamRes";
+import dynamic from "next/dynamic";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const LazyOurTeam = dynamic(() => import("./mobile/OurTeamRes"), {
+  ssr: false,
+  loading: () => <p>Loading...</p>,
+});
 
 const changeBodyBackgroundColor = () => {
   gsap.utils
@@ -65,7 +70,7 @@ export default function All() {
         <Horizontal />
       </section>
       <section data-color="white">
-        <OurTeamRes />
+        <LazyOurTeam />
       </section>
       <section data-color="white">
         <Testimonial />
