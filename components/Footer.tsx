@@ -22,9 +22,11 @@ export default function Footer() {
 
       footerH1Ref.current.innerHTML = clutter;
 
+      const isSmallScreen = window.matchMedia("(max-width: 768px)").matches;
+
       gsap.from(".footertext h1 span", {
         opacity: 0,
-        stagger: 0.3,
+        stagger: isSmallScreen ? 0.1 : 0.3,
         ease: "Power4.easeOut",
         scrollTrigger: {
           trigger: ".footer",
@@ -37,8 +39,11 @@ export default function Footer() {
   }, []);
 
   return (
-    <div data-color="black" className="footer section w-full h-screen">
-      <div className="top w-full h-[50%] flex flex-col md:flex-row justify-between px-4 sm:px-10 py-4 sm:py-10 text-sm sm:text-xl font-semibold leading-6 sm:leading-10">
+    <div
+      data-color="black"
+      className="footer section w-full h-screen flex flex-col justify-between"
+    >
+      <div className="top flex flex-col md:flex-row justify-between p-4 sm:p-10 text-sm sm:text-xl font-semibold leading-6 sm:leading-10">
         <div className="left mb-4 md:mb-0">
           <h1>
             <TextReveal>Home</TextReveal>
@@ -55,7 +60,7 @@ export default function Footer() {
         </div>
         <div className="mid text-lg sm:text-2xl mb-4 md:mb-0">
           <h1>
-            Join our mailing list for <br className="hidden sm:block" />
+            Join our mailing list for <br />
             the latest updates.
           </h1>
         </div>
@@ -77,16 +82,16 @@ export default function Footer() {
           </h1>
         </div>
       </div>
-      <div className="bottom w-full sticky bottom-0">
-        <div className="footertext w-full relative overflow-hidden">
+      <div className="bottom relative">
+        <div className="footertext relative overflow-hidden">
           <h1
             ref={footerH1Ref}
-            className="w-full h-fit hidden md:flex text-4xl sm:text-[10rem] my-10 sm:my-28 tracking-tighter sm:-tracking-[2rem] leading-none"
+            className="footer-headline w-full h-fit text-[10rem] my-10  tracking-tighter leading-none"
           >
-            B e {"  "} F o u n d {"  "} O n l i n e
+            B e {"  "} <br/> F o u n d <br/> {"  "} O n l i n e
           </h1>
-          <div className="cover w-full h-16 sm:h-[7rem] px-4 sm:px-10 flex flex-col sm:flex-row justify-between items-center border-white border-t-2 bg-black absolute bottom-0">
-            <div className="fleft flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-5 text-xs sm:text-[.9rem]">
+          <div className="cover w-full flex flex-col sm:flex-row justify-between items-center border-t-2 border-white bg-black px-4 sm:px-10 py-4 sm:py-7 absolute bottom-0">
+            <div className="fleft flex flex-col sm:flex-row items-center gap-2 sm:gap-5 text-xs sm:text-[.9rem]">
               <h1 className="font-light border-b-2 border-white">
                 Privacy Policy
               </h1>
@@ -100,7 +105,7 @@ export default function Footer() {
                 © 2024 BeFoundOnline. All rights reserved.
               </h1>
             </div>
-            <div className="fright flex items-center justify-center gap-x-32 text-xl sm:text-2xl mt-2 sm:mt-0">
+            <div className="fright flex items-center justify-center gap-4 sm:gap-8 text-xl sm:text-2xl mt-2 sm:mt-0">
               <Magnetic>
                 <SiInstagram />
               </Magnetic>

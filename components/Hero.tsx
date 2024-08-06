@@ -30,7 +30,7 @@ const words = [
       "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483184_Ellipse%20845.png",
   },
   {
-    text: "conversions",
+    text: "Conversions",
     imgSrc:
       "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483180_Ellipse%20845-4.png",
   },
@@ -60,17 +60,17 @@ const words = [
       "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483180_Ellipse%20845-4.png",
   },
   {
-    text: "useful",
+    text: "Useful",
     imgSrc:
       "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483195_Ellipse%20845.png",
   },
   {
-    text: "intuitive",
+    text: "Intuitive",
     imgSrc:
       "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483180_Ellipse%20845-4.png",
   },
   {
-    text: "empathetic",
+    text: "Empathetic",
     imgSrc:
       "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483184_Ellipse%20845.png",
   },
@@ -97,15 +97,18 @@ const HomeSection = () => {
       .to(".fourth-row", { ease: "power4", xPercent: 10 }, "b");
 
     // Opacity animations for elements
-    gsap.to([".videos", ".slidesm", ".lft", ".rgt", ".third-row", ".fourth-row"], {
-      scrollTrigger: {
-        trigger: ".home",
-        start: "bottom+=400px bottom",
-        end: "bottom+=400px bottom",
-        scrub: true,
-      },
-      opacity: 0.5,
-    });
+    gsap.to(
+      [".videos", ".slidesm", ".lft", ".rgt", ".third-row", ".fourth-row"],
+      {
+        scrollTrigger: {
+          trigger: ".home",
+          start: "bottom+=400px bottom",
+          end: "bottom+=400px bottom",
+          scrub: true,
+        },
+        opacity: 0.5,
+      }
+    );
 
     // Opacity animation for btntext h1
     gsap.to(".btntext h1", {
@@ -125,13 +128,18 @@ const HomeSection = () => {
       className={`row ${className} w-full flex items-center gap-3 pb-7 whitespace-nowrap`}
     >
       {words.map((word, index) => (
-        <div key={index} className="elem flex items-center gap-5">
-          <h1 className="text-5xl font-semibold">{word.text}</h1>
-          <div className="img w-[3.5rem] h-[3.5rem] rounded-full">
+        <div
+          key={index}
+          className="elem flex flex-col sm:flex-row items-center gap-2 sm:gap-5"
+        >
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold">
+            {word.text}
+          </h1>
+          <div className="img w-[2rem] h-[2rem] sm:w-[3rem] sm:h-[3rem] lg:w-[3.5rem] lg:h-[3.5rem] rounded-full">
             <img
               className="object-cover w-full h-full"
               src={word.imgSrc}
-              alt=""
+              alt={word.text}
             />
           </div>
         </div>
@@ -145,7 +153,7 @@ const HomeSection = () => {
         <div className="btntext absolute bottom-[5%] left-[3%] z-[4]">
           <h1>
             <AnimatedText
-              className="hidden md:flex max-w-[30%]"
+              className="md:max-w-[30%] max-w-[100%]"
               text={`We’re more than a digital marketing agency—we’re a growth partner. Our innovative strategies and advanced technology drive business success and boost your revenue in the digital world.`}
             />
           </h1>

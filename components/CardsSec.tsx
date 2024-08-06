@@ -32,9 +32,7 @@ const cardConfigs = [
     color: "#fff",
     title: "UI/UX Interactive",
     text: "We craft immersive digital experiences with sleek designs and user-friendly interfaces, enhancing engagement and satisfaction for your audience.",
-    svgPath: (
-        <TbSeo/>
-    ),
+    svgPath: <TbSeo />,
   },
   {
     className: "no3",
@@ -135,9 +133,7 @@ const cardConfigs = [
     color: "#fff",
     title: "Digital Strategy and Consulting",
     text: "Crafting Revenue-Driven Strategies to Propel Your Business Forward, Leveraging Data Insights and Innovation for Sustainable Growth.",
-    svgPath: (
-        <TbSeo/>
-    ),
+    svgPath: <TbSeo />,
   },
   {
     className: "no6",
@@ -145,9 +141,7 @@ const cardConfigs = [
     color: "#fff",
     title: "E-commerce Solutions",
     text: "Streamlined online stores designed for seamless customer experiences, enhanced conversions, and scalable growth.",
-    svgPath: (
-        <TbSeo/>
-    ),
+    svgPath: <TbSeo />,
   },
   {
     className: "no7",
@@ -155,9 +149,7 @@ const cardConfigs = [
     color: "#fff",
     title: "Digital Training and Workshops",
     text: "Transforming Teams into Digital Experts with Customized Learning Experiences and Practical Strategies for Success.",
-    svgPath: (
-        <TbSeo/>
-    ),
+    svgPath: <TbSeo />,
   },
   {
     className: "no8",
@@ -165,9 +157,7 @@ const cardConfigs = [
     color: "#fff",
     title: "Software Development",
     text: "Transforming Ideas into Powerful Solutions, Tailored to Your Needs for Seamless Performance and Efficiency.",
-    svgPath: (
-        <TbSeo/>
-    ),
+    svgPath: <TbSeo />,
   },
 ];
 
@@ -194,10 +184,13 @@ export default function CardsSec() {
   return (
     <div
       data-color="cyan"
-      className="craft section justify-between  items-start w-full flex md:flex-row flex-col gap-10 px-10 relative"
+      className="craft section justify-between items-start w-full flex flex-col md:flex-row gap-10 px-5 md:px-10 relative"
     >
-      <div ref={ref} className="ltext section w-[40%] sticky top-10 left-0">
-        <p className="text-xl hidden md:flex font-light leading-[2rem] pt-10">
+      <div
+        ref={ref}
+        className="ltext section w-full md:w-[40%] sticky top-10 left-0"
+      >
+        <p className="text-lg md:text-xl hidden md:flex font-light leading-[1.5rem] md:leading-[2rem] pt-5 md:pt-10">
           <RoughNotation
             type="underline"
             color="#000"
@@ -206,39 +199,54 @@ export default function CardsSec() {
             strokeWidth={2}
             show={inView}
           >
-            Be Found Online is a digital marketing agency that conduct proven
+            Be Found Online is a digital marketing agency that conducts proven
             marketing strategies and cutting-edge technology empower businesses
-            and drive seals. <br /> With our talented team, we push the
+            and drive sales. <br /> With our talented team, we push the
             boundaries by solving complex problems, delivering tailored
             solutions that exceed expectations and engage audiences.
           </RoughNotation>
         </p>
-        <h1 className="text-[2.5rem] hidden md:flex leading-[6rem]">
+        <h1 className="text-2xl hidden md:flex md:text-[2.5rem] leading-[3rem] md:leading-[6rem]">
           We craft digital marketing and tech solutions that drive profit
-          growth.{" "}
+          growth.
         </h1>
-        <div className="w-fit px-10 hidden md:flex py-5 border-[1px] border-black">
+        <div className="w-fit px-5 md:px-10 hidden md:flex py-5 border-[1px] border-black">
           <div className="texthover masker h-[1.5rem] overflow-hidden">
-            <h1 className="text-xl">
-              <TextReveal className="cursor-pointer">EXPLORE OUR SOLUTIONS</TextReveal>
+            <h1 className="text-lg md:text-xl">
+              <TextReveal className="cursor-pointer">
+                EXPLORE OUR SOLUTIONS
+              </TextReveal>
             </h1>
           </div>
         </div>
       </div>
-      <div className="cards md:w-1/2 w-full py-10">
-        <div className="cardlist pt-[38.59rem] pb-[22.09rem]">
+      <div className="cards w-full md:w-1/2 py-5 md:py-10">
+        <div className="cardlist pt-[20rem] md:pt-[38.59rem] pb-[10rem] md:pb-[22.09rem]">
           {cardConfigs.map((config, index) => (
             <div
               key={index}
-              className={`card ${config.className} rounded-xl border-[2px] border-black w-[30rem] py-5 px-5 h-[15rem] flex justify-between gap-10 mb-10`}
+              className={`card ${config.className} rounded-xl border-[2px] border-black w-full md:w-[30rem] py-5 px-5 h-auto md:h-[15rem] flex flex-col md:flex-row justify-between gap-5 md:gap-10 mb-5 md:mb-10`}
             >
-              <div className="cardelem w-[18.75rem]">
-                <h1 className="text-xl font-semibold">{config.title}</h1>
-                <p className="pt-5 text-l">{config.text}</p>
+              <div className="cardelem w-full md:w-[18.75rem]">
+                <h1 className="text-lg md:text-xl font-semibold">
+                  {config.title}
+                </h1>
+                <p className="pt-2 md:pt-5 text-base md:text-l">
+                  {config.text}
+                </p>
               </div>
-              <div className="logo w-[5rem]">{config.svgPath}</div>
+              <div className="logo w-[3rem] md:w-[5rem]">{config.svgPath}</div>
             </div>
           ))}
+        </div>
+        <div className="w-fit px-5 md:px-10 mx-auto flex md:hidden py-5 border-[1px] border-black">
+          <div className="texthover masker h-[1.5rem] overflow-hidden">
+            <h1 className="text-lg md:text-xl">
+              <TextReveal className="cursor-pointer">
+                EXPLORE OUR SOLUTIONS
+              </TextReveal>
+            </h1>
+          </div>
         </div>
       </div>
     </div>

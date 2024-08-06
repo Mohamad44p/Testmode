@@ -2,7 +2,7 @@
 import { projects } from "../components/CaseSt/data";
 import Card from "../components/CaseSt/index";
 import { useScroll } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 export default function CardCase() {
   const container = useRef(null);
@@ -12,9 +12,7 @@ export default function CardCase() {
   });
 
   return (
-    <section
-      data-color="green"
-    className="section">
+    <section data-color="green" className="section">
       <main ref={container}>
         {projects.map((project, i) => {
           const targetScale = 1 - (projects.length - i) * 0.05;

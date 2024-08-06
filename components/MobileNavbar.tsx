@@ -6,6 +6,7 @@ import {
   FolderIcon,
   HomeIcon,
   LineChartIcon,
+  Menu,
   Package2Icon,
   PackageIcon,
   PanelLeftIcon,
@@ -45,8 +46,12 @@ export default function MobileNavbar() {
       <div className="flex items-center gap-4">
         <Sheet>
           <SheetTrigger asChild>
-            <Button size="icon" variant="outline" className="sm:hidden">
-              <PanelLeftIcon className="h-5 w-5" />
+            <Button
+              size="icon"
+              variant="outline"
+              className="sm:hidden border-none"
+            >
+              <Menu className="h-5 w-5" />
               <span className="sr-only">Toggle Menu</span>
             </Button>
           </SheetTrigger>
@@ -90,7 +95,7 @@ export default function MobileNavbar() {
         <span className="font-semibold">BefoundOnline</span>
       </div>
       <div>
-        <Button size="sm" variant="outline">
+        <Button  className="bg-orange-500 rounded-xl">
           Let's Start
         </Button>
       </div>
