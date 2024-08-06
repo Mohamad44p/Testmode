@@ -90,13 +90,13 @@ const HomeSection = () => {
     });
 
     tl.to(".videos", { "--clip": "0%", ease: "power2" }, "a")
+      .to(".introText", { opacity: 0 }, "a")
       .to(".slidesm", { ease: "power2", scale: 1 }, "a")
       .to(".lft", { ease: "power4", xPercent: -10 }, "b")
       .to(".rgt", { ease: "power4", xPercent: 10, stagger: 0.0002 }, "b")
       .to(".third-row", { ease: "power4", xPercent: -10 }, "b")
       .to(".fourth-row", { ease: "power4", xPercent: 10 }, "b");
 
-    // Opacity animations for elements
     gsap.to(
       [".videos", ".slidesm", ".lft", ".rgt", ".third-row", ".fourth-row"],
       {
@@ -110,7 +110,6 @@ const HomeSection = () => {
       }
     );
 
-    // Opacity animation for btntext h1
     gsap.to(".btntext h1", {
       scrollTrigger: {
         trigger: ".home",
@@ -119,6 +118,34 @@ const HomeSection = () => {
         scrub: true,
       },
       opacity: 0.5,
+    });
+
+    ScrollTrigger.matchMedia({
+      // Media query for md and below
+      "(max-width: 768px)": function () {
+        gsap.to(".introText", {
+          opacity: 0,
+          scrollTrigger: {
+            trigger: ".home",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: true,
+          },
+        });
+      },
+      // Media query for lg and above
+      "(min-width: 769px)": function () {
+        gsap.to(".introText", {
+          opacity: 1,
+          scrollTrigger: {
+            trigger: ".home",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: true,
+          },
+          clearProps: "opacity",
+        });
+      },
     });
   }, []);
 
@@ -151,7 +178,7 @@ const HomeSection = () => {
     <div data-color="black" className="home section w-full h-[200vh] relative">
       <div className="w-full sticky top-0 left-0">
         <div className="btntext absolute bottom-[5%] left-[3%] z-[4]">
-          <h1>
+          <h1 className="introText">
             <AnimatedText
               className="md:max-w-[30%] max-w-[100%]"
               text={`We’re more than a digital marketing agency—we’re a growth partner. Our innovative strategies and advanced technology drive business success and boost your revenue in the digital world.`}

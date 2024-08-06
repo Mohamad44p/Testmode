@@ -223,7 +223,7 @@ export default function CardsSec() {
       </div>
       <div className="cards w-full md:w-1/2 py-5 md:py-10">
         <BoxReveal>
-          <h1 className="text-3xl font-bold leading-8 mt-12">
+          <h1 className="text-3xl flex md:hidden font-bold leading-8 mt-12">
             Our Company Services
           </h1>
         </BoxReveal>
