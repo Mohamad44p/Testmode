@@ -149,7 +149,7 @@ export default function OurTeam() {
       <div className="flex items-center justify-center my-10 mt-16">
         <Button
           size={"lg"}
-          className="border flex items-center justify-center gap-x-3 bg-[#F5F19C] hover:bg-[#F5F19C] border-black text-black rounded-lg font-bold transition"
+          className="border flex items-center justify-center gap-x-3 bg-[#FC5529] rounded-2xl hover:bg-[#FC5529] border-black text-white font-bold transition"
         >
           <TextReveal>Meet the Team &#8594;</TextReveal>
         </Button>

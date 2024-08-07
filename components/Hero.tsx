@@ -110,18 +110,8 @@ const HomeSection = () => {
       }
     );
 
-    gsap.to(".btntext h1", {
-      scrollTrigger: {
-        trigger: ".home",
-        start: "bottom+=400px bottom",
-        end: "bottom+=400px bottom",
-        scrub: true,
-      },
-      opacity: 0.5,
-    });
 
     ScrollTrigger.matchMedia({
-      // Media query for md and below
       "(max-width: 768px)": function () {
         gsap.to(".introText", {
           opacity: 0,
@@ -131,19 +121,6 @@ const HomeSection = () => {
             end: "bottom bottom",
             scrub: true,
           },
-        });
-      },
-      // Media query for lg and above
-      "(min-width: 769px)": function () {
-        gsap.to(".introText", {
-          opacity: 1,
-          scrollTrigger: {
-            trigger: ".home",
-            start: "top top",
-            end: "bottom bottom",
-            scrub: true,
-          },
-          clearProps: "opacity",
         });
       },
     });
@@ -159,7 +136,7 @@ const HomeSection = () => {
           key={index}
           className="elem flex flex-col sm:flex-row items-center gap-2 sm:gap-5"
         >
-          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold">
+          <h1 className="gradient-text text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold">
             {word.text}
           </h1>
           <div className="img w-[2rem] h-[2rem] sm:w-[3rem] sm:h-[3rem] lg:w-[3.5rem] lg:h-[3.5rem] rounded-full">
@@ -175,12 +152,12 @@ const HomeSection = () => {
   );
 
   return (
-    <div data-color="black" className="home section w-full h-[200vh] relative">
+    <div data-color="gray" className="home section w-full h-[200vh] relative">
       <div className="w-full sticky top-0 left-0">
-        <div className="btntext absolute bottom-[5%] left-[3%] z-[4]">
+        <div className="btntext absolute mb-6 bottom-[5%] left-[3%] z-[4]">
           <h1 className="introText">
             <AnimatedText
-              className="md:max-w-[30%] max-w-[100%]"
+              className="md:max-w-[30%] text-white max-w-[100%]"
               text={`We’re more than a digital marketing agency—we’re a growth partner. Our innovative strategies and advanced technology drive business success and boost your revenue in the digital world.`}
             />
           </h1>

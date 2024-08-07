@@ -36,27 +36,37 @@ html.lenis body {
   src: url(./Neue\ Machina\ Inktrap\ Medium.ttf);
 }
 
+body{
+  background-color: #F2EFE4;
+}
 body[theme="black"] {
   background-color: #000;
 }
-body[theme="green"] {
-  background-color: #004855;
+
+body[theme="white"] .section {
+  background-color: #F2EFE4;
 }
 
 body[theme="black"] .section {
   color: #fff;
 }
 
-body[theme="cyan"] {
-  background-color: #aedee0;
+body[theme="yellow"] {
+  background-color:  #3A7E7D;
+  color: #000;
+}
+body[theme="lightBlue"] {
+  background-color:  #510273;
+  color: #fff;
 }
 
-body[theme="salmon"] {
-  background-color: #ef9d71;
+body[theme="darkBlue"] {
+  background-color: #F2EFE4;
 }
 
-body[theme="white"] {
-  background-color: #fff;
+body[theme="gray"] {
+  background-color: #262526;
+  color: #fff;
 }
 
 body {
