@@ -12,27 +12,27 @@ const words = [
   {
     text: "Strategize",
     imgSrc:
-      "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483184_Ellipse%20845.png",
+    "/images/Carecter1.jpeg",
   },
   {
     text: "Influence",
     imgSrc:
-      "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483180_Ellipse%20845-4.png",
+    "/images/Carecter2.jpeg",
   },
   {
     text: "Creativity",
     imgSrc:
-      "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483195_Ellipse%20845.png",
+      "/images/Carecter4.jpeg",
   },
   {
     text: "Engagement",
     imgSrc:
-      "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483184_Ellipse%20845.png",
+    "/images/Carecter3.jpeg",
   },
   {
     text: "Conversions",
     imgSrc:
-      "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483180_Ellipse%20845-4.png",
+      "/images/Carecter5.jpeg",
   },
   {
     text: "Growth",
@@ -47,12 +47,12 @@ const words = [
   {
     text: "Strategize",
     imgSrc:
-      "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483195_Ellipse%20845.png",
+      "/images/Carecter2.jpeg",
   },
   {
     text: "Creativity",
     imgSrc:
-      "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483195_Ellipse%20845.png",
+    "/images/withoutbg.png",
   },
   {
     text: "Engagement",
@@ -139,9 +139,9 @@ const HomeSection = () => {
           <h1 className="gradient-text text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold">
             {word.text}
           </h1>
-          <div className="img w-[2rem] h-[2rem] sm:w-[3rem] sm:h-[3rem] lg:w-[3.5rem] lg:h-[3.5rem] rounded-full">
+          <div className="img w-[2rem] h-[2rem] sm:w-[3rem] sm:h-[3rem] lg:w-[4.2rem] lg:h-[4.2rem]">
             <img
-              className="object-cover w-full h-full"
+              className="object-cover w-full rounded-full h-full"
               src={word.imgSrc}
               alt={word.text}
             />

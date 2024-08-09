@@ -18,12 +18,13 @@ const cardConfigs = [
     title: "SEO & Lead Generation",
     text: "Drive organic traffic, improve search rankings, and convert leads into loyal customers with our comprehensive solutions tailored to your business.",
     svgPath: (
-      <Image
-        src="/test1.svg"
-        alt="SEO & Lead Generation"
-        width={100}
-        height={100}
-      />
+        <Image
+          src="/images/cardsec/Branding & Creative Media.svg"
+          alt="SEO & Lead Generation"
+          className="w-full h-full object-cover"
+          width={1000}
+          height={1000}
+        />
     ),
   },
   {
