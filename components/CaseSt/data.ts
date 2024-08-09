@@ -9,16 +9,16 @@ export const projects = [
     {
         title: "BefoundOnline Services",
         description: "Explore the wide range of services offered by BefoundOnline, including software development, digital marketing, and IT consulting, all designed to help businesses thrive in a digital world.",
-        src: "Image2.png",
+        src: "Liption.jpg",
         link: "https://www.ignant.com/2022/09/30/clement-chapillon-questions-geographical-and-mental-isolation-with-les-rochers-fauves/",
-        color: "#A7EBF2"
+        color: "#F6CC2A"
     },
     {
         title: "Digital Transformation",
         description: "BefoundOnline has successfully led numerous digital transformation projects, enabling clients to streamline operations, enhance customer experiences, and drive growth.",
-        src: "Image3.webp",
+        src: "GOOCALGOLA.jpg",
         link: "https://www.ignant.com/2023/10/28/capturing-balis-many-faces-zissou-documents-the-sacred-and-the-mundane-of-a-fragile-island/",
-        color: "#510273"
+        color: "#CC352E"
     },
     {
         title: "Client Success Stories",

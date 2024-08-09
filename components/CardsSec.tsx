@@ -9,6 +9,7 @@ import { useInView } from "framer-motion";
 import { TextReveal } from "./ui/typography";
 import { TbSeo } from "react-icons/tb";
 import Image from "next/image";
+import BoxReveal from "./magicui/box-reveal";
 
 const cardConfigs = [
   {
@@ -18,13 +19,13 @@ const cardConfigs = [
     title: "SEO & Lead Generation",
     text: "Drive organic traffic, improve search rankings, and convert leads into loyal customers with our comprehensive solutions tailored to your business.",
     svgPath: (
-        <Image
-          src="/images/cardsec/Branding & Creative Media.svg"
-          alt="SEO & Lead Generation"
-          className="w-full h-full object-cover"
-          width={1000}
-          height={1000}
-        />
+      <Image
+        src="/images/cardsec/Branding & Creative Media.svg"
+        alt="SEO & Lead Generation"
+        className="w-full h-full object-cover"
+        width={1000}
+        height={1000}
+      />
     ),
   },
   {
@@ -184,36 +185,36 @@ export default function CardsSec() {
 
   return (
     <div
-      data-color="darkBlue"
-      className="craft section justify-between  items-start w-full flex md:flex-row flex-col gap-10 px-10 relative"
+      data-color="cyan"
+      className="craft section justify-between items-start w-full flex flex-col md:flex-row gap-10 px-5 md:px-10 relative"
     >
       <div
         ref={ref}
-        className="ltext text-[#262526] section w-[40%] sticky top-10 left-0"
+        className="ltext section w-full md:w-[40%] sticky top-10 left-0"
       >
-        <p className="text-xl hidden md:flex font-light leading-[2rem] pt-10">
+        <p className="text-lg md:text-xl hidden md:flex font-light leading-[1.5rem] md:leading-[2rem] pt-5 md:pt-10">
           <RoughNotation
             type="underline"
-            color="#014040"
+            color="#000"
             animate
             animationDelay={900}
             strokeWidth={2}
             show={inView}
           >
-            Be Found Online is a digital marketing agency that conduct proven
+            Be Found Online is a digital marketing agency that conducts proven
             marketing strategies and cutting-edge technology empower businesses
-            and drive seals. <br /> With our talented team, we push the
+            and drive sales. <br /> With our talented team, we push the
             boundaries by solving complex problems, delivering tailored
             solutions that exceed expectations and engage audiences.
           </RoughNotation>
         </p>
-        <h1 className="text-[2.5rem] hidden md:flex leading-[6rem]">
+        <h1 className="text-2xl hidden md:flex md:text-[2.5rem] leading-[3rem] md:leading-[6rem]">
           We craft digital marketing and tech solutions that drive profit
-          growth.{" "}
+          growth.
         </h1>
-        <div className="w-fit px-10 hidden md:flex py-5 border-[1px] bg-[#014040] text-white border-black">
+        <div className="w-fit px-5 md:px-10 hidden  rounded-2xl bg-[#014040] text-white md:flex py-5 border-[1px] border-[#014040]">
           <div className="texthover masker h-[1.5rem] overflow-hidden">
-            <h1 className="text-xl">
+            <h1 className="text-lg md:text-xl">
               <TextReveal className="cursor-pointer">
                 EXPLORE OUR SOLUTIONS
               </TextReveal>
@@ -221,20 +222,38 @@ export default function CardsSec() {
           </div>
         </div>
       </div>
-      <div className="cards md:w-1/2 w-full py-10">
-        <div className="cardlist pt-[38.59rem] pb-[22.09rem]">
+      <div className="cards w-full md:w-1/2 py-5 md:py-10">
+        <BoxReveal>
+          <h1 className="text-3xl md:hidden flex font-bold leading-8 mt-12">
+            Our Company Services
+          </h1>
+        </BoxReveal>
+        <div className="cardlist pt-[4rem] md:pt-[38.59rem] pb-[10rem] md:pb-[22.09rem]">
           {cardConfigs.map((config, index) => (
             <div
               key={index}
-              className={`card ${config.className} rounded-xl border-[2px] border-black w-[30rem] py-5 px-5 h-[15rem] flex justify-between gap-10 mb-10`}
+              className={`card ${config.className} rounded-xl border-[2px] border-black w-full md:w-[30rem] py-5 px-5 h-auto md:h-[15rem] flex flex-col md:flex-row justify-between gap-5 md:gap-10 mb-5 md:mb-10`}
             >
-              <div className="cardelem w-[18.75rem]">
-                <h1 className="text-xl font-semibold">{config.title}</h1>
-                <p className="pt-5 text-l">{config.text}</p>
+              <div className="cardelem w-full md:w-[18.75rem]">
+                <h1 className="text-lg md:text-xl font-semibold">
+                  {config.title}
+                </h1>
+                <p className="pt-2 md:pt-5 text-base md:text-l">
+                  {config.text}
+                </p>
               </div>
-              <div className="logo w-[5rem]">{config.svgPath}</div>
+              <div className="logo w-[3rem] md:w-[5rem]">{config.svgPath}</div>
             </div>
           ))}
+        </div>
+        <div className="w-fit px-5 md:px-10 mx-auto flex md:hidden py-5 border-[1px] rounded-2xl bg-[#014040] text-white border-[#014040]">
+          <div className="texthover masker h-[1.5rem] overflow-hidden">
+            <h1 className="text-lg md:text-xl">
+              <TextReveal className="cursor-pointer">
+                EXPLORE OUR SOLUTIONS
+              </TextReveal>
+            </h1>
+          </div>
         </div>
       </div>
     </div>

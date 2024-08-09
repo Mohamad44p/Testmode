@@ -38,7 +38,7 @@ export default function Navbar() {
         case "black":
           setTextColor("white");
           break;
-        case "cyan":
+        case "Ming":
         case "salmon":
           setTextColor("black");
           break;

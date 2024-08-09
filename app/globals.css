@@ -36,32 +36,29 @@ html.lenis body {
   src: url(./Neue\ Machina\ Inktrap\ Medium.ttf);
 }
 
-body{
-  background-color: #F2EFE4;
+body {
+  background-color: #f2efe4;
 }
 body[theme="black"] {
   background-color: #000;
 }
 
 body[theme="white"] .section {
-  background-color: #F2EFE4;
+  background-color: #f2efe4;
+  color: #000;
 }
 
 body[theme="black"] .section {
   color: #fff;
 }
 
-body[theme="yellow"] {
-  background-color:  #3A7E7D;
+body[theme="Ming"] {
+  background-color: #3a7e7d;
   color: #000;
 }
 body[theme="lightBlue"] {
-  background-color:  #510273;
+  background-color: #510273;
   color: #fff;
-}
-
-body[theme="darkBlue"] {
-  background-color: #F2EFE4;
 }
 
 body[theme="gray"] {
@@ -179,7 +176,6 @@ body {
   height: 100px;
   transform: translate(-50%, -50%);
 }
-
 
 /* Scroll  */
 

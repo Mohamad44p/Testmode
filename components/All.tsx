@@ -57,10 +57,10 @@ export default function All() {
     <div className="main w-full">
       {" "}
       <HomeSection />
-      <section data-color="darkBlue">
+      <section data-color="white">
         <CardsSec />
       </section>
-      <section data-color="yellow">
+      <section data-color="Ming">
         <Horizontal />
       </section>
       <section data-color="white">

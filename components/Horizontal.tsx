@@ -28,7 +28,7 @@ export default function Horizontal() {
 
   return (
     <div
-      data-color="yellow"
+      data-color="Ming"
       className="real overflow-y-hidden mt-[20vh] mb-[10vh] section w-full sticky"
     >
       <div className="cont h-[100vh] relative">
