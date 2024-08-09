@@ -7,6 +7,18 @@ import Link from "next/link";
 import { RoughNotation } from "react-rough-notation";
 import MegaMenu from "./MegaMenu";
 import { Button } from "./ui/button";
+import {
+  FolderIcon,
+  HomeIcon,
+  LineChartIcon,
+  Menu,
+  Package2Icon,
+  PackageIcon,
+  PanelLeftIcon,
+  SearchIcon,
+  UsersIcon,
+} from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
 const navItems = [
   { title: "UI/UX", href: "/ui-ux" },
@@ -14,6 +26,31 @@ const navItems = [
   { title: "PROJECTS", href: "/projects" },
   { title: "BLOG", href: "/blog" },
   { title: "ABOUT US", href: "/about" },
+];
+
+const links = [
+  { href: "#", icon: HomeIcon, label: "Dashboard" },
+  {
+    href: "#",
+    icon: FolderIcon,
+    label: "Recent Orders",
+    sublinks: [
+      { href: "#", icon: FolderIcon, label: "Recent Orders" },
+      { href: "#", icon: FolderIcon, label: "Pending Orders" },
+    ],
+  },
+  { href: "#", icon: PackageIcon, label: "Products" },
+  {
+    href: "#",
+    icon: FolderIcon,
+    label: "Active Products",
+    sublinks: [
+      { href: "#", icon: FolderIcon, label: "Active Products" },
+      { href: "#", icon: FolderIcon, label: "Drafts" },
+    ],
+  },
+  { href: "#", icon: UsersIcon, label: "Customers" },
+  { href: "#", icon: LineChartIcon, label: "Analytics" },
 ];
 
 export default function Navbar() {
@@ -74,7 +111,7 @@ export default function Navbar() {
       animate={hidden ? "hidden" : "visible"}
       initial="visible"
       transition={{ duration: 0.2 }}
-      className="fixed top-0 left-0 w-full z-[1000] backdrop-blur-md bg-white/30 border-b border-white/30 shadow-md md:block hidden"
+      className="sticky top-0 left-0 w-full z-[1000] backdrop-blur-md bg-white/30 border-b border-white/30 shadow-md"
     >
       <div className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto w-full">
         <h1 className={`text-3xl font-bold text-${textColor}`}>
@@ -83,7 +120,7 @@ export default function Navbar() {
           </RoughNotation>
         </h1>
         <div
-          className={`flex items-center lg:gap-x-8 md:gap-x-4 text-${textColor}`}
+          className={`lg:flex items-center hidden lg:gap-x-8 md:gap-x-4 text-${textColor}`}
         >
           <MegaMenu />
           {navItems.map((item, index) => (
@@ -110,12 +147,72 @@ export default function Navbar() {
             </div>
           ))}
         </div>
-        <Button
-          className={`border border-${textColor} rounded-2xl text-${textColor} font-bold hover:text-${textColor} transition`}
-        >
-          Let's Start
-        </Button>
+
+        <div className="flex items-center gap-x-4">
+          <Button
+            className={`border border-${textColor} rounded-2xl text-${textColor} font-bold hover:text-${textColor} transition`}
+          >
+            Let's Start
+          </Button>
+          <div className="flex lg:hidden">
+            <MobileNavbar />
+          </div>
+        </div>
       </div>
     </motion.nav>
   );
 }
+
+const MobileNavbar = () => {
+  return (
+    <div className="flex items-center gap-4">
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button size="icon" variant="outline" className="border-none">
+            <Menu className="h-7 w-7" />
+            <span className="sr-only">Toggle Menu</span>
+          </Button>
+        </SheetTrigger>
+        <SheetContent
+          side="left"
+          className="sm:max-w-xs z-[9000] bg-black text-white"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <span className="font-semibold">BefoundOnline</span>
+            </div>
+          </div>
+          <nav className="grid gap-6 text-lg font-medium">
+            {links.map((link, index) => (
+              <div key={index}>
+                <Link
+                  href={link.href}
+                  className="flex items-center gap-4 px-2.5"
+                  prefetch={false}
+                >
+                  <link.icon className="h-5 w-5" />
+                  {link.label}
+                </Link>
+                {link.sublinks && (
+                  <div className="grid gap-2 pl-8">
+                    {link.sublinks.map((sublink, subindex) => (
+                      <Link
+                        key={subindex}
+                        href={sublink.href}
+                        className="flex items-center gap-4 text-muted-foreground hover:text-foreground"
+                        prefetch={false}
+                      >
+                        <sublink.icon className="h-4 w-4" />
+                        {sublink.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </nav>
+        </SheetContent>
+      </Sheet>
+    </div>
+  );
+};

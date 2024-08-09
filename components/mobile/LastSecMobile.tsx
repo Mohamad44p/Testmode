@@ -6,12 +6,14 @@ import GibberishText from "../ui/GibberishText";
 export default function LastSecMobile() {
   return (
     <>
-      <div className="capleft w-full lg:w-[25%] flex flex-col justify-between py-[10rem] ml-[2.5rem] font-semibold text-l">
+      <div className="capleft w-full lg:w-[25%] flex flex-col justify-between py-[5vh] lg:py-[5rem] ml-[2.5rem] font-semibold text-l min-h-screen">
+        {/* Ensures this section takes at least full screen height */}
         <h3 className="w-[60%]">
           Stay up-to-date on the latest healthcare innovations and thought
           leadership.
         </h3>
-        <div className="">
+        <div className="flex-grow flex flex-col justify-between">
+          {/* Use flex-grow to push the content down when space allows */}
           <h1 className="text-[2.5rem] lg:text-[4.44rem] leading-[1.2] font-light">
             Explore <br />
             Our <br />
@@ -25,8 +27,10 @@ export default function LastSecMobile() {
           </div>
         </div>
       </div>
-      <div className="capright w-full lg:w-[75%] flex flex-col md:flex-row gap-y-10 md:gap-y-0 justify-around">
-        <div className="cap1 border-[1px] border-black w-full md:w-[48%] lg:w-[35%] h-auto lg:h-[90%] rounded-full flex flex-col gap-6 md:gap-10 items-center text-center">
+      <div className="capright w-full flex flex-col gap-y-10 justify-around min-h-screen">
+        {/* Ensures this section also takes at least full screen height */}
+        <div className="cap1 border-[1px] border-black w-full h-auto rounded-full flex flex-col gap-6 items-center text-center overflow-hidden">
+          {/* Added overflow-hidden to avoid any overflow issues */}
           <div className="image w-[15rem] h-[15rem] mt-10 rounded-full overflow-hidden">
             <img
               className="object-cover w-full h-full"
@@ -43,7 +47,7 @@ export default function LastSecMobile() {
             READ MORE
           </button>
         </div>
-        <div className="cap1 border-[1px] border-black w-full md:w-[48%] lg:w-[35%] h-auto lg:h-[90%] rounded-full flex flex-col-reverse gap-6 md:gap-10 items-center text-center">
+        <div className="cap1 border-[1px] border-black w-full h-auto rounded-full flex flex-col-reverse gap-6 md:gap-10 items-center text-center overflow-hidden">
           <div className="image w-[15rem] h-[15rem] mb-10 rounded-full overflow-hidden">
             <img
               className="object-cover w-full h-full"
@@ -60,7 +64,7 @@ export default function LastSecMobile() {
             5 Key Takeaways from the Reuters Digital Health ‘24 Summit
           </h1>
           <h1 className="text-xl">Thought Leadership</h1>
-          <button className="capbtn my-10 cursor-pointer text-xl py-3 px-3 text-center border-2 border-black">
+          <button className="capbtn cursor-pointer text-xl py-3 px-3 text-center border-2 border-black">
             READ MORE
           </button>
         </div>
