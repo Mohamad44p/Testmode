@@ -37,12 +37,12 @@ const words = [
   {
     text: "Growth",
     imgSrc:
-      "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483195_Ellipse%20845.png",
+    "/images/Carecter1.jpeg",
   },
   {
     text: "Lead Generation",
     imgSrc:
-      "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483184_Ellipse%20845.png",
+    "/images/Carecter5.jpeg",
   },
   {
     text: "Strategize",
@@ -52,27 +52,27 @@ const words = [
   {
     text: "Creativity",
     imgSrc:
-    "/images/withoutbg.png",
+    "/images/Carecter3.jpeg",
   },
   {
     text: "Engagement",
     imgSrc:
-      "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483180_Ellipse%20845-4.png",
+    "/images/Carecter4.jpeg",
   },
   {
     text: "Useful",
     imgSrc:
-      "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483195_Ellipse%20845.png",
+    "/images/Carecter4.jpeg",
   },
   {
     text: "Intuitive",
     imgSrc:
-      "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483180_Ellipse%20845-4.png",
+    "/images/Carecter3.jpeg",
   },
   {
     text: "Empathetic",
     imgSrc:
-      "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/659dbdfd5a080be8d3483184_Ellipse%20845.png",
+    "/images/Carecter2.jpeg",
   },
 ];
 

@@ -19,6 +19,8 @@ import {
   UsersIcon,
 } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import { HoverBorderGradient } from "./ui/hover-border-gradient";
+import { cn } from "@/lib/utils";
 
 const navItems = [
   { title: "UI/UX", href: "/ui-ux" },
@@ -114,11 +116,26 @@ export default function Navbar() {
       className="sticky top-0 left-0 w-full z-[1000] backdrop-blur-md bg-white/50 border-b border-white/30 shadow-md"
     >
       <div className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto w-full">
-        <h1 className={`text-3xl font-bold text-${textColor}`}>
-          <RoughNotation type="box" color="#000" show>
-            BE FOUND <span className="">ONLINE</span>
-          </RoughNotation>
-        </h1>
+        <div className="flex justify-between items-center gap-x-4">
+          <div className="flex items-center justify-start gap-x-4 flex-grow">
+            <div className="flex items-center gap-x-2">
+              <div className="flex lg:hidden">
+                <MobileNavbar />
+              </div>
+              <h1
+                className={`lg:text-3xl md:text-xl text-[17px] font-bold text-${textColor}`}
+              >
+                BE FOUND <span className="">ONLINE</span>
+              </h1>
+            </div>
+          </div>
+        </div>
+        <Button
+          className={`border ml-auto flex md:hidden border-${textColor} rounded-2xl text-${textColor} font-bold hover:text-${textColor} transition`}
+        >
+          Let's Start
+        </Button>
+
         <div
           className={`lg:flex items-center hidden lg:gap-x-8 md:gap-x-4 text-${textColor}`}
         >
@@ -147,17 +164,18 @@ export default function Navbar() {
             </div>
           ))}
         </div>
-
-        <div className="flex items-center gap-x-4">
-          <Button
-            className={`border border-${textColor} rounded-2xl text-${textColor} font-bold hover:text-${textColor} transition`}
-          >
-            Let's Start
-          </Button>
-          <div className="flex lg:hidden">
-            <MobileNavbar />
-          </div>
-        </div>
+        <HoverBorderGradient
+          containerClassName="rounded-full"
+          as="button"
+          className={cn(
+            "dark:bg-black hidden md:flex text-black  items-center space-x-2",
+            textColor === "white"
+              ? "bg-white text-black"
+              : "bg-black text-white"
+          )}
+        >
+          <span>Let's Start Now</span>
+        </HoverBorderGradient>
       </div>
     </motion.nav>
   );
