@@ -4,7 +4,6 @@ import "./globals.css";
 import ScrollButton from "@/components/ScrollButton";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import MobileNavbar from "@/components/MobileNavbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
