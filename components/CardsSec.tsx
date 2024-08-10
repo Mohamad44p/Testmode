@@ -181,6 +181,21 @@ export default function CardsSec() {
         },
       });
     });
+
+    gsap.fromTo(
+      ".OP",
+      { opacity: 1 },
+      {
+        opacity: 0.1,
+        duration: 1,
+        scrollTrigger: {
+          trigger: ".OP",
+          start: "bottom+=3000px bottom",
+          end: "bottom+=3000px bottom",
+          scrub: 1,
+        },
+      }
+    );
   }, []);
 
   return (
@@ -208,11 +223,11 @@ export default function CardsSec() {
             solutions that exceed expectations and engage audiences.
           </RoughNotation>
         </p>
-        <h1 className="text-2xl hidden md:flex md:text-[2.5rem] leading-[3rem] md:leading-[6rem]">
+        <h1 className="text-2xl OP hidden md:flex md:text-[2.5rem] leading-[3rem] md:leading-[6rem]">
           We craft digital marketing and tech solutions that drive profit
           growth.
         </h1>
-        <div className="w-fit px-5 md:px-10 hidden  rounded-2xl bg-[#014040] text-white md:flex py-5 border-[1px] border-[#014040]">
+        <div className="w-fit OP px-5 md:px-10 hidden  rounded-2xl bg-[#014040] text-white md:flex py-5 border-[1px] border-[#014040]">
           <div className="texthover masker h-[1.5rem] overflow-hidden">
             <h1 className="text-lg md:text-xl">
               <TextReveal className="cursor-pointer">

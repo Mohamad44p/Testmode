@@ -8,22 +8,24 @@ import "slick-carousel/slick/slick-theme.css";
 
 const testimonials = [
   {
-    text: "Working with Significo and their recommendation service has been a game-changer for our occupational prevention efforts. Our customers are extremely satisfied with the tool's impressive technical capabilities and data-driven approach. But what truly sets it apart is the intuitive and modern user experience it offers, making it a breeze for our clients to navigate. By leveraging this service, our customers have successfully tackled presenteeism and absenteeism.",
-    name: "Emek Altun",
-    imgSrc:
-      "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483190/659dbdfd5a080be8d3483253_EmekAltun.jpg",
+    text: "Be Found Online delivered an outstanding academic portal for our Dual Studies Faculty, tailored to our specific needs. The portal has streamlined our academic processes and significantly improved the learning experience for both students and faculty. The team understood our requirements and executed them flawlessly, resulting in a highly functional and user-friendly platform.",
+    name: "Musa Alrefayeh",
+    imgSrc: "/images/Musa.jpg",
+    position:
+      "Dr Musa Alrefayeh, Dean of Dual Studies Faculty, Palestine Polytechnic University",
   },
   {
-    text: "Working with Significo and their recommendation service has been a game-changer for our occupational prevention efforts. Our customers are extremely satisfied with the tool's impressive technical capabilities and data-driven approach. But what truly sets it apart is the intuitive and modern user experience it offers, making it a breeze for our clients to navigate. By leveraging this service, our customers have successfully tackled presenteeism and absenteeism.",
-    name: "Emek Altun",
-    imgSrc:
-      "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483190/659dbdfd5a080be8d3483253_EmekAltun.jpg",
+    text: "Be Found Online transformed our clinic's presence with a powerful marketing strategy. The results were remarkable—sales skyrocketed by 400%, and customer engagement surged by 500%. Their approach was strategic and highly effective, making a significant impact on our growth.",
+    name: "Aya Numuruh",
+    imgSrc: "/images/Ayanu.jpeg",
+    position: "Aya Numuruh, Business Owner, Lavender Beauty Clinic",
   },
   {
-    text: "Working with Significo and their recommendation service has been a game-changer for our occupational prevention efforts. Our customers are extremely satisfied with the tool's impressive technical capabilities and data-driven approach. But what truly sets it apart is the intuitive and modern user experience it offers, making it a breeze for our clients to navigate. By leveraging this service, our customers have successfully tackled presenteeism and absenteeism.",
-    name: "Emek Altun",
+    text: "Be Found Online helps us expand our digital footprint everyday through strong SEO, SEM and Social expertise, caring as if our company would be theirs. Not only skilled and professional team, also super responsive, reliable and fun to work with. Thank you so much! Only logical to witness that different teams within our company are willing to partner with you to get a similar reach, strong online results and enjoyment!",
+    name: "Sarah L",
     imgSrc:
-      "https://cdn.prod.website-files.com/659dbdfd5a080be8d3483190/659dbdfd5a080be8d3483253_EmekAltun.jpg",
+      "/images/SaraL.jpeg",
+    position: "Sarah L, Chief Operation Manager, Heavy Equipment Company",
   },
 ];
 
@@ -58,7 +60,11 @@ export default function Testimonial() {
       data-color="white"
       className="para section md:mb-[15rem] w-full min-h-screen flex flex-col gap-y-11 justify-center items-center p-4"
     >
-      <Slider ref={sliderRef} {...settings} className="w-full md:w-4/5 lg:w-2/3">
+      <Slider
+        ref={sliderRef}
+        {...settings}
+        className="w-full md:w-4/5 lg:w-2/3"
+      >
         {testimonials.map((testimonial, index) => (
           <div
             key={index}
@@ -67,7 +73,7 @@ export default function Testimonial() {
             <h3 className="info text-center text-sm md:text-base lg:text-lg font-semibold mt-10 px-4 md:px-10 lg:px-20">
               {testimonial.text}
             </h3>
-            <div className="flex items-center justify-center flex-col gap-y-4 md:gap-y-6 lg:gap-y-9">
+            <div className="flex items-center justify-center flex-col gap-y-4 md:gap-y-6 lg:gap-y-3">
               <div className="img w-20 h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 rounded-full mt-10 mb-4 overflow-hidden">
                 <img
                   className="object-cover w-full h-full"
@@ -75,7 +81,14 @@ export default function Testimonial() {
                   alt={testimonial.name}
                 />
               </div>
-              <h1 className="mt-2 text-sm md:text-base lg:text-lg">{testimonial.name}</h1>
+              <h1 className="mt-2 text-sm md:text-base lg:text-lg">
+                {testimonial.name}
+              </h1>
+              <p>
+                <span className="text-sm italic text-orange-500">
+                  {testimonial.position}
+                </span>
+              </p>
             </div>
           </div>
         ))}

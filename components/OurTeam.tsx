@@ -14,44 +14,59 @@ const teamMembers = [
   {
     id: "01",
     name: "BASHAR AL-BAKRI",
-    position: "CEO",
+    position: "CEO, Marketing Strategist",
     imgSrc: "/BA.jpeg",
     bg: "#DAB78F",
   },
   {
     id: "02",
+    name: "ANAS AL-MUHTASEB",
+    position: "Digital Solutions Architect",
+    imgSrc: "/images/Anas.jpeg",
+    bg: "#A1B3CB",
+  },
+  {
+    id: "03",
     name: "MOHAMMAD LEILA",
-    position: "COO",
+    position: "ART DIRECTOR",
     imgSrc: "/Testme.jpeg",
     bg: "#FC5529",
   },
   {
-    id: "03",
-    name: "Caroline Nieto",
-    position: "Chief Product Officer",
-    imgSrc:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fHBvcnRyYWl0fGVufDB8fDB8fHww",
-  },
-  {
     id: "04",
-    name: "Victor Albertos",
-    position: "CTO",
+    name: "MOHAMMAD AL-WAKEEL",
     imgSrc:
-      "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHBvcnRyYWl0fGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1587397845856-e6cf49176c70?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzV8fHBvcnRyYWl0fGVufDB8fDB8fHww",
+    position: "SENIOR GRAPHIC DESIGNER",
+    bg: "#000",
   },
   {
     id: "05",
-    name: "Dr. Jana Schmidt",
+    name: "RAHAF DWEIK",
     position: "Chief Innovation Officer",
-    imgSrc:
-      "https://images.unsplash.com/photo-1587397845856-e6cf49176c70?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzV8fHBvcnRyYWl0fGVufDB8fDB8fHww",
+    imgSrc: "/images/Rahaf.jpeg",
+    bg: "#C7B691",
   },
   {
     id: "06",
-    name: "Adrian Rubio",
-    position: "VP of Engineering",
+    name: "MOHAMMAD MARQA",
+    position: "FULL STACK MANAGER",
+    imgSrc: "/images/MohammadMar.jpeg",
+    bg: "#9FA4C4",
+  },
+  {
+    id: "07",
+    name: "ASEEL AL-MUHTASEB",
+    position: "FRONT-END DEVELOPER",
     imgSrc:
       "https://images.unsplash.com/photo-1609505848912-b7c3b8b4beda?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzR8fHBvcnRyYWl0fGVufDB8fDB8fHww",
+  },
+  {
+    id: "08",
+    name: "MOHAMMAD ABU-OMAR",
+    position: "FRONT-END DEVELOPER",
+    imgSrc: "/images/Mohammad.png",
+    bg: "#749675",
   },
 ];
 
@@ -125,11 +140,11 @@ export default function OurTeam() {
             >
               <div className="relative z-10 flex justify-between sm:justify-around items-center">
                 <div className="left w-full flex items-center gap-4 sm:gap-10">
-                  <h3>{member.id}</h3>
+                  <h3 className="opacity-[0.3]">{member.id}</h3>
                   <h1 className="cursor-pointer">{member.name}</h1>
                 </div>
                 <div className="right">
-                  <h1 className="text-base sm:text-[1.5rem] text-end w-full">
+                  <h1 className="text-base sm:text-[1.5rem] text-end w-[400px]">
                     {member.position}
                   </h1>
                 </div>
@@ -149,10 +164,7 @@ export default function OurTeam() {
           ))}
         </div>
         <div className="flex items-center justify-center my-10 mt-16">
-          <Button
-            size={"lg"}
-            className="border flex items-center justify-center gap-x-3 bg-[#FC5529] rounded-2xl hover:bg-[#FC5529] border-black text-white font-bold transition"
-          >
+          <Button className="border text-2xl w-[300px] h-[50px] flex items-center justify-center gap-x-3 bg-orange-500 rounded-2xl hover:bg-orange-500 border-black text-white font-bold transition">
             <TextReveal>Meet the Team &#8594;</TextReveal>
           </Button>
         </div>

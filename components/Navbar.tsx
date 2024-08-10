@@ -111,7 +111,7 @@ export default function Navbar() {
       animate={hidden ? "hidden" : "visible"}
       initial="visible"
       transition={{ duration: 0.2 }}
-      className="sticky top-0 left-0 w-full z-[1000] backdrop-blur-md bg-white/30 border-b border-white/30 shadow-md"
+      className="sticky top-0 left-0 w-full z-[1000] backdrop-blur-md bg-white/50 border-b border-white/30 shadow-md"
     >
       <div className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto w-full">
         <h1 className={`text-3xl font-bold text-${textColor}`}>
