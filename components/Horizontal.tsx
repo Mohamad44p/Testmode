@@ -19,7 +19,7 @@
           scrub: 1,
           anticipatePin: 4,
         },
-        xPercent: -320,
+        xPercent: -300,
         ease: "power1.inOut(1, 0.3)",
       });
 
@@ -54,7 +54,7 @@
         className="real overflow-y-hidden mt-[20vh] mb-[10vh] section w-full sticky"
       >
         <div className="cont h-[100vh] relative">
-          <div className="slides w-full h-[100vh] flex sticky top-0 left-0 gap-10 md:gap-20">
+          <div className="slides w-full h-[100vh] flex sticky top-0 left-0 gap-10 md:gap-6">
             <div className="slide w-full h-screen flex-shrink-0 flex flex-col items-center justify-center">
               <div className="text mt-[10vh]">
                 <h1 className="text-[2.5rem] md:text-[4rem] lg:text-[6rem] leading-tight">
@@ -162,7 +162,7 @@
                   loading="lazy"
                 />
               </div>
-              <div className="image absolute top-[70%] overflow-hidden right-[7%] w-[10rem] md:w-[15rem] lg:w-[10rem] h-[10rem] md:h-[15rem] lg:h-[10rem] -translate-y-1/2 rounded-full translate-x-1/2 disappear">
+              <div className="image absolute top-[70%] overflow-hidden right-[10%] w-[10rem] md:w-[15rem] lg:w-[10rem] h-[10rem] md:h-[15rem] lg:h-[10rem] -translate-y-1/2 rounded-full translate-x-1/2 disappear">
                 <img
                   className="w-full h-full object-cover"
                   src="https://images.unsplash.com/photo-1653580483678-f91fdd2abece?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
