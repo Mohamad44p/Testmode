@@ -5,7 +5,6 @@ import ScrollButton from "@/components/ScrollButton";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { Lenis } from "@/components/Lenis";
-import BackgroundColorChanger from "@/components/BackgroundColorChanger";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,13 +22,12 @@ export default function RootLayout({
     <Lenis>
       <html lang="en">
         <body className={inter.className}>
-          <BackgroundColorChanger />
           <Navbar />
           <ScrollButton />
           <main>{children}</main>
-         {/*  <section data-color="black">
+          <section data-color="black">
             <Footer />
-          </section> */}
+          </section>
         </body>
       </html>
     </Lenis>

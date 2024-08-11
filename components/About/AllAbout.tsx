@@ -1,16 +1,15 @@
 "use client";
 
-import React, { useEffect } from "react";
-import HomeSection from "./Hero";
-import CardsSec from "./CardsSec";
+import AboutPage from "@/components/About/AboutPage";
+import CircleSection from "@/components/About/CircleSection";
+import ForSection from "@/components/About/ForSection";
+import Story from "@/components/About/Story";
+import CenterAligner from "@/components/CenterAligner";
+import OurTeam from "@/components/OurTeam";
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Horizontal from "./Horizontal";
-import OurTeam from "./OurTeam";
-import Testimonial from "./Testimonial";
-import LastSec from "./LastSec";
-import CardCase from "./CardCase";
+import { ScrollTrigger } from "gsap/all";
+import React, { useEffect } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -38,8 +37,7 @@ const changeBodyBackgroundColor = () => {
       });
     });
 };
-
-export default function All() {
+export default function AboutUsPage() {
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -52,28 +50,22 @@ export default function All() {
 
     changeBodyBackgroundColor();
   }, []);
-
   return (
     <div className="main w-full">
-      {" "}
-      <HomeSection />
-      <section data-color="white">
-        <CardsSec />
+      <section data-color="white" className="section">
+        <AboutPage />
       </section>
-      <section data-color="Ming">
-        <Horizontal />
+      <section data-color="yellow" className="section">
+        <CircleSection />
       </section>
-      <section data-color="white">
+      <section data-color="white" className="section">
+        <Story />
+      </section>
+      <section data-color="white" className="section">
         <OurTeam />
       </section>
-      <section data-color="white">
-        <Testimonial />
-      </section>
-      <section data-color="white">
-        <CardCase />
-      </section>
-      <section data-color="white">
-        <LastSec />
+      <section data-color="white" className="section">
+        <ForSection />
       </section>
     </div>
   );

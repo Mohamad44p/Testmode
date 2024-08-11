@@ -50,7 +50,7 @@ export default function CircleSection() {
   ];
 
   return (
-    <div data-color="yellow" ref={containerRef}>
+    <div data-color="yellow" className="h-[140vh]" ref={containerRef}>
       <div className="max-w-7xl mx-auto sticky top-0 h-screen flex items-start px-4 sm:px-6 lg:px-8">
         <div className="flex w-full flex-col md:flex-row">
           <div className="w-full md:w-1/2 flex flex-col items-start justify-start mt-24 px-4">
