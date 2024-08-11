@@ -52,8 +52,17 @@ body[theme="black"] .section {
   color: #fff;
 }
 
+body[theme="DefaultWhite"] .section {
+  background-color: #fff;
+}
+
 body[theme="Ming"] {
   background-color: #3a7e7d;
+  color: #000;
+}
+
+body[theme="yellow"] .section {
+  background-color: #f5f19c;
   color: #000;
 }
 body[theme="lightBlue"] {

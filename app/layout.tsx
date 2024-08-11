@@ -4,6 +4,8 @@ import "./globals.css";
 import ScrollButton from "@/components/ScrollButton";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import { Lenis } from "@/components/Lenis";
+import BackgroundColorChanger from "@/components/BackgroundColorChanger";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,15 +20,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Navbar />
-        <ScrollButton />
-        <main>{children}</main>
-        <section data-color="black">
-          <Footer />
-        </section>
-      </body>
-    </html>
+    <Lenis>
+      <html lang="en">
+        <body className={inter.className}>
+          <BackgroundColorChanger />
+          <Navbar />
+          <ScrollButton />
+          <main>{children}</main>
+         {/*  <section data-color="black">
+            <Footer />
+          </section> */}
+        </body>
+      </html>
+    </Lenis>
   );
 }

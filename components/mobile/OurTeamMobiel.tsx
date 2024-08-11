@@ -74,7 +74,7 @@ export default function OurTeamMobiel() {
             key={member.id}
             className="listelem w-full py-6 sm:py-[3rem] border-b-2 border-black px-4 sm:px-10 text-xl sm:text-[2.5rem] relative"
           >
-            <div className="relative z-10 flex flex-col md:flex-row md:justify-between items-center md:items-start gap-4">
+            <div className="relative z-10 flex flex-row justify-between items-center gap-4">
               <div className="flex md:items-center gap-4 md:gap-10">
                 <h3>{member.id}</h3>
                 <div className="flex flex-col items-center md:items-start">

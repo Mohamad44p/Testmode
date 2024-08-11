@@ -27,7 +27,7 @@ const navItems = [
   { title: "WEBINARS", href: "/webinars" },
   { title: "PROJECTS", href: "/projects" },
   { title: "BLOG", href: "/blog" },
-  { title: "ABOUT US", href: "/about" },
+  { title: "ABOUT US", href: "/About" },
 ];
 
 const links = [

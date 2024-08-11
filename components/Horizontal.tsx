@@ -54,7 +54,7 @@
         className="real overflow-y-hidden mt-[20vh] mb-[10vh] section w-full sticky"
       >
         <div className="cont h-[100vh] relative">
-          <div className="slides w-full h-[100vh] flex sticky top-0 left-0 gap-10 md:gap-6">
+          <div className="slides w-full h-[100vh] flex sticky top-0 left-0 gap-40 md:gap-6">
             <div className="slide w-full h-screen flex-shrink-0 flex flex-col items-center justify-center">
               <div className="text mt-[10vh]">
                 <h1 className="text-[2.5rem] md:text-[4rem] lg:text-[6rem] leading-tight">

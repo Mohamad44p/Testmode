@@ -11,68 +11,55 @@ gsap.registerPlugin(ScrollTrigger);
 const words = [
   {
     text: "Strategize",
-    imgSrc:
-    "/images/Carecter1.jpeg",
+    imgSrc: "/images/Carecter1.jpeg",
   },
   {
     text: "Influence",
-    imgSrc:
-    "/images/Carecter2.jpeg",
+    imgSrc: "/images/Carecter2.jpeg",
   },
   {
     text: "Creativity",
-    imgSrc:
-      "/images/Carecter4.jpeg",
+    imgSrc: "/images/Carecter4.jpeg",
   },
   {
     text: "Engagement",
-    imgSrc:
-    "/images/Carecter3.jpeg",
+    imgSrc: "/images/Carecter3.jpeg",
   },
   {
     text: "Conversions",
-    imgSrc:
-      "/images/Carecter5.jpeg",
+    imgSrc: "/images/Carecter5.jpeg",
   },
   {
     text: "Growth",
-    imgSrc:
-    "/images/Carecter1.jpeg",
+    imgSrc: "/images/Carecter1.jpeg",
   },
   {
     text: "Lead Generation",
-    imgSrc:
-    "/images/Carecter5.jpeg",
+    imgSrc: "/images/Carecter5.jpeg",
   },
   {
     text: "Strategize",
-    imgSrc:
-      "/images/Carecter2.jpeg",
+    imgSrc: "/images/Carecter2.jpeg",
   },
   {
     text: "Creativity",
-    imgSrc:
-    "/images/Carecter3.jpeg",
+    imgSrc: "/images/Carecter3.jpeg",
   },
   {
     text: "Engagement",
-    imgSrc:
-    "/images/Carecter4.jpeg",
+    imgSrc: "/images/Carecter4.jpeg",
   },
   {
     text: "Useful",
-    imgSrc:
-    "/images/Carecter4.jpeg",
+    imgSrc: "/images/Carecter4.jpeg",
   },
   {
     text: "Intuitive",
-    imgSrc:
-    "/images/Carecter3.jpeg",
+    imgSrc: "/images/Carecter3.jpeg",
   },
   {
     text: "Empathetic",
-    imgSrc:
-    "/images/Carecter2.jpeg",
+    imgSrc: "/images/Carecter2.jpeg",
   },
 ];
 
@@ -109,7 +96,6 @@ const HomeSection = () => {
         opacity: 0.5,
       }
     );
-
 
     ScrollTrigger.matchMedia({
       "(max-width: 768px)": function () {
@@ -170,6 +156,7 @@ const HomeSection = () => {
             muted
             loop
             autoPlay
+            controls={false}
             className="absolute w-full h-full object-cover"
             src="https://cdn.significo.com/videos/significo-main-hero.mp4"
           ></video>
