@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ScrollButton from "@/components/ScrollButton";
-import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { Lenis } from "@/components/Lenis";
+import AnimatedFooter from "@/components/Footer";
+import PreloaderWrapper from "@/components/preloader/PreloaderWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,12 +23,14 @@ export default function RootLayout({
     <Lenis>
       <html lang="en">
         <body className={inter.className}>
-          <Navbar />
-          <ScrollButton />
-          <main>{children}</main>
-          <section data-color="black">
-            <Footer />
-          </section>
+          <PreloaderWrapper>
+            <Navbar />
+            <ScrollButton />
+            <main>{children}</main>
+            <section data-color="black">
+              <AnimatedFooter />
+            </section>
+          </PreloaderWrapper>
         </body>
       </html>
     </Lenis>

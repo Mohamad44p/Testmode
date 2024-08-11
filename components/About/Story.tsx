@@ -1,16 +1,13 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { motion, useInView, AnimatePresence } from "framer-motion";
-import { FiBarChart, FiBell, FiDollarSign, FiPlay } from "react-icons/fi";
-import { Dispatch, SetStateAction, useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { useWindowSize } from "@/lib/useWindowSize";
-import { IconType } from "react-icons/lib";
 
 export default function Story() {
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.2 });
   return (
-    <div className="flex flex-col mt-20 items-center justify-center gap-y-10">
+    <div className="flex flex-col items-center justify-center py-20 bg-white">
       <div className="flex flex-col items-center justify-center mb-16">
         <div className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
           <div className="w-2 h-2 bg-black rounded-full"></div>
@@ -18,14 +15,12 @@ export default function Story() {
             From vision to reality
           </p>
         </div>
-        <h1 className="text-4xl sm:text-5xl font-light leading-tight">
-          The Be Found Online Story
+        <h1 className="text-4xl sm:text-5xl font-light leading-tight text-center">
+          The Significo Story
         </h1>
       </div>
 
-      <div>
-        <VerticalAccordion />
-      </div>
+      <VerticalAccordion />
     </div>
   );
 }
@@ -34,22 +29,11 @@ const VerticalAccordion = () => {
   const [open, setOpen] = useState(items[0].id);
 
   return (
-    <section className="border mx-7 border-black">
-      <div className="flex flex-col lg:flex-row h-fit lg:h-[450px] w-full  mx-auto shadow overflow-hidden">
-        {items.map((item) => {
-          return (
-            <Panel
-              key={item.id}
-              open={open}
-              setOpen={setOpen}
-              id={item.id}
-              Icon={item.Icon}
-              title={item.title}
-              imgSrc={item.imgSrc}
-              description={item.description}
-            />
-          );
-        })}
+    <section className="w-full max-w-6xl mx-auto">
+      <div className="flex h-[600px] w-full overflow-hidden rounded-lg border border-gray-200">
+        {items.map((item) => (
+          <Panel key={item.id} open={open} setOpen={setOpen} {...item} />
+        ))}
       </div>
     </section>
   );
@@ -57,146 +41,110 @@ const VerticalAccordion = () => {
 
 interface PanelProps {
   open: number;
-  setOpen: Dispatch<SetStateAction<number>>;
+  setOpen: React.Dispatch<React.SetStateAction<number>>;
   id: number;
-  Icon: IconType;
   title: string;
+  subtitle: string;
   imgSrc: string;
   description: string;
+  color: string;
 }
 
 const Panel = ({
   open,
   setOpen,
   id,
-  Icon,
   title,
+  subtitle,
   imgSrc,
   description,
+  color,
 }: PanelProps) => {
   const { width } = useWindowSize();
   const isOpen = open === id;
 
   return (
-    <>
-      <button
-        className="bg-white hover:bg-slate-50 transition-colors p-3 border-r-[1px] border-b-[1px] border-slate-200 flex flex-row-reverse lg:flex-col justify-end items-center gap-4 relative group"
-        onClick={() => setOpen(id)}
-      >
-        <span
-          style={{
-            writingMode: "vertical-lr",
-          }}
-          className="hidden lg:block text-xl font-light rotate-180"
-        >
-          {title}
+    <div
+      className={`relative h-full transition-all duration-500 ease-in-out ${
+        isOpen ? "w-[70%]" : "w-[10%]"
+      }`}
+      style={{ backgroundColor: color }}
+      onClick={() => setOpen(id)}
+    >
+      <div className="absolute top-0 left-0 p-4 flex items-start">
+        <span className="text-4xl font-bold mr-2">
+          {id.toString().padStart(2, "0")}
         </span>
-        <span className="block lg:hidden text-xl font-light">{title}</span>
-        <div className="w-6 lg:w-full aspect-square bg-indigo-600 text-white grid place-items-center">
-          <Icon />
-        </div>
-        <span className="w-4 h-4 bg-white group-hover:bg-slate-50 transition-colors border-r-[1px] border-b-[1px] lg:border-b-0 lg:border-t-[1px] border-slate-200 rotate-45 absolute bottom-0 lg:bottom-[50%] right-[50%] lg:right-0 translate-y-[50%] translate-x-[50%] z-20" />
-      </button>
-
+        <span
+          className={`text-lg font-semibold writing-mode-vertical ${
+            isOpen ? "hidden" : ""
+          }`}
+        >
+          {subtitle}
+        </span>
+      </div>
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            key={`panel-${id}`}
-            variants={width && width > 1024 ? panelVariants : panelVariantsSm}
-            initial="closed"
-            animate="open"
-            exit="closed"
-            style={{
-              backgroundImage: `url(${imgSrc})`,
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-            }}
-            className="w-full h-full overflow-hidden relative bg-black flex items-end"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="absolute inset-0 p-8 flex flex-col"
           >
-            <motion.div
-              variants={descriptionVariants}
-              initial="closed"
-              animate="open"
-              exit="closed"
-              className="px-4 py-2 bg-black/40 backdrop-blur-sm text-white"
-            >
-              <p>{description}</p>
-            </motion.div>
+            <div>
+              <h2 className="text-4xl font-bold mt-14 mb-4">{title}</h2>
+              <p className="text-lg mb-8">{description}</p>
+            </div>
+            <div className="mt-auto">
+              <img
+                src={imgSrc}
+                alt={title}
+                className="w-1/3 h-auto object-contain"
+              />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </div>
   );
-};
-
-const panelVariants = {
-  open: {
-    width: "100%",
-    height: "100%",
-  },
-  closed: {
-    width: "0%",
-    height: "100%",
-  },
-};
-
-const panelVariantsSm = {
-  open: {
-    width: "100%",
-    height: "200px",
-  },
-  closed: {
-    width: "100%",
-    height: "0px",
-  },
-};
-
-const descriptionVariants = {
-  open: {
-    opacity: 1,
-    y: "0%",
-    transition: {
-      delay: 0.125,
-    },
-  },
-  closed: { opacity: 0, y: "100%" },
 };
 
 const items = [
   {
     id: 1,
-    title: "Earn more",
-    Icon: FiDollarSign,
-    imgSrc:
-      "https://images.unsplash.com/photo-1553729459-efe14ef6055d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
+    title: "Significo's Bold Beginnings",
+    subtitle: "Significo's Bold Beginnings",
+    imgSrc: "/images/Carecter1.jpeg",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum eius deserunt quia consectetur aliquid obcaecati voluptatibus quos distinctio natus! Tenetur.",
+      "Significo was founded in 2014 based on a seemingly paradoxical belief: it is technology, handled thoughtfully, that will recenter humanity in healthcare. This belief drives our mission to build technology that solves real problems and makes managing health a more empowering experience. At the heart of everything we do is a passion to give people back control of their health and reimagine healthcare to be more human.",
+    color: "#a8dadc",
   },
   {
     id: 2,
-    title: "Play more",
-    Icon: FiPlay,
-    imgSrc:
-      "https://images.unsplash.com/photo-1541532713592-79a0317b6b77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80",
+    title: "Brave Ventures",
+    subtitle: "Brave Ventures",
+    imgSrc: "/images/Carecter2.jpeg",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum eius deserunt quia consectetur aliquid obcaecati voluptatibus quos distinctio natus! Tenetur.",
+      "As we grew, we ventured into new territories, always keeping our core mission in mind. We expanded our services, partnered with leading healthcare providers, and continued to innovate in the field of health technology.",
+    color: "#f4a261",
   },
   {
     id: 3,
-    title: "Keep track",
-    Icon: FiBell,
-    imgSrc:
-      "https://images.unsplash.com/photo-1578450671530-5b6a7c9f32a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+    title: "Product Launches",
+    subtitle: "Product Launches",
+    imgSrc: "/images/Carecter3.jpeg",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum eius deserunt quia consectetur aliquid obcaecati voluptatibus quos distinctio natus! Tenetur.",
+      "Over the years, we've launched several groundbreaking products that have revolutionized patient care and health management. Each product is a testament to our commitment to making healthcare more accessible and user-friendly.",
+    color: "#e9c8fa",
   },
   {
     id: 4,
-    title: "Grow faster",
-    Icon: FiBarChart,
-    imgSrc:
-      "https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
+    title: "The Future",
+    subtitle: "The Future",
+    imgSrc: "/images/Carecter4.jpeg",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum eius deserunt quia consectetur aliquid obcaecati voluptatibus quos distinctio natus! Tenetur.",
+      "Looking ahead, we're excited about the possibilities that emerging technologies offer. We're constantly exploring new ways to improve healthcare delivery and patient outcomes, always with our mission of recentering humanity in healthcare at the forefront.",
+    color: "#fefae0",
   },
 ];

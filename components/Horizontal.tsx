@@ -1,197 +1,168 @@
-  /* eslint-disable @next/next/no-img-element */
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-  import React, { useLayoutEffect } from "react";
-  import { Button } from "./ui/button";
-  import { TextReveal } from "./ui/typography";
+/* eslint-disable @next/next/no-img-element */
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Button } from "@/components/ui/button";
+import { TextReveal } from "@/components/ui/typography";
+import { ChevronRightIcon } from "lucide-react";
 
-  gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
-  export default function Horizontal() {
-    useLayoutEffect(() => {
-      const pin = gsap.to(".slide", {
+export default function Horizontal() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const slidesRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current || !slidesRef.current) return;
+
+    const slides = gsap.utils.toArray<HTMLElement>(slidesRef.current.children);
+    const totalWidth = slides.reduce(
+      (acc, slide) => acc + slide.offsetWidth,
+      0
+    );
+
+    const animation = gsap.to(slides, {
+      x: () => `-${totalWidth - window.innerWidth}`,
+      ease: "none",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        pin: true,
+        scrub: 1,
+        end: () => `+=${totalWidth}`,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    gsap.fromTo(
+      ".button",
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
         scrollTrigger: {
-          trigger: ".real",
-          scroller: "body",
+          trigger: containerRef.current,
           start: "top top",
-          end: "bottom top",
-          pin: true,
+          end: "bottom bottom",
           scrub: 1,
-          anticipatePin: 4,
         },
-        xPercent: -300,
-        ease: "power1.inOut(1, 0.3)",
-      });
+      }
+    );
 
+    slides.forEach((slide, index) => {
       gsap.fromTo(
-        ".button",
-        {
-          opacity: 0,
-          y: 20,
-        },
+        slide.querySelectorAll(".animate-in"),
+        { opacity: 0, y: 50 },
         {
           opacity: 1,
           y: 0,
+          stagger: 0.1,
           scrollTrigger: {
-            trigger: ".real",
-            scroller: "body",
-            start: "top top",
-            end: "bottom top",
-            scrub: 1,
-            anticipatePin: 4,
+            trigger: slide,
+            containerAnimation: animation,
+            start: "left center",
+            toggleActions: "play none none reverse",
           },
         }
       );
+    });
 
-      return () => {
-        pin.kill();
-      };
-    }, []);
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
-    return (
-      <div
-        data-color="Ming"
-        className="real overflow-y-hidden mt-[20vh] mb-[10vh] section w-full sticky"
-      >
-        <div className="cont h-[100vh] relative">
-          <div className="slides w-full h-[100vh] flex sticky top-0 left-0 gap-40 md:gap-6">
-            <div className="slide w-full h-screen flex-shrink-0 flex flex-col items-center justify-center">
-              <div className="text mt-[10vh]">
-                <h1 className="text-[2.5rem] md:text-[4rem] lg:text-[6rem] leading-tight">
-                  Real Talk,
-                </h1>
-                <h1 className="text-[2.5rem] md:text-[4rem] lg:text-[6rem] leading-tight">
-                  Real Impact
-                </h1>
-              </div>
-              <div className="image absolute top-[60%] overflow-hidden right-0 w-[10rem] md:w-[17rem] lg:w-[20rem] h-[10rem] md:h-[15rem] lg:h-[20rem] bg-green-500 -translate-y-1/2 rounded-full translate-x-1/2">
-                <img
-                  className="w-full h-full object-cover"
-                  src="/images/TestHor.jpg"
-                  alt="Image"
-                  loading="lazy"
-                />
-              </div>
+  return (
+    <div data-color="Ming" ref={containerRef} className="overflow-hidden section text-black">
+      <div ref={slidesRef} className="flex">
+        {slides.map((slide, index) => (
+          <SlideContent key={index} {...slide} />
+        ))}
+      </div>
+      <div className="fixed button bottom-8 left-8 z-50">
+        <Button className="group h-14 rounded-full bg-orange-500 px-6 text-white transition-all hover:bg-orange-600">
+          <span className="mr-2 text-lg font-semibold">Discover Our Story</span>
+          <ChevronRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+interface SlideProps {
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  stats?: { value: string; label: string };
+}
+
+function SlideContent({
+  title,
+  subtitle,
+  description,
+  image,
+  stats,
+}: SlideProps) {
+  return (
+    <div className="flex h-screen w-screen flex-shrink-0 items-center justify-center p-16">
+      <div className="grid max-w-6xl gap-8 md:grid-cols-2">
+        <div className="space-y-6">
+          <h2 className="animate-in text-4xl font-bold sm:text-5xl md:text-6xl">
+            {title}
+          </h2>
+          <p className="animate-in text-xl font-semibold text-white">
+            {subtitle}
+          </p>
+          <p className="animate-in text-lg text-gray-300">{description}</p>
+          {stats && (
+            <div className="animate-in space-y-2">
+              <p className="text-5xl font-bold sm:text-6xl md:text-7xl">
+                {stats.value}
+              </p>
+              <p className="text-xl text-gray-300">{stats.label}</p>
             </div>
-            <div className="slide w-full h-screen flex-shrink-0 flex justify-center py-10 md:py-[4rem] relative">
-              <div className="image absolute top-[60%] overflow-hidden right-0 w-[10rem] md:w-[15rem] lg:w-[22rem] h-[10rem] md:h-[15rem] lg:h-[22rem] bg-green-500 -translate-y-1/2 rounded-full translate-x-1/2">
-                <img
-                  className="w-full h-full object-cover"
-                  src="/images/HorImage3.jpeg"
-                  alt="Image"
-                  loading="lazy"
-                />
-              </div>
-              <div className="img1 w-[8rem] md:w-[12rem] lg:w-[15rem] h-[8rem] md:h-[12rem] lg:h-[15rem] bg-blue-500 overflow-hidden absolute top-[70%] z-[3] left-1/2 rounded-full">
-                <img
-                  className="object-cover w-full h-full"
-                  src="/images/HorImage2.jpeg"
-                  alt="Image"
-                  loading="lazy"
-                />
-              </div>
-              <div className="img1 w-[6rem] md:w-[8rem] lg:w-[10rem] h-[6rem] md:h-[8rem] lg:h-[10rem] bg-blue-500 overflow-hidden absolute top-[73%] z-[3] left-1/4 rounded-full">
-                <img
-                  className="object-cover w-full h-full"
-                  src="https://images.unsplash.com/photo-1614204424926-196a80bf0be8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  alt="Image"
-                  loading="lazy"
-                />
-              </div>
-              <div className="w-[80%] md:w-[60%] text-center relative mt-[10vh]">
-                <h3 className="absolute top-4 left-0 w-[10rem] md:w-[13rem] text-start font-semibold text-sm md:text-base">
-                  We’re on a mission to impact as many business as possible and
-                  build a better company while we do it. Here’s our progress.
-                </h3>
-                <h1 className="font-semibold text-[4rem] md:text-[6rem] lg:text-[10rem] pt-[5rem] text-white leading-none">
-                  10K
-                </h1>
-                <h3 className="text-[1.2rem] md:text-[2rem] leading-none">
-                  Digital Campinas — Profit-Boosting Tactics — For over 500
-                  clients.
-                </h3>
-              </div>
-            </div>
-            <div className="slide w-full h-screen flex-shrink-0 flex justify-center py-10 md:py-[4rem] relative">
-              <div className="img1 w-[15rem] md:w-[20rem] lg:w-[10rem] h-[15rem] md:h-[20rem] lg:h-[10rem] overflow-hidden absolute top-[70%] z-[3] left-1/4 rounded-full">
-                <img
-                  className="object-cover w-full h-full"
-                  src="/images/HorImage4.jpeg"
-                  alt="Image"
-                  loading="lazy"
-                />
-              </div>
-              <div className="image absolute top-[30%] overflow-hidden left-[70%] w-[12rem] md:w-[15rem] lg:w-[13rem] h-[12rem] md:h-[15rem] lg:h-[13rem] -translate-y-1/2 rounded-full translate-x-1/2">
-                <img
-                  className="w-full h-full object-fill"
-                  src="/images/HorImage5.jpeg"
-                  alt="Image"
-                  loading="lazy"
-                />
-              </div>
-              <div className="w-[80%] md:w-[60%] text-center relative mt-[10vh]">
-                <h3 className="absolute top-0 left-0 w-[10rem] md:w-[15rem] text-start font-semibold text-sm md:text-base">
-                  Our team is global and diverse, because our individual
-                  experiences make us stronger.
-                </h3>
-                <h1 className="font-semibold text-[4rem] md:text-[6rem] lg:text-[10rem] pt-[5rem] text-white leading-none">
-                  20
-                </h1>
-                <h3 className="text-[1.2rem] md:text-[2rem] leading-none">
-                  Marketing & Tech Experts.
-                </h3>
-                <h3 className="text-[1rem] md:text-[1.2rem] mt-3 leading-none">
-                  Our team brings creative ideas to fuel your growth.
-                </h3>
-              </div>
-            </div>
-            <div className="slide z-50 special w-full h-screen flex-shrink-0 flex justify-center py-10 md:py-[4rem] relative">
-              <div className="img1 w-[10rem] md:w-[15rem] lg:w-[15rem] h-[10rem] md:h-[15rem] lg:h-[15rem] overflow-hidden absolute top-[54%] translate-y-[30%] -translate-x-1/4 z-[3] left-1/2 rounded-full opacity-1 disappear">
-                <img
-                  className="object-cover w-full h-full"
-                  src="/images/HorImage6.jpeg"
-                  alt="Image"
-                  loading="lazy"
-                />
-              </div>
-              <div className="img1 w-[8rem] md:w-[10rem] lg:w-[10rem] h-[8rem] md:h-[10rem] lg:h-[10rem] overflow-hidden absolute top-[40%] z-[3] left-[20%] rounded-full disappear">
-                <img
-                  className="object-cover w-full h-full"
-                  src="/images/HorImage7.jpeg"
-                  alt="Image"
-                  loading="lazy"
-                />
-              </div>
-              <div className="image absolute top-[70%] overflow-hidden right-[10%] w-[10rem] md:w-[15rem] lg:w-[10rem] h-[10rem] md:h-[15rem] lg:h-[10rem] -translate-y-1/2 rounded-full translate-x-1/2 disappear">
-                <img
-                  className="w-full h-full object-cover"
-                  src="https://images.unsplash.com/photo-1653580483678-f91fdd2abece?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  alt="Image"
-                  loading="lazy"
-                />
-              </div>
-              <div className="w-[80%] md:w-[60%] text-center relative mt-[10vh]">
-                <h1 className="font-semibold text-[4rem] md:text-[6rem] lg:text-[10rem] pt-[5rem] text-white leading-none">
-                  850
-                </h1>
-                <h3 className="text-[1.2rem] md:text-[2rem] leading-none">
-                  Client Testimonials.
-                </h3>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
-        <div className="fixed button bottom-[70px] left-[40px]">
-          <Button className="w-[290px] h-[50px] px-5 md:px-10 rounded-2xl bg-[#ef9d71] text-[#fff] md:flex py-5 border-[1px]">
-            <div className="texthover masker h-[1.5rem] overflow-hidden">
-              <h1 className="text-lg md:text-xl">
-                <TextReveal className="cursor-pointer">
-                  Discover Our Story
-                </TextReveal>
-              </h1>
-            </div>
-          </Button>
+        <div className="relative aspect-square overflow-hidden rounded-full">
+          <img
+            src={image}
+            alt={title}
+            className="animate-in absolute inset-0 h-full w-full object-cover"
+          />
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
+
+const slides: SlideProps[] = [
+  {
+    title: "Real Talk, Real Impact",
+    subtitle: "Transforming Businesses",
+    description:
+      "We're on a mission to impact as many businesses as possible and build a better company while we do it.",
+    image: "/images/TestHor.jpg",
+  },
+  {
+    title: "Profit-Boosting Tactics",
+    subtitle: "For over 500 clients",
+    description: "Digital Campinas — Delivering results that matter.",
+    image: "/images/HorImage3.jpeg",
+    stats: { value: "10K+", label: "Digital Strategies Implemented" },
+  },
+  {
+    title: "Global & Diverse Team",
+    subtitle: "Strength in Diversity",
+    description: "Our team brings creative ideas to fuel your growth.",
+    image: "/images/HorImage4.jpeg",
+    stats: { value: "20+", label: "Marketing & Tech Experts" },
+  },
+  {
+    title: "Client Success Stories",
+    subtitle: "Real Results, Real Testimonials",
+    description:
+      "Hear from our satisfied clients about their transformative experiences.",
+    image: "/images/HorImage6.jpeg",
+    stats: { value: "850+", label: "Client Testimonials" },
+  },
+];

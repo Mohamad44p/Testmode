@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AnimatedText } from "./Storytelling";
@@ -9,62 +9,44 @@ import { AnimatedText } from "./Storytelling";
 gsap.registerPlugin(ScrollTrigger);
 
 const words = [
-  {
-    text: "Strategize",
-    imgSrc: "/images/Carecter1.jpeg",
-  },
-  {
-    text: "Influence",
-    imgSrc: "/images/Carecter2.jpeg",
-  },
-  {
-    text: "Creativity",
-    imgSrc: "/images/Carecter4.jpeg",
-  },
-  {
-    text: "Engagement",
-    imgSrc: "/images/Carecter3.jpeg",
-  },
-  {
-    text: "Conversions",
-    imgSrc: "/images/Carecter5.jpeg",
-  },
-  {
-    text: "Growth",
-    imgSrc: "/images/Carecter1.jpeg",
-  },
-  {
-    text: "Lead Generation",
-    imgSrc: "/images/Carecter5.jpeg",
-  },
-  {
-    text: "Strategize",
-    imgSrc: "/images/Carecter2.jpeg",
-  },
-  {
-    text: "Creativity",
-    imgSrc: "/images/Carecter3.jpeg",
-  },
-  {
-    text: "Engagement",
-    imgSrc: "/images/Carecter4.jpeg",
-  },
-  {
-    text: "Useful",
-    imgSrc: "/images/Carecter4.jpeg",
-  },
-  {
-    text: "Intuitive",
-    imgSrc: "/images/Carecter3.jpeg",
-  },
-  {
-    text: "Empathetic",
-    imgSrc: "/images/Carecter2.jpeg",
-  },
+  { text: "Strategize", imgSrc: "/images/Carecter1.jpeg" },
+  { text: "Influence", imgSrc: "/images/Carecter2.jpeg" },
+  { text: "Creativity", imgSrc: "/images/Carecter4.jpeg" },
+  { text: "Engagement", imgSrc: "/images/Carecter3.jpeg" },
+  { text: "Conversions", imgSrc: "/images/Carecter5.jpeg" },
+  { text: "Growth", imgSrc: "/images/Carecter1.jpeg" },
+  { text: "Lead Generation", imgSrc: "/images/Carecter5.jpeg" },
+  { text: "Strategize", imgSrc: "/images/Carecter2.jpeg" },
+  { text: "Creativity", imgSrc: "/images/Carecter3.jpeg" },
+  { text: "Engagement", imgSrc: "/images/Carecter4.jpeg" },
+  { text: "Useful", imgSrc: "/images/Carecter4.jpeg" },
+  { text: "Intuitive", imgSrc: "/images/Carecter3.jpeg" },
+  { text: "Empathetic", imgSrc: "/images/Carecter2.jpeg" },
 ];
 
+const shuffleArray = (array: any[]) => {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+};
+
 const HomeSection = () => {
+  const [shuffledRows, setShuffledRows] = useState<any[][]>([]);
+
   useEffect(() => {
+    const shuffledWords = shuffleArray(words);
+    const rows = [
+      shuffledWords.slice(0, 13),
+      shuffledWords.slice(0, 13),
+      shuffledWords.slice(0, 13),
+      shuffledWords.slice(0, 13),
+    ].map(shuffleArray);
+
+    setShuffledRows(rows);
+
     gsap.set(".slidesm", { scale: 5 });
 
     const tl = gsap.timeline({
@@ -112,14 +94,14 @@ const HomeSection = () => {
     });
   }, []);
 
-  const renderElements = (className: any) => (
+  const renderElements = (className: string, rowIndex: number) => (
     <div
       data-color="transparent"
       className={`row ${className} w-full flex items-center gap-3 pb-7 whitespace-nowrap`}
     >
-      {words.map((word, index) => (
+      {shuffledRows[rowIndex]?.map((word, index) => (
         <div
-          key={index}
+          key={`${className}-${index}`}
           className="elem flex flex-col sm:flex-row items-center gap-2 sm:gap-5"
         >
           <h1 className="gradient-text text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold">
@@ -144,7 +126,7 @@ const HomeSection = () => {
           <h1 className="introText">
             <AnimatedText
               className="md:max-w-[30%] text-white max-w-[100%]"
-              text={`We’re more than a digital marketing agency—we’re a growth partner. Our innovative strategies and advanced technology drive business success and boost your revenue in the digital world.`}
+              text={`We're more than a digital marketing agency—we're a growth partner. Our innovative strategies and advanced technology drive business success and boost your revenue in the digital world.`}
             />
           </h1>
         </div>
@@ -171,10 +153,10 @@ const HomeSection = () => {
             </h1>
           </div>
           <div className="slidesm scale-[1] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[35%] w-[90%]">
-            {renderElements("lft")}
-            {renderElements("rgt")}
-            {renderElements("third-row")}
-            {renderElements("fourth-row")}
+            {renderElements("lft", 0)}
+            {renderElements("rgt", 1)}
+            {renderElements("third-row", 2)}
+            {renderElements("fourth-row", 3)}
           </div>
         </div>
       </div>
