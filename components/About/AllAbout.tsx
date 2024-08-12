@@ -10,6 +10,8 @@ import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import React, { useEffect } from "react";
+import FAQ from "./FAQ";
+import ClientLo from "./Clients/ClientLo";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -64,8 +66,11 @@ export default function AboutUsPage() {
       <section data-color="white" className="section">
         <OurTeam />
       </section>
+      <section data-color="black" className="section">
+        <FAQ />
+      </section>
       <section data-color="white" className="section">
-        <ForSection />
+         <ClientLo/>
       </section>
     </div>
   );

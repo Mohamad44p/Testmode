@@ -46,12 +46,18 @@ const Card = ({
         }}
         className={styles.card}
       >
-        <h2 className={`text-[${textColor}]`}>{title}</h2>
+        <h2
+          style={{ color: textColor }}
+        >{title}</h2>
         <div className={styles.body}>
           <div className={styles.description}>
-            <p className={`text-[${textColor}]`}>{description}</p>
+            <p
+              style={{ color: textColor }}
+            >{description}</p>
             <span>
-              <a href={url} className={`mt-4 text-[${textColor}]`} target="_blank">
+              <a href={url} className={`mt-4`}
+                style={{ color: textColor }}
+              target="_blank">
                 See more &#8594;
               </a>
             </span>

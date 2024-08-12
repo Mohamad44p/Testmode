@@ -1,147 +1,97 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import gsap from "gsap";
+import React, { useLayoutEffect, useRef } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import GibberishText from "./ui/GibberishText";
+import LastSecMobile from "./mobile/LastSecMobile";
+import { TextReveal } from "./ui/typography";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function LastSec() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
+  const Ref = useRef(null);
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 5]);
-
-  useEffect(() => {
-    const handleMouseMove = (e: { clientX: any; clientY: any }) => {
-      const { clientX, clientY } = e;
-      const moveX = clientX - window.innerWidth / 2;
-      const moveY = clientY - window.innerHeight / 2;
-      const offset = 15;
-      document.documentElement.style.setProperty(
-        "--move-x",
-        `${moveX / offset}px`
-      );
-      document.documentElement.style.setProperty(
-        "--move-y",
-        `${moveY / offset}px`
-      );
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+  useLayoutEffect(() => {
+    gsap.to(".disappear", {
+      scrollTrigger: {
+        trigger: ".real",
+        scrub: 1,
+        start: "-85% -90%",
+        end: "bottom 20%",
+      },
+      opacity: 0,
+    });
   }, []);
 
   return (
-    <section
-      ref={containerRef}
-      className="relative overflow-hidden mt-[20vh] mb-[20vh] bg-gradient-to-b from-background to-muted py-24 sm:py-32"
-    >
-      <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-            Explore Our Insights
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Stay up-to-date on the latest healthcare innovations and thought
-            leadership.
-          </p>
-        </motion.div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <motion.div
-            style={{ y: y1, rotate }}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="relative bg-card rounded-3xl p-6 shadow-lg"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-3xl"></div>
-            <img
-              src="https://cdn.prod.website-files.com/659dbdfd5a080be8d3483190/664e2389903487ba78a7ec53_Untitled%20design-13.png"
-              alt="Digital Therapeutics"
-              className="w-full h-48 object-cover rounded-2xl mb-4"
-            />
-            <h3 className="text-xl font-semibold mb-2">
-              Digital Therapeutics Decoded
+    <>
+      <div
+        data-color="white"
+        className="capsule section mt-[10rem] w-full h-[250vh] md:h-[150vh] flex flex-col lg:flex-row justify-between"
+      >
+        <div className="hidden md:flex">
+          <div className="capleft w-full lg:w-[25%] flex flex-col justify-between py-[10rem] ml-[2.5rem] font-semibold text-l">
+            <h3 className="w-[60%]">
+              Stay up-to-date on the latest healthcare innovations and thought
+              leadership.
             </h3>
-            <p className="text-sm text-muted-foreground">
-              A Guide to Understanding DTx and Why They're Worth Your Attention
-            </p>
-            <span className="inline-block bg-primary/10 text-primary text-xs px-2 py-1 rounded-full mt-2">
-              Thought Leadership
-            </span>
-          </motion.div>
-          <motion.div
-            style={{ y: y2 }}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="relative bg-card rounded-3xl p-6 shadow-lg"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-primary/20 rounded-3xl"></div>
-            <img
-              src="https://cdn.prod.website-files.com/659dbdfd5a080be8d3483190/66327831c53bb8c459a9b605_Untitled%20design-7.webp"
-              alt="Equity in Tech"
-              className="w-full h-48 object-cover rounded-2xl mb-4"
-            />
-            <h3 className="text-xl font-semibold mb-2">Equity in Tech</h3>
-            <p className="text-sm text-muted-foreground">
-              An International Women's Day Conversation with Caroline Nieto,
-              Significo's CPO
-            </p>
-            <span className="inline-block bg-secondary/10 text-secondary text-xs px-2 py-1 rounded-full mt-2">
-              Thought Leadership
-            </span>
-          </motion.div>
+            <div className="">
+              <h1 className="text-[2.5rem] lg:text-[4.44rem] leading-[1.2] font-light">
+                Explore <br />
+                Our <br />
+                Insights
+              </h1>
+              <div className="capbtn text-xl py-3 px-3 text-center border-2 mt-5 border-black">
+                VIEW ALL ARTICLES
+              </div>
+            </div>
+          </div>
+          <div className="capright w-full lg:w-[75%] flex flex-col lg:flex-row md:gap-y-0 gap-y-14 justify-around">
+            <div className="cap1 border-[1px] border-black w-full lg:w-[35%] h-auto lg:h-[90%] -rotate-[15deg] translate-x-[0] lg:translate-x-[7rem] rounded-full flex flex-col gap-10 lg:gap-20 items-center">
+              <div className="image w-[15rem] h-[15rem] mt-10 rounded-full overflow-hidden">
+                <img
+                  className="object-cover w-full h-full"
+                  src="https://cdn.prod.website-files.com/659dbdfd5a080be8d3483190/66327831c53bb8c459a9b605_Untitled%20design-7.webp"
+                  alt=""
+                />
+              </div>
+              <h1 className="text-xl font-semibold text-center px-10">
+                Digital Therapeutics Decoded: A Guide to Understanding DTx and
+                Why They're Worth Your Attention
+              </h1>
+              <h1 className="text-xl">Thought Leadership</h1>
+              <button className="capbtn cursor-pointer text-xl py-3 px-3 text-center border-2 border-black">
+                READ MORE
+              </button>
+            </div>
+            <div className="cap1 border-[1px] border-black w-full lg:w-[35%] h-auto lg:h-[90%] -rotate-[15deg] rounded-full flex flex-col-reverse gap-10 lg:gap-20 items-center">
+              <div className="image w-[15rem] h-[15rem] mb-10 rounded-full overflow-hidden">
+                <img
+                  className="object-cover w-full h-full"
+                  src="https://cdn.prod.website-files.com/659dbdfd5a080be8d3483190/664e2389903487ba78a7ec53_Untitled%20design-13.png"
+                  alt=""
+                />
+              </div>
+              <p className="text-l font-light text-center">
+                The Reuters Digital Health 24 event in San Diego brought
+                together over 300 digital leaders from across healthcare to
+                discuss the future of digitally enabled care.
+              </p>
+              <h1 className="text-xl font-semibold text-center">
+                5 Key Takeaways from the Reuters Digital Health ‘24 Summit
+              </h1>
+              <h1 className="text-xl">Thought Leadership</h1>
+              <button className="capbtn cursor-pointer text-xl py-3 px-3 text-center border-2 border-black">
+                READ MORE
+              </button>
+            </div>
+          </div>
         </div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
-          className="text-center mt-12"
-        >
-          <motion.a
-            href="#"
-            className="inline-block bg-gradient-to-r from-primary to-secondary text-primary-foreground px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out"
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)",
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
-            VIEW ALL ARTICLES
-          </motion.a>
-        </motion.div>
+        <div className="block md:hidden">
+          <LastSecMobile />
+        </div>
       </div>
-      <style jsx>{`
-        .bg-grid-pattern {
-          background-image: radial-gradient(circle, #000 1px, transparent 1px);
-          background-size: 20px 20px;
-        }
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-20px);
-          }
-        }
-        .container {
-          perspective: 1000px;
-        }
-        .bg-card {
-          transform-style: preserve-3d;
-          transform: translate3d(var(--move-x), var(--move-y), 0);
-          transition: transform 0.3s ease-out;
-        }
-      `}</style>
-    </section>
+    </>
   );
 }

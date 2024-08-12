@@ -52,7 +52,8 @@ export default function Component() {
 
   const updateProgress = () => {
     if (videoRef.current) {
-      const progress = (videoRef.current.currentTime / videoRef.current.duration) * 100;
+      const progress =
+        (videoRef.current.currentTime / videoRef.current.duration) * 100;
       setProgress(progress);
     }
   };
@@ -70,48 +71,58 @@ export default function Component() {
         animate={{ width: "100%" }}
         transition={{ duration: 2, ease: "easeInOut" }}
       />
-      <div className="container mx-auto px-4 py-12 max-w-6xl">
-        <motion.div
-          className="mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={controls}
-        >
-          <div className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
-            <div className="w-2 h-2 bg-black rounded-full"></div>
-            <p className="uppercase tracking-wide">
-              We turn ideas into reality
-            </p>
-          </div>
-        </motion.div>
-        <div className="grid md:grid-cols-2 gap-8 items-start">
+      <div className="container mx-auto px-4 py-12 max-w-7xl">
+        <div className="grid md:grid-cols-3 items-start">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={controls}
             transition={{ delay: 0.2 }}
           >
-            <h1 className="text-5xl font-light leading-tight mb-8">
-              Meet Significo
+            <motion.div
+              className="mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={controls}
+            >
+              <div className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
+                <div className="w-2 h-2 bg-black rounded-full"></div>
+                <p className="uppercase tracking-wide">
+                  We turn ideas into reality
+                </p>
+              </div>
+            </motion.div>
+            <h1 className="text-5xl flex flex-col items-center justify-center font-light leading-tight mb-8">
+              Meet
+              <span>Be Found Online</span>
             </h1>
           </motion.div>
           <motion.div
-            className="space-y-6"
+            className="space-y-6 w-[780px] text-justify"
             initial={{ opacity: 0, x: 50 }}
             animate={controls}
             transition={{ delay: 0.4 }}
           >
             <p className="text-lg">
-              We're a collective of passionate visionaries, crafting powerful
-              health technology to make an impact on the lives of the people
-              using our tools.
+              At Be Found Online, we specialize in creating tailored digital
+              marketing strategies that align perfectly with each client’s
+              unique goals. Our team of marketing& Tech experts, designers, and
+              developers delivers results that matter—whether it's driving
+              leads, boosting revenue, or increasing visibility. We believe that
+              true success is measured by our clients' growth, and we focus on
+              the metrics that push businesses forward.
             </p>
             <p className="text-lg">
-              Our expert designers and technologists have decades of experience
-              in tech, health, and data. We build tools that solve real problems
-              and make managing health an empowering and intuitive experience.
+              With years of expertise, we've learned that digital channels work
+              best when integrated strategically. That’s why we craft
+              full-service solutions, combining various digital channels to
+              maximize conversions, visibility, and revenue for every client we
+              serve.
             </p>
             <p className="text-lg">
-              We believe that technology that puts people first will make
-              healthcare more human.
+              At Be Found Online, we live and breathe the web, and our passion
+              lies in helping businesses achieve their goals. When you partner
+              with us, you won’t receive a one-size-fits-all approach—instead,
+              you'll get a personalized strategy crafted specifically for your
+              company, its needs, and its objectives.
             </p>
           </motion.div>
         </div>

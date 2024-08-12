@@ -125,7 +125,7 @@ export default function Navbar() {
               <h1
                 className={`lg:text-3xl md:text-xl text-[17px] font-bold text-${textColor}`}
               >
-                BE FOUND <span className="">ONLINE</span>
+                <Link href="/">BE FOUND ONLINE</Link>
               </h1>
             </div>
           </div>

@@ -44,18 +44,15 @@ html.lenis body {
 
 body {
   background-color: #f2efe4;
-} 
-body[theme="black"] {
-  background-color: #000;
+}
+body[theme="black"] .section {
+  background-color: #262526;
+  color: #fff;
 }
 
 body[theme="white"] .section {
   background-color: #f2efe4;
   color: #000;
-}
-
-body[theme="black"] .section {
-  color: #fff;
 }
 
 body[theme="DefaultWhite"] .section {

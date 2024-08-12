@@ -16,7 +16,7 @@ export default function Story() {
           </p>
         </div>
         <h1 className="text-4xl sm:text-5xl font-light leading-tight text-center">
-          The Significo Story
+          The Be Found Online Story
         </h1>
       </div>
 
@@ -30,7 +30,7 @@ const VerticalAccordion = () => {
 
   return (
     <section className="w-full max-w-6xl mx-auto">
-      <div className="flex h-[600px] w-full overflow-hidden rounded-lg border border-gray-200">
+      <div className="flex h-[500px] w-full overflow-hidden rounded-lg border border-gray-200">
         {items.map((item) => (
           <Panel key={item.id} open={open} setOpen={setOpen} {...item} />
         ))}
@@ -45,7 +45,6 @@ interface PanelProps {
   id: number;
   title: string;
   subtitle: string;
-  imgSrc: string;
   description: string;
   color: string;
 }
@@ -56,7 +55,6 @@ const Panel = ({
   id,
   title,
   subtitle,
-  imgSrc,
   description,
   color,
 }: PanelProps) => {
@@ -96,13 +94,6 @@ const Panel = ({
               <h2 className="text-4xl font-bold mt-14 mb-4">{title}</h2>
               <p className="text-lg mb-8">{description}</p>
             </div>
-            <div className="mt-auto">
-              <img
-                src={imgSrc}
-                alt={title}
-                className="w-1/3 h-auto object-contain"
-              />
-            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -113,38 +104,34 @@ const Panel = ({
 const items = [
   {
     id: 1,
-    title: "Significo's Bold Beginnings",
-    subtitle: "Significo's Bold Beginnings",
-    imgSrc: "/images/Carecter1.jpeg",
+    title: "Be Found Online Bold Beginnings",
+    subtitle: "Be Found Online Bold Beginnings",
     description:
-      "Significo was founded in 2014 based on a seemingly paradoxical belief: it is technology, handled thoughtfully, that will recenter humanity in healthcare. This belief drives our mission to build technology that solves real problems and makes managing health a more empowering experience. At the heart of everything we do is a passion to give people back control of their health and reimagine healthcare to be more human.",
+      "Founded in 2022, Be Found Online was born from a bold, yet simple idea: technology, when thoughtfully harnessed, can bring a human touch back to business . This belief fuels our mission to create digital solutions that genuinely address real-world challenges, making business and marketing more empowering and personal. At Be Found Online, our passion lies in giving companies the strategies and tactics to boost their business, while reimagining business to be more human-centered, just as it should be.",
     color: "#a8dadc",
   },
   {
     id: 2,
     title: "Brave Ventures",
     subtitle: "Brave Ventures",
-    imgSrc: "/images/Carecter2.jpeg",
     description:
-      "As we grew, we ventured into new territories, always keeping our core mission in mind. We expanded our services, partnered with leading healthcare providers, and continued to innovate in the field of health technology.",
+      "Be Found Online has spent years perfecting its craft before evolving into the dynamic agency it is today. We identified a gap in the digital marketing landscape: many strategies focused on broad, impersonal metrics, leaving the true needs of clients unmet. So, we partnered with industry leaders across various sectors to develop tailored marketing strategies and custom digital solutions. In 2022, we expanded our expertise by acquiring a specialized marketing firm, strengthening our ability to deliver impactful results for our clients.",
     color: "#f4a261",
   },
   {
     id: 3,
     title: "Product Launches",
     subtitle: "Product Launches",
-    imgSrc: "/images/Carecter3.jpeg",
     description:
-      "Over the years, we've launched several groundbreaking products that have revolutionized patient care and health management. Each product is a testament to our commitment to making healthcare more accessible and user-friendly.",
+      "What matters to us is not just what we’ve done in the past, but what we’ll be doing next. We believe in looking towards the future with our clients Our creative digital agency creates engaging and intuitive website designs to establish your online presence. We’ve found brands are like people; they need to breathe, grow and evolve.",
     color: "#e9c8fa",
   },
   {
     id: 4,
     title: "The Future",
     subtitle: "The Future",
-    imgSrc: "/images/Carecter4.jpeg",
     description:
-      "Looking ahead, we're excited about the possibilities that emerging technologies offer. We're constantly exploring new ways to improve healthcare delivery and patient outcomes, always with our mission of recentering humanity in healthcare at the forefront.",
+      "At Be Found Online we are dedicated to pushing boundaries and innovating alongside our clients to anticipate and adapt to emerging trends. Our forward-thinking approach ensures that every website design we create isn’t just engaging and intuitive but also future-proof, allowing brands to breathe, grow, and evolve in an ever-changing digital landscape. We’re committed to crafting solutions that not only meet today’s needs but also set the stage for tomorrow’s opportunities.",
     color: "#fefae0",
   },
 ];

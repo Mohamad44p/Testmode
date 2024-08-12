@@ -33,23 +33,23 @@ export default function CircleSection() {
   const coreValues = [
     {
       icon: <SmileIcon className="w-12 h-12 md:w-16 md:h-16 mb-4 md:mb-6" />,
-      title: "Keep it Human",
-      description: "From design to partnerships, our commitment is to positively impact all the real lives we touch.",
+      title: "We Measure Success by the “WOW” Factor",
+      description: "We step into our clients’ shoes, and our success is defined by how much we exceed their expectations and leave them genuinely impressed.",
     },
     {
       icon: <PenToolIcon className="w-12 h-12 md:w-16 md:h-16 mb-4 md:mb-6" />,
-      title: "Hone Your Craft",
-      description: "We view our work as an ongoing practice, driven by a relentless commitment to quality and excellence.",
+      title: "Setting the Standard with Integrity",
+      description: "We lead by setting an example, upholding integrity in all we do, and striving to make a positive impact on the world.",
     },
     {
       icon: <RocketIcon className="w-12 h-12 md:w-16 md:h-16 mb-4 md:mb-6" />,
-      title: "Innovate Boldly",
-      description: "We push boundaries and challenge conventions to create groundbreaking solutions.",
+      title: "Relentless and Results-Driven",
+      description: "We’re driven, persistent, and committed to getting the job done, no matter what it takes.",
     },
     {
       icon: <HeartIcon className="w-12 h-12 md:w-16 md:h-16 mb-4 md:mb-6" />,
-      title: "Embrace Empathy",
-      description: "Understanding and addressing the needs of others is at the core of everything we do.",
+      title: "Driving Real Results Where It Matters",
+      description: "We create meaningful business impact, delivering measurable results that benefit both our clients and their teams.",
     },
   ];
 
@@ -128,7 +128,7 @@ export default function CircleSection() {
                       {value.title}
                     </motion.h2>
                     <motion.p
-                      className="text-xs md:text-sm"
+                      className="text-xs md:text-[12x]"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
