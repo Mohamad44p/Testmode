@@ -2,7 +2,6 @@
 
 import AboutPage from "@/components/About/AboutPage";
 import CircleSection from "@/components/About/CircleSection";
-import ForSection from "@/components/About/ForSection";
 import Story from "@/components/About/Story";
 import CenterAligner from "@/components/CenterAligner";
 import OurTeam from "@/components/OurTeam";

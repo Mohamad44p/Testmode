@@ -1,10 +1,10 @@
-import All from '@/components/All'
-import React from 'react'
+import All from "@/components/All";
+import React from "react";
 
 export default function page() {
   return (
     <div>
-      <All/>
+        <All />
     </div>
-  )
+  );
 }
