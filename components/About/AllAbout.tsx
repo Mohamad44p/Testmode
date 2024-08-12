@@ -12,6 +12,7 @@ import { ScrollTrigger } from "gsap/all";
 import React, { useEffect } from "react";
 import FAQ from "./FAQ";
 import ClientLo from "./Clients/ClientLo";
+import Banner from "../Banner";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -70,7 +71,15 @@ export default function AboutUsPage() {
         <FAQ />
       </section>
       <section data-color="white" className="section">
-         <ClientLo/>
+        <ClientLo />
+      </section>
+      <section>
+        <Banner
+          title="Come Build a Better Future with Us."
+          description="Explore how Significo's partnership can advance your digital experience and unleash your technology development."
+          ctaText="LET'S TALK"
+          ctaLink="/contact"
+        />
       </section>
     </div>
   );
