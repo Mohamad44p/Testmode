@@ -22,7 +22,7 @@ export const SectionHeading = ({
 };
 
 interface TextRevealProps {
-  children: string;
+  children: string ;
   className?: string;
 }
 export const TextReveal = ({ children, className }: TextRevealProps) => {

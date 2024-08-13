@@ -96,7 +96,7 @@ export default function Banner({
           className="lg:w-1/2 mt-8 lg:mt-0 flex items-center justify-end space-x-4"
           variants={itemVariants}
         >
-          <p className="text-lg md:text-xl text-black text-right max-w-xs">
+          <p className="text-lg md:text-xl text-black  text-start max-w-xs">
             {description}
           </p>
           <div className="relative w-32 h-32">
@@ -121,7 +121,7 @@ export default function Banner({
             </motion.div>
             <button
               onClick={scrollToTop}
-              className="absolute border-black border top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-transparent flex items-center justify-center"
+              className="absolute border-black text-black border top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-transparent flex items-center justify-center"
               aria-label="Scroll to top"
             >
               <svg

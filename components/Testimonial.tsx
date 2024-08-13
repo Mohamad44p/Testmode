@@ -57,7 +57,7 @@ export default function Testimonial() {
 
   return (
     <div
-      data-color="white"
+      data-color="Almond"
       className="para section md:mb-[15rem] w-full min-h-screen flex flex-col gap-y-11 justify-center items-center p-4"
     >
       <Slider

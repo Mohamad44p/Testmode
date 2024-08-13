@@ -52,13 +52,18 @@ export default function Component() {
 
   const updateProgress = () => {
     if (videoRef.current) {
-      const progress = (videoRef.current.currentTime / videoRef.current.duration) * 100;
+      const progress =
+        (videoRef.current.currentTime / videoRef.current.duration) * 100;
       setProgress(progress);
     }
   };
 
   return (
-    <section ref={containerRef} data-color="white" className="section overflow-x-hidden relative min-h-screen overflow-hidden">
+    <section
+      data-color="Almond"
+      ref={containerRef}
+      className="section overflow-x-hidden relative min-h-screen overflow-hidden"
+    >
       <motion.div
         className="absolute top-0 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500"
         style={{ width: lineWidth }}
@@ -74,10 +79,16 @@ export default function Component() {
             transition={{ delay: 0.2 }}
             className="md:col-span-1"
           >
-            <motion.div className="mb-6 sm:mb-8" initial={{ opacity: 0, y: 20 }} animate={controls}>
+            <motion.div
+              className="mb-6 sm:mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={controls}
+            >
               <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-600 mb-4">
                 <div className="w-2 h-2 bg-black rounded-full"></div>
-                <p className="uppercase tracking-wide">We turn ideas into reality</p>
+                <p className="uppercase tracking-wide">
+                  We turn ideas into reality
+                </p>
               </div>
             </motion.div>
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl flex flex-col items-start justify-center font-light leading-tight mb-6 sm:mb-8">
@@ -92,13 +103,27 @@ export default function Component() {
             transition={{ delay: 0.4 }}
           >
             <p className="text-sm sm:text-base md:text-lg">
-              At Be Found Online, we specialize in creating tailored digital marketing strategies that align perfectly with each client's unique goals. Our team of marketing & Tech experts, designers, and developers delivers results that matter—whether it's driving leads, boosting revenue, or increasing visibility. We believe that true success is measured by our clients' growth, and we focus on the metrics that push businesses forward.
+              At Be Found Online, we specialize in creating tailored digital
+              marketing strategies that align perfectly with each client's
+              unique goals. Our team of marketing & Tech experts, designers, and
+              developers delivers results that matter—whether it's driving
+              leads, boosting revenue, or increasing visibility. We believe that
+              true success is measured by our clients' growth, and we focus on
+              the metrics that push businesses forward.
             </p>
             <p className="text-sm sm:text-base md:text-lg">
-              With years of expertise, we've learned that digital channels work best when integrated strategically. That's why we craft full-service solutions, combining various digital channels to maximize conversions, visibility, and revenue for every client we serve.
+              With years of expertise, we've learned that digital channels work
+              best when integrated strategically. That's why we craft
+              full-service solutions, combining various digital channels to
+              maximize conversions, visibility, and revenue for every client we
+              serve.
             </p>
             <p className="text-sm sm:text-base md:text-lg">
-              At Be Found Online, we live and breathe the web, and our passion lies in helping businesses achieve their goals. When you partner with us, you won't receive a one-size-fits-all approach—instead, you'll get a personalized strategy crafted specifically for your company, its needs, and its objectives.
+              At Be Found Online, we live and breathe the web, and our passion
+              lies in helping businesses achieve their goals. When you partner
+              with us, you won't receive a one-size-fits-all approach—instead,
+              you'll get a personalized strategy crafted specifically for your
+              company, its needs, and its objectives.
             </p>
           </motion.div>
         </div>
@@ -124,7 +149,11 @@ export default function Component() {
                   onClick={togglePlay}
                   className="bg-white text-black hover:bg-gray-200 transition-colors duration-200"
                 >
-                  {isPlaying ? <PauseIcon className="h-3 w-3 sm:h-4 sm:w-4" /> : <PlayIcon className="h-3 w-3 sm:h-4 sm:w-4" />}
+                  {isPlaying ? (
+                    <PauseIcon className="h-3 w-3 sm:h-4 sm:w-4" />
+                  ) : (
+                    <PlayIcon className="h-3 w-3 sm:h-4 sm:w-4" />
+                  )}
                 </Button>
                 <div className="flex-grow">
                   <Slider
@@ -141,7 +170,11 @@ export default function Component() {
                   onClick={toggleMute}
                   className="bg-white text-black hover:bg-gray-200 transition-colors duration-200"
                 >
-                  {isMuted ? <VolumeIcon className="h-3 w-3 sm:h-4 sm:w-4" /> : <Volume2Icon className="h-3 w-3 sm:h-4 sm:w-4" />}
+                  {isMuted ? (
+                    <VolumeIcon className="h-3 w-3 sm:h-4 sm:w-4" />
+                  ) : (
+                    <Volume2Icon className="h-3 w-3 sm:h-4 sm:w-4" />
+                  )}
                 </Button>
               </div>
             </div>

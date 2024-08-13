@@ -7,7 +7,9 @@ import { useWindowSize } from "@/lib/useWindowSize";
 
 export default function Story() {
   return (
-    <div className="flex flex-col items-center justify-center py-20 bg-white">
+    <div 
+      data-color="Almond"
+    className="flex flex-col h-screen my-[10vh] items-center justify-center py-20">
       <div className="flex flex-col items-center justify-center mb-16">
         <div className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
           <div className="w-2 h-2 bg-black rounded-full"></div>

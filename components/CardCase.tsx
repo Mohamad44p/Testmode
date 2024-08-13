@@ -14,7 +14,7 @@ export default function CardCase() {
   });
 
   return (
-    <section data-color="white" className="section">
+    <section data-color="Almond" className="section">
       <div className="w-fit mx-auto">
         <h1 className="text-center mb-12 mt-[30vh] text-4xl sm:text-6xl tracking-tight">
           <BoxReveal boxColor="#000">

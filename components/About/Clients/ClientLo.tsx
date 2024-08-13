@@ -22,7 +22,10 @@ export default function ClientLogo() {
   ];
 
   return (
-    <div className="w-full min-h-screen text-black relative flex items-center justify-center px-4 py-12 sm:px-6 sm:py-16 md:px-8 md:py-20">
+    <div
+      data-color="Almond"
+      className="w-full min-h-screen text-black relative flex items-center justify-center px-4 py-12 sm:px-6 sm:py-16 md:px-8 md:py-20"
+    >
       <div className="w-full h-fit flex items-center justify-center flex-col">
         <h2 className="text-2xl sm:text-3xl font-medium mb-2 text-[#02203c] text-center">
           Helping Brands Big and Small.

@@ -1,17 +1,14 @@
 "use client";
 
-import AboutPage from "@/components/About/AboutPage";
-import CircleSection from "@/components/About/CircleSection";
-import Story from "@/components/About/Story";
-import CenterAligner from "@/components/CenterAligner";
-import OurTeam from "@/components/OurTeam";
+import HeroSolutions from "@/components/Solutions/HeroSolutions";
+import SolutionsCards from "@/components/Solutions/SolutionsCards";
+import React, { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
-import React, { useEffect } from "react";
-import FAQ from "./FAQ";
-import ClientLo from "./Clients/ClientLo";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Banner from "../Banner";
+import WhatWeBuild from "./WhatWeBuild";
+import OurCredentials from "./OurCredentials";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,7 +36,8 @@ const changeBodyBackgroundColor = () => {
       });
     });
 };
-export default function AboutUsPage() {
+
+export default function AllSolutions() {
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -52,34 +50,29 @@ export default function AboutUsPage() {
 
     changeBodyBackgroundColor();
   }, []);
+
   return (
-    <div className="main w-full">
+    <main>
       <section data-color="Almond" className="section">
-        <AboutPage />
+        <HeroSolutions />
       </section>
-      <section data-color="Blond" className="section">
-        <CircleSection />
-      </section>
-      <section data-color="Almond" className="section">
-        <Story />
-      </section>
-      <section data-color="RaisinBlack" className="section">
-        <FAQ />
+      <section data-color="light-blue" className="section">
+        <SolutionsCards />
       </section>
       <section data-color="Almond" className="section">
-        <OurTeam />
+        <WhatWeBuild />
       </section>
-      <section data-color="Almond" className="section">
-        <ClientLo />
+      <section data-color="soft-orange" className="section">
+        <OurCredentials />
       </section>
       <section>
         <Banner
           title="Come Build a Better Future with Us."
-          description="Explore how Significo's partnership can advance your digital experience and unleash your technology development."
-          ctaText="LET'S TALK"
           ctaLink="/contact"
+          ctaText="LET'S TALK"
+          description="Explore how Significo's partnership can advance your digital experience and unleash your technology development."
         />
       </section>
-    </div>
+    </main>
   );
 }

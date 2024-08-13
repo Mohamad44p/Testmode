@@ -27,7 +27,7 @@ export default function LastSec() {
   return (
     <>
       <div
-        data-color="white"
+        data-color="Almond"
         className="capsule section mt-[10rem] w-full h-[250vh] md:h-[150vh] flex flex-col lg:flex-row justify-between"
       >
         <div className="hidden md:flex">

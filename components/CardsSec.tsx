@@ -10,6 +10,7 @@ import { TextReveal } from "./ui/typography";
 import { TbSeo } from "react-icons/tb";
 import Image from "next/image";
 import BoxReveal from "./magicui/box-reveal";
+import Link from "next/link";
 
 const cardConfigs = [
   {
@@ -200,7 +201,7 @@ export default function CardsSec() {
 
   return (
     <div
-      data-color="cyan"
+      data-color="Almond"
       className="craft section justify-between items-start w-full flex flex-col md:flex-row gap-10 px-5 md:px-10 relative"
     >
       <div
@@ -229,11 +230,13 @@ export default function CardsSec() {
         </h1>
         <div className="w-fit OP px-5 md:px-10 hidden  rounded-2xl bg-[#014040] text-white md:flex py-5 border-[1px] border-[#014040]">
           <div className="texthover masker h-[1.5rem] overflow-hidden">
-            <h1 className="text-lg md:text-xl">
-              <TextReveal className="cursor-pointer">
-                EXPLORE OUR SOLUTIONS
-              </TextReveal>
-            </h1>
+            <Link href="/Solutions">
+              <h1 className="text-lg md:text-xl">
+                <TextReveal className="cursor-pointer">
+                  EXPLORE OUR SOLUTIONS
+                </TextReveal>
+              </h1>
+            </Link>
           </div>
         </div>
       </div>

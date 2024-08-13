@@ -128,8 +128,8 @@ export default function OurTeam() {
     <>
       <div
         ref={listRef}
-        data-color="white"
-        className="team hidden md:inline-block section overflow-y-hidden w-full mt-[30vh] mb-[30vh] relative"
+        data-color="Almond"
+        className="team hidden md:inline-block section overflow-y-hidden w-full mt-[30vh]  relative"
       >
         <h1 className="text-center mb-12 text-4xl sm:text-6xl tracking-tight">
           Our Team

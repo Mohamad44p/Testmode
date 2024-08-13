@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --Almond: #f2efe4;
+  --White: #ffffff;
+  --Ming: #3a7e7d;
+  --Blond: #f5f19c;
+  --RaisinBlack: #262526;
+  --light-blue: #aedee0;
+  --soft-orange: #f4a261;
+}
+
 *::selection {
   background-color: #ef9d71;
 }
@@ -42,44 +52,42 @@ html.lenis body {
   src: url(./Neue\ Machina\ Inktrap\ Medium.ttf);
 }
 
-body {
-  background-color: #f2efe4;
-}
-body[theme="black"] .section {
-  background-color: #262526;
-  color: #fff;
-}
-
-body[theme="white"] .section {
-  background-color: #f2efe4;
+body[theme="Almond"] {
+  background-color: var(--Almond);
   color: #000;
 }
 
-body[theme="DefaultWhite"] .section {
-  background-color: #fff;
+body[theme="White"] {
+  background-color: var(--White);
 }
 
 body[theme="Ming"] {
-  background-color: #3a7e7d;
+  background-color: var(--Ming);
   color: #000;
 }
 
-body[theme="yellow"] .section {
-  background-color: #f5f19c;
+body[theme="Blond"] {
+  background-color: var(--Blond);
   color: #000;
 }
-body[theme="lightBlue"] {
-  background-color: #510273;
+
+body[theme="RaisinBlack"] {
+  background-color: var(--RaisinBlack);
   color: #fff;
 }
 
-body[theme="gray"] {
-  background-color: #262526;
-  color: #fff;
+body[theme="light-blue"] {
+  background-color: var(--light-blue);
+  color: #000;
+}
+
+body[theme="soft-orange"] {
+  background-color: var(--soft-orange);
+  color: #000;
 }
 
 body {
-  transition: background-color ease-out 0.5s;
+  transition: background-color 0.5s ease-out;
 }
 
 .section {
