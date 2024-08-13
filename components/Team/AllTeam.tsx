@@ -1,14 +1,11 @@
 "use client";
 
-import HeroSolutions from "@/components/Solutions/HeroSolutions";
-import SolutionsCards from "@/components/Solutions/SolutionsCards";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 import React, { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Banner from "../Banner";
-import WhatWeBuild from "./WhatWeBuild";
-import OurCredentials from "./OurCredentials";
+import HeroTeam from "./HeroTeam";
+import TeamMembersList from "./TeamMembersList";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,8 +33,7 @@ const changeBodyBackgroundColor = () => {
       });
     });
 };
-
-export default function AllSolutions() {
+export default function AllTeam() {
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -50,28 +46,13 @@ export default function AllSolutions() {
 
     changeBodyBackgroundColor();
   }, []);
-
   return (
-    <main>
-      <section data-color="Almond" className="section mt-12">
-        <HeroSolutions />
-      </section>
-      <section data-color="light-blue" className="section">
-        <SolutionsCards />
+    <main className="mt-12">
+      <section data-color="Blond" className="section">
+        <HeroTeam />
       </section>
       <section data-color="Almond" className="section">
-        <WhatWeBuild />
-      </section>
-      <section data-color="soft-orange" className="section">
-        <OurCredentials />
-      </section>
-      <section>
-        <Banner
-          title="Come Build a Better Future with Us."
-          ctaLink="/contact"
-          ctaText="LET'S TALK"
-          description="Explore how Significo's partnership can advance your digital experience and unleash your technology development."
-        />
+        <TeamMembersList />
       </section>
     </main>
   );

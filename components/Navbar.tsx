@@ -1,87 +1,57 @@
 "use client";
 
-/* eslint-disable react/no-unescaped-entities */
-import { useState, useEffect, useRef } from "react";
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { RoughNotation } from "react-rough-notation";
-import MegaMenu from "./MegaMenu";
-import { Button } from "./ui/button";
-import {
-  FolderIcon,
-  HomeIcon,
-  LineChartIcon,
-  Menu,
-  Package2Icon,
-  PackageIcon,
-  PanelLeftIcon,
-  SearchIcon,
-  UsersIcon,
-} from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-import { HoverBorderGradient } from "./ui/hover-border-gradient";
+import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useScroll } from "framer-motion";
 
-const navItems = [
-  { title: "UI/UX", href: "/ui-ux" },
-  { title: "WEBINARS", href: "/webinars" },
-  { title: "PROJECTS", href: "/projects" },
-  { title: "BLOG", href: "/blog" },
-  { title: "ABOUT US", href: "/About" },
-];
-
-const links = [
-  { href: "#", icon: HomeIcon, label: "Dashboard" },
-  {
-    href: "#",
-    icon: FolderIcon,
-    label: "Recent Orders",
-    sublinks: [
-      { href: "#", icon: FolderIcon, label: "Recent Orders" },
-      { href: "#", icon: FolderIcon, label: "Pending Orders" },
-    ],
-  },
-  { href: "#", icon: PackageIcon, label: "Products" },
-  {
-    href: "#",
-    icon: FolderIcon,
-    label: "Active Products",
-    sublinks: [
-      { href: "#", icon: FolderIcon, label: "Active Products" },
-      { href: "#", icon: FolderIcon, label: "Drafts" },
-    ],
-  },
-  { href: "#", icon: UsersIcon, label: "Customers" },
-  { href: "#", icon: LineChartIcon, label: "Analytics" },
-];
-
-export default function Navbar() {
-  const [hidden, setHidden] = useState(false);
-  const { scrollY } = useScroll();
-  const lastYRef = useRef(0);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+const Navbar = () => {
   const [textColor, setTextColor] = useState("black");
+  const [bgColor, setBgColor] = useState("white");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  useMotionValueEvent(scrollY, "change", (y) => {
-    const difference = y - lastYRef.current;
-    if (Math.abs(difference) > 180) {
-      setHidden(difference > 0);
-      lastYRef.current = y;
-    }
-  });
+  const { scrollYProgress } = useScroll();
+
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.onChange((value) => {
+      setIsScrolled(value > 0.0001);
+    });
+
+    return () => unsubscribe();
+  }, [scrollYProgress]);
 
   useEffect(() => {
     const updateTextColor = () => {
       const currentTheme = document.body.getAttribute("theme");
       switch (currentTheme) {
-        case "black":
+        case "RaisinBlack":
           setTextColor("white");
+          setBgColor("RaisinBlack");
           break;
         case "Ming":
-        case "salmon":
+          setBgColor("Ming");
           setTextColor("black");
           break;
-        case "white":
+        case "Blond":
+          setBgColor("Blond");
+          setTextColor("black");
+          break;
+        case "Almond":
+          setBgColor("Almond");
+          setTextColor("black");
+          break;
+        case "White":
+          setBgColor("White");
+          setTextColor("black");
+          break;
+        case "light-blue":
+          setBgColor("light-blue");
+          setTextColor("black");
+          break;
+        case "soft-orange":
+          setBgColor("soft-orange");
           setTextColor("black");
           break;
         default:
@@ -100,137 +70,160 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
-  const handleMouseEnter = (index: number) => {
-    setHoveredIndex(index);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredIndex(null);
-  };
-
   return (
-    <motion.nav
-      animate={hidden ? "hidden" : "visible"}
-      initial="visible"
-      transition={{ duration: 0.2 }}
-      className="sticky top-0 left-0 w-full z-[1000] backdrop-blur-md bg-white/50 border-b border-white/30 shadow-md"
+    <header
+      className={cn(
+        `fixed top-0 left-0 w-full py-3 z-[1000] backdrop-blur-md`,
+        {
+          [`bg-${bgColor} shadow-md`]: isScrolled,
+          "bg-transparent": !isScrolled,
+        }
+      )}
     >
-      <div className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto w-full">
-        <div className="flex justify-between items-center gap-x-4">
-          <div className="flex items-center justify-start gap-x-4 flex-grow">
-            <div className="flex items-center gap-x-2">
-              <div className="flex lg:hidden">
-                <MobileNavbar />
-              </div>
-              <h1
-                className={`lg:text-3xl md:text-xl text-[17px] font-bold text-${textColor}`}
-              >
-                <Link href="/">BE FOUND ONLINE</Link>
-              </h1>
-            </div>
-          </div>
-        </div>
-        <Button
-          className={`border ml-auto flex md:hidden border-${textColor} rounded-2xl text-${textColor} font-bold hover:text-${textColor} transition`}
-        >
-          Let's Start
-        </Button>
-
-        <div
-          className={`lg:flex items-center hidden lg:gap-x-8 md:gap-x-4 text-${textColor}`}
-        >
-          <MegaMenu />
-          {navItems.map((item, index) => (
-            <div
-              key={index}
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={handleMouseLeave}
-              className="relative"
+      <nav className="px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center">
+            <Link
+              href="/"
+              className={`text-2xl font-bold ${
+                textColor === "white" ? "text-white" : "text-black"
+              }`}
             >
-              <Link href={item.href}>
-                <span
-                  className={`cursor-pointer py-2 relative text-${textColor}`}
-                >
-                  <RoughNotation
-                    type="underline"
-                    color={textColor}
-                    strokeWidth={2}
-                    show={hoveredIndex === index}
-                  >
-                    {item.title}
-                  </RoughNotation>
-                </span>
-              </Link>
-            </div>
-          ))}
-        </div>
-        <HoverBorderGradient
-          containerClassName="rounded-full"
-          as="button"
-          className={cn(
-            "dark:bg-black hidden md:flex text-black  items-center space-x-2",
-            textColor === "white"
-              ? "bg-white text-black"
-              : "bg-black text-white"
-          )}
-        >
-          <span>Let's Start Now</span>
-        </HoverBorderGradient>
-      </div>
-    </motion.nav>
-  );
-}
-
-const MobileNavbar = () => {
-  return (
-    <div className="flex items-center gap-4">
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button size="icon" variant="outline" className="border-none">
-            <Menu className="h-7 w-7" />
-            <span className="sr-only">Toggle Menu</span>
-          </Button>
-        </SheetTrigger>
-        <SheetContent
-          side="left"
-          className="sm:max-w-xs z-[9000] bg-black text-white"
-        >
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <span className="font-semibold">BefoundOnline</span>
-            </div>
+              Be Found Online
+            </Link>
           </div>
-          <nav className="grid gap-6 text-lg font-medium">
-            {links.map((link, index) => (
-              <div key={index}>
-                <Link
-                  href={link.href}
-                  className="flex items-center gap-4 px-2.5"
-                  prefetch={false}
+          <div className="hidden md:flex items-center space-x-8">
+            <NavLink href="/Solutions" textColor={textColor}>
+              Solutions <ChevronDown className="inline-block ml-1 w-4 h-4" />
+            </NavLink>
+            <NavLink href="/About" textColor={textColor}>
+              About
+            </NavLink>
+            <NavLink href="/insights" textColor={textColor}>
+              Insights
+            </NavLink>
+            <NavLink href="/team" textColor={textColor}>
+              Team
+            </NavLink>
+            <NavLink href="/careers" textColor={textColor}>
+              Careers
+            </NavLink>
+            <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded">
+              Contact Us
+            </button>
+          </div>
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className={`inline-flex items-center justify-center p-2 rounded-md ${
+                textColor === "white" ? "text-white" : "text-black"
+              }`}
+            >
+              <span className="sr-only">Open main menu</span>
+              {isMenuOpen ? (
+                <svg
+                  className="block h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
                 >
-                  <link.icon className="h-5 w-5" />
-                  {link.label}
-                </Link>
-                {link.sublinks && (
-                  <div className="grid gap-2 pl-8">
-                    {link.sublinks.map((sublink, subindex) => (
-                      <Link
-                        key={subindex}
-                        href={sublink.href}
-                        className="flex items-center gap-4 text-muted-foreground hover:text-foreground"
-                        prefetch={false}
-                      >
-                        <sublink.icon className="h-4 w-4" />
-                        {sublink.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </nav>
-        </SheetContent>
-      </Sheet>
-    </div>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  className="block h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              )}
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {isMenuOpen && (
+        <div className="md:hidden">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <MobileNavLink href="/solutions" textColor={textColor}>
+              Solutions
+            </MobileNavLink>
+            <MobileNavLink href="/about" textColor={textColor}>
+              About
+            </MobileNavLink>
+            <MobileNavLink href="/insights" textColor={textColor}>
+              Insights
+            </MobileNavLink>
+            <MobileNavLink href="/team" textColor={textColor}>
+              Team
+            </MobileNavLink>
+            <MobileNavLink href="/careers" textColor={textColor}>
+              Careers
+            </MobileNavLink>
+          </div>
+          <div className="pt-4 pb-3 border-t border-gray-200">
+            <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded">
+              Contact Us
+            </button>
+          </div>
+        </div>
+      )}
+    </header>
   );
 };
+
+const NavLink = ({
+  href,
+  children,
+  textColor,
+}: {
+  href: string;
+  children: React.ReactNode;
+  textColor: string;
+}) => (
+  <Link
+    href={href}
+    className={`hover:text-gray-600 font-medium ${
+      textColor === "white" ? "text-white" : "text-black"
+    }`}
+  >
+    {children}
+  </Link>
+);
+
+const MobileNavLink = ({
+  href,
+  children,
+  textColor,
+}: {
+  href: string;
+  children: React.ReactNode;
+  textColor: string;
+}) => (
+  <Link
+    href={href}
+    className={`block px-3 py-2 rounded-md text-base font-medium ${
+      textColor === "white" ? "text-white" : "text-black"
+    }`}
+  >
+    {children}
+  </Link>
+);
+
+export default Navbar;

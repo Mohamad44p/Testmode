@@ -53,7 +53,7 @@ export default function AboutUsPage() {
     changeBodyBackgroundColor();
   }, []);
   return (
-    <div className="main w-full">
+    <div className="main w-full mt-12">
       <section data-color="Almond" className="section">
         <AboutPage />
       </section>

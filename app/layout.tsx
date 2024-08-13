@@ -26,7 +26,7 @@ export default function RootLayout({
           <PreloaderWrapper>
             <Navbar />
             <ScrollButton />
-              <main>{children}</main>
+              <main className="">{children}</main>
             <section data-color="black">
               <AnimatedFooter />
             </section>

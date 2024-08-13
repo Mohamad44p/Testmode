@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Button } from "@/components/ui/button";
 import { TextReveal } from "@/components/ui/typography";
 import { ChevronRightIcon } from "lucide-react";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -72,17 +73,25 @@ export default function Horizontal() {
   }, []);
 
   return (
-    <div data-color="Ming" ref={containerRef} className="overflow-hidden section text-black">
+    <div
+      data-color="Ming"
+      ref={containerRef}
+      className="overflow-hidden section text-black"
+    >
       <div ref={slidesRef} className="flex">
         {slides.map((slide, index) => (
           <SlideContent key={index} {...slide} />
         ))}
       </div>
       <div className="fixed button bottom-8 left-8 z-50">
-        <Button className="group h-14 rounded-full bg-orange-500 px-6 text-white transition-all hover:bg-orange-600">
-          <span className="mr-2 text-lg font-semibold">Discover Our Story</span>
-          <ChevronRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-        </Button>
+        <Link href="/About">
+          <Button className="group h-14 rounded-full bg-orange-500 px-6 text-white transition-all hover:bg-orange-600">
+            <span className="mr-2 text-lg font-semibold">
+              Learn More About Us
+            </span>
+            <ChevronRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+          </Button>
+        </Link>
       </div>
     </div>
   );

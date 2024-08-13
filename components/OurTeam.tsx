@@ -9,6 +9,7 @@ import { Button } from "./ui/button";
 import { ArrowRight } from "lucide-react";
 import { TextReveal } from "./ui/typography";
 import OurTeamMobiel from "./mobile/OurTeamMobiel";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -166,9 +167,11 @@ export default function OurTeam() {
           ))}
         </div>
         <div className="flex items-center justify-center my-10 mt-16">
+          <Link href="/team">
           <Button className="border text-2xl w-[300px] h-[50px] flex items-center justify-center gap-x-3 bg-orange-500 rounded-2xl hover:bg-orange-500 border-black text-white font-bold transition">
             <TextReveal>Meet the Team &#8594;</TextReveal>
           </Button>
+          </Link>
         </div>
       </div>
       <div

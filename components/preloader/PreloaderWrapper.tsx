@@ -8,14 +8,20 @@ export default function PreloaderWrapper({
 }: {
   children: React.ReactNode;
 }) {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 5000);
+    const hasLoaded = sessionStorage.getItem("hasLoaded");
 
-    return () => clearTimeout(timer);
+    if (!hasLoaded) {
+      setLoading(true);
+      const timer = setTimeout(() => {
+        setLoading(false);
+        sessionStorage.setItem("hasLoaded", "true");
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   if (loading) {
