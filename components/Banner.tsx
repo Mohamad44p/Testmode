@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Link from "next/link";
+import { TextReveal } from "./ui/typography";
 
 interface HeroBannerProps {
   title: string;
@@ -87,7 +88,7 @@ export default function Banner({
           <motion.div variants={itemVariants}>
             <Link href={ctaLink}>
               <span className="inline-block bg-black text-white px-6 py-3 rounded-none font-semibold hover:bg-gray-800 transition-colors duration-300">
-                {ctaText}
+                <TextReveal>{ctaText}</TextReveal>
               </span>
             </Link>
           </motion.div>

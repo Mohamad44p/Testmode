@@ -6,6 +6,8 @@ import React, { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
 import HeroTeam from "./HeroTeam";
 import TeamMembersList from "./TeamMembersList";
+import JoinUsBa from "./JoinUsBa";
+import Banner from "../Banner";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -53,6 +55,17 @@ export default function AllTeam() {
       </section>
       <section data-color="Almond" className="section">
         <TeamMembersList />
+      </section>
+      <section data-color="Almond" className="section">
+        <JoinUsBa />
+      </section>
+      <section className="section">
+        <Banner
+          title="Join Us"
+          description="We are always looking for kindred spirits in Health, Engineering, Design, Product, and Messaging."
+          ctaLink="/Careers"
+          ctaText="Open Positions"
+        />
       </section>
     </main>
   );

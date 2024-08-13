@@ -161,10 +161,10 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <MobileNavLink href="/solutions" textColor={textColor}>
+            <MobileNavLink href="/Solutions" textColor={textColor}>
               Solutions
             </MobileNavLink>
-            <MobileNavLink href="/about" textColor={textColor}>
+            <MobileNavLink href="/About" textColor={textColor}>
               About
             </MobileNavLink>
             <MobileNavLink href="/insights" textColor={textColor}>
