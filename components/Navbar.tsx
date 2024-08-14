@@ -105,7 +105,7 @@ const Navbar = () => {
             <NavLink href="/team" textColor={textColor}>
               Team
             </NavLink>
-            <NavLink href="/careers" textColor={textColor}>
+            <NavLink href="/Careers" textColor={textColor}>
               Careers
             </NavLink>
             <button className="bg-orange-500 hover:bg-orange-600 text-sm text-black font-bold py-1 px-3 rounded">
@@ -173,7 +173,7 @@ const Navbar = () => {
             <MobileNavLink href="/team" textColor={textColor}>
               Team
             </MobileNavLink>
-            <MobileNavLink href="/careers" textColor={textColor}>
+            <MobileNavLink href="/Careers" textColor={textColor}>
               Careers
             </MobileNavLink>
           </div>

@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import { Lenis } from "@/components/Lenis";
 import AnimatedFooter from "@/components/Footer";
 import PreloaderWrapper from "@/components/preloader/PreloaderWrapper";
+import TransitionLayout from "@/components/TransitionLayout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,12 +25,14 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <PreloaderWrapper>
-            <Navbar />
-            <ScrollButton />
+            <TransitionLayout>
+              <Navbar />
+              <ScrollButton />
               <main className="">{children}</main>
-            <section data-color="black">
-              <AnimatedFooter />
-            </section>
+              <section data-color="black">
+                <AnimatedFooter />
+              </section>
+            </TransitionLayout>
           </PreloaderWrapper>
         </body>
       </html>
