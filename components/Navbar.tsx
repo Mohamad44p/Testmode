@@ -108,8 +108,8 @@ const Navbar = () => {
             <NavLink href="/careers" textColor={textColor}>
               Careers
             </NavLink>
-            <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded">
-              Contact Us
+            <button className="bg-orange-500 hover:bg-orange-600 text-sm text-black font-bold py-1 px-3 rounded">
+              <Link href="/Contact">Contact Us</Link>
             </button>
           </div>
           <div className="md:hidden">
@@ -178,8 +178,8 @@ const Navbar = () => {
             </MobileNavLink>
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200">
-            <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded">
-              Contact Us
+            <button className="w-full bg-orange-500 hover:bg-orange-600 text-black font-bold py-2 px-4 rounded">
+              <Link href="/Contact">Contact Us</Link>
             </button>
           </div>
         </div>
