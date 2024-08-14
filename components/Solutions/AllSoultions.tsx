@@ -9,6 +9,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Banner from "../Banner";
 import WhatWeBuild from "./WhatWeBuild";
 import OurCredentials from "./OurCredentials";
+import WhoServe from "./WhoServe";
+import WhatWeDo from "./WhatWeDo";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -55,6 +57,18 @@ export default function AllSolutions() {
     <main>
       <section data-color="Almond" className="section mt-12">
         <HeroSolutions />
+      </section>
+{/*       <section
+        data-color="light-blue"
+        className="section"
+      >
+        <WhoServe/>
+      </section> */}
+      <section
+        data-color="light-blue"
+        className="section"
+      >
+        <WhatWeDo/>
       </section>
       <section data-color="light-blue" className="section">
         <SolutionsCards />

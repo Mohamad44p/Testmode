@@ -61,10 +61,10 @@ export default function AllTeam() {
       </section>
       <section className="section">
         <Banner
-          title="Join Us"
+          title="Want to Work with Us?"
           description="We are always looking for kindred spirits in Health, Engineering, Design, Product, and Messaging."
           ctaLink="/Careers"
-          ctaText="Open Positions"
+          ctaText="Get started"
         />
       </section>
     </main>
