@@ -51,6 +51,14 @@ export default function AboutUsPage() {
     requestAnimationFrame(raf);
 
     changeBodyBackgroundColor();
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      ScrollTrigger.clearMatchMedia();
+      ScrollTrigger.clearScrollMemory();
+      ScrollTrigger.update();
+      ScrollTrigger.refresh();
+    }
   }, []);
   return (
     <div className="main w-full mt-12">

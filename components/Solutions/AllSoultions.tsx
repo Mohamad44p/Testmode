@@ -51,6 +51,14 @@ export default function AllSolutions() {
     requestAnimationFrame(raf);
 
     changeBodyBackgroundColor();
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      ScrollTrigger.clearMatchMedia();
+      ScrollTrigger.clearScrollMemory();
+      ScrollTrigger.update();
+      ScrollTrigger.refresh();
+    };
   }, []);
 
   return (
@@ -58,17 +66,14 @@ export default function AllSolutions() {
       <section data-color="Almond" className="section mt-12">
         <HeroSolutions />
       </section>
-{/*       <section
+      {/*       <section
         data-color="light-blue"
         className="section"
       >
         <WhoServe/>
       </section> */}
-      <section
-        data-color="light-blue"
-        className="section"
-      >
-        <WhatWeDo/>
+      <section data-color="light-blue" className="section">
+        <WhatWeDo />
       </section>
       <section data-color="light-blue" className="section">
         <SolutionsCards />

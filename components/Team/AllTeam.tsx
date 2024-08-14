@@ -47,6 +47,14 @@ export default function AllTeam() {
     requestAnimationFrame(raf);
 
     changeBodyBackgroundColor();
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      ScrollTrigger.clearMatchMedia();
+      ScrollTrigger.clearScrollMemory();
+      ScrollTrigger.update();
+      ScrollTrigger.refresh();
+    }
   }, []);
   return (
     <main className="mt-12">
