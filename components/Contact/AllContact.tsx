@@ -7,6 +7,7 @@ import OurOffices from "./OurOffices";
 import { ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
 import Lenis from "@studio-freight/lenis";
+import Banner from "../Banner";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -59,6 +60,14 @@ export default function AllContact() {
       </section>
       <section data-color="Almond" className="section my-[10vh]">
         <Testimonial />
+      </section>
+      <section className="section mt-[10vh]">
+        <Banner
+          title="Explore our services"
+          description="We offer a wide range of services to help you grow your business."
+          ctaLink="/Solutions"
+          ctaText="Explore Services"
+        />
       </section>
     </div>
   );
