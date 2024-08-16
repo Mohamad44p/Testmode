@@ -1,15 +1,19 @@
 "use client";
 
 import React, { useEffect } from "react";
-import HeroCareers from "./HeroCareers";
-import WhyChoose from "./WhyChoose";
-import JobOpportunities from "./JobOpportunities";
-import OurTeam from "../OurTeam";
-import Banner from "../Banner";
-import Locations from "./Locations";
-import { ScrollTrigger } from "gsap/all";
-import gsap from "gsap";
+import HomeSection from "./Hero";
+import CardsSec from "./CardsSec";
 import Lenis from "@studio-freight/lenis";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Horizontal from "./Horizontal";
+import OurTeam from "./OurTeam";
+import Testimonial from "./Testimonial";
+import LastSec from "./LastSec";
+import Banner from "./Banner";
+import ProjectsPage from "./AsyncProject";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const changeBodyBackgroundColor = () => {
   gsap.utils
@@ -36,7 +40,9 @@ const changeBodyBackgroundColor = () => {
     });
 };
 
-export default function AllCareers() {
+export default function ClientAll({children}:{
+    children: React.ReactNode;
+}) {
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -55,32 +61,39 @@ export default function AllCareers() {
       ScrollTrigger.clearScrollMemory();
       ScrollTrigger.update();
       ScrollTrigger.refresh();
-    };
+    }
   }, []);
 
   return (
-    <div>
-      <section data-color="Almond">
-        <HeroCareers />
+    <div className="main w-full">
+      {" "}
+      <HomeSection />
+      <section data-color="white">
+        <CardsSec />
       </section>
-      <section data-color="Almond">
-        <WhyChoose />
+      <section data-color="Ming">
+        <Horizontal />
       </section>
-      <section data-color="soft-orange">
-        <Locations />
-      </section>
-      <section data-color="Almond">
-        <JobOpportunities />
-      </section>
-      <section data-color="Almond">
+      <section data-color="white">
         <OurTeam />
       </section>
-      <Banner
-        ctaLink="/contact"
-        ctaText="LET'S TALK"
-        title="Come Build a Better Future with Us."
-        description="Explore how Significo's partnership can advance your digital experience and unleash your technology development."
-      />
+      <section data-color="white">
+        <Testimonial />
+      </section>
+      <section data-color="white">
+        {children}
+      </section>
+      <section data-color="white">
+        <LastSec />
+      </section>
+      <section>
+        <Banner
+          title="Come Build a Better Future with Us."
+          description="Explore how Significo's partnership can advance your digital experience and unleash your technology development."
+          ctaText="LET'S TALK"
+          ctaLink="/contact"
+        />
+      </section>
     </div>
   );
 }

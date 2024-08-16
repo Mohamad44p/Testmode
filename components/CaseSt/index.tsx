@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import styles from "./style.module.scss";
 import { useTransform, motion, useScroll } from "framer-motion";
@@ -14,8 +15,8 @@ const Card = ({
   progress,
   range,
   targetScale,
-  textColor
-}: {
+  textColor,
+}:{
   i: number;
   title: string;
   description: string;
@@ -46,18 +47,18 @@ const Card = ({
         }}
         className={styles.card}
       >
-        <h2
-          style={{ color: textColor }}
-        >{title}</h2>
+        <h2 style={{ color: textColor }}>{title}</h2>
         <div className={styles.body}>
           <div className={styles.description}>
-            <p
-              style={{ color: textColor }}
-            >{description}</p>
+            <p style={{ color: textColor }}>{description}</p>
             <span>
-              <a href={url} className={`mt-4`}
+              <a
+                href={url}
+                className={`mt-4`}
                 style={{ color: textColor }}
-              target="_blank">
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 See more &#8594;
               </a>
             </span>
@@ -65,7 +66,7 @@ const Card = ({
 
           <div className={styles.imageContainer}>
             <motion.div className={styles.inner} style={{ scale: imageScale }}>
-              <Image fill src={`/images/${src}`} alt="image" />
+              <Image fill src={src} alt={title} />
             </motion.div>
           </div>
         </div>

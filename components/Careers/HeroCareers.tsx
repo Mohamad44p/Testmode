@@ -1,7 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
 export default function HeroCareers() {
   return (
-    <section className="w-full pt-28 md:py-24">
+    <section
+      data-color="Almond"
+    className="section w-full pt-28 md:py-24">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col space-y-8">
           <div className="flex items-center space-x-2">

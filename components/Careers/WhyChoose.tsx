@@ -27,7 +27,9 @@ export default function Component() {
   const rightColumnRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll();
   return (
-    <div className="bg-[#f8f7f4] w-full mx-auto max-w-[85rem] my-10 p-8 flex flex-col md:flex-row gap-8">
+    <div
+    data-color="Almond"
+    className="section bg-[#f8f7f4] w-full mx-auto max-w-[85rem] my-10 p-8 flex flex-col md:flex-row gap-8">
       <div className="flex-1" style={{ height: containerHeight }}>
         <div className="mb-4">
           <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">

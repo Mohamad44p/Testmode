@@ -45,8 +45,12 @@ export default function Component() {
   };
 
   return (
-    <div className="relative min-h-screen bg-gray-50 overflow-hidden" ref={ref}>
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-gray-100 to-white opacity-50" />
+    <div
+      data-color="Almond"
+      className="relative section min-h-screen overflow-hidden"
+      ref={ref}
+    >
+      <div className="absolute top-0 left-0 w-full h-full opacity-50" />
       <div className=" px-4 py-24 relative z-10">
         <div className="grid md:grid-cols-2 gap-16 justify-between items-center">
           <motion.div

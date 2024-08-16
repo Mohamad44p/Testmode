@@ -69,7 +69,7 @@ export default function LastSec() {
   return (
     <div
       data-color="Almond"
-      className="capsule section mt-[5rem] md:mt-[10rem] w-full h-auto md:h-[150vh] md:my-48 lg:h-[130vh] flex flex-col lg:flex-row justify-between"
+      className="capsule section mt-[5rem] md:mt-[10rem] h-[190vh] w-full flex flex-col lg:flex-row justify-between"
     >
       <div className="flex flex-col lg:flex-row w-full">
         <div className="capleft w-full lg:w-[25%] flex flex-col justify-between gap-y-11 py-[5rem] md:py-[10rem] px-[2.5rem] lg:ml-[2.5rem] font-semibold text-l">
@@ -144,9 +144,11 @@ export default function LastSec() {
                       __html: post.excerpt.rendered,
                     }}
                   />
-                  <button className="capbtn cursor-pointer text-xl py-3 px-3 text-center border-2 border-black mb-10 lg:mb-0">
-                    READ MORE
-                  </button>
+                  <div className="py-10 md:py-16 lg:py-20">
+                    <button className="capbtn cursor-pointer text-xl py-3 px-3 text-center border-2 border-black mb-10 lg:mb-0">
+                      READ MORE
+                    </button>
+                  </div>
                 </div>
               ))}
             </>
