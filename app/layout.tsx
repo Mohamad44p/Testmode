@@ -8,6 +8,7 @@ import AnimatedFooter from "@/components/Footer";
 import PreloaderWrapper from "@/components/preloader/PreloaderWrapper";
 import TransitionLayout from "@/components/TransitionLayout";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <Lenis>
       <SpeedInsights debug />
+      <Analytics />
       <html lang="en">
         <body className={inter.className}>
           <PreloaderWrapper>
