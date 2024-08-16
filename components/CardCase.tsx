@@ -1,18 +1,18 @@
-'use client'
+"use client";
 
-import { useScroll } from "framer-motion"
-import { useRef } from "react"
-import BoxReveal from "../components/magicui/box-reveal"
-import Card from "./CaseSt"
+import { useScroll } from "framer-motion";
+import { useRef } from "react";
+import BoxReveal from "../components/magicui/box-reveal";
+import Card from "./CaseSt";
+import { ArrowRightIcon } from "lucide-react";
+import { TextReveal } from "./ui/typography";
 
-export default function CardCase({ projects }:{
-  projects: any[];
-}) {
-  const container = useRef(null)
+export default function CardCase({ projects }: { projects: any[] }) {
+  const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start start", "end end"],
-  })
+  });
 
   return (
     <section data-color="Almond" className="section">
@@ -25,7 +25,7 @@ export default function CardCase({ projects }:{
       </div>
       <main ref={container}>
         {projects.map((project, i) => {
-          const targetScale = 1 - (projects.length - i) * 0.05
+          const targetScale = 1 - (projects.length - i) * 0.05;
           return (
             <Card
               key={`p_${i}`}
@@ -40,9 +40,20 @@ export default function CardCase({ projects }:{
               targetScale={targetScale}
               textColor={project.acf.textcolor}
             />
-          )
+          );
         })}
       </main>
+      <div>
+        <div className="flex justify-center">
+          <a
+            href="/projects"
+            className="flex bg-[#9AB453] text-white p-5 items-center text-lg font-medium text-primary"
+          >
+            <TextReveal>View all projects</TextReveal>
+            <ArrowRightIcon className="w-6 h-6 ml-2" />
+          </a>
+        </div>
+      </div>
     </section>
-  )
+  );
 }

@@ -1,70 +1,132 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowDownRight } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { ArrowDownRight, ChevronDown } from "lucide-react";
 
-export default function HeroText() {
+export default function Component() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.5 });
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
+    }
+  }, [isInView, controls]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.3 },
+    },
+  };
+
+  const letterVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        repeat: Infinity,
+        repeatType: "reverse" as const,
+        duration: 1.5,
+        ease: "easeInOut",
+      },
+    },
+  };
+
+  const numberVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        repeat: Infinity,
+        repeatType: "reverse" as const,
+        duration: 2,
+        ease: "easeInOut",
+      },
+    },
+  };
+
+  const backgroundVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 0.2,
+      transition: {
+        repeat: Infinity,
+        repeatType: "reverse" as const,
+        duration: 5,
+      },
+    },
+  };
+
+  const arrowVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        repeat: Infinity,
+        repeatType: "reverse" as const,
+        duration: 1.5,
+      },
+    },
+  };
+
   return (
-    <div className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+    <div
+      ref={ref}
+      data-color="RaisinBlack"
+      className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-black text-white"
+    >
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="text-center"
+        variants={backgroundVariants}
+        initial="hidden"
+        animate={controls}
+        className="absolute inset-0 bg-[url('/pattern-image.jpg')] opacity-10"
+      />
+
+      <motion.div
+        className="flex items-baseline z-10"
+        variants={containerVariants}
+        initial="hidden"
+        animate={controls}
       >
-        <motion.h1
-          initial={{ scale: 0.9 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="text-6xl sm:text-8xl md:text-[10rem] lg:text-[16rem] font-bold text-textprimary tracking-tighter"
+        <h1 className="text-[8rem] sm:text-[12rem] font-bold  tracking-tighter mr-4 drop-shadow-lg">
+          {"PROJECTS".split("").map((letter, index) => (
+            <motion.span
+              key={index}
+              variants={letterVariants}
+              className="inline-block"
+            >
+              {letter}
+            </motion.span>
+          ))}
+        </h1>
+        <motion.div
+          variants={numberVariants}
+          className="text-6xl sm:text-8xl font-normal self-start mt-4 drop-shadow-lg"
         >
-          PROJECTS
-        </motion.h1>
+          14
+        </motion.div>
       </motion.div>
 
       <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.5, duration: 0.5 }}
-        className="absolute top-60 right-16 md:top-52 md:right-12 lg:top-32 lg:right-12 text-4xl sm:text-5xl font-bold text-textprimary"
+        variants={arrowVariants}
+        initial="hidden"
+        animate={controls}
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
       >
-        14
+        <ChevronDown
+          className="w-12 h-12 text-white animate-bounce"
+          strokeWidth={1.5}
+        />
       </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, rotate: -45 }}
-        animate={{ opacity: 1, rotate: 0 }}
-        transition={{ delay: 0.8, duration: 0.5 }}
-        className="absolute bottom-72 right-12 md:bottom-56 md:right-6 lg:bottom-56 lg:right-9"
-      >
-        <ArrowDownRight className="w-8 h-8 sm:w-12 sm:h-12 text-textprimary" />
-      </motion.div>
-
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          rotate: [0, 90, 180, 270, 360],
-        }}
-        transition={{
-          duration: 20,
-          ease: "linear",
-          repeat: Infinity,
-        }}
-        className="absolute -left-24 -top-24 w-48 h-48 bg-gradient-to-br from-primary to-secondary opacity-30 rounded-full blur-3xl"
-      />
-
-      <motion.div
-        animate={{
-          scale: [1, 1.5, 1],
-          rotate: [0, -180, -360],
-        }}
-        transition={{
-          duration: 25,
-          ease: "linear",
-          repeat: Infinity,
-        }}
-        className="absolute -right-24 -bottom-24 w-64 h-64 bg-gradient-to-tr from-secondary to-primary opacity-30 rounded-full blur-3xl"
-      />
     </div>
   );
 }

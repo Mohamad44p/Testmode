@@ -7,11 +7,12 @@ import GibberishText from "./ui/GibberishText";
 import { RoughNotation } from "react-rough-notation";
 import { useInView } from "framer-motion";
 import { TextReveal } from "./ui/typography";
-import { TbSeo } from "react-icons/tb";
 import Image from "next/image";
 import BoxReveal from "./magicui/box-reveal";
 import Link from "next/link";
-
+import { TbSeo, TbPalette, TbBrandGoogleAnalytics, TbShoppingCart, TbChalkboard, TbCode } from 'react-icons/tb'
+import { MdContentPaste } from 'react-icons/md'
+import { FaChartLine } from 'react-icons/fa'
 const cardConfigs = [
   {
     className: "no1",
@@ -20,13 +21,7 @@ const cardConfigs = [
     title: "SEO & Lead Generation",
     text: "Drive organic traffic, improve search rankings, and convert leads into loyal customers with our comprehensive solutions tailored to your business.",
     svgPath: (
-      <Image
-        src="/images/cardsec/Branding & Creative Media.svg"
-        alt="SEO & Lead Generation"
-        className="w-full h-full object-cover"
-        width={1000}
-        height={1000}
-      />
+      <TbSeo className="w-12 h-12" />
     ),
   },
   {
@@ -35,7 +30,7 @@ const cardConfigs = [
     color: "#fff",
     title: "UI/UX Interactive",
     text: "We craft immersive digital experiences with sleek designs and user-friendly interfaces, enhancing engagement and satisfaction for your audience.",
-    svgPath: <TbSeo />,
+    svgPath: <TbPalette className="w-12 h-12" />,
   },
   {
     className: "no3",
@@ -44,40 +39,7 @@ const cardConfigs = [
     title: "Content Marketing",
     text: "We craft captivating narratives and deliver strategic content to captivate your audience, spark conversations, and drive impactful results for your brand.",
     svgPath: (
-      <svg
-        width="100%"
-        height="100%"
-        viewBox="0 0 64 64"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          opacity="0.2"
-          d="M50 38.2155L40.8007 47.4147C40.5565 47.659 40.2532 47.8358 39.9204 47.928C39.5875 48.0201 39.2365 48.0246 38.9014 47.9408L24.4122 44.3185C24.1404 44.2506 23.886 44.1263 23.6653 43.9537L10 33.268L18.1436 17.9475L30.9736 14.2071C31.4319 14.0735 31.9229 14.1082 32.3578 14.3051L41 18.2155H35.8284C35.5658 18.2155 35.3057 18.2672 35.0631 18.3677C34.8204 18.4682 34.5999 18.6155 34.4142 18.8012L24.6306 28.5848C24.428 28.7875 24.2713 29.0313 24.1711 29.2997C24.0709 29.5682 24.0295 29.855 24.0498 30.1408C24.0702 30.4267 24.1517 30.7048 24.2888 30.9564C24.426 31.208 24.6156 31.4271 24.8448 31.5991L26.2 32.6155C27.5848 33.654 29.269 34.2155 31 34.2155C32.731 34.2155 34.4152 33.654 35.8 32.6155L39 30.2155L50 38.2155Z"
-          fill="currentColor"
-        ></path>
-        <path
-          d="M60.1794 30.4462L54 33.5359L46 18.2154L52.2423 15.0942C52.7113 14.8597 53.2536 14.8188 53.7525 14.9802C54.2514 15.1416 54.6669 15.4925 54.9096 15.9573L61.0578 27.7316C61.1808 27.967 61.2556 28.2246 61.2779 28.4892C61.3002 28.7539 61.2696 29.0204 61.1878 29.2702C61.106 29.52 60.9749 29.7481 60.801 29.9461C60.6273 30.1443 60.4135 30.3064 60.1794 30.4462Z"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        ></path>
-        <path
-          d="M8.356 21.1813L12 28.2154L20.4 43.6632L8.356 21.1813Z"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        ></path>
-        <path
-          d="M46 18.2155L39 30.2155L31 34.2155C29.269 34.2155 27.5848 33.654 26.2 32.6155L24.8432 31.5991C24.6149 31.4271 24.4258 31.208 24.2887 30.9564C24.1516 30.7048 24.0701 30.4267 24.0497 30.1408C24.0294 29.855 24.0708 29.5682 24.171 29.2997C24.2712 29.0313 24.4279 28.7875 24.6305 28.5848L34.4142 18.8012C34.5999 18.6155 34.8204 18.4682 35.0631 18.3677C35.3057 18.2672 35.5658 18.2155 35.8284 18.2155H41L32.3578 14.3051C31.9229 14.1082 31.4319 14.0735 30.9736 14.2071L18.1436 17.9475L10 33.268L23.6653 43.9537C23.886 44.1263 24.1404 44.2506 24.4122 44.3185L38.9014 47.9408C39.2365 48.0246 39.5875 48.0201 39.9204 47.928C40.2532 47.8358 40.5565 47.659 40.8007 47.4147L50 38.2155V30.4462Z"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        ></path>
-      </svg>
+      <MdContentPaste className="w-12 h-12" />
     ),
   },
   {
@@ -87,47 +49,7 @@ const cardConfigs = [
     title: "Branding & Creative Media",
     text: "Transforming visions into compelling stories and striking visuals that define and amplify your brand's unique identity and market presence.",
     svgPath: (
-      <svg
-        width="100%"
-        height="100%"
-        viewBox="0 0 64 64"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          opacity="0.2"
-          d="M49 56H15C14.4477 56 14 55.5523 14 55V13C14 12.4477 14.4477 12 15 12H49C49.5523 12 50 12.4477 50 13V55C50 55.5523 49.5523 56 49 56Z"
-          fill="currentColor"
-        ></path>
-        <path
-          d="M49 56H15C14.4477 56 14 55.5523 14 55V13C14 12.4477 14.4477 12 15 12H49C49.5523 12 50 12.4477 50 13V55C50 55.5523 49.5523 56 49 56Z"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        ></path>
-        <path
-          d="M14 23H50"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        ></path>
-        <path
-          d="M14 33H50"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        ></path>
-        <path
-          d="M14 43H50"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        ></path>
-      </svg>
+      <TbBrandGoogleAnalytics className="w-12 h-12" />
     ),
   },
   {
@@ -136,7 +58,7 @@ const cardConfigs = [
     color: "#fff",
     title: "Digital Strategy and Consulting",
     text: "Crafting Revenue-Driven Strategies to Propel Your Business Forward, Leveraging Data Insights and Innovation for Sustainable Growth.",
-    svgPath: <TbSeo />,
+    svgPath: <FaChartLine className="w-12 h-12" />,
   },
   {
     className: "no6",
@@ -144,7 +66,7 @@ const cardConfigs = [
     color: "#fff",
     title: "E-commerce Solutions",
     text: "Streamlined online stores designed for seamless customer experiences, enhanced conversions, and scalable growth.",
-    svgPath: <TbSeo />,
+    svgPath: <TbShoppingCart className="w-12 h-12" />,
   },
   {
     className: "no7",
@@ -152,7 +74,7 @@ const cardConfigs = [
     color: "#fff",
     title: "Digital Training and Workshops",
     text: "Transforming Teams into Digital Experts with Customized Learning Experiences and Practical Strategies for Success.",
-    svgPath: <TbSeo />,
+    svgPath: <TbChalkboard className="w-12 h-12" />,
   },
   {
     className: "no8",
@@ -160,7 +82,7 @@ const cardConfigs = [
     color: "#fff",
     title: "Software Development",
     text: "Transforming Ideas into Powerful Solutions, Tailored to Your Needs for Seamless Performance and Efficiency.",
-    svgPath: <TbSeo />,
+    svgPath: <TbCode className="w-12 h-12" />,
   },
 ];
 
