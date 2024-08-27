@@ -1,53 +1,133 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaSearch, FaBullhorn, FaShoppingCart, FaBook, FaRegChartBar, FaGlobe, FaCog, FaFolderOpen, FaBusinessTime } from "react-icons/fa";
+import {
+  Paintbrush,
+  Megaphone,
+  Code,
+  Lightbulb,
+  Layout,
+  Share2,
+  ShoppingCart,
+  Search,
+  BarChart2,
+  Globe,
+  Settings,
+  FileText,
+  Smartphone,
+  HelpCircle,
+  DollarSign,
+  TrendingUp,
+  Users,
+  Youtube,
+  Play,
+} from "lucide-react";
 import { ChevronDown } from "lucide-react";
 
 const menuItems = [
   {
-    title: "Digital Marketing",
+    title: "UI/UX",
     content: [
       {
-        title: "Organic Search",
-        icon: <FaSearch className="text-blue-500" />,
+        title: "Design",
+        icon: <Paintbrush className="text-blue-500" />,
         links: [
-          { text: "SEO Services", icon: <FaRegChartBar className="text-green-500" /> },
-          { text: "Local SEO Services", icon: <FaGlobe className="text-purple-500" /> },
-          { text: "Google Local Services Ads", icon: <FaCog className="text-orange-500" /> },
+          {
+            text: "Website Design",
+            icon: <Layout className="text-green-500" />,
+          },
+          {
+            text: "Social Media Design",
+            icon: <Share2 className="text-purple-500" />,
+          },
+          {
+            text: "Ecommerce Website",
+            icon: <ShoppingCart className="text-orange-500" />,
+          },
+          {
+            text: "Design Branding and Visual Identity",
+            icon: <Paintbrush className="text-pink-500" />,
+          },
         ],
       },
       {
-        title: "Digital Advertising",
-        icon: <FaBullhorn className="text-red-500" />,
+        title: "Content Marketing",
+        icon: <Megaphone className="text-red-500" />,
         links: [
-          { text: "PPC Management Services", icon: <FaBullhorn className="text-yellow-500" /> },
-          { text: "Social Media Advertising", icon: <FaGlobe className="text-blue-500" /> },
-          { text: "Content Strategy Creation", icon: <FaRegChartBar className="text-green-500" /> },
+          {
+            text: "SEO Copywriting",
+            icon: <Search className="text-yellow-500" />,
+          },
+          {
+            text: "Content Marketing Services",
+            icon: <FileText className="text-blue-500" />,
+          },
+          {
+            text: "Social Media Management",
+            icon: <Users className="text-green-500" />,
+          },
+          {
+            text: "Infographics & Motion Graphics",
+            icon: <BarChart2 className="text-purple-500" />,
+          },
+          {
+            text: "Web Video Production Services",
+            icon: <Play className="text-red-500" />,
+          },
+          {
+            text: "YouTube Advertising",
+            icon: <Youtube className="text-red-500" />,
+          },
         ],
       },
       {
-        title: "Ecommerce",
-        icon: <FaShoppingCart className="text-purple-500" />,
+        title: "Software Development",
+        icon: <Code className="text-purple-500" />,
         links: [
-          { text: "Ecommerce SEO Services", icon: <FaSearch className="text-blue-500" /> },
-          { text: "Ecommerce PPC Services", icon: <FaBullhorn className="text-red-500" /> },
-          { text: "Ecommerce Digital Marketing", icon: <FaCog className="text-green-500" /> },
+          {
+            text: "Digital Experience Development",
+            icon: <Globe className="text-blue-500" />,
+          },
+          {
+            text: "ERP and Business Solutions",
+            icon: <Settings className="text-gray-500" />,
+          },
+          {
+            text: "Mobile App Development",
+            icon: <Smartphone className="text-green-500" />,
+          },
         ],
       },
       {
-        title: "Learn",
-        icon: <FaBook className="text-teal-500" />,
+        title: "Challenges we solved",
+        icon: <Lightbulb className="text-yellow-500" />,
         links: [
-          { text: "Our SEO Results", icon: <FaRegChartBar className="text-blue-500" /> },
-          { text: "Our SEO Case Studies", icon: <FaFolderOpen className="text-green-500" /> },
-          { text: "What Is Digital Marketing?", icon: <FaBook className="text-purple-500" /> },
+          {
+            text: "My Website Doesn't Drive Leads",
+            icon: <TrendingUp className="text-blue-500" />,
+          },
+          {
+            text: "My Website Doesn't Convert",
+            icon: <DollarSign className="text-green-500" />,
+          },
+          {
+            text: "My Website Isn't Making Money",
+            icon: <ShoppingCart className="text-purple-500" />,
+          },
+          {
+            text: "I Can't design revenue-driven marketing Strategy",
+            icon: <BarChart2 className="text-orange-500" />,
+          },
+          {
+            text: "I'm lost trying to develop Cross social channels content strategy",
+            icon: <Share2 className="text-indigo-500" />,
+          },
         ],
       },
     ],
   },
 ];
 
-export default function Component() {
+export default function Uiux() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -103,7 +183,9 @@ export default function Component() {
                           key={linkIndex}
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: linkIndex * 0.1 + sectionIndex * 0.2 }}
+                          transition={{
+                            delay: linkIndex * 0.1 + sectionIndex * 0.2,
+                          }}
                         >
                           <a
                             href="#"

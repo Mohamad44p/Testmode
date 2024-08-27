@@ -68,6 +68,13 @@ const config = {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
         },
+        borderSlide: {
+          '0%': { clipPath: 'inset(0 100% 100% 0)' },
+          '25%': { clipPath: 'inset(0 0 75% 0)' },
+          '50%': { clipPath: 'inset(0 0 50% 0)' },
+          '75%': { clipPath: 'inset(0 0 25% 0)' },
+          '100%': { clipPath: 'inset(0 0 0 0)' },
+        },
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
@@ -76,6 +83,7 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        border: 'borderSlide 1s ease-out forwards',
       },
     },
   },

@@ -9,8 +9,14 @@ import PreloaderWrapper from "@/components/preloader/PreloaderWrapper";
 import TransitionLayout from "@/components/TransitionLayout";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
+import localFont from "next/font/local";
 
-const inter = Inter({ subsets: ["latin"] });
+
+// Load the custom font
+const neueMachina = localFont({
+  src: "./Neue Machina Inktrap Medium.ttf",
+  variable: "--font-neue-machina",
+});
 
 export const metadata: Metadata = {
   title: "Be Found Online",
@@ -24,10 +30,8 @@ export default function RootLayout({
 }>) {
   return (
     <Lenis>
-      <SpeedInsights debug />
-      <Analytics />
       <html lang="en">
-        <body className={inter.className}>
+        <body className={`${neueMachina.variable}`}>
           <PreloaderWrapper>
             <TransitionLayout>
               <Navbar />
@@ -38,6 +42,8 @@ export default function RootLayout({
               </section>
             </TransitionLayout>
           </PreloaderWrapper>
+          <SpeedInsights />
+          <Analytics />
         </body>
       </html>
     </Lenis>

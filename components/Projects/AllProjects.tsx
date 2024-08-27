@@ -1,12 +1,67 @@
-import AllProjectsClient from "./AllProjectsClient";
-import AsyncProjectsPage from "./AsyncProjectsPage";
+"use client";
+
+import React, { useEffect } from "react";
+import ProjectsHero from "./ProjectsHero";
+import ProjectShowcase from "./ProjectShowcase";
+import { ScrollTrigger } from "gsap/all";
+import gsap from "gsap";
+import Lenis from "@studio-freight/lenis";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const changeBodyBackgroundColor = () => {
+  gsap.utils
+    .toArray<HTMLElement>(".section")
+    .forEach((section: HTMLElement) => {
+      const sectionElement = section as HTMLElement;
+      const color = sectionElement.dataset.color;
+
+      ScrollTrigger.create({
+        trigger: sectionElement,
+        start: "top center",
+        end: "bottom center",
+        onEnter: () => {
+          if (color) {
+            document.body.setAttribute("theme", color);
+          }
+        },
+        onEnterBack: () => {
+          if (color) {
+            document.body.setAttribute("theme", color);
+          }
+        },
+      });
+    });
+};
 
 export default function AllProjects() {
+  useEffect(() => {
+    const lenis = new Lenis();
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    changeBodyBackgroundColor();
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      ScrollTrigger.clearMatchMedia();
+      ScrollTrigger.clearScrollMemory();
+      ScrollTrigger.update();
+      ScrollTrigger.refresh();
+    };
+  }, []);
+
   return (
-    <main>
-      <AllProjectsClient>
-        <AsyncProjectsPage />
-      </AllProjectsClient>
-    </main>
+    <div>
+      <section data-color="Almond" className="section mt-12">
+        <ProjectsHero />
+        <ProjectShowcase />
+      </section>
+    </div>
   );
 }

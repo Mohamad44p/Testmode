@@ -197,6 +197,44 @@ body {
   transform: translate(-50%, -50%);
 }
 
+
+.custom-cursor {
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+}
+
+.custom-cursor svg {
+  animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.project-card {
+  cursor: none;
+}
+
+@media (hover: none) {
+  .project-card {
+    cursor: pointer;
+  }
+}
+
+@font-face {
+  font-family: 'Neue Machina Inktrap';
+  src: url('/app/Neue\ Machina\ Inktrap\ Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Scroll  */
 
 .scrolldown {
