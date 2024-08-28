@@ -33,6 +33,10 @@ const Navbar = () => {
           setTextColor("white");
           setBgColor("RaisinBlack");
           break;
+        case "Black":
+          setTextColor("white");
+          setBgColor("RaisinBlack");
+          break;
         case "Ming":
           setBgColor("Ming");
           setTextColor("black");

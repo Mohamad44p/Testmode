@@ -11,7 +11,6 @@ import OurTeam from "./OurTeam";
 import Testimonial from "./Testimonial";
 import LastSec from "./LastSec";
 import Banner from "./Banner";
-import ProjectsPage from "./AsyncProject";
 
 gsap.registerPlugin(ScrollTrigger);
 

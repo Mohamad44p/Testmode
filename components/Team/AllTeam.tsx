@@ -5,9 +5,9 @@ import { ScrollTrigger } from "gsap/all";
 import React, { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
 import HeroTeam from "./HeroTeam";
-import TeamMembersList from "./TeamMembersList";
 import JoinUsBa from "./JoinUsBa";
 import Banner from "../Banner";
+import OurTeamNew from "./OurTeam";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -54,18 +54,19 @@ export default function AllTeam() {
       ScrollTrigger.clearScrollMemory();
       ScrollTrigger.update();
       ScrollTrigger.refresh();
-    }
+    };
   }, []);
   return (
     <main className="mt-12">
       <section data-color="Blond" className="section">
         <HeroTeam />
       </section>
-      <section data-color="Almond" className="section">
-        <TeamMembersList />
-      </section>
+
       <section data-color="Almond" className="section">
         <JoinUsBa />
+      </section>
+      <section data-color="Black" className="section">
+        <OurTeamNew />
       </section>
       <section className="section">
         <Banner

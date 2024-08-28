@@ -8,6 +8,7 @@
   --Ming: #3a7e7d;
   --Blond: #f5f19c;
   --RaisinBlack: #262526;
+  --Black: rgba(0, 0, 0, 1);
   --light-blue: #aedee0;
   --soft-orange: #f4a261;
 }
@@ -73,6 +74,10 @@ body[theme="Blond"] {
 
 body[theme="RaisinBlack"] {
   background-color: var(--RaisinBlack);
+  color: #fff;
+}
+body[theme="Black"] {
+  background-color: var(--Black);
   color: #fff;
 }
 
