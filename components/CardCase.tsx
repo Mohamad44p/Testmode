@@ -38,7 +38,6 @@ export default function CardCase() {
         return response.json();
       })
       .then((data) => {
-        // Take only the first 5 projects
         setProjects(data.slice(0, 5));
         setIsLoading(false);
       })
