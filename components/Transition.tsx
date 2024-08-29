@@ -1,124 +1,147 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
-const colorPalette = {
-  Ming: "#3a7e7d",
-  RaisinBlack: "#262526",
-  Black: "#000000",
-  LightBlue: "#aedee0",
-  SoftOrange: "#f4a261",
-};
-
-export default function TransitionEffect() {
-  const [accentColor, setAccentColor] = useState(colorPalette.Ming);
+const GlitchTransition = () => {
+  const squareCount = 8;
+  const squares = Array.from({ length: squareCount * squareCount }, (_, i) => i);
+  const [randomValues, setRandomValues] = useState<number[]>([]);
 
   useEffect(() => {
-    const colors = Object.values(colorPalette);
-    const newAccentColor = colors[Math.floor(Math.random() * colors.length)];
-    setAccentColor(newAccentColor);
+    setRandomValues(squares.map(() => Math.random()));
   }, []);
 
   const containerVariants = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: 0.3 } },
-    exit: { opacity: 0, transition: { duration: 0.3 } },
+    initial: { opacity: 1 },
+    exit: { 
+      opacity: 0,
+      transition: { duration: 0.5, delay: 2 }
+    }
   };
 
-  const circleVariants = {
-    initial: { scale: 0, rotate: -180 },
-    animate: {
+  const squareVariants = {
+    initial: { scale: 1, rotate: 0 },
+    animate: (i: number) => ({
+      scale: 0,
+      rotate: randomValues[i] * 360,
+      transition: { 
+        duration: 0.7 + randomValues[i] * 0.3,
+        ease: [0.645, 0.045, 0.355, 1]
+      }
+    }),
+    exit: { 
       scale: 1,
       rotate: 0,
-      transition: { duration: 0.5, ease: [0.34, 1.56, 0.64, 1] },
-    },
-    exit: {
-      scale: 0,
-      rotate: 180,
-      transition: { duration: 0.5, ease: [0.34, 1.56, 0.64, 1] },
-    },
+      transition: { duration: 0.5, ease: [0.645, 0.045, 0.355, 1] }
+    }
   };
 
-  const textVariants = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.3 } },
-    exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
+  const pixelVariants = {
+    initial: { opacity: 1 },
+    animate: { opacity: 0, transition: { duration: 0.2, ease: "easeInOut" } }
   };
 
-  const lineVariants = {
-    initial: { pathLength: 0, opacity: 0 },
+  const slideVariants = {
+    initial: (direction: string) => ({
+      x: direction === 'left' ? '-100%' : direction === 'right' ? '100%' : 0,
+      y: direction === 'top' ? '-100%' : direction === 'bottom' ? '100%' : 0,
+    }),
     animate: {
-      pathLength: 1,
-      opacity: 1,
-      transition: { duration: 0.5, ease: "easeInOut" },
+      x: 0,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.645, 0.045, 0.355, 1] }
     },
+    exit: (direction: string) => ({
+      x: direction === 'left' ? '100%' : direction === 'right' ? '-100%' : 0,
+      y: direction === 'top' ? '100%' : direction === 'bottom' ? '-100%' : 0,
+      transition: { duration: 0.8, ease: [0.645, 0.045, 0.355, 1] }
+    })
   };
 
   return (
     <motion.div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black overflow-hidden"
       variants={containerVariants}
       initial="initial"
       animate="animate"
       exit="exit"
-      className="fixed inset-0 z-[1000000000] flex items-center justify-center bg-white"
     >
+      <div className="absolute inset-0 grid" style={{ 
+        gridTemplateColumns: `repeat(${squareCount}, 1fr)`,
+        gridTemplateRows: `repeat(${squareCount}, 1fr)`
+      }}>
+        {squares.map((index) => (
+          <motion.div
+            key={index}
+            className="bg-black"
+            variants={squareVariants}
+            custom={index}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{
+              delay: (index % squareCount + Math.floor(index / squareCount)) * 0.03,
+            }}
+          />
+        ))}
+      </div>
+      <div className="absolute inset-0 grid grid-cols-[repeat(32,1fr)] grid-rows-[repeat(32,1fr)]">
+        {Array.from({ length: 1024 }, (_, i) => (
+          <motion.div
+            key={i}
+            className="bg-white"
+            variants={pixelVariants}
+            initial="initial"
+            animate="animate"
+            transition={{ delay: Math.random() * 1.5 }}
+          />
+        ))}
+      </div>
       <motion.div
-        variants={circleVariants}
-        className="relative w-80 h-80 rounded-full flex items-center justify-center overflow-hidden"
-        style={{ boxShadow: `0 0 40px ${accentColor}` }}
+        className="absolute inset-y-0 left-0 w-1/4 bg-primary"
+        variants={slideVariants}
+        custom="left"
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      />
+      <motion.div
+        className="absolute inset-y-0 right-0 w-1/4 bg-primary"
+        variants={slideVariants}
+        custom="right"
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      />
+      <motion.div
+        className="absolute inset-x-0 top-0 h-1/4 bg-secondary"
+        variants={slideVariants}
+        custom="top"
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      />
+      <motion.div
+        className="absolute inset-x-0 bottom-0 h-1/4 bg-secondary"
+        variants={slideVariants}
+        custom="bottom"
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      />
+      <motion.h1
+        className="text-white text-6xl font-bold glitch-text z-10"
+        data-text="BefoundOnline"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent to-gray-100 opacity-50" />
-        <motion.div variants={textVariants} className="text-center z-10">
-          <div
-            className="text-4xl font-light mb-2"
-            style={{ color: accentColor }}
-          >
-            Be Found
-          </div>
-          <div className="text-5xl font-bold" style={{ color: accentColor }}>
-            Online
-          </div>
-        </motion.div>
-      </motion.div>
-      <svg
-        className="absolute w-full h-full"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <motion.circle
-          cx="50%"
-          cy="50%"
-          r="35%"
-          stroke={accentColor}
-          strokeWidth="1"
-          fill="none"
-          variants={lineVariants}
-        />
-        <motion.circle
-          cx="50%"
-          cy="50%"
-          r="35.5%"
-          stroke={accentColor}
-          strokeWidth="0.5"
-          fill="none"
-          variants={lineVariants}
-          transition={{ delay: 0.2 }}
-        />
-      </svg>
-      {[...Array(6)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-2 h-2 rounded-full"
-          style={{
-            backgroundColor: accentColor,
-            top: `${50 + 45 * Math.sin((i * Math.PI) / 3)}%`,
-            left: `${50 + 45 * Math.cos((i * Math.PI) / 3)}%`,
-          }}
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: [0, 1.5, 1], opacity: [0, 1, 0.7] }}
-          transition={{ delay: i * 0.1, duration: 0.5 }}
-        />
-      ))}
+        BefoundOnline
+      </motion.h1>
     </motion.div>
   );
-}
+};
+
+export default GlitchTransition;

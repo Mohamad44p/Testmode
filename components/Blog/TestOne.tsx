@@ -55,7 +55,7 @@ export default function TestOne() {
           className="text-center mb-12"
         >
           <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-            Explore Our Insights
+            Explore Our Webinars
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Stay up-to-date on the latest healthcare innovations and thought

@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
 import {
@@ -15,64 +13,52 @@ import {
   Github,
   Linkedin,
   Twitter,
-  ArrowUp,
   Code,
   Palette,
   ChartBar,
   Cpu,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const teamMembers = [
   {
     name: "Alice Johnson",
     role: "UI/UX Designer",
-    image: "/images/Carecter1.jpeg",
+    image: "/placeholder.svg?height=160&width=160",
     bio: "Crafting intuitive interfaces with a minimalist aesthetic.",
     github: "alicejohnson",
     twitter: "alicejohnsonux",
     linkedin: "alicejohnsonux",
-    icon: <Palette className="w-6 h-6" fill="#000" />,
+    icon: <Palette className="w-6 h-6" />,
   },
   {
     name: "Bob Smith",
     role: "Full Stack Developer",
-    image: "/images/Carecter2.jpeg",
+    image: "/placeholder.svg?height=160&width=160",
     bio: "Bridging the gap between design and functionality with elegant code.",
     github: "bobsmith",
     twitter: "bobsmithdev",
     linkedin: "bobsmithdev",
-    icon: <Code className="w-6 h-6" fill="#000" />,
+    icon: <Code className="w-6 h-6" />,
   },
   {
     name: "Carol Williams",
     role: "Product Manager",
-    image: "/images/Carecter3.jpeg",
+    image: "/placeholder.svg?height=160&width=160",
     bio: "Orchestrating the fusion of user needs and cutting-edge technology.",
     github: "carolwilliams",
     twitter: "carolwilliamspm",
     linkedin: "carolwilliamspm",
-    icon: <ChartBar className="w-6 h-6" fill="#000" />,
+    icon: <ChartBar className="w-6 h-6" />,
   },
   {
     name: "David Brown",
     role: "AI Specialist",
-    image: "/images/Carecter4.jpeg",
+    image: "/placeholder.svg?height=160&width=160",
     bio: "Pushing the boundaries of artificial intelligence and human potential.",
     github: "davidbrown",
     twitter: "davidbrownai",
     linkedin: "davidbrownai",
-    icon: <Cpu className="w-6 h-6" fill="#000" />,
-  },
-  {
-    name: "David Brown",
-    role: "AI Specialist",
-    image: "/images/Carecter4.jpeg",
-    bio: "Pushing the boundaries of artificial intelligence and human potential.",
-    github: "davidbrown",
-    twitter: "davidbrownai",
-    linkedin: "davidbrownai",
-    icon: <Cpu className="w-6 h-6" fill="#000" />,
+    icon: <Cpu className="w-6 h-6" />,
   },
 ];
 
@@ -81,15 +67,15 @@ const AnimatedPath = ({
   progress,
   index,
   total,
-  treeHeight,
+  treeWidth,
 }: {
   d: string;
   progress: MotionValue<number>;
   index: number;
   total: number;
-  treeHeight: number;
+  treeWidth: number;
 }) => {
-  const pathLength = useMemo(() => treeHeight / total, [treeHeight, total]);
+  const pathLength = useMemo(() => treeWidth / total, [treeWidth, total]);
   const pathOffset = useTransform(
     progress,
     [index / total, (index + 1) / total],
@@ -146,17 +132,17 @@ const MonochromeTree = ({
   progress: MotionValue<number>;
   memberCount: number;
 }) => {
-  const treeHeight = memberCount * 500;
+  const treeWidth = memberCount * 500;
   const branchCount = memberCount * 5;
 
-  const mainPathOffset = useTransform(progress, [0, 1], [treeHeight, 0]);
+  const mainPathOffset = useTransform(progress, [0, 1], [treeWidth, 0]);
 
   return (
     <svg
-      className="absolute left-1/2 transform -translate-x-1/2"
-      width="300"
-      height={treeHeight}
-      viewBox={`0 0 300 ${treeHeight}`}
+      className="absolute top-1/2 transform -translate-y-1/2"
+      width={treeWidth}
+      height="300"
+      viewBox={`0 0 ${treeWidth} 300`}
     >
       <defs>
         <filter id="glow">
@@ -168,33 +154,33 @@ const MonochromeTree = ({
         </filter>
       </defs>
       <motion.path
-        d={`M150 0 L150 ${treeHeight}`}
+        d={`M0 150 L${treeWidth} 150`}
         fill="none"
         stroke="white"
         strokeWidth="2"
-        strokeDasharray={treeHeight}
+        strokeDasharray={treeWidth}
         filter="url(#glow)"
         style={{ strokeDashoffset: mainPathOffset }}
       />
       {[...Array(branchCount)].map((_, i) => (
         <AnimatedPath
           key={i}
-          d={`M150 ${(treeHeight / branchCount) * i} Q${
-            150 + (i % 2 ? 75 : -75)
-          } ${(treeHeight / branchCount) * (i + 0.5)} 150 ${
-            (treeHeight / branchCount) * (i + 1)
-          }`}
+          d={`M${(treeWidth / branchCount) * i} 150 Q${
+            (treeWidth / branchCount) * (i + 0.5)
+          } ${150 + (i % 2 ? 75 : -75)} ${
+            (treeWidth / branchCount) * (i + 1)
+          } 150`}
           progress={progress}
           index={i}
           total={branchCount}
-          treeHeight={treeHeight}
+          treeWidth={treeWidth}
         />
       ))}
       {[...Array(branchCount * 2)].map((_, i) => (
         <AnimatedCircle
           key={`node-${i}`}
-          cx={150 + (i % 2 ? 75 : -75)}
-          cy={(treeHeight / (branchCount * 2)) * i}
+          cx={(treeWidth / (branchCount * 2)) * i}
+          cy={150 + (i % 2 ? 75 : -75)}
           index={i}
           total={branchCount * 2}
         />
@@ -243,58 +229,74 @@ const SkillIcon = ({
 );
 
 export default function Component() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: containerRef });
-  const smoothProgress = useSpring(scrollYProgress, {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollXProgress } = useScroll({ container: containerRef });
+  const smoothProgress = useSpring(scrollXProgress, {
     stiffness: 50,
     damping: 20,
     restDelta: 0.001,
   });
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const container = containerRef.current;
+    if (container) {
+      container.scrollLeft = 0;
+    }
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className="bg-black min-h-screen py-12 overflow-hidden relative"
-    >
-      <div className="container mx-auto px-4 relative">
-        <motion.h2
-          className="text-6xl font-bold text-center mb-24 text-white"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.5, delay: 0.5 }}
-        >
-          Our Visionary Team
-        </motion.h2>
+    <div className="bg-black h-screen overflow-hidden relative">
+      <style jsx global>{`
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .hide-scrollbar {
+          -ms-overflow-style: none; /* IE and Edge */
+          scrollbar-width: none; /* Firefox */
+        }
+      `}</style>
+      <div
+        ref={containerRef}
+        className="h-full overflow-x-auto overflow-y-hidden whitespace-nowrap hide-scrollbar"
+        style={{ scrollSnapType: "x mandatory", scrollBehavior: "smooth" }}
+      >
+        <div className="inline-block h-full">
+          <motion.h2
+            className="text-6xl font-bold text-center mb-24 text-white p-12"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.5, delay: 0.5 }}
+          >
+            Our Visionary Team
+          </motion.h2>
+        </div>
         <MonochromeTree
           progress={smoothProgress}
           memberCount={teamMembers.length}
         />
-        <div className="relative">
-          {teamMembers.map((member, index) => {
-            const yProgress = useTransform(
-              smoothProgress,
-              [index / teamMembers.length, (index + 1) / teamMembers.length],
-              [100, 0]
-            );
-            const opacity = useTransform(yProgress, [100, 60, 0], [0, 1, 1]);
-            const scale = useTransform(yProgress, [100, 60, 0], [0.8, 1, 1]);
-            const rotate = useTransform(yProgress, [100, 0], [45, 0]);
+        {teamMembers.map((member, index) => {
+          const xProgress = useTransform(
+            smoothProgress,
+            [index / teamMembers.length, (index + 1) / teamMembers.length],
+            [100, 0]
+          );
+          const opacity = useTransform(xProgress, [100, 60, 0], [0, 1, 1]);
+          const scale = useTransform(xProgress, [100, 60, 0], [0.8, 1, 1]);
+          const rotate = useTransform(xProgress, [100, 0], [45, 0]);
 
-            return (
+          return (
+            <motion.div
+              key={member.name}
+              className="inline-block h-full w-screen align-top"
+              style={{ scrollSnapAlign: "start" }}
+            >
               <motion.div
-                key={member.name}
-                className="mb-32 flex items-center justify-center"
-                style={{ opacity, scale, y: yProgress, rotate }}
+                className="flex items-center justify-center h-full"
+                style={{ opacity, scale, x: xProgress, rotate }}
               >
                 <motion.div
                   className="bg-white p-0.5 rounded-2xl shadow-xl overflow-hidden w-80 h-96"
@@ -395,9 +397,9 @@ export default function Component() {
                   </div>
                 </motion.div>
               </motion.div>
-            );
-          })}
-        </div>
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );

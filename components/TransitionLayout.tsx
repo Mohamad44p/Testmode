@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import TransitionEffect from "./Transition";
 import { AnimatePresence } from "framer-motion";
+import GlitchTransition from "./Transition";
 
 export default function TransitionLayout({
   children,
@@ -15,17 +15,16 @@ export default function TransitionLayout({
 
   useEffect(() => {
     setIsTransitioning(true);
-    const timer = setTimeout(() => setIsTransitioning(false), 1000);
-
+    const timer = setTimeout(() => setIsTransitioning(false), 1500);
     return () => clearTimeout(timer);
   }, [pathname]);
 
   return (
     <>
-      {children}
       <AnimatePresence mode="wait">
-        {isTransitioning && <TransitionEffect />}
+        {isTransitioning && <GlitchTransition />}
       </AnimatePresence>
+      {children}
     </>
   );
 }

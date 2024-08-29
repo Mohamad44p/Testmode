@@ -21,6 +21,7 @@ import { ArrowRight, Search, X } from "lucide-react";
 import BlogPostHero from "@/components/Blog/BlogPostHero";
 import TestOne from "@/components/Blog/TestOne";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import BlogPostPage from "./[id]/page";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -197,7 +198,9 @@ export default function AllBlogPage() {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div
+      data-color="White "
+    className="bg-gray-50 min-h-screen section">
       <BlogPostHero />
       <motion.div
         className="container mx-auto px-4 py-8"
@@ -355,7 +358,7 @@ export default function AllBlogPage() {
                         whileTap={{ scale: 0.95 }}
                       >
                         <Link
-                          href="#"
+                          href={`/blog/${index}`}
                           className="inline-flex items-center justify-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors duration-200 group"
                         >
                           Read More
@@ -386,6 +389,7 @@ export default function AllBlogPage() {
           )}
         </motion.div>
         <TestOne />
+        <BlogPostPage/>
       </motion.div>
     </div>
   );

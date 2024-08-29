@@ -240,6 +240,63 @@ body {
   font-display: swap;
 }
 
+
+/* Transition Page */
+@keyframes glitch {
+  0% {
+    clip-path: inset(40% 0 61% 0);
+    transform: translate(-2px, -2px);
+  }
+  20% {
+    clip-path: inset(92% 0 1% 0);
+    transform: translate(2px, 2px);
+  }
+  40% {
+    clip-path: inset(43% 0 1% 0);
+    transform: translate(-2px, 2px);
+  }
+  60% {
+    clip-path: inset(25% 0 58% 0);
+    transform: translate(2px, -2px);
+  }
+  80% {
+    clip-path: inset(54% 0 7% 0);
+    transform: translate(-2px, 2px);
+  }
+  100% {
+    clip-path: inset(58% 0 43% 0);
+    transform: translate(2px, -2px);
+  }
+}
+
+.glitch-text {
+  position: relative;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  left: 2px;
+  text-shadow: -2px 0 #ff00c1;
+  animation: glitch 0.3s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  left: -2px;
+  text-shadow: 2px 0 #00fff9;
+  animation: glitch 0.3s infinite linear alternate;
+}
+
+
+
 /* Scroll  */
 
 .scrolldown {

@@ -11,7 +11,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import localFont from "next/font/local";
 
-
 // Load the custom font
 const neueMachina = localFont({
   src: "./Neue Machina Inktrap Medium.ttf",
@@ -29,9 +28,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Lenis>
-      <html lang="en">
-        <body className={`${neueMachina.variable}`}>
+    <html lang="en">
+      <body className={`${neueMachina.variable}`}>
+        <Lenis>
           <PreloaderWrapper>
             <TransitionLayout>
               <Navbar />
@@ -42,10 +41,10 @@ export default function RootLayout({
               </section>
             </TransitionLayout>
           </PreloaderWrapper>
-          <SpeedInsights />
-          <Analytics />
-        </body>
-      </html>
-    </Lenis>
+        </Lenis>
+        <SpeedInsights />
+        <Analytics />
+      </body>
+    </html>
   );
 }
