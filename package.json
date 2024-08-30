@@ -41,13 +41,15 @@
     "react-parallax": "^3.5.1",
     "react-rough-notation": "^1.0.5",
     "react-slick": "^0.30.2",
+    "react-tsparticles": "^2.12.2",
     "rough-notation": "^0.5.1",
     "sass": "^1.77.8",
     "slick-carousel": "^1.8.1",
     "smooth-scrollbar": "^8.8.4",
     "swr": "^2.2.5",
     "tailwind-merge": "^2.4.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "tsparticles": "^3.5.0"
   },
   "devDependencies": {
     "@types/locomotive-scroll": "^4.1.3",

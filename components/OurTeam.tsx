@@ -45,27 +45,20 @@ const teamMembers = [
   },
   {
     id: "05",
-    name: "RAHAF DWEIK",
-    position: "Chief Innovation Officer",
-    imgSrc: "/images/Rahaf.jpeg",
-    bg: "#C7B691",
-  },
-  {
-    id: "06",
     name: "MOHAMMAD MARQA",
     position: "FULL STACK MANAGER",
     imgSrc: "/images/MohammadMar.jpeg",
     bg: "#9FA4C4",
   },
   {
-    id: "07",
+    id: "06",
     name: "ASEEL AL-MUHTASEB",
     position: "MOBILE DEVELOPER",
     imgSrc:
       "https://images.unsplash.com/photo-1609505848912-b7c3b8b4beda?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzR8fHBvcnRyYWl0fGVufDB8fDB8fHww",
   },
   {
-    id: "08",
+    id: "07",
     name: "MOHAMMAD ABU-OMAR",
     position: "FRONT-END DEVELOPER",
     imgSrc: "/images/Mohammad.png",

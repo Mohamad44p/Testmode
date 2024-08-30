@@ -50,7 +50,10 @@ html.lenis body {
 
 @font-face {
   font-family: "neue";
-  src: url(./Neue\ Machina\ Inktrap\ Medium.ttf);
+  src: url("/fonts/NeueMachina-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 body[theme="Almond"] {
@@ -202,7 +205,6 @@ body {
   transform: translate(-50%, -50%);
 }
 
-
 .custom-cursor {
   pointer-events: none;
   z-index: 9999;
@@ -233,13 +235,27 @@ body {
 }
 
 @font-face {
-  font-family: 'Neue Machina Inktrap';
-  src: url('/app/Neue\ Machina\ Inktrap\ Medium.ttf') format('truetype');
+  font-family: "Neue Machina Inktrap";
+  src: url("/fonts/Neue Machina Inktrap Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Neue Machina Light";
+  src: url("/fonts/NeueMachina-Light.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body .font-neue-Light {
+  font-family: "Neue Machina Light", sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 /* Transition Page */
 @keyframes glitch {
@@ -294,8 +310,6 @@ body {
   text-shadow: 2px 0 #00fff9;
   animation: glitch 0.3s infinite linear alternate;
 }
-
-
 
 /* Scroll  */
 

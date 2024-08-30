@@ -65,7 +65,7 @@ export default function AllTeam() {
       <section data-color="Almond" className="section">
         <JoinUsBa />
       </section>
-      <section data-color="Black" className="section">
+      <section data-color="Almond" className="section">
         <OurTeamNew />
       </section>
       <section className="section">

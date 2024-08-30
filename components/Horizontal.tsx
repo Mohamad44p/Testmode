@@ -11,11 +11,31 @@ import {
   Zap,
   Target,
   Rocket,
+  Coffee,
+  Heart,
+  Sparkles,
 } from "lucide-react";
 import Link from "next/link";
 import { TbBrandNextjs } from "react-icons/tb";
 
 gsap.registerPlugin(ScrollTrigger);
+
+interface SlideProps {
+  title: string;
+  subtitle: string;
+  description: string;
+  images: Array<{
+    src: string;
+    position: { top: string; left: string };
+    size?: string;
+  }>;
+  stat?: { value: string; label: string };
+  icons?: Array<{
+    icon: React.ReactNode;
+    position: { top: string; left: string };
+    size: string;
+  }>;
+}
 
 export default function Horizontal() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -42,51 +62,95 @@ export default function Horizontal() {
       },
     });
 
-    gsap.fromTo(
-      ".button",
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1,
-        },
-      }
-    );
+    slides.forEach((slide, index) => {
+      const content = slide.querySelector(".slide-content");
+      const images = slide.querySelectorAll(".slide-image");
+      const icons = slide.querySelectorAll(".slide-icon");
 
-    slides.forEach((slide) => {
       gsap.fromTo(
-        slide.querySelectorAll(".animate-in"),
+        content,
         { opacity: 0, y: 50 },
         {
           opacity: 1,
           y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: slide,
+            containerAnimation: animation,
+            start: "left center",
+            end: "right center",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+
+      gsap.fromTo(
+        images,
+        { scale: 0.8, opacity: 0 },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 1,
+          ease: "back.out(1.7)",
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: slide,
+            containerAnimation: animation,
+            start: "left center",
+            end: "right center",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+
+      gsap.fromTo(
+        icons,
+        { rotation: -45, opacity: 0 },
+        {
+          rotation: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "elastic.out(1, 0.3)",
           stagger: 0.1,
           scrollTrigger: {
             trigger: slide,
             containerAnimation: animation,
             start: "left center",
-            toggleActions: "play none none reverse",
+            end: "right center",
+            toggleActions: "play reverse play reverse",
           },
         }
       );
     });
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        containerRef.current?.scrollBy({
+          left: window.innerWidth,
+          behavior: "smooth",
+        });
+      } else if (e.key === "ArrowLeft") {
+        containerRef.current?.scrollBy({
+          left: -window.innerWidth,
+          behavior: "smooth",
+        });
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
 
   return (
     <div
-      data-color="Ming"
       ref={containerRef}
-      className="overflow-hidden section text-black section"
+      className="overflow-x-hidden font-neue-Light text-black relative h-screen bg-[#FFA07A]"
     >
-      <div ref={slidesRef} className="flex">
+      <div ref={slidesRef} className="flex h-full">
         {slides.map((slide, index) => (
           <SlideContent key={index} {...slide} />
         ))}
@@ -103,24 +167,6 @@ export default function Horizontal() {
   );
 }
 
-interface SlideProps {
-  title: string;
-  subtitle: string;
-  description: string;
-  images: Array<{
-    src: string;
-    position: { top: string; left: string };
-    size?: string;
-  }>;
-  stat?: { value: string; label: string };
-  icons?: Array<{
-    icon: React.ReactNode;
-    position: { top: string; left: string };
-    size: string;
-  }>;
-  backgroundColor?: string;
-}
-
 function SlideContent({
   title,
   subtitle,
@@ -128,23 +174,18 @@ function SlideContent({
   images,
   stat,
   icons,
-  backgroundColor,
 }: SlideProps) {
   const isFirstSlide = title === "Real Talk, Real Impact";
 
   return (
-    <div className="relative section flex h-screen w-screen flex-shrink-0 items-center justify-center p-8 overflow-hidden">
-      <div className="relative max-w-3xl z-10">
+    <div className="relative font-neue-Light flex h-full w-screen flex-shrink-0 items-center justify-center p-8 overflow-hidden">
+      {" "}
+      <div className="relative max-w-3xl z-10 slide-content">
         <div className="space-y-4 text-center">
           <h2
-            className={`animate-in text-5xl md:text-8xl font-light leading-tight tracking-wide ${
+            className={`text-5xl  md:text-8xl font-light leading-tight tracking-wide ${
               isFirstSlide ? "text-black" : "font-bold"
             }`}
-            style={{
-              fontFamily: '"Helvetica Neue", Arial, sans-serif',
-              letterSpacing: "-0.02em",
-              lineHeight: "1.1",
-            }}
           >
             {isFirstSlide ? (
               <>
@@ -159,13 +200,13 @@ function SlideContent({
           {!isFirstSlide && (
             <>
               <p
-                className="animate-in text-2xl text-black font-semibold"
+                className="text-2xl  text-black font-semibold"
                 style={{ fontFamily: '"Helvetica Neue", Arial, sans-serif' }}
               >
                 {subtitle}
               </p>
               <p
-                className="animate-in text-gray-200 text-base"
+                className="text-gray-800 text-base"
                 style={{
                   fontFamily: '"Helvetica Neue", Arial, sans-serif',
                   maxWidth: "500px",
@@ -175,7 +216,7 @@ function SlideContent({
                 {description}
               </p>
               {stat && (
-                <div className="animate-in space-y-1 py-6">
+                <div className="space-y-1 py-6">
                   <p
                     className="text-6xl font-bold sm:text-7xl md:text-8xl"
                     style={{
@@ -203,7 +244,7 @@ function SlideContent({
         images.map((image, index) => (
           <div
             key={index}
-            className="absolute rounded-full overflow-hidden animate-in"
+            className="absolute rounded-full overflow-hidden slide-image"
             style={{
               width: image.size || "150px",
               height: image.size || "150px",
@@ -224,7 +265,7 @@ function SlideContent({
         icons.map((iconData, index) => (
           <div
             key={index}
-            className="absolute animate-in"
+            className="absolute slide-icon"
             style={{
               top: iconData.position.top,
               left: iconData.position.left,
@@ -249,10 +290,9 @@ const slides: SlideProps[] = [
   },
   {
     title: "20.4M",
-    subtitle:
-      "Real people — real lives — we have built products and solutions for.",
+    subtitle: "Lives Impacted",
     description:
-      "We're on a mission to impact as many lives as possible and build a better company while we do it. Here's our progress.",
+      "Real people, real lives — we've built products and solutions that make a difference.",
     images: [
       {
         src: "/images/HorImage1.jpg",
@@ -284,10 +324,10 @@ const slides: SlideProps[] = [
     ],
   },
   {
-    title: "Global & Diverse Team",
-    subtitle: "Strength in Diversity",
+    title: "13",
+    subtitle: "Nationalities",
     description:
-      "Our team brings creative ideas from all corners of the world to fuel your growth and innovation.",
+      "Our global team brings diverse perspectives and innovative solutions.",
     images: [
       {
         src: "/images/HorImage4.jpg",
@@ -295,48 +335,45 @@ const slides: SlideProps[] = [
         size: "220px",
       },
     ],
-    stat: { value: "50+", label: "Countries Represented" },
     icons: [
       {
-        icon: <TbBrandNextjs size={60} color="#FFFFFF" />,
+        icon: <TbBrandNextjs size={60} color="#000000" />,
         position: { top: "70%", left: "15%" },
         size: "60px",
       },
       {
-        icon: <Users size={80} color="#FFFFFF" />,
+        icon: <Users size={80} color="#000000" />,
         position: { top: "20%", left: "80%" },
         size: "80px",
       },
       {
-        icon: <Globe size={60} color="#FFFFFF" />,
+        icon: <Globe size={60} color="#000000" />,
         position: { top: "70%", left: "85%" },
         size: "60px",
       },
       {
-        icon: <Target size={40} color="#FFFFFF" />,
+        icon: <Target size={40} color="#000000" />,
         position: { top: "40%", left: "70%" },
         size: "40px",
       },
     ],
   },
   {
-    title: "Client Success Stories",
-    subtitle: "Real Results, Real Testimonials",
-    description:
-      "Our clients have experienced transformative growth. Hear their stories and see the impact of our partnership.",
+    title: "49%",
+    subtitle: "Women in Tech",
+    description: "Empowering diversity and inclusion in the tech industry.",
     images: [
       {
-        src: "/images/HorImage1.jpg",
+        src: "/images/HorImage2.jpg",
         position: { top: "20%", left: "10%" },
         size: "200px",
       },
       {
-        src: "/images/HorImage2.jpg",
+        src: "/images/HorImage1.jpg",
         position: { top: "65%", left: "20%" },
         size: "160px",
       },
     ],
-    stat: { value: "850+", label: "Satisfied Clients" },
     icons: [
       {
         icon: <Star size={50} color="#FFD700" />,
@@ -352,6 +389,41 @@ const slides: SlideProps[] = [
         icon: <Rocket size={40} color="#FF4500" />,
         position: { top: "40%", left: "40%" },
         size: "40px",
+      },
+    ],
+  },
+  {
+    title: "24/7",
+    subtitle: "Global Support",
+    description:
+      "Round-the-clock assistance for our clients, anytime, anywhere.",
+    images: [
+      {
+        src: "/images/HorImage4.jpg",
+        position: { top: "30%", left: "15%" },
+        size: "180px",
+      },
+      {
+        src: "/images/HorImage2.jpg",
+        position: { top: "60%", left: "80%" },
+        size: "220px",
+      },
+    ],
+    icons: [
+      {
+        icon: <Coffee size={50} color="#8B4513" />,
+        position: { top: "20%", left: "60%" },
+        size: "50px",
+      },
+      {
+        icon: <Heart size={40} color="#FF69B4" />,
+        position: { top: "70%", left: "30%" },
+        size: "40px",
+      },
+      {
+        icon: <Sparkles size={60} color="#FFD700" />,
+        position: { top: "40%", left: "90%" },
+        size: "60px",
       },
     ],
   },
