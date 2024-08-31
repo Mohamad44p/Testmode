@@ -76,10 +76,10 @@ export default function AllCareers() {
         <OurTeam />
       </section>
       <Banner
-        ctaLink="/contact"
-        ctaText="LET'S TALK"
-        title="Come Build a Better Future with Us."
-        description="Explore how Significo's partnership can advance your digital experience and unleash your technology development."
+        title="Explore Our Webinars"
+        description="We host webinars on a variety of topics. Join us to learn more about the latest trends in the industry."
+        ctaLink="/webinars"
+        ctaText="View Webinars"
       />
     </div>
   );

@@ -6,6 +6,7 @@ import ProjectShowcase from "./ProjectShowcase";
 import { ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
 import Lenis from "@studio-freight/lenis";
+import Banner from "../Banner";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -61,6 +62,14 @@ export default function AllProjects() {
       <section data-color="Almond" className="section mt-12">
         <ProjectsHero />
         <ProjectShowcase />
+      </section>
+      <section className="section">
+        <Banner
+          ctaLink="/Contact"
+          ctaText="Contact Us"
+          description="We are always looking for kindred spirits in Health, Engineering, Design, Product, and Messaging."
+          title="Ready to start a project?"
+        />
       </section>
     </div>
   );

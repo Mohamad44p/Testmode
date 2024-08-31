@@ -9,7 +9,7 @@ export default function JoinUsBa() {
   const [isVisible, setIsVisible] = useState(false);
 
   return (
-    <section className="relative my-[20vh] flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 opacity-10 mix-blend-overlay"></div>
       <div className="container mx-auto px-4">
         <motion.div

@@ -82,10 +82,10 @@ export default function AboutUsPage() {
       </section>
       <section>
         <Banner
-          title="Come Build a Better Future with Us."
-          description="Explore how Significo's partnership can advance your digital experience and unleash your technology development."
-          ctaText="LET'S TALK"
-          ctaLink="/contact"
+          title="Visit Our Latest Insights"
+          description="We are always looking for new ways to help you grow your business. Check out our latest insights."
+          ctaText="View Insights"
+          ctaLink="/insights"
         />
       </section>
     </div>

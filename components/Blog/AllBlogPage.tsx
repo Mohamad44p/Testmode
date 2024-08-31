@@ -22,6 +22,7 @@ import BlogPostHero from "@/components/Blog/BlogPostHero";
 import TestOne from "@/components/Blog/TestOne";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import BlogPostPage from "./[id]/page";
+import Banner from "../Banner";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -391,6 +392,12 @@ export default function AllBlogPage() {
         <TestOne />
         <BlogPostPage/>
       </motion.div>
+      <Banner
+        ctaLink="/team"
+        ctaText="Meet the Team"
+        description="Learn more about the people behind the scenes."
+        title="Our Team"
+      />
     </div>
   );
 }

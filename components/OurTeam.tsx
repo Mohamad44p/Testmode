@@ -55,7 +55,8 @@ const teamMembers = [
     name: "ASEEL AL-MUHTASEB",
     position: "MOBILE DEVELOPER",
     imgSrc:
-      "https://images.unsplash.com/photo-1609505848912-b7c3b8b4beda?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzR8fHBvcnRyYWl0fGVufDB8fDB8fHww",
+      "/images/AsselImage.png",
+    bg: "#434D57",
   },
   {
     id: "07",

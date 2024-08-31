@@ -86,10 +86,10 @@ export default function AllSolutions() {
       </section>
       <section>
         <Banner
-          title="Come Build a Better Future with Us."
-          ctaLink="/contact"
-          ctaText="LET'S TALK"
-          description="Explore how Significo's partnership can advance your digital experience and unleash your technology development."
+          title="Explore Our Projects"
+          ctaLink="/projects"
+          ctaText="View Projects"
+          description="We have worked on a wide range of projects, from small to large scale. We have the expertise to deliver the best solutions for your business."
         />
       </section>
     </main>

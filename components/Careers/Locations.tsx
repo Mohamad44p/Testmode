@@ -10,22 +10,23 @@ export default function Component() {
     {
       name: "Everywhere",
       address: "Fully Remote",
-      image: "/images/Carecter1.jpeg",
+      image: "/images/Earth.jpg",
     },
     {
-      name: "Berlin, Germany",
-      address: "Cuvrystrasse 1, 10997, Berlin",
+      name: "Palestine , Hebron",
       image: "/images/Carecter2.jpeg",
     },
     {
-      name: "Austin, Texas, USA",
-      address: "900 Lydia St, Austin, TX 78702",
+      name: "Palestine, Ramallah",
       image: "/images/Carecter3.jpeg",
     },
   ];
 
   return (
-    <div data-color="soft-orange" className="section h-screen mt-[40vh] p-8 text-black font-sans">
+    <div
+      data-color="soft-orange"
+      className="section h-screen mt-[40vh] p-8 text-black font-sans"
+    >
       <p className="mb-2 text-lg font-light">
         Explore our vibrant offices in Berlin and Austin, or connect with us
         remotely - we're everywhere you are.

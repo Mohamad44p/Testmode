@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -269,7 +270,7 @@ function SlideContent({
             style={{
               top: iconData.position.top,
               left: iconData.position.left,
-              transform: "translate(-50%, -50%)",
+              transform: "translate(-50%, -5  0%)",
             }}
           >
             <div style={{ width: iconData.size, height: iconData.size }}>
@@ -296,7 +297,7 @@ const slides: SlideProps[] = [
     images: [
       {
         src: "/images/HorImage1.jpg",
-        position: { top: "15%", left: "5%" },
+        position: { top: "15%", left: "15%" },
         size: "250px",
       },
       {
