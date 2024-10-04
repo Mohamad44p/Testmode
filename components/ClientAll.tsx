@@ -1,15 +1,14 @@
 "use client";
 
 import React, { useEffect } from "react";
-import HomeSection from "./Hero";
+import HomeSection from "./Hero/Hero";
 import CardsSec from "./CardsSec";
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Horizontal from "./Horizontal";
-import OurTeam from "./OurTeam";
+import OurTeam from "./ourTeam/OurTeam";
 import Testimonial from "./Testimonial";
-import LastSec from "./LastSec";
 import Banner from "./Banner";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -39,8 +38,11 @@ const changeBodyBackgroundColor = () => {
     });
 };
 
-export default function ClientAll({children}:{
+export default function ClientAll({children , ourTeam , Herossr , BlogHome}:{
     children: React.ReactNode;
+    ourTeam: React.ReactNode;
+    Herossr: React.ReactNode;
+    BlogHome: React.ReactNode;
 }) {
   useEffect(() => {
     const lenis = new Lenis();
@@ -66,7 +68,7 @@ export default function ClientAll({children}:{
   return (
     <div className="main w-full">
       {" "}
-      <HomeSection />
+      {Herossr}
       <section data-color="white">
         <CardsSec />
       </section>
@@ -74,7 +76,7 @@ export default function ClientAll({children}:{
         <Horizontal />
       </section>
       <section data-color="white">
-        <OurTeam />
+        {ourTeam}
       </section>
       <section data-color="white">
         <Testimonial />
@@ -83,7 +85,7 @@ export default function ClientAll({children}:{
         {children}
       </section>
       <section data-color="white">
-        <LastSec />
+        {BlogHome}
       </section>
       <section>
         <Banner

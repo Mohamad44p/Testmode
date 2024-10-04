@@ -4,7 +4,7 @@ import AboutPage from "@/components/About/AboutPage";
 import CircleSection from "@/components/About/CircleSection";
 import Story from "@/components/About/Story";
 import CenterAligner from "@/components/CenterAligner";
-import OurTeam from "@/components/OurTeam";
+import OurTeam from "@/components/ourTeam/OurTeam";
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";

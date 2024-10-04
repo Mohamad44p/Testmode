@@ -1,3 +1,4 @@
+import React from "react";
 import { Button } from "../ui/button";
 import { TextReveal } from "../ui/typography";
 

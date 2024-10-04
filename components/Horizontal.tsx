@@ -1,55 +1,30 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Button } from "@/components/ui/button";
-import {
-  ChevronRightIcon,
-  Users,
-  BarChart,
-  Globe,
-  Star,
-  Zap,
-  Target,
-  Rocket,
-  Coffee,
-  Heart,
-  Sparkles,
-} from "lucide-react";
-import Link from "next/link";
-import { TbBrandNextjs } from "react-icons/tb";
+'use client'
 
-gsap.registerPlugin(ScrollTrigger);
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import React, { useEffect, useRef } from "react"
+import { Button } from "./ui/button"
+import { TextReveal } from "./ui/typography"
+import { Users, BarChart, Star } from "lucide-react"
 
-interface SlideProps {
-  title: string;
-  subtitle: string;
-  description: string;
-  images: Array<{
-    src: string;
-    position: { top: string; left: string };
-    size?: string;
-  }>;
-  stat?: { value: string; label: string };
-  icons?: Array<{
-    icon: React.ReactNode;
-    position: { top: string; left: string };
-    size: string;
-  }>;
-}
+gsap.registerPlugin(ScrollTrigger)
 
-export default function Horizontal() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const slidesRef = useRef<HTMLDivElement>(null);
+export default function ImprovedHorizontal() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const slidesRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!containerRef.current || !slidesRef.current) return;
+    if (!containerRef.current || !slidesRef.current) return
 
-    const slides = gsap.utils.toArray<HTMLElement>(slidesRef.current.children);
-    const totalWidth = slides.reduce(
-      (acc, slide) => acc + slide.offsetWidth,
-      0
-    );
+    const slides = gsap.utils.toArray<HTMLElement>(slidesRef.current.children)
+    
+    const calculateTotalWidth = () => {
+      return slides.reduce((acc, slide) => acc + slide.offsetWidth, 0)
+    }
+
+    let totalWidth = calculateTotalWidth()
 
     const animation = gsap.to(slides, {
       x: () => `-${totalWidth - window.innerWidth}`,
@@ -57,16 +32,20 @@ export default function Horizontal() {
       scrollTrigger: {
         trigger: containerRef.current,
         pin: true,
-        scrub: 1,
+        scrub: 0.5,
         end: () => `+=${totalWidth}`,
         invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          totalWidth = calculateTotalWidth()
+          self.end = `+=${totalWidth}`
+        },
       },
-    });
+    })
 
-    slides.forEach((slide, index) => {
-      const content = slide.querySelector(".slide-content");
-      const images = slide.querySelectorAll(".slide-image");
-      const icons = slide.querySelectorAll(".slide-icon");
+    slides.forEach((slide) => {
+      const content = slide.querySelector(".slide-content")
+      const images = slide.querySelectorAll(".slide-image")
+      const icons = slide.querySelectorAll(".slide-icon")
 
       gsap.fromTo(
         content,
@@ -74,8 +53,8 @@ export default function Horizontal() {
         {
           opacity: 1,
           y: 0,
-          duration: 1,
-          ease: "power3.out",
+          duration: 0.5, // Reduced from 1 to 0.5 for faster animation
+          ease: "power2.out", // Changed to a faster easing function
           scrollTrigger: {
             trigger: slide,
             containerAnimation: animation,
@@ -84,7 +63,7 @@ export default function Horizontal() {
             toggleActions: "play reverse play reverse",
           },
         }
-      );
+      )
 
       gsap.fromTo(
         images,
@@ -92,9 +71,9 @@ export default function Horizontal() {
         {
           scale: 1,
           opacity: 1,
-          duration: 1,
-          ease: "back.out(1.7)",
-          stagger: 0.2,
+          duration: 0.5, // Reduced from 1 to 0.5 for faster animation
+          ease: "back.out(1.5)", // Adjusted for faster animation
+          stagger: 0.1, // Reduced from 0.2 to 0.1 for faster staggering
           scrollTrigger: {
             trigger: slide,
             containerAnimation: animation,
@@ -103,7 +82,7 @@ export default function Horizontal() {
             toggleActions: "play reverse play reverse",
           },
         }
-      );
+      )
 
       gsap.fromTo(
         icons,
@@ -111,9 +90,9 @@ export default function Horizontal() {
         {
           rotation: 0,
           opacity: 1,
-          duration: 1,
-          ease: "elastic.out(1, 0.3)",
-          stagger: 0.1,
+          duration: 0.5, // Reduced from 1 to 0.5 for faster animation
+          ease: "back.out(1.5)", // Changed to a faster easing function
+          stagger: 0.05, // Reduced from 0.1 to 0.05 for faster staggering
           scrollTrigger: {
             trigger: slide,
             containerAnimation: animation,
@@ -122,310 +101,105 @@ export default function Horizontal() {
             toggleActions: "play reverse play reverse",
           },
         }
-      );
-    });
+      )
+    })
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowRight") {
         containerRef.current?.scrollBy({
           left: window.innerWidth,
           behavior: "smooth",
-        });
+        })
       } else if (e.key === "ArrowLeft") {
         containerRef.current?.scrollBy({
           left: -window.innerWidth,
           behavior: "smooth",
-        });
+        })
       }
-    };
-    window.addEventListener("keydown", handleKeyDown);
+    }
+    window.addEventListener("keydown", handleKeyDown)
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [])
 
   return (
     <div
+      data-color="Ming"
       ref={containerRef}
-      className="overflow-x-hidden font-neue-Light text-black relative h-screen bg-[#FFA07A]"
+      className="overflow-hidden section my-[20vh] h-screen bg-[#4089c1]"
     >
       <div ref={slidesRef} className="flex h-full">
-        {slides.map((slide, index) => (
-          <SlideContent key={index} {...slide} />
-        ))}
-      </div>
-      <div className="fixed button bottom-8 left-8 z-50">
-        <Link href="/Contact">
-          <Button className="group h-14 rounded-full bg-black px-6 text-white transition-all hover:bg-gray-800">
-            <span className="mr-2 text-lg font-semibold">Partner with us</span>
-            <ChevronRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-          </Button>
-        </Link>
-      </div>
-    </div>
-  );
-}
+        <div className="slide w-[1200px] h-screen flex-shrink-0 flex flex-col items-center justify-center relative">
+          <h1 className="text-6xl md:text-8xl font-bold text-white mb-8">
+            Real Talk,<br />Real Impact
+          </h1>
+          <p className="text-xl md:text-2xl text-white mb-12 max-w-2xl text-center">
+            We're on a mission to impact as many lives as possible and build a better company while we do it.
+          </p>
+          <div className="absolute top-1/4 -right-52 w-[21rem] h-[21rem] rounded-full overflow-hidden">
+            <img src="/images/HorImage4.jpg" alt="Team member" className="w-full h-full object-cover" />
+          </div>
+        </div>
 
-function SlideContent({
-  title,
-  subtitle,
-  description,
-  images,
-  stat,
-  icons,
-}: SlideProps) {
-  const isFirstSlide = title === "Real Talk, Real Impact";
+        <div className="slide w-screen h-screen flex-shrink-0 flex flex-col items-center justify-center relative">
+          <Users className="text-white w-24 h-24 mb-8 slide-icon" />
+          <h2 className="text-8xl md:text-9xl font-bold text-white mb-4 slide-content">10K</h2>
+          <p className="text-2xl md:text-3xl text-white mb-8 slide-content">Digital Campinas — Profit-Boosting Tactics</p>
+          <p className="text-xl text-white slide-content">For over 500 clients</p>
+          <div className="absolute top-1/4 left-60 text-white max-w-[400px] slide-content">
+            <p>
+              We're on a mission to impact as many lives as possible and build a better company while we do it. Here's our progress.
+            </p>
+          </div>
+          <div className="absolute top-1/4 -right-52 w-[21rem] h-[21rem] rounded-full overflow-hidden slide-image">
+            <img src="/images/HorImage3.jpg" alt="Client" className="w-full h-full object-cover" />
+          </div>
+        </div>
 
-  return (
-    <div className="relative font-neue-Light flex h-full w-screen flex-shrink-0 items-center justify-center p-8 overflow-hidden">
-      {" "}
-      <div className="relative max-w-3xl z-10 slide-content">
-        <div className="space-y-4 text-center">
-          <h2
-            className={`text-5xl  md:text-8xl font-light leading-tight tracking-wide ${
-              isFirstSlide ? "text-black" : "font-bold"
-            }`}
-          >
-            {isFirstSlide ? (
-              <>
-                Real Talk,
-                <br />
-                Real Impact
-              </>
-            ) : (
-              title
-            )}
-          </h2>
-          {!isFirstSlide && (
-            <>
-              <p
-                className="text-2xl  text-black font-semibold"
-                style={{ fontFamily: '"Helvetica Neue", Arial, sans-serif' }}
-              >
-                {subtitle}
-              </p>
-              <p
-                className="text-gray-800 text-base"
-                style={{
-                  fontFamily: '"Helvetica Neue", Arial, sans-serif',
-                  maxWidth: "500px",
-                  margin: "0 auto",
-                }}
-              >
-                {description}
-              </p>
-              {stat && (
-                <div className="space-y-1 py-6">
-                  <p
-                    className="text-6xl font-bold sm:text-7xl md:text-8xl"
-                    style={{
-                      fontFamily: '"Helvetica Neue", Arial, sans-serif',
-                      letterSpacing: "-0.05em",
-                    }}
-                  >
-                    {stat.value}
-                  </p>
-                  <p
-                    className="text-xl text-gray-800"
-                    style={{
-                      fontFamily: '"Helvetica Neue", Arial, sans-serif',
-                    }}
-                  >
-                    {stat.label}
-                  </p>
-                </div>
-              )}
-            </>
-          )}
+        <div className="slide w-screen h-screen flex-shrink-0 flex flex-col items-center justify-center relative">
+          <BarChart className="text-white w-24 h-24 mb-8 slide-icon" />
+          <h2 className="text-8xl md:text-9xl font-bold text-white mb-4 slide-content">20</h2>
+          <p className="text-2xl md:text-3xl text-white mb-4 slide-content">Marketing & Tech Experts</p>
+          <p className="text-xl text-white max-w-2xl text-center slide-content">
+            Our global and diverse team brings creative ideas to fuel your growth.
+          </p>
+          <div className="absolute top-1/4 left-60 text-white max-w-[400px] slide-content">
+            <p>
+              We're on a mission to impact as many lives as possible and build a better company while we do it. Here's our progress.
+            </p>
+          </div>
+        </div>
+        
+        <div className="slide w-screen h-screen flex-shrink-0 flex flex-col items-center justify-center relative">
+          <Star className="text-white w-24 h-24 mb-8 slide-icon" />
+          <h2 className="text-8xl md:text-9xl font-bold text-white mb-4 slide-content">850</h2>
+          <p className="text-2xl md:text-3xl text-white mb-8 slide-content">Client Testimonials</p>
+          <p className="text-xl text-white max-w-2xl text-center slide-content">
+            Our clients love the results we deliver. Here's what they have to say.
+          </p>
+          <div className="absolute top-40 left-40 w-28 h-28 rounded-full overflow-hidden slide-image">
+            <img src="/images/HorImage3.jpg" alt="Client" className="w-full h-full object-cover" />
+          </div>
+          <div className="absolute bottom-40 right-40 w-32 h-32 rounded-full overflow-hidden slide-image">
+            <img src="/images/HorImage2.jpg" alt="Client" className="w-full h-full object-cover" />
+          </div>
         </div>
       </div>
-      {!isFirstSlide &&
-        images.map((image, index) => (
-          <div
-            key={index}
-            className="absolute rounded-full overflow-hidden slide-image"
-            style={{
-              width: image.size || "150px",
-              height: image.size || "150px",
-              top: image.position.top,
-              left: image.position.left,
-              transform: "translate(-50%, -50%)",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-            }}
-          >
-            <img
-              src={image.src}
-              alt={`Slide image ${index + 1}`}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        ))}
-      {icons &&
-        icons.map((iconData, index) => (
-          <div
-            key={index}
-            className="absolute slide-icon"
-            style={{
-              top: iconData.position.top,
-              left: iconData.position.left,
-              transform: "translate(-50%, -5  0%)",
-            }}
-          >
-            <div style={{ width: iconData.size, height: iconData.size }}>
-              {iconData.icon}
-            </div>
-          </div>
-        ))}
-    </div>
-  );
-}
 
-const slides: SlideProps[] = [
-  {
-    title: "Real Talk, Real Impact",
-    subtitle: "",
-    description: "",
-    images: [],
-  },
-  {
-    title: "20.4M",
-    subtitle: "Lives Impacted",
-    description:
-      "Real people, real lives — we've built products and solutions that make a difference.",
-    images: [
-      {
-        src: "/images/HorImage1.jpg",
-        position: { top: "15%", left: "15%" },
-        size: "250px",
-      },
-      {
-        src: "/images/HorImage2.jpg",
-        position: { top: "70%", left: "25%" },
-        size: "180px",
-      },
-      {
-        src: "/images/HorImage3.jpg",
-        position: { top: "45%", left: "85%" },
-        size: "200px",
-      },
-    ],
-    icons: [
-      {
-        icon: <Globe size={60} color="#000000" />,
-        position: { top: "15%", left: "75%" },
-        size: "60px",
-      },
-      {
-        icon: <Zap size={40} color="#000000" />,
-        position: { top: "85%", left: "80%" },
-        size: "40px",
-      },
-    ],
-  },
-  {
-    title: "13",
-    subtitle: "Nationalities",
-    description:
-      "Our global team brings diverse perspectives and innovative solutions.",
-    images: [
-      {
-        src: "/images/HorImage4.jpg",
-        position: { top: "20%", left: "10%" },
-        size: "220px",
-      },
-    ],
-    icons: [
-      {
-        icon: <TbBrandNextjs size={60} color="#000000" />,
-        position: { top: "70%", left: "15%" },
-        size: "60px",
-      },
-      {
-        icon: <Users size={80} color="#000000" />,
-        position: { top: "20%", left: "80%" },
-        size: "80px",
-      },
-      {
-        icon: <Globe size={60} color="#000000" />,
-        position: { top: "70%", left: "85%" },
-        size: "60px",
-      },
-      {
-        icon: <Target size={40} color="#000000" />,
-        position: { top: "40%", left: "70%" },
-        size: "40px",
-      },
-    ],
-  },
-  {
-    title: "49%",
-    subtitle: "Women in Tech",
-    description: "Empowering diversity and inclusion in the tech industry.",
-    images: [
-      {
-        src: "/images/HorImage2.jpg",
-        position: { top: "20%", left: "10%" },
-        size: "200px",
-      },
-      {
-        src: "/images/HorImage1.jpg",
-        position: { top: "65%", left: "20%" },
-        size: "160px",
-      },
-    ],
-    icons: [
-      {
-        icon: <Star size={50} color="#FFD700" />,
-        position: { top: "15%", left: "70%" },
-        size: "50px",
-      },
-      {
-        icon: <BarChart size={60} color="#000000" />,
-        position: { top: "75%", left: "50%" },
-        size: "60px",
-      },
-      {
-        icon: <Rocket size={40} color="#FF4500" />,
-        position: { top: "40%", left: "40%" },
-        size: "40px",
-      },
-    ],
-  },
-  {
-    title: "24/7",
-    subtitle: "Global Support",
-    description:
-      "Round-the-clock assistance for our clients, anytime, anywhere.",
-    images: [
-      {
-        src: "/images/HorImage4.jpg",
-        position: { top: "30%", left: "15%" },
-        size: "180px",
-      },
-      {
-        src: "/images/HorImage2.jpg",
-        position: { top: "60%", left: "80%" },
-        size: "220px",
-      },
-    ],
-    icons: [
-      {
-        icon: <Coffee size={50} color="#8B4513" />,
-        position: { top: "20%", left: "60%" },
-        size: "50px",
-      },
-      {
-        icon: <Heart size={40} color="#FF69B4" />,
-        position: { top: "70%", left: "30%" },
-        size: "40px",
-      },
-      {
-        icon: <Sparkles size={60} color="#FFD700" />,
-        position: { top: "40%", left: "90%" },
-        size: "60px",
-      },
-    ],
-  },
-];
+      <div className="fixed button bottom-[40px] left-[40px] z-50">
+        <Button className="w-[290px] h-[50px] px-5 md:px-10 rounded-2xl bg-white text-[#4089c1] md:flex py-5 border-[1px] hover:bg-[#2b6087] hover:text-white transition-colors duration-300">
+          <div className="texthover masker h-[1.5rem] overflow-hidden">
+            <h1 className="text-lg md:text-xl">
+              <TextReveal className="cursor-pointer">
+                Discover Our Story
+              </TextReveal>
+            </h1>
+          </div>
+        </Button>
+      </div>
+    </div>
+  )
+}

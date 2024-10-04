@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import HeroCareers from "./HeroCareers";
 import WhyChoose from "./WhyChoose";
 import JobOpportunities from "./JobOpportunities";
-import OurTeam from "../OurTeam";
+import OurTeam from "../ourTeam/OurTeam";
 import Banner from "../Banner";
 import Locations from "./Locations";
 import { ScrollTrigger } from "gsap/all";

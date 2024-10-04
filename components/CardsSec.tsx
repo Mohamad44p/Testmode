@@ -16,7 +16,7 @@ import { FaChartLine } from 'react-icons/fa'
 const cardConfigs = [
   {
     className: "no1",
-    background: "#014040",
+    background: "#4089c1",
     color: "#fff",
     title: "SEO & Lead Generation",
     text: "Drive organic traffic, improve search rankings, and convert leads into loyal customers with our comprehensive solutions tailored to your business.",
@@ -26,7 +26,7 @@ const cardConfigs = [
   },
   {
     className: "no2",
-    background: "#014040",
+    background: "#4089c1",
     color: "#fff",
     title: "UI/UX Interactive",
     text: "We craft immersive digital experiences with sleek designs and user-friendly interfaces, enhancing engagement and satisfaction for your audience.",
@@ -34,7 +34,7 @@ const cardConfigs = [
   },
   {
     className: "no3",
-    background: "#014040",
+    background: "#4089c1",
     color: "#fff",
     title: "Content Marketing",
     text: "We craft captivating narratives and deliver strategic content to captivate your audience, spark conversations, and drive impactful results for your brand.",
@@ -44,7 +44,7 @@ const cardConfigs = [
   },
   {
     className: "no4",
-    background: "#014040",
+    background: "#4089c1",
     color: "#fff",
     title: "Branding & Creative Media",
     text: "Transforming visions into compelling stories and striking visuals that define and amplify your brand's unique identity and market presence.",
@@ -54,7 +54,7 @@ const cardConfigs = [
   },
   {
     className: "no5",
-    background: "#014040",
+    background: "#4089c1",
     color: "#fff",
     title: "Digital Strategy and Consulting",
     text: "Crafting Revenue-Driven Strategies to Propel Your Business Forward, Leveraging Data Insights and Innovation for Sustainable Growth.",
@@ -62,7 +62,7 @@ const cardConfigs = [
   },
   {
     className: "no6",
-    background: "#014040",
+    background: "#4089c1",
     color: "#fff",
     title: "E-commerce Solutions",
     text: "Streamlined online stores designed for seamless customer experiences, enhanced conversions, and scalable growth.",
@@ -70,7 +70,7 @@ const cardConfigs = [
   },
   {
     className: "no7",
-    background: "#014040",
+    background: "#4089c1",
     color: "#fff",
     title: "Digital Training and Workshops",
     text: "Transforming Teams into Digital Experts with Customized Learning Experiences and Practical Strategies for Success.",
@@ -78,7 +78,7 @@ const cardConfigs = [
   },
   {
     className: "no8",
-    background: "#014040",
+    background: "#4089c1",
     color: "#fff",
     title: "Software Development",
     text: "Transforming Ideas into Powerful Solutions, Tailored to Your Needs for Seamless Performance and Efficiency.",
@@ -133,7 +133,7 @@ export default function CardsSec() {
         <p className="text-lg md:text-xl hidden md:flex font-light leading-[1.5rem] md:leading-[2rem] pt-5 md:pt-10">
           <RoughNotation
             type="underline"
-            color="#000"
+            color="#4089c1"
             animate
             animationDelay={900}
             strokeWidth={2}
@@ -150,7 +150,7 @@ export default function CardsSec() {
           We craft digital marketing and tech solutions that drive profit
           growth.
         </h1>
-        <div className="w-fit OP px-5 md:px-10 hidden  rounded-2xl bg-[#014040] text-white md:flex py-5 border-[1px] border-[#014040]">
+        <div className="w-fit OP px-5 md:px-10 hidden  rounded-2xl bg-[#4089c1] text-white md:flex py-5 border-[1px] border-[#4089c1]">
           <div className="texthover masker h-[1.5rem] overflow-hidden">
             <Link href="/Solutions">
               <h1 className="text-lg md:text-xl">
@@ -186,7 +186,7 @@ export default function CardsSec() {
             </div>
           ))}
         </div>
-        <div className="w-fit px-5 md:px-10 mx-auto flex md:hidden py-5 border-[1px] rounded-2xl bg-[#014040] text-white border-[#014040]">
+        <div className="w-fit px-5 md:px-10 mx-auto flex md:hidden py-5 border-[1px] rounded-2xl bg-[#4089c1] text-white border-[#4089c1]">
           <div className="texthover masker h-[1.5rem] overflow-hidden">
             <h1 className="text-lg md:text-xl">
               <TextReveal className="cursor-pointer">
