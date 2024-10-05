@@ -1,6 +1,6 @@
+"use client"
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
-"use client"
 
 import gsap from "gsap";
 import React, { useEffect, useRef } from "react";

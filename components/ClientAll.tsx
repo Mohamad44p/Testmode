@@ -1,49 +1,56 @@
 "use client";
 
-import React, { useEffect } from "react";
-import HomeSection from "./Hero/Hero";
-import CardsSec from "./CardsSec";
+import React, { useEffect, useRef } from "react";
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import CardsSec from "./CardsSec";
 import Horizontal from "./Horizontal";
-import OurTeam from "./ourTeam/OurTeam";
 import Testimonial from "./Testimonial";
 import Banner from "./Banner";
+import dynamic from "next/dynamic";
+
+
+const DynamicHorizontal = dynamic(() => import('./Horizontal'), { ssr: false })
 
 gsap.registerPlugin(ScrollTrigger);
 
-const changeBodyBackgroundColor = () => {
-  gsap.utils
-    .toArray<HTMLElement>(".section")
-    .forEach((section: HTMLElement) => {
-      const sectionElement = section as HTMLElement;
-      const color = sectionElement.dataset.color;
 
-      ScrollTrigger.create({
-        trigger: sectionElement,
-        start: "top center",
-        end: "bottom center",
-        onEnter: () => {
-          if (color) {
-            document.body.setAttribute("theme", color);
-          }
-        },
-        onEnterBack: () => {
-          if (color) {
-            document.body.setAttribute("theme", color);
-          }
-        },
-      });
+const changeBodyBackgroundColor = (sections: HTMLElement[]) => {
+  sections.forEach((section: HTMLElement) => {
+    const color = section.dataset.color;
+
+    ScrollTrigger.create({
+      trigger: section,
+      start: "top 50%",
+      end: "bottom 50%",
+      onEnter: () => {
+        if (color) {
+          document.body.setAttribute("theme", color);
+        }
+      },
+      onEnterBack: () => {
+        if (color) {
+          document.body.setAttribute("theme", color);
+        }
+      },
     });
+  });
 };
 
-export default function ClientAll({children , ourTeam , Herossr , BlogHome}:{
-    children: React.ReactNode;
-    ourTeam: React.ReactNode;
-    Herossr: React.ReactNode;
-    BlogHome: React.ReactNode;
+export default function ClientAll({
+  children,
+  ourTeam,
+  Herossr,
+  BlogHome,
+}: {
+  children: React.ReactNode;
+  ourTeam: React.ReactNode;
+  Herossr: React.ReactNode;
+  BlogHome: React.ReactNode;
 }) {
+  const sectionsRef = useRef<HTMLElement[]>([]);
+
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -54,40 +61,54 @@ export default function ClientAll({children , ourTeam , Herossr , BlogHome}:{
 
     requestAnimationFrame(raf);
 
-    changeBodyBackgroundColor();
+    const sections = document.querySelectorAll<HTMLElement>('.section');
+    sectionsRef.current = Array.from(sections);
+    changeBodyBackgroundColor(sectionsRef.current);
 
     return () => {
+      lenis.destroy();
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       ScrollTrigger.clearMatchMedia();
       ScrollTrigger.clearScrollMemory();
-      ScrollTrigger.update();
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
       ScrollTrigger.refresh();
-    }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   return (
     <div className="main w-full">
-      {" "}
-      {Herossr}
-      <section data-color="white">
+      <section className="section" data-color="white">
+        {Herossr}
+      </section>
+      <section className="section" data-color="white">
         <CardsSec />
       </section>
-      <section data-color="Ming">
+      <section className="section" data-color="Ming">
         <Horizontal />
       </section>
-      <section data-color="white">
+      <section className="section" data-color="white">
         {ourTeam}
       </section>
-      <section data-color="white">
+      <section className="section" data-color="white">
         <Testimonial />
       </section>
-      <section data-color="white">
+      <section className="section" data-color="white">
         {children}
       </section>
-      <section data-color="white">
+      <section className="section" data-color="white">
         {BlogHome}
       </section>
-      <section>
+      <section className="section" data-color="white">
         <Banner
           title="Come Build a Better Future with Us."
           description="Explore how Significo's partnership can advance your digital experience and unleash your technology development."

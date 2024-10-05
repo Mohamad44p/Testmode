@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import CardCase from './CardCase'
 
 async function getProjects() {
-  const res = await fetch('https://befoundonline.ps/wp-json/wp/v2/project?_embed&per_page=5', { next: { revalidate: 3600 } })
+  const res = await fetch(`${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/wp-json/wp/v2/project?_embed&per_page=5`, { next: { revalidate: 3600 } })
   if (!res.ok) {
     throw new Error('Failed to fetch projects')
   }

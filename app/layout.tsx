@@ -5,8 +5,6 @@ import Navbar from "@/components/Navbar";
 import { Lenis } from "@/components/Lenis";
 import AnimatedFooter from "@/components/Footer";
 import PreloaderWrapper from "@/components/preloader/PreloaderWrapper";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from "@vercel/analytics/react";
 import localFont from "next/font/local";
 import PageTransition from "@/components/Transition";
 
@@ -26,22 +24,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${neueMachina.variable}`}>
         <Lenis>
           <PreloaderWrapper>
             <PageTransition>
               <Navbar />
               <ScrollButton />
-              <main className="">{children}</main>
+              <main>{children}</main>
               <section data-color="black">
                 <AnimatedFooter />
               </section>
             </PageTransition>
           </PreloaderWrapper>
         </Lenis>
-        <SpeedInsights />
-        <Analytics />
       </body>
     </html>
   );
