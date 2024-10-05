@@ -10,6 +10,7 @@ import Locations from "./Locations";
 import { ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
 import Lenis from "@studio-freight/lenis";
+import OurTeamPage from "../ourTeam/OurTeamSsr";
 
 const changeBodyBackgroundColor = () => {
   gsap.utils
@@ -73,7 +74,7 @@ export default function AllCareers() {
         <JobOpportunities />
       </section>
       <section data-color="Almond">
-        <OurTeam />
+        <OurTeamPage />
       </section>
       <Banner
         title="Explore Our Webinars"

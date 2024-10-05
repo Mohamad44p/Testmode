@@ -3,74 +3,25 @@ import { Button } from "../ui/button";
 import { TextReveal } from "../ui/typography";
 
 /* eslint-disable @next/next/no-img-element */
-const teamMembers = [
-  {
-    id: "01",
-    name: "BASHAR AL-BAKRI",
-    position: "CEO, Marketing Strategist",
-    imgSrc: "/BA.jpeg",
-    bg: "#DAB78F",
-  },
-  {
-    id: "02",
-    name: "ANAS AL-MUHTASEB",
-    position: "Digital Solutions Architect",
-    imgSrc: "/images/Anas.jpeg",
-    bg: "#A1B3CB",
-  },
-  {
-    id: "03",
-    name: "MOHAMMAD LEILA",
-    position: "ART DIRECTOR",
-    imgSrc: "/Testme.jpeg",
-    bg: "#FC5529",
-  },
-  {
-    id: "04",
-    name: "MOHAMMAD AL-WAKEEL",
-    imgSrc:
-      "https://images.unsplash.com/photo-1587397845856-e6cf49176c70?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzV8fHBvcnRyYWl0fGVufDB8fDB8fHww",
-    position: "SENIOR GRAPHIC DESIGNER",
-    bg: "#000",
-  },
-  {
-    id: "05",
-    name: "RAHAF DWEIK",
-    position: "Chief Innovation Officer",
-    imgSrc: "/images/Rahaf.jpeg",
-    bg: "#C7B691",
-  },
-  {
-    id: "06",
-    name: "MOHAMMAD MARQA",
-    position: "FULL STACK MANAGER",
-    imgSrc: "/images/MohammadMar.jpeg",
-    bg: "#9FA4C4",
-  },
-  {
-    id: "07",
-    name: "ASEEL AL-MUHTASEB",
-    position: "MOBILE DEVELOPER",
-    imgSrc:
-      "https://images.unsplash.com/photo-1609505848912-b7c3b8b4beda?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzR8fHBvcnRyYWl0fGVufDB8fDB8fHww",
-  },
-  {
-    id: "08",
-    name: "MOHAMMAD ABU-OMAR",
-    position: "FRONT-END DEVELOPER",
-    imgSrc: "/images/Mohammad.png",
-    bg: "#749675",
-  },
-];
+interface TeamMember {
+  id: string;
+  name: string;
+  position: string;
+  imgSrc: string;
+  bg: string;
+}
 
-export default function OurTeamMobiel() {
+interface OurTeamProps {
+  membersData: TeamMember[];
+}
+export default function OurTeamMobiel({ membersData }: OurTeamProps) {
   return (
     <>
       <h1 className="text-center mb-12 text-4xl sm:text-6xl tracking-tight">
         Our Team
       </h1>
       <div className="list w-full mt-10 px-4 sm:px-10">
-        {teamMembers.map((member) => (
+        {membersData.map((member) => (
           <div
             key={member.id}
             className="listelem w-full py-6 sm:py-[3rem] border-b-2 border-black px-4 sm:px-10 text-xl sm:text-[2.5rem] relative"

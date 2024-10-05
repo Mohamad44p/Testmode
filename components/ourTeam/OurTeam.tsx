@@ -131,7 +131,7 @@ export default function OurTeam({ membersData }: OurTeamProps) {
         data-color="white"
         className="team section block md:hidden overflow-y-hidden w-full mt-[30vh] mb-[30vh] relative"
       >
-        <OurTeamMobiel />
+        <OurTeamMobiel membersData={membersData} />
       </div>
     </>
   );

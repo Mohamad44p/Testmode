@@ -12,6 +12,7 @@ import React, { useEffect } from "react";
 import FAQ from "./FAQ";
 import ClientLo from "./Clients/ClientLo";
 import Banner from "../Banner";
+import OurTeamPage from "../ourTeam/OurTeamSsr";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -75,7 +76,7 @@ export default function AboutUsPage() {
         <FAQ />
       </section>
       <section data-color="Almond" className="section">
-        <OurTeam />
+        <OurTeamPage />
       </section>
       <section data-color="Almond" className="section">
         <ClientLo />

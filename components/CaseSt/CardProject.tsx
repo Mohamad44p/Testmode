@@ -5,7 +5,7 @@ import styles from "./style.module.scss";
 import { useTransform, motion, useScroll } from "framer-motion";
 import { useRef } from "react";
 
-const Card = ({
+const CardProject = ({
   i,
   title,
   description,
@@ -75,4 +75,4 @@ const Card = ({
   );
 };
 
-export default Card;
+export default CardProject;
