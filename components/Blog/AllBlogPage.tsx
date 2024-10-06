@@ -299,7 +299,8 @@ export default function AllBlogPage({ BlogPosts }: { BlogPosts: BlogPost[] }) {
                         whileTap={{ scale: 0.95 }}
                       >
                         <Link
-                          href={`/blog/${post.slug}`}
+                          href={`/insights/${post.id}`} 
+                          passHref
                           className="inline-flex items-center justify-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors duration-200 group"
                         >
                           Read More

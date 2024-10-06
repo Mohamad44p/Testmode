@@ -113,7 +113,7 @@ export default function BlogPostHero({ latestPost, recentPosts }: { latestPost: 
               >
                 {latestPost.small_description}
               </motion.p>
-              <Link href={`/blog/${latestPost.slug}`}>
+              <Link href={`/insights/${latestPost.id}`}>
                 <motion.button
                   className="inline-flex items-center text-sm font-semibold text-black hover:text-gray-300 transition-colors duration-200"
                   style={{ fontFamily: "'Inter', sans-serif" }}
@@ -149,7 +149,7 @@ export default function BlogPostHero({ latestPost, recentPosts }: { latestPost: 
               >
                 {post.small_description}
               </motion.p>
-              <Link href={`/blog/${post.slug}`}>
+              <Link href={`/insights/${post.id}`}>
                 <motion.button
                   className="inline-flex items-center text-sm font-semibold text-gray-900 hover:text-gray-600 transition-colors duration-200"
                   style={{ fontFamily: "'Inter', sans-serif" }}
