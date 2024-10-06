@@ -1,10 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import { ScrollTrigger } from "gsap/all";
 import React, { useEffect, useCallback, useState } from "react";
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -21,79 +21,20 @@ import { ArrowRight, Search, X } from "lucide-react";
 import BlogPostHero from "@/components/Blog/BlogPostHero";
 import TestOne from "@/components/Blog/TestOne";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import BlogPostPage from "./[id]/page";
 import Banner from "../Banner";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface ArticleProps {
-  image: string;
-  tag: string;
+interface BlogPost {
+  id: number;
   title: string;
-  author: {
-    name: string;
-    avatar: string;
-    initials: string;
-  };
-  date: string;
-  readTime: string;
   excerpt: string;
+  slug: string;
+  main_image: string;
+  small_description: string;
+  categories: string[];
+  tags: string[];
 }
-
-const allArticles: ArticleProps[] = [
-  {
-    image: "/images/Image1.webp",
-    tag: "Thought Leadership",
-    title:
-      "Design with a Purpose: An Interview with Significo's Human-Centric Design Team",
-    author: {
-      name: "Adrienne Lindsey-Carr",
-      avatar: "/placeholder.svg?height=40&width=40",
-      initials: "AL",
-    },
-    date: "Aug 22, 2024",
-    readTime: "2 min",
-    excerpt:
-      "Dive into the world of human-centric design with Significo's innovative team. Learn how they're reshaping the future of user experiences.",
-  },
-  {
-    image: "/images/Image2.png",
-    tag: "Healthcare",
-    title: "Personalizing Healthcare Technology",
-    author: {
-      name: "Dr. Jana Schmidt",
-      avatar: "/placeholder.svg?height=40&width=40",
-      initials: "JS",
-    },
-    date: "Aug 5, 2024",
-    readTime: "2 min",
-    excerpt:
-      "Explore the latest advancements in personalized healthcare technology and how it's revolutionizing patient care and treatment outcomes.",
-  },
-  {
-    image: "/images/Image3.webp",
-    tag: "Digital Therapeutics",
-    title: "Insights into Digital Therapeutics from Significo's DTx Team",
-    author: {
-      name: "Matthew Preston",
-      avatar: "/placeholder.svg?height=40&width=40",
-      initials: "MP",
-    },
-    date: "Aug 6, 2024",
-    readTime: "2 min",
-    excerpt:
-      "Uncover the potential of digital therapeutics with Significo's DTx team. Learn how technology is transforming traditional approaches to healthcare.",
-  },
-];
-
-const categories = [
-  "All",
-  "Thought Leadership",
-  "Healthcare",
-  "Digital Therapeutics",
-  "Technology",
-  "Design",
-];
 
 const changeBodyBackgroundColor = () => {
   gsap.utils
@@ -120,7 +61,7 @@ const changeBodyBackgroundColor = () => {
     });
 };
 
-export default function AllBlogPage() {
+export default function AllBlogPage({ BlogPosts }: { BlogPosts: BlogPost[] }) {
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -142,25 +83,27 @@ export default function AllBlogPage() {
     };
   }, []);
 
-  const [filteredArticles, setFilteredArticles] = useState(allArticles);
+  const [filteredPosts, setFilteredPosts] = useState(BlogPosts);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [isFiltering, setIsFiltering] = useState(false);
   const shouldReduceMotion = useReducedMotion();
 
+  const categories = ["All", ...Array.from(new Set(BlogPosts.flatMap(post => post.categories)))];
+
   const handleFilter = useCallback(() => {
     setIsFiltering(true);
-    const filtered = allArticles.filter((article) => {
+    const filtered = BlogPosts.filter((post) => {
       const matchesSearch =
-        article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        article.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+        post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        post.small_description.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory =
-        selectedCategory === "All" || article.tag === selectedCategory;
+        selectedCategory === "All" || post.categories.includes(selectedCategory);
       return matchesSearch && matchesCategory;
     });
-    setFilteredArticles(filtered);
+    setFilteredPosts(filtered);
     setTimeout(() => setIsFiltering(false), 300);
-  }, [searchTerm, selectedCategory]);
+  }, [searchTerm, selectedCategory, BlogPosts]);
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
@@ -173,8 +116,8 @@ export default function AllBlogPage() {
   const handleClearSearch = useCallback(() => {
     setSearchTerm("");
     setSelectedCategory("All");
-    setFilteredArticles(allArticles);
-  }, []);
+    setFilteredPosts(BlogPosts);
+  }, [BlogPosts]);
 
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -198,12 +141,14 @@ export default function AllBlogPage() {
     },
   };
 
+  const latestPost = BlogPosts[0];
+  const recentPosts = BlogPosts.slice(1, 3);
+
   return (
     <div
-      data-color="White "
-    className="bg-gray-50 min-h-screen section">
-      <BlogPostHero />
-      <motion.div
+      data-color="White"
+      className="bg-gray-50 min-h-screen section">
+      <BlogPostHero latestPost={latestPost} recentPosts={recentPosts} />      <motion.div
         className="container mx-auto px-4 py-8"
         initial="hidden"
         animate="visible"
@@ -283,11 +228,10 @@ export default function AllBlogPage() {
                     }
                     size="sm"
                     onClick={() => setSelectedCategory(category)}
-                    className={`text-xs transition-all duration-200 ${
-                      selectedCategory === category
-                        ? "bg-blue-600 text-white hover:bg-blue-700"
-                        : "hover:bg-blue-100"
-                    }`}
+                    className={`text-xs transition-all duration-200 ${selectedCategory === category
+                      ? "bg-blue-600 text-white hover:bg-blue-700"
+                      : "hover:bg-blue-100"
+                      }`}
                   >
                     {category}
                   </Button>
@@ -304,16 +248,16 @@ export default function AllBlogPage() {
               transition={{ duration: 0.3 }}
               className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 p-6"
             >
-              {filteredArticles.map((article, index) => (
+              {filteredPosts.map((post) => (
                 <motion.div
-                  key={index}
+                  key={post.id}
                   variants={itemVariants}
                   className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                 >
                   <div className="relative h-48 overflow-hidden">
                     <Image
-                      src={article.image}
-                      alt={article.title}
+                      src={post.main_image}
+                      alt={post.title}
                       layout="fill"
                       objectFit="cover"
                       className="transition-transform duration-300 transform hover:scale-110"
@@ -321,36 +265,32 @@ export default function AllBlogPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute top-4 left-4">
                       <div className="inline-block px-3 py-1 text-xs font-semibold text-blue-800 bg-blue-100 rounded-full">
-                        {article.tag}
+                        {post.categories[0]}
                       </div>
                     </div>
                   </div>
                   <div className="p-4">
                     <h3 className="mb-2 text-xl font-bold leading-tight text-gray-800 hover:text-blue-600 transition-colors duration-200">
-                      {article.title}
+                      {post.title}
                     </h3>
                     <p className="mb-4 text-sm text-gray-600">
-                      {article.excerpt}
+                      {post.small_description}
                     </p>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Avatar className="w-8 h-8 border-2 border-blue-200">
-                          <AvatarImage
-                            alt={article.author.name}
-                            src={article.author.avatar}
-                          />
                           <AvatarFallback>
-                            {article.author.initials}
+                            {post.title.charAt(0)}
                           </AvatarFallback>
                         </Avatar>
                         <div className="flex flex-col">
                           <span className="text-xs font-semibold text-gray-800">
-                            {article.author.name}
+                            Author Name
                           </span>
                           <div className="text-xs text-gray-500">
-                            <span>{article.date}</span>
+                            <span>Date</span>
                             <span className="mx-1">•</span>
-                            <span>{article.readTime} read</span>
+                            <span>Read time</span>
                           </div>
                         </div>
                       </div>
@@ -359,7 +299,7 @@ export default function AllBlogPage() {
                         whileTap={{ scale: 0.95 }}
                       >
                         <Link
-                          href={`/blog/${index}`}
+                          href={`/blog/${post.slug}`}
                           className="inline-flex items-center justify-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors duration-200 group"
                         >
                           Read More
@@ -372,7 +312,7 @@ export default function AllBlogPage() {
               ))}
             </motion.div>
           </AnimatePresence>
-          {filteredArticles.length === 0 && (
+          {filteredPosts.length === 0 && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -390,7 +330,6 @@ export default function AllBlogPage() {
           )}
         </motion.div>
         <TestOne />
-        <BlogPostPage/>
       </motion.div>
       <Banner
         ctaLink="/team"

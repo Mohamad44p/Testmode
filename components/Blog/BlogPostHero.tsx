@@ -4,8 +4,20 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import Link from "next/link";
 
-export default function BlogPostHero() {
+interface BlogPost {
+  id: number;
+  title: string;
+  excerpt: string;
+  slug: string;
+  main_image: string;
+  small_description: string;
+  categories: string[];
+  tags: string[];
+}
+
+export default function BlogPostHero({ latestPost, recentPosts }: { latestPost: BlogPost; recentPosts: BlogPost[] }) {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -77,13 +89,13 @@ export default function BlogPostHero() {
           >
             <motion.div className="relative h-72 w-full" variants={fadeInUp}>
               <Image
-                src="/images/Image1.webp"
+                src={latestPost.main_image}
                 alt="Featured article image"
                 layout="fill"
                 objectFit="cover"
               />
               <span className="absolute left-4 top-4 rounded-full bg-purple-400 px-3 py-1 text-sm font-semibold text-white">
-                Thought Leadership
+                {latestPost.categories[0]}
               </span>
             </motion.div>
             <div className="p-6">
@@ -92,46 +104,33 @@ export default function BlogPostHero() {
                 style={{ fontFamily: "'Inter', sans-serif" }}
                 variants={fadeInUp}
               >
-                Prioritizing Human Centered Care for Health and Wellness
-                Technology Solutions
+                {latestPost.title}
               </motion.h2>
               <motion.p
                 className="mb-4 text-black"
                 style={{ fontFamily: "'Inter', sans-serif" }}
                 variants={fadeInUp}
               >
-                In this digital era, with artificial intelligence and the use of
-                digital technology on the rise, prioritizing human-centered care
-                is essential. Health and...
+                {latestPost.small_description}
               </motion.p>
-              <motion.button
-                className="inline-flex items-center text-sm font-semibold text-black hover:text-gray-300 transition-colors duration-200"
-                style={{ fontFamily: "'Inter', sans-serif" }}
-                whileHover={{ x: 5 }}
-              >
-                READ NOW
-                <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
-              </motion.button>
+              <Link href={`/blog/${latestPost.slug}`}>
+                <motion.button
+                  className="inline-flex items-center text-sm font-semibold text-black hover:text-gray-300 transition-colors duration-200"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                  whileHover={{ x: 5 }}
+                >
+                  READ NOW
+                  <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
+                </motion.button>
+              </Link>
             </div>
           </motion.article>
         </motion.div>
 
         <motion.div className="space-y-8" variants={stagger}>
-          {[
-            {
-              title:
-                "How to Use Digital Health Interventions to Align Employee & Organizational Goals",
-              description:
-                "How to use personalized digital health interventions to empower employees while achieving your organization's goals.",
-            },
-            {
-              title:
-                "Equity in Tech: An International Women's Day Conversation with Caroline Nieto, Significo's CPO",
-              description: "",
-            },
-          ].map((article, index) => (
+          {recentPosts.map((post: BlogPost) => (
             <motion.article
-              key={index}
+              key={post.id}
               className="rounded-3xl bg-[#f8f7f4] p-6 shadow-sm"
               variants={fadeInUp}
               whileHover={{ scale: 1.05 }}
@@ -141,25 +140,25 @@ export default function BlogPostHero() {
                 style={{ fontFamily: "'Inter', sans-serif" }}
                 variants={fadeInUp}
               >
-                {article.title}
+                {post.title}
               </motion.h3>
-              {article.description && (
-                <motion.p
-                  className="mb-4 text-sm text-gray-600"
-                  style={{ fontFamily: "'Inter', sans-serif" }}
-                  variants={fadeInUp}
-                >
-                  {article.description}
-                </motion.p>
-              )}
-              <motion.button
-                className="inline-flex items-center text-sm font-semibold text-gray-900 hover:text-gray-600 transition-colors duration-200"
+              <motion.p
+                className="mb-4 text-sm text-gray-600"
                 style={{ fontFamily: "'Inter', sans-serif" }}
-                whileHover={{ x: 5 }}
+                variants={fadeInUp}
               >
-                READ NOW
-                <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
-              </motion.button>
+                {post.small_description}
+              </motion.p>
+              <Link href={`/blog/${post.slug}`}>
+                <motion.button
+                  className="inline-flex items-center text-sm font-semibold text-gray-900 hover:text-gray-600 transition-colors duration-200"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                  whileHover={{ x: 5 }}
+                >
+                  READ NOW
+                  <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
+                </motion.button>
+              </Link>
             </motion.article>
           ))}
         </motion.div>

@@ -1,10 +1,17 @@
 import AllBlogPage from "@/components/Blog/AllBlogPage";
 import React from "react";
 
-export default function BlogPage() {
+async function getPosts() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/wp-json/custom-blog-posts/v1/posts`, { next: { revalidate: 3600 } })
+  if (!res.ok) throw new Error('Failed to fetch posts')
+  return res.json()
+}
+
+export default async function BlogPage() {
+  const posts = await getPosts()
   return (
     <div>
-      <AllBlogPage />
+      <AllBlogPage BlogPosts={posts} />
     </div>
   );
 }
