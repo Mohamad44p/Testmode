@@ -8,7 +8,8 @@ import ImageGrid from "@/components/Projects/SingelPro/ImageGrid";
 
 async function getProject(id: string) {
   const res = await fetch(
-    `https://befoundonline.ps/wp-json/wp/v2/project/${id}?acf_format=standard`
+    `${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/wp-json/wp/v2/project/${id}?acf_format=standard`,
+    { next: { revalidate: 3600 } }
   );
   if (!res.ok) {
     throw new Error("Failed to fetch project");
@@ -24,7 +25,6 @@ export default async function ProjectPage({
   let project;
   try {
     project = await getProject(params.id);
-    console.log("Fetched project data:", project);
   } catch (error) {
     console.error("Error fetching project:", error);
     notFound();
@@ -35,15 +35,13 @@ export default async function ProjectPage({
   }
 
   return (
-    <div>
+    <div className="bg-gray-50">
       <FirstSec project={project} />
-      {/* Uncomment these when ready to implement
       <SecSection project={project} />
       <ImageGrid project={project} />
       <OpportunitySection project={project} />
       <WhatDid project={project} />
       <Outcome project={project} />
-      */}
     </div>
   );
 }

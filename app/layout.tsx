@@ -4,7 +4,6 @@ import ScrollButton from "@/components/ScrollButton";
 import Navbar from "@/components/Navbar";
 import { Lenis } from "@/components/Lenis";
 import AnimatedFooter from "@/components/Footer";
-import PreloaderWrapper from "@/components/preloader/PreloaderWrapper";
 import localFont from "next/font/local";
 import PageTransition from "@/components/Transition";
 
@@ -27,16 +26,14 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${neueMachina.variable}`}>
         <Lenis>
-          <PreloaderWrapper>
-            <PageTransition>
-              <Navbar />
-              <ScrollButton />
-              <main>{children}</main>
-              <section data-color="black">
-                <AnimatedFooter />
-              </section>
-            </PageTransition>
-          </PreloaderWrapper>
+          <PageTransition>
+            <Navbar />
+            <ScrollButton />
+            <main>{children}</main>
+            <section data-color="black">
+              <AnimatedFooter />
+            </section>
+          </PageTransition>
         </Lenis>
       </body>
     </html>

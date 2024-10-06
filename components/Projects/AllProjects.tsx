@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import ProjectsHero from "./ProjectsHero";
 import ProjectShowcase from "./ProjectShowcase";
-import { ScrollTrigger } from "gsap/all";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import Lenis from "@studio-freight/lenis";
 import Banner from "../Banner";
@@ -11,31 +11,46 @@ import Banner from "../Banner";
 gsap.registerPlugin(ScrollTrigger);
 
 const changeBodyBackgroundColor = () => {
-  gsap.utils
-    .toArray<HTMLElement>(".section")
-    .forEach((section: HTMLElement) => {
-      const sectionElement = section as HTMLElement;
-      const color = sectionElement.dataset.color;
+  gsap.utils.toArray<HTMLElement>(".section").forEach((section: HTMLElement) => {
+    const color = section.dataset.color;
 
-      ScrollTrigger.create({
-        trigger: sectionElement,
-        start: "top center",
-        end: "bottom center",
-        onEnter: () => {
-          if (color) {
-            document.body.setAttribute("theme", color);
-          }
-        },
-        onEnterBack: () => {
-          if (color) {
-            document.body.setAttribute("theme", color);
-          }
-        },
-      });
+    ScrollTrigger.create({
+      trigger: section,
+      start: "top center",
+      end: "bottom center",
+      onEnter: () => {
+        if (color) {
+          document.body.setAttribute("theme", color);
+        }
+      },
+      onEnterBack: () => {
+        if (color) {
+          document.body.setAttribute("theme", color);
+        }
+      },
     });
+  });
 };
 
-export default function AllProjects() {
+interface Project {
+  id: number;
+  title: {
+    rendered: string;
+  };
+  link: string;
+  custom_fields: {
+    short_description: string;
+    bg_color: string;
+    text_color: string;
+  };
+  featured_image: string;
+}
+
+interface AllProjectsProps {
+  initialProjects: Project[];
+}
+
+export default function AllProjects({ initialProjects }: AllProjectsProps) {
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -61,7 +76,7 @@ export default function AllProjects() {
     <div>
       <section data-color="Almond" className="section mt-12">
         <ProjectsHero />
-        <ProjectShowcase />
+        <ProjectShowcase initialProjects={initialProjects} />
       </section>
       <section className="section">
         <Banner

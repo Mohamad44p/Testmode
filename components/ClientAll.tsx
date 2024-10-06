@@ -8,10 +8,8 @@ import CardsSec from "./CardsSec";
 import Horizontal from "./Horizontal";
 import Testimonial from "./Testimonial";
 import Banner from "./Banner";
-import dynamic from "next/dynamic";
 
 
-const DynamicHorizontal = dynamic(() => import('./Horizontal'), { ssr: false })
 
 gsap.registerPlugin(ScrollTrigger);
 

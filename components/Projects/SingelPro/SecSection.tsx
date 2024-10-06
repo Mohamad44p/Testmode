@@ -3,13 +3,18 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-export default function SecSection() {
-  const teamMembers = Array(9)
-    .fill(0)
-    .map((_, i) => `/placeholder.svg?height=40&width=40`);
+interface Project {
+  custom_fields: {
+    industry: string;
+    team_members: string[];
+  };
+}
+
+export default function SecSection({ project }: { project: Project }) {
+  const teamMembers = project.custom_fields.team_members || Array(5).fill("/placeholder.svg?height=40&width=40");
 
   return (
-    <div className="max-w-screen-xl mx-auto my-[20vh] p-6 space-y-8">
+    <div className="max-w-7xl mx-auto my-20 p-6 space-y-12">
       <motion.div
         initial={{ width: 0 }}
         animate={{ width: "100%" }}
@@ -17,23 +22,24 @@ export default function SecSection() {
         className="border-t border-gray-200"
       />
 
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-6 md:space-y-0">
         <motion.h2
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.5 }}
-          className="text-3xl font-light"
+          className="text-4xl font-light text-gray-800"
         >
-          Industry:
+          Project Details
         </motion.h2>
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.7 }}
-          className="text-xl"
+          className="flex flex-col items-end space-y-2"
         >
-          Insurance
-        </motion.p>
+          <h3 className="text-2xl font-semibold text-indigo-600">Industry</h3>
+          <p className="text-xl text-gray-600">{project.custom_fields.industry}</p>
+        </motion.div>
       </div>
 
       <motion.div
@@ -43,20 +49,20 @@ export default function SecSection() {
         className="border-t border-gray-200"
       />
 
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-6 md:space-y-0">
         <motion.h2
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 1.2 }}
-          className="text-3xl font-light"
+          className="text-4xl font-light text-gray-800"
         >
-          Team:
+          Our Team
         </motion.h2>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.4 }}
-          className="flex -space-x-2 overflow-hidden"
+          className="flex -space-x-4 overflow-hidden"
         >
           {teamMembers.map((src, index) => (
             <motion.div
@@ -66,11 +72,11 @@ export default function SecSection() {
               transition={{ delay: 1.6 + index * 0.1 }}
             >
               <Image
-                src={src}
+                src={src || "/placeholder.svg?height=60&width=60"}
                 alt={`Team member ${index + 1}`}
-                width={40}
-                height={40}
-                className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
+                width={60}
+                height={60}
+                className="inline-block h-16 w-16 rounded-full ring-4 ring-white"
               />
             </motion.div>
           ))}
