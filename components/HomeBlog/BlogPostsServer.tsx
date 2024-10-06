@@ -2,29 +2,24 @@ import LastSec from "../LastSec";
 
 interface BlogPost {
     id: number;
-    title: string;
-    excerpt: string;
+    title: { rendered: string };
+    excerpt: { rendered: string };
     slug: string;
-    main_image: string;
-    small_description: string;
-    categories: string[];
-    tags: string[];
+    yoast_head_json: {
+        og_image: [{ url: string }];
+    };
+    categories: Array<{
+        id: number;
+        name: string;
+        slug: string;
+    }>;
 }
 
 async function getLatestPosts(): Promise<BlogPost[]> {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/wp-json/custom-blog-posts/v1/posts?per_page=2&orderby=date&order=desc`, { next: { revalidate: 3600 } })
+    const res = await fetch(`${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/wp-json/wp/v2/posts?per_page=2&orderby=date&order=desc`, { next: { revalidate: 3600 } })
     if (!res.ok) throw new Error('Failed to fetch posts')
     const posts = await res.json()
-    return posts.slice(0, 2).map((post: any) => ({
-        id: post.id,
-        title: post.title,
-        excerpt: post.small_description,
-        slug: post.slug,
-        main_image: post.main_image,
-        small_description: post.small_description,
-        categories: Array.isArray(post.categories) ? post.categories : [post.categories],
-        tags: Array.isArray(post.tags) ? post.tags : [post.tags]
-    }))
+    return posts.slice(0, 2)
 }
 
 export default async function BlogPostsServer() {

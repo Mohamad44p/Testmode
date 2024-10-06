@@ -28,6 +28,7 @@
     "clsx": "^2.1.1",
     "framer-motion": "^11.3.19",
     "gsap": "^3.12.5",
+    "html-react-parser": "^5.1.17",
     "lenis": "^1.1.9",
     "locomotive-scroll": "^4.1.4",
     "lodash": "^4.17.21",

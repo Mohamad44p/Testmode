@@ -24,6 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="stylesheet" href="https://websiteadmin.befoundonline.ps/wp-content/plugins/elementor/assets/css/frontend.min.css" />
+      </head>
       <body className={`${neueMachina.variable}`}>
         <Lenis>
           <PageTransition>

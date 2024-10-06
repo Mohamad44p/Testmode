@@ -8,13 +8,20 @@ import Link from "next/link";
 
 interface BlogPost {
   id: number;
-  title: string;
-  excerpt: string;
+  title: { rendered: string };
+  excerpt: { rendered: string };
   slug: string;
-  main_image: string;
-  small_description: string;
-  categories: string[];
-  tags: string[];
+  yoast_head_json: {
+    og_image: [{ url: string }];
+  };
+  content: { rendered: string };
+  date: string;
+  categories: Array<{
+    id: number;
+    name: string;
+    slug: string;
+  }>;
+  tags: number[];
 }
 
 export default function BlogPostHero({ latestPost, recentPosts }: { latestPost: BlogPost; recentPosts: BlogPost[] }) {
@@ -89,13 +96,13 @@ export default function BlogPostHero({ latestPost, recentPosts }: { latestPost: 
           >
             <motion.div className="relative h-72 w-full" variants={fadeInUp}>
               <Image
-                src={latestPost.main_image}
+                src={latestPost.yoast_head_json.og_image[0]?.url || '/placeholder.jpg'}
                 alt="Featured article image"
                 layout="fill"
                 objectFit="cover"
               />
               <span className="absolute left-4 top-4 rounded-full bg-purple-400 px-3 py-1 text-sm font-semibold text-white">
-                {latestPost.categories[0]}
+                {latestPost.categories[0]?.name || 'Uncategorized'}
               </span>
             </motion.div>
             <div className="p-6">
@@ -104,15 +111,14 @@ export default function BlogPostHero({ latestPost, recentPosts }: { latestPost: 
                 style={{ fontFamily: "'Inter', sans-serif" }}
                 variants={fadeInUp}
               >
-                {latestPost.title}
+                {latestPost.title.rendered}
               </motion.h2>
-              <motion.p
+              <motion.div
                 className="mb-4 text-black"
                 style={{ fontFamily: "'Inter', sans-serif" }}
                 variants={fadeInUp}
-              >
-                {latestPost.small_description}
-              </motion.p>
+                dangerouslySetInnerHTML={{ __html: latestPost.excerpt.rendered }}
+              />
               <Link href={`/insights/${latestPost.id}`}>
                 <motion.button
                   className="inline-flex items-center text-sm font-semibold text-black hover:text-gray-300 transition-colors duration-200"
@@ -140,25 +146,29 @@ export default function BlogPostHero({ latestPost, recentPosts }: { latestPost: 
                 style={{ fontFamily: "'Inter', sans-serif" }}
                 variants={fadeInUp}
               >
-                {post.title}
+                {post.title.rendered}
               </motion.h3>
-              <motion.p
+              <motion.div
                 className="mb-4 text-sm text-gray-600"
                 style={{ fontFamily: "'Inter', sans-serif" }}
                 variants={fadeInUp}
-              >
-                {post.small_description}
-              </motion.p>
-              <Link href={`/insights/${post.id}`}>
-                <motion.button
-                  className="inline-flex items-center text-sm font-semibold text-gray-900 hover:text-gray-600 transition-colors duration-200"
-                  style={{ fontFamily: "'Inter', sans-serif" }}
-                  whileHover={{ x: 5 }}
-                >
-                  READ NOW
-                  <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
-                </motion.button>
-              </Link>
+                dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
+              />
+              <div className="flex justify-between items-center">
+                <span className="text-xs font-semibold text-purple-600">
+                  {post.categories[0]?.name || 'Uncategorized'}
+                </span>
+                <Link href={`/insights/${post.id}`}>
+                  <motion.button
+                    className="inline-flex items-center text-sm font-semibold text-gray-900 hover:text-gray-600 transition-colors duration-200"
+                    style={{ fontFamily: "'Inter', sans-serif" }}
+                    whileHover={{ x: 5 }}
+                  >
+                    READ NOW
+                    <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
+                  </motion.button>
+                </Link>
+              </div>
             </motion.article>
           ))}
         </motion.div>

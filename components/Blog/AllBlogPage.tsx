@@ -27,13 +27,20 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface BlogPost {
   id: number;
-  title: string;
-  excerpt: string;
+  title: { rendered: string };
+  excerpt: { rendered: string };
   slug: string;
-  main_image: string;
-  small_description: string;
-  categories: string[];
-  tags: string[];
+  yoast_head_json: {
+    og_image: [{ url: string }];
+  };
+  content: { rendered: string };
+  date: string;
+  categories: Array<{
+    id: number;
+    name: string;
+    slug: string;
+  }>;
+  tags: number[];
 }
 
 const changeBodyBackgroundColor = () => {
@@ -62,7 +69,10 @@ const changeBodyBackgroundColor = () => {
 };
 
 export default function AllBlogPage({ BlogPosts }: { BlogPosts: BlogPost[] }) {
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
+    setMounted(true);
     const lenis = new Lenis();
 
     function raf(time: number) {
@@ -89,16 +99,16 @@ export default function AllBlogPage({ BlogPosts }: { BlogPosts: BlogPost[] }) {
   const [isFiltering, setIsFiltering] = useState(false);
   const shouldReduceMotion = useReducedMotion();
 
-  const categories = ["All", ...Array.from(new Set(BlogPosts.flatMap(post => post.categories)))];
+  const categories = ["All", ...Array.from(new Set(BlogPosts.flatMap(post => post.categories.map(cat => cat.name))))];
 
   const handleFilter = useCallback(() => {
     setIsFiltering(true);
     const filtered = BlogPosts.filter((post) => {
       const matchesSearch =
-        post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        post.small_description.toLowerCase().includes(searchTerm.toLowerCase());
+        post.title.rendered.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        post.excerpt.rendered.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory =
-        selectedCategory === "All" || post.categories.includes(selectedCategory);
+        selectedCategory === "All" || post.categories.some(category => category.name === selectedCategory);
       return matchesSearch && matchesCategory;
     });
     setFilteredPosts(filtered);
@@ -148,7 +158,8 @@ export default function AllBlogPage({ BlogPosts }: { BlogPosts: BlogPost[] }) {
     <div
       data-color="White"
       className="bg-gray-50 min-h-screen section">
-      <BlogPostHero latestPost={latestPost} recentPosts={recentPosts} />      <motion.div
+      <BlogPostHero latestPost={latestPost} recentPosts={recentPosts} />
+      <motion.div
         className="container mx-auto px-4 py-8"
         initial="hidden"
         animate="visible"
@@ -256,8 +267,8 @@ export default function AllBlogPage({ BlogPosts }: { BlogPosts: BlogPost[] }) {
                 >
                   <div className="relative h-48 overflow-hidden">
                     <Image
-                      src={post.main_image}
-                      alt={post.title}
+                      src={post.yoast_head_json.og_image[0]?.url || '/placeholder.jpg'}
+                      alt={post.title.rendered}
                       layout="fill"
                       objectFit="cover"
                       className="transition-transform duration-300 transform hover:scale-110"
@@ -265,22 +276,23 @@ export default function AllBlogPage({ BlogPosts }: { BlogPosts: BlogPost[] }) {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute top-4 left-4">
                       <div className="inline-block px-3 py-1 text-xs font-semibold text-blue-800 bg-blue-100 rounded-full">
-                        {post.categories[0]}
+                        {post.categories[0]?.name || 'Uncategorized'}
                       </div>
                     </div>
                   </div>
                   <div className="p-4">
                     <h3 className="mb-2 text-xl font-bold leading-tight text-gray-800 hover:text-blue-600 transition-colors duration-200">
-                      {post.title}
+                      {post.title.rendered}
                     </h3>
-                    <p className="mb-4 text-sm text-gray-600">
-                      {post.small_description}
-                    </p>
+                    <div
+                      className="mb-4 text-sm text-gray-600"
+                      dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
+                    />
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Avatar className="w-8 h-8 border-2 border-blue-200">
                           <AvatarFallback>
-                            {post.title.charAt(0)}
+                            {post.title.rendered.charAt(0)}
                           </AvatarFallback>
                         </Avatar>
                         <div className="flex flex-col">
@@ -288,9 +300,11 @@ export default function AllBlogPage({ BlogPosts }: { BlogPosts: BlogPost[] }) {
                             Author Name
                           </span>
                           <div className="text-xs text-gray-500">
-                            <span>Date</span>
+                            {mounted && (
+                              <span>{new Date(post.date).toLocaleDateString()}</span>
+                            )}
                             <span className="mx-1">•</span>
-                            <span>Read time</span>
+                            <span>5 min read</span>
                           </div>
                         </div>
                       </div>
@@ -299,7 +313,7 @@ export default function AllBlogPage({ BlogPosts }: { BlogPosts: BlogPost[] }) {
                         whileTap={{ scale: 0.95 }}
                       >
                         <Link
-                          href={`/insights/${post.id}`} 
+                          href={`/insights/${post.id}`}
                           passHref
                           className="inline-flex items-center justify-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors duration-200 group"
                         >
