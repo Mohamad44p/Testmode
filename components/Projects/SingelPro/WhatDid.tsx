@@ -11,7 +11,7 @@ interface Project {
 
 export default function WhatDid({ project }: { project: Project }) {
   return (
-    <div className="max-w-7xl mx-auto py-20 px-6 bg-white">
+    <div className="max-w-7xl mx-auto py-20 px-6">
       <div className="flex flex-col md:flex-row gap-12">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

@@ -4,7 +4,7 @@ import SecSection from "@/components/Projects/SingelPro/SecSection";
 import OpportunitySection from "@/components/Projects/SingelPro/OpportunitySection";
 import WhatDid from "@/components/Projects/SingelPro/WhatDid";
 import Outcome from "@/components/Projects/SingelPro/Outcome";
-import ImageGrid from "@/components/Projects/SingelPro/ImageGrid";
+import MainImagesCard from "@/components/Projects/SingelPro/CardsImages/MainImagesCard";
 
 async function getProject(id: string) {
   const res = await fetch(
@@ -38,7 +38,7 @@ export default async function ProjectPage({
     <div className="bg-gray-50">
       <FirstSec project={project} />
       <SecSection project={project} />
-      <ImageGrid project={project} />
+      <MainImagesCard project={project} />
       <OpportunitySection project={project} />
       <WhatDid project={project} />
       <Outcome project={project} />

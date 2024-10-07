@@ -35,7 +35,7 @@ export default function CardCase({ initialProjects }: CardCaseProps) {
   return (
     <section data-color="Almond" className="section">
       <div className="w-fit mx-auto">
-        <h1 className="text-center mb-12 mt-[30vh] text-4xl sm:text-6xl tracking-tight">
+        <h1 className="text-center md:mb-0 mb-12 mt-[30vh] text-4xl sm:text-6xl tracking-tight">
           <BoxReveal boxColor="#000">
             <p>Our Projects</p>
           </BoxReveal>
@@ -61,7 +61,7 @@ export default function CardCase({ initialProjects }: CardCaseProps) {
           )
         })}
       </main>
-      <div className="mt-16">
+      <div className="md:mt-0">
         <div className="flex justify-center">
           <a
             href="/projects"

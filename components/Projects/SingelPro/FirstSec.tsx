@@ -45,10 +45,11 @@ export default function FirstSec({ project }: { project: Project }) {
     return <div>Loading...</div>;
   }
 
-  const imageUrl = project.featured_image || '/placeholder.svg?height=1800&width=1400';
+  const imageUrl =
+    project.featured_image || "/placeholder.svg?height=1800&width=1400";
 
   return (
-    <div className="py-20 px-6 bg-gradient-to-b from-white to-gray-100 overflow-hidden">
+    <div className="py-20 px-6 overflow-hidden">
       <motion.div
         initial={{ width: 0 }}
         animate={{ width: "100%" }}
@@ -80,7 +81,9 @@ export default function FirstSec({ project }: { project: Project }) {
               {project.custom_fields.project_title || project.title.rendered}
             </motion.h1>
             <p className="text-xl text-gray-600 leading-relaxed">
-              <TypewriterEffect text={project.custom_fields.short_description} />
+              <TypewriterEffect
+                text={project.custom_fields.short_description}
+              />
             </p>
           </div>
           <motion.div
@@ -111,7 +114,9 @@ export default function FirstSec({ project }: { project: Project }) {
             className="space-y-2"
           >
             <p className="text-xl font-semibold text-gray-800">Client:</p>
-            <p className="text-lg text-gray-600">{project.custom_fields.client_name}</p>
+            <p className="text-lg text-gray-600">
+              {project.custom_fields.client_name}
+            </p>
           </motion.div>
         </motion.div>
         <motion.div
