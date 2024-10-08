@@ -31,7 +31,7 @@ export default function Horizontal() {
       scrollTrigger: {
         trigger: containerRef.current,
         pin: true,
-        scrub: 1,
+        scrub: 0.1,
         end: () => `+=${totalWidth}`,
         invalidateOnRefresh: true,
       },
@@ -146,8 +146,8 @@ export default function Horizontal() {
           <div className="slide-image absolute top-1/2 overflow-hidden right-0 w-[20rem] h-[20rem] bg-green-500 -translate-y-1/2 rounded-full translate-x-1/2">
             <img
               className="w-full h-full object-cover"
-              src="https://images.unsplash.com/photo-1521119989659-a83eee488004?q=80&w=1923&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt=""
+              src="/horzantly/HorzantlImage1.jpg"
+              alt="Image1"
             />
           </div>
         </div>
@@ -155,8 +155,8 @@ export default function Horizontal() {
           <div className="slide-image absolute top-1/2 overflow-hidden right-0 w-[20rem] h-[20rem] bg-green-500 -translate-y-1/2 rounded-full translate-x-1/2">
             <img
               className="w-full h-full object-cover"
-              src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTUxfHxwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D"
-              alt=""
+              src="/horzantly/HoezantlyImage3.jpg"
+              alt="Image3"
             />
           </div>
           <div className="slide-image w-[15rem] h-[15rem] bg-blue-500 overflow-hidden absolute -translate-y-[50%] top-0 z-[3] left-1/2 rounded-full">
@@ -169,7 +169,7 @@ export default function Horizontal() {
           <div className="slide-image w-[10rem] h-[10rem] bg-blue-500 overflow-hidden absolute top-[73%] z-[3] left-1/4 rounded-full">
             <img
               className="object-cover w-full h-full"
-              src="https://images.unsplash.com/photo-1614204424926-196a80bf0be8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              src="/horzantly/HorzantlImage2.jpg"
               alt=""
             />
           </div>
@@ -186,24 +186,24 @@ export default function Horizontal() {
           </div>
         </div>
         <div className="slide w-screen h-screen flex-shrink-0 flex justify-center pt-[10rem] relative">
-          <div className="slide-image w-[25rem] h-[25rem] overflow-hidden absolute top-[50%] z-[3] left-1/4 rounded-full">
+          <div className="slide-image w-[10rem] h-[10rem] overflow-hidden absolute top-[65%] z-[3] left-[30%] rounded-full">
             <img
               className="object-cover w-full h-full"
-              src="https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/65ea1b841fcd9f50115dbe9c_RocketLaunch.png"
+              src="/horzantly/icons/Icon1.png"
               alt=""
             />
           </div>
           <div className="slide-image w-[15rem] h-[15rem] overflow-hidden absolute -translate-y-[50%] top-5% z-[3] left-[45%] rounded-full">
             <img
-              className="object-cover w-full h-full"
-              src="https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/65ea1b924ee31caf14d64b2a_TreeStructure.png"
+              className="object-cover rotate-45 w-full h-full"
+              src="/horzantly/icons/Icon2.png"
               alt=""
             />
           </div>
           <div className="slide-image absolute top-3/4 overflow-hidden right-0 w-[17rem] h-[17rem] -translate-y-1/2 rounded-full translate-x-1/2">
             <img
               className="w-full h-full object-cover"
-              src="https://cdn.prod.website-files.com/659dbdfd5a080be8d3483164/65ea1ba6eb9637155282b42f_Lightning.png"
+              src="/horzantly/icons/Icon3.png"
               alt=""
             />
           </div>

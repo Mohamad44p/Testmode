@@ -3,7 +3,7 @@ export default function HeroCareers() {
   return (
     <section
       data-color="Almond"
-    className="section w-full pt-28 md:py-24">
+      className="section w-full pt-28 md:py-24">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col space-y-8">
           <div className="flex items-center space-x-2">
@@ -17,16 +17,7 @@ export default function HeroCareers() {
               Come Build the Future with Us
             </h2>
             <p className="text-base md:text-lg text-muted-foreground">
-              If you're passionate about humanizing healthcare through
-              technology and strive for excellence beyond the ordinary, we want
-              you. Join a team of experts who view their work as a continuous
-              journey towards innovation and quality. At Significo, we value our
-              diverse, international family, where every voice contributes to
-              our collective success. In our vibrant setting, opportunities for
-              personal and professional growth abound. Meaningful work is our
-              standard, leading to profound job satisfaction. Embark on a career
-              with us, where you'll face innovative challenges and play a vital
-              role in shaping the future of health technology.
+              If you’re passionate about shaping the future of digital marketing and pushing boundaries in creativity, we want to hear from you! Join our dynamic team at Be Found Online, where experts in data, design, and technology collaborate to create impactful solutions for businesses worldwide. We’re a global family that values every voice, offering an inspiring environment full of opportunities for growth. If you’re ready for exciting challenges and meaningful work that drives results, come be part of our mission to transform the digital landscape!
             </p>
           </div>
           <div className="w-full aspect-video">

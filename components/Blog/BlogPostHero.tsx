@@ -75,11 +75,7 @@ export default function BlogPostHero({ latestPost, recentPosts }: { latestPost: 
           style={{ fontFamily: "'Inter', sans-serif" }}
           variants={fadeInUp}
         >
-          Explore insightful articles, comprehensive resources, and the latest
-          in industry news, all offering distinctive viewpoints on healthcare
-          technology. Our team, driven by a relentless pursuit of knowledge and
-          excellence in every role, gathers here to share our discoveries and
-          learnings.
+          Dive into a world of captivating articles, useful resources, and the latest buzz in the digital marketing landscape with Be Found Online. Our dedicated team loves to explore and learn, sharing our insights and experiences to help you navigate this ever-evolving industry. Join us as we uncover the knowledge that can empower your business and spark your creativity!
         </motion.p>
       </motion.div>
 
@@ -137,7 +133,7 @@ export default function BlogPostHero({ latestPost, recentPosts }: { latestPost: 
           {recentPosts.map((post: BlogPost) => (
             <motion.article
               key={post.id}
-              className="rounded-3xl bg-[#f8f7f4] p-6 shadow-sm"
+              className="rounded-3xl bg-[#f2eddf] p-6 shadow-sm"
               variants={fadeInUp}
               whileHover={{ scale: 1.05 }}
             >

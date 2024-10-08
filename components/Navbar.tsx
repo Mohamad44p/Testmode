@@ -8,7 +8,6 @@ import { cn } from "@/lib/utils";
 import { useScroll } from "framer-motion";
 import MegaMenu from "./MegaMenu";
 import Uiux from "./Uiux";
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "./ui/navigation-menu";
 
 const Navbar = () => {
   const [textColor, setTextColor] = useState("black");
@@ -107,29 +106,28 @@ const Navbar = () => {
             <NavLink href="/Solutions" textColor={textColor}>
               Solutions <ChevronDown className="inline-block ml-1 w-4 h-4" />
             </NavLink>
+            <NavLink href="/About" textColor={textColor}>
+              About
+            </NavLink>
             <NavLink href="/projects" textColor={textColor}>
               Projects
             </NavLink>
             <NavLink href="/insights" textColor={textColor}>
               Insights
             </NavLink>
+            <NavLink href="/team" textColor={textColor}>
+              Team
+            </NavLink>
             <NavLink href="/webinars" textColor={textColor}>
               Webinars
             </NavLink>
-            <NavLink href="/" textColor={textColor}>
-              <NavigationMenu>
-                <NavigationMenuList>
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger>Who We Are</NavigationMenuTrigger>
-                    
-                  </NavigationMenuItem>
-                </NavigationMenuList>
-              </NavigationMenu>
+            <NavLink href="/Careers" textColor={textColor}>
+              Careers
             </NavLink>
+            <button className="bg-orange-500 hover:bg-orange-600 text-sm text-black font-bold py-1 px-3 rounded">
+              <Link href="/Contact">Contact Us</Link>
+            </button>
           </div>
-          <button className="bg-orange-500 hover:bg-orange-600 text-sm text-black font-bold py-1 px-3 rounded">
-            <Link href="/Contact">Contact Us</Link>
-          </button>
           <div className="lg:hidden">
             <motion.button
               onClick={toggleMenu}

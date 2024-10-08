@@ -47,8 +47,7 @@ export default function LastSec({ posts }: LastSecProps) {
     >
       <div className="capleft flex flex-col justify-between py-16 font-semibold">
         <h3 className="text-lg mb-8 max-w-xs">
-          Stay up-to-date on the latest healthcare innovations and thought
-          leadership.
+          Stay ahead of the curve with the latest digital marketing trends and insights. Get expert tips, innovative strategies, and thought leadership that help your brand grow and thrive in an ever-evolving digital landscape.
         </h3>
         <h1 className="text-5xl lg:text-[4.44rem] leading-tight font-light mb-8">
           Explore <br />

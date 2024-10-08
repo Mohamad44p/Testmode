@@ -16,5 +16,12 @@ async function getHeroData() {
 
 export default async function HeroPage() {
   const heroData = await getHeroData();
-  return <Hero heroData={heroData} />;
+  return (
+    <section
+      data-color="RaisinBlack"
+      className="section"
+    >
+      <Hero heroData={heroData} />
+    </section>
+  );
 }

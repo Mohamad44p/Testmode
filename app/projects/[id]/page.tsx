@@ -4,7 +4,6 @@ import SecSection from "@/components/Projects/SingelPro/SecSection";
 import OpportunitySection from "@/components/Projects/SingelPro/OpportunitySection";
 import WhatDid from "@/components/Projects/SingelPro/WhatDid";
 import Outcome from "@/components/Projects/SingelPro/Outcome";
-import MainImagesCard from "@/components/Projects/SingelPro/CardsImages/MainImagesCard";
 import HorizontalImageScroll from "@/components/Projects/SingelPro/HorzantalImage/HorzantalImages";
 import BoxReveal from "@/components/magicui/box-reveal";
 

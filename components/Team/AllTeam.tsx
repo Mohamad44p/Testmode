@@ -67,7 +67,7 @@ export default function AllTeam() {
         <JoinUsBa />
       </section>
       <section data-color="Almond" className="section">
-        <OurTeamSRRPage />
+        <OurTeamSRRPage  />
       </section>
       <section className="section">
         <Banner

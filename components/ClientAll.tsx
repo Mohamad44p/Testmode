@@ -85,7 +85,7 @@ export default function ClientAll({
 
   return (
     <div className="main w-full">
-      <section className="section" data-color="white">
+      <section className="section" data-color="RaisinBlack">
         {Herossr}
       </section>
       <section className="section" data-color="white">
@@ -109,7 +109,7 @@ export default function ClientAll({
       <section className="section" data-color="white">
         <Banner
           title="Come Build a Better Future with Us."
-          description="Explore how Significo's partnership can advance your digital experience and unleash your technology development."
+          description="Let Be Found Online help you enhance your digital experience and unlock new technology development opportunities. Together, we’ll create innovative solutions that propel your brand forward."
           ctaText="LET'S TALK"
           ctaLink="/contact"
         />

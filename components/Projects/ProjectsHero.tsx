@@ -132,6 +132,9 @@ export default function ProjectsHero() {
           </motion.div>
         </div>
       </div>
+      <p className="text-xl max-w-[92%] mt-10">
+        At Be Found Online, we offer a comprehensive range of services tailored to your needs, whether it’s SEO, PPC, web design, social media, email marketing, or more. Our portfolio showcases how our innovative digital marketing solutions have helped clients achieve remarkable results. Dive in to see how we can elevate your brand together!
+      </p>
     </div>
   );
 }

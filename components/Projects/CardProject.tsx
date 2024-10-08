@@ -16,7 +16,7 @@ interface CardProjectProps {
 }
 
 export default function Component({
-  id, // Add this line
+  id,
   title,
   description,
   imageUrl,
@@ -97,10 +97,9 @@ export default function Component({
             >
               {description}
             </p>
-            <Link href={`/projects/${id}`} passHref>
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            <Link
+              href={`/projects/${id}`} passHref>
+              <p
                 className="px-8 py-3 rounded-full text-base font-semibold transition-all duration-300 ease-in-out mt-auto inline-block text-center"
                 style={{
                   backgroundColor: textColor,
@@ -111,7 +110,7 @@ export default function Component({
                 }}
               >
                 View Project Details
-              </motion.a>
+              </p>
             </Link>
           </motion.div>
         </CardContent>

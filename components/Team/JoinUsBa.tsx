@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useState, useEffect } from "react";
 import { ArrowRightIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -18,8 +19,7 @@ export default function JoinUsBa() {
         >
           <h2 className="mb-6 text-5xl font-bold tracking-tight">Join Us</h2>
           <p className="mb-8 text-xl leading-relaxed">
-            We are always looking for kindred spirits in Health, Engineering,
-            Design, Product, and Messaging.
+            we're always eager to connect with like-minded professionals in digital marketing, design, development, and strategy. If you share our passion for creativity and innovation, we’d love to collaborate!
           </p>
           <Link href="/Careers">
             <Button

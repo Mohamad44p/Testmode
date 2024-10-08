@@ -76,12 +76,9 @@ export default function OurTeamPage({ membersData }: OurTeamProps) {
         <div className="inline-block rounded-full bg-black text-white text-xs px-3 py-1 mb-4">
           MEET THE VISIONARIES
         </div>
-        <h1 className="text-5xl font-bold mb-6">The BE FOUND ONLINE Team</h1>
+        <h1 className="text-5xl font-bold mb-6">Our Beloved team</h1>
         <p className="max-w-2xl mx-auto text-gray-600 text-lg">
-          We saw a need in healthcare. To craft technology that puts people at
-          the center. We are a team of technologists, artists, rule-breakers,
-          and dreamers that set out to build better technology, and a better
-          company while we're at it.
+          We recognized a gap in the digital landscape for technology that truly prioritizes people. At Be Found Online, we're a diverse team of innovators, creators, and out-of-the-box thinkers dedicated to developing impactful solutions while fostering a vibrant company culture.
         </p>
       </div>
 
