@@ -4,6 +4,7 @@ import Image from "next/image";
 import styles from "./style.module.scss";
 import { useTransform, motion, useScroll } from "framer-motion";
 import { useRef } from "react";
+import Link from "next/link";
 
 const CardProject = ({
   i,
@@ -52,7 +53,7 @@ const CardProject = ({
           <div className={styles.description}>
             <p style={{ color: textColor }}>{description}</p>
             <span>
-              <a
+              <Link
                 href={url}
                 className={`mt-4`}
                 style={{ color: textColor }}
@@ -60,7 +61,7 @@ const CardProject = ({
                 rel="noopener noreferrer"
               >
                 See more &#8594;
-              </a>
+              </Link>
             </span>
           </div>
 

@@ -6,6 +6,7 @@ import { ArrowRightIcon } from "lucide-react"
 import BoxReveal from "../magicui/box-reveal"
 import CardProject from "./CardProject"
 import { TextReveal } from "../ui/typography"
+import Link from "next/link"
 
 interface Project {
   id: number
@@ -51,7 +52,7 @@ export default function CardCase({ initialProjects }: CardCaseProps) {
               title={project.title.rendered}
               description={project.custom_fields.short_description}
               src={project.featured_image}
-              url={project.link}
+              url={`/projects/${project.id}`}
               color={project.custom_fields.bg_color}
               progress={scrollYProgress}
               range={[i * 0.25, 1]}
@@ -63,13 +64,13 @@ export default function CardCase({ initialProjects }: CardCaseProps) {
       </main>
       <div className="md:mt-0">
         <div className="flex justify-center">
-          <a
+          <Link
             href="/projects"
             className="flex bg-[#9AB453] text-white px-6 py-3 rounded-lg items-center text-lg font-medium transition-colors hover:bg-[#8CA348]"
           >
             <TextReveal>View all projects</TextReveal>
             <ArrowRightIcon className="w-6 h-6 ml-2" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

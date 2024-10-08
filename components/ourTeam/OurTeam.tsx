@@ -107,8 +107,8 @@ export default function OurTeam({ membersData }: OurTeamProps) {
                 <Image
                   src={member.imgSrc}
                   alt={member.name}
-                  width={240}
-                  height={240}
+                  width={1900}
+                  height={2000}
                   className="object-cover"
                 />
               </div>
