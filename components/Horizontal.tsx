@@ -151,7 +151,7 @@ export default function Horizontal() {
             />
           </div>
         </div>
-        <div className="slide w-screen h-screen flex-shrink-0 flex justify-center py-[4rem] relative">
+        <div className="slide w-screen h-screen flex-shrink-0 flex justify-center pt-[7rem] relative">
           <div className="slide-image absolute top-1/2 overflow-hidden right-0 w-[20rem] h-[20rem] bg-green-500 -translate-y-1/2 rounded-full translate-x-1/2">
             <img
               className="w-full h-full object-cover"
@@ -166,7 +166,7 @@ export default function Horizontal() {
               alt=""
             />
           </div>
-          <div className="slide-image w-[10rem] h-[10rem] bg-blue-500 overflow-hidden absolute top-[63%] z-[3] left-1/4 rounded-full">
+          <div className="slide-image w-[10rem] h-[10rem] bg-blue-500 overflow-hidden absolute top-[73%] z-[3] left-1/4 rounded-full">
             <img
               className="object-cover w-full h-full"
               src="https://images.unsplash.com/photo-1614204424926-196a80bf0be8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -174,20 +174,18 @@ export default function Horizontal() {
             />
           </div>
           <div className="slide-content w-[60%] text-center relative">
-            <h3 className="top-0 left-0 absolute w-[13rem] text-start font-semibold">
-              We're on a mission to impact as many lives as possible and build
-              a better company while we do it. Here's our progress.
+            <h3 className="top-0 -left-40 absolute text-justify w-[20rem] font-semibold">
+              We’re passionate about transforming brands and shaping the future of digital experiences. Every project we take on helps businesses thrive and grow. Here’s how we’ve made an impact so far.
             </h3>
-            <h1 className="font-semibold text-[10rem] pt-[5rem] text-white leading-none">
-              20.4M
+            <h1 className="font-semibold text-[5rem] pt-[5rem] text-white leading-none">
+              +{" "}5K <br /> Projects
             </h1>
-            <h3 className="text-[3rem] leading-none">
-              Real people — real lives — we have built products and solutions
-              for.
+            <h3 className="text-[2rem] mt-7 leading-none">
+              Real businesses — real results — we’ve crafted digital solutions that drive success and deliver measurable outcomes.
             </h3>
           </div>
         </div>
-        <div className="slide w-screen h-screen flex-shrink-0 flex justify-center py-[4rem] relative">
+        <div className="slide w-screen h-screen flex-shrink-0 flex justify-center pt-[10rem] relative">
           <div className="slide-image w-[25rem] h-[25rem] overflow-hidden absolute top-[50%] z-[3] left-1/4 rounded-full">
             <img
               className="object-cover w-full h-full"
@@ -210,15 +208,14 @@ export default function Horizontal() {
             />
           </div>
           <div className="slide-content w-[60%] text-center relative">
-            <h3 className="top-0 left-0 absolute w-[15rem] text-start font-semibold">
-              Our team is global and diverse, because our individual
-              experiences make us stronger.
+          <h3 className="top-0 -left-40 absolute text-justify w-[20rem] font-semibold">
+          We specialize in profit-boosting tactics that help businesses thrive. With tailored strategies and innovative solutions, we drive measurable growth for our clients, maximizing revenue and success.
             </h3>
-            <h1 className="font-semibold text-[10rem] pt-[5rem] text-white leading-none">
-              49%
+            <h1 className="font-semibold text-[5rem] pt-[5rem] text-white leading-none">
+              500+ Clients
             </h1>
-            <h3 className="text-[3rem] leading-none">
-              Expert Women in Tech.
+            <h3 className="text-[2rem] mt-7 leading-none">
+              Real results — real growth — our strategies have helped businesses increase profits across various industries.
             </h3>
           </div>
         </div>
@@ -246,10 +243,10 @@ export default function Horizontal() {
           </div>
           <div className="slide-content w-[60%] text-center relative">
             <h1 className="font-semibold text-[10rem] pt-[5rem] text-white leading-none">
-              13
+             +20
             </h1>
             <h3 className="text-[3rem] leading-none">
-              Nationalities Represented on Our Team.
+            Global & Diverse Team.
             </h3>
           </div>
         </div>

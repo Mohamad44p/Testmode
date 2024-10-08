@@ -13,6 +13,15 @@ import Link from "next/link";
 import { TbSeo, TbPalette, TbBrandGoogleAnalytics, TbShoppingCart, TbChalkboard, TbCode } from 'react-icons/tb'
 import { MdContentPaste } from 'react-icons/md'
 import { FaChartLine } from 'react-icons/fa'
+import UIUXImage from "../public/icons/UIUX.svg";
+import SEOImage from "../public/icons/SEO.svg";
+import ContentImage from "../public/icons/ContactMarketing.svg";
+import BrandingImage from "../public/icons/Branding.svg";
+import DigitalStrategyImage from "../public/icons/DigitalStr.svg";
+import EcommerceImage from "../public/icons/Ecommerce.svg";
+import TrainingImage from "../public/icons/Traning.svg";
+import SoftwareImage from "../public/icons/Devlopment.svg";
+
 const cardConfigs = [
   {
     className: "no1",
@@ -20,9 +29,8 @@ const cardConfigs = [
     color: "#fff",
     title: "SEO & Lead Generation",
     text: "Drive organic traffic, improve search rankings, and convert leads into loyal customers with our comprehensive solutions tailored to your business.",
-    svgPath: (
-      <TbSeo className="w-12 h-12" />
-    ),
+    svgPath: SEOImage,
+
   },
   {
     className: "no2",
@@ -30,7 +38,7 @@ const cardConfigs = [
     color: "#fff",
     title: "UI/UX Interactive",
     text: "We craft immersive digital experiences with sleek designs and user-friendly interfaces, enhancing engagement and satisfaction for your audience.",
-    svgPath: <TbPalette className="w-12 h-12" />,
+    svgPath: UIUXImage,
   },
   {
     className: "no3",
@@ -38,9 +46,8 @@ const cardConfigs = [
     color: "#fff",
     title: "Content Marketing",
     text: "We craft captivating narratives and deliver strategic content to captivate your audience, spark conversations, and drive impactful results for your brand.",
-    svgPath: (
-      <MdContentPaste className="w-12 h-12" />
-    ),
+    svgPath: ContentImage,
+
   },
   {
     className: "no4",
@@ -48,9 +55,8 @@ const cardConfigs = [
     color: "#fff",
     title: "Branding & Creative Media",
     text: "Transforming visions into compelling stories and striking visuals that define and amplify your brand's unique identity and market presence.",
-    svgPath: (
-      <TbBrandGoogleAnalytics className="w-12 h-12" />
-    ),
+    svgPath: BrandingImage,
+
   },
   {
     className: "no5",
@@ -58,7 +64,7 @@ const cardConfigs = [
     color: "#fff",
     title: "Digital Strategy and Consulting",
     text: "Crafting Revenue-Driven Strategies to Propel Your Business Forward, Leveraging Data Insights and Innovation for Sustainable Growth.",
-    svgPath: <FaChartLine className="w-12 h-12" />,
+    svgPath: DigitalStrategyImage,
   },
   {
     className: "no6",
@@ -66,7 +72,7 @@ const cardConfigs = [
     color: "#fff",
     title: "E-commerce Solutions",
     text: "Streamlined online stores designed for seamless customer experiences, enhanced conversions, and scalable growth.",
-    svgPath: <TbShoppingCart className="w-12 h-12" />,
+    svgPath: EcommerceImage,
   },
   {
     className: "no7",
@@ -74,7 +80,7 @@ const cardConfigs = [
     color: "#fff",
     title: "Digital Training and Workshops",
     text: "Transforming Teams into Digital Experts with Customized Learning Experiences and Practical Strategies for Success.",
-    svgPath: <TbChalkboard className="w-12 h-12" />,
+    svgPath: TrainingImage,
   },
   {
     className: "no8",
@@ -82,7 +88,7 @@ const cardConfigs = [
     color: "#fff",
     title: "Software Development",
     text: "Transforming Ideas into Powerful Solutions, Tailored to Your Needs for Seamless Performance and Efficiency.",
-    svgPath: <TbCode className="w-12 h-12" />,
+    svgPath: SoftwareImage,
   },
 ];
 
@@ -172,7 +178,7 @@ export default function CardsSec() {
           {cardConfigs.map((config, index) => (
             <div
               key={index}
-              className={`card ${config.className} rounded-xl border-[2px] border-black w-full md:w-[30rem] py-5 px-5 h-auto md:h-[15rem] flex flex-col md:flex-row justify-between gap-5 md:gap-10 mb-5 md:mb-10`}
+              className={`card ${config.className} rounded-xl border-[2px] border-black w-full md:w-[30rem] py-5 px-5 h-auto md:h-[15rem] flex  md:flex-row justify-between gap-5 md:gap-10 mb-5 md:mb-10`}
             >
               <div className="cardelem w-full md:w-[18.75rem]">
                 <h1 className="text-lg md:text-xl font-semibold">
@@ -182,7 +188,15 @@ export default function CardsSec() {
                   {config.text}
                 </p>
               </div>
-              <div className="logo w-[3rem] md:w-[5rem]">{config.svgPath}</div>
+              <div className="logo w-[7rem] md:w-[7rem]">
+                <Image
+                  src={config.svgPath}
+                  alt={config.title}
+                  width={2000}
+                  height={2000}
+                  className="object-contain"
+                />
+              </div>
             </div>
           ))}
         </div>

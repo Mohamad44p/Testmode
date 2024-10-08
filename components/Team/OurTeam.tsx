@@ -3,53 +3,19 @@
 import { useRef, useLayoutEffect } from "react";
 import { gsap } from "gsap";
 
-const teamMembers = [
-  {
-    id: "01",
-    name: "BASHAR AL-BAKRI",
-    position: "CEO, Marketing Strategist",
-    imgSrc: "/BA.jpeg",
-  },
-  {
-    id: "02",
-    name: "ANAS AL-MUHTASEB",
-    position: "Digital Solutions Architect",
-    imgSrc: "/images/Anas.jpeg",
-  },
-  {
-    id: "03",
-    name: "MOHAMMAD LEILA",
-    position: "ART DIRECTOR",
-    imgSrc: "/Testme.jpeg",
-  },
-  {
-    id: "04",
-    name: "MOHAMMAD AL-WAKEEL",
-    imgSrc:
-      "https://images.unsplash.com/photo-1587397845856-e6cf49176c70?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzV8fHBvcnRyYWl0fGVufDB8fDB8fHww",
-    position: "SENIOR GRAPHIC DESIGNER",
-  },
-  {
-    id: "05",
-    name: "MOHAMMAD MARQA",
-    position: "FULL STACK MANAGER",
-    imgSrc: "/images/MohammadMar.jpeg",
-  },
-  {
-    id: "06",
-    name: "ASEEL AL-MUHTASEB",
-    position: "MOBILE DEVELOPER",
-    imgSrc: "/images/AsselImage.png",
-  },
-  {
-    id: "07",
-    name: "MOHAMMAD ABU-OMAR",
-    position: "FRONT-END DEVELOPER",
-    imgSrc: "/images/Mohammad.png",
-  },
-];
+interface TeamMember {
+  id: string;
+  name: string;
+  position: string;
+  imgSrc: string;
+  bg: string;
+}
 
-export default function Component() {
+interface OurTeamProps {
+  membersData: TeamMember[];
+}
+
+export default function OurTeamPage({ membersData }: OurTeamProps) {
   const listRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
@@ -122,7 +88,7 @@ export default function Component() {
       <div ref={listRef}>
         <table className="w-full border-collapse">
           <tbody>
-            {teamMembers.map((member) => (
+            {membersData.map((member) => (
               <tr
                 key={member.id}
                 className="listelem border-b transition-all duration-300 ease-in-out hover:bg-blue-600 hover:text-white relative overflow-hidden"

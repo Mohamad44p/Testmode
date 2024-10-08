@@ -8,6 +8,7 @@ import HeroTeam from "./HeroTeam";
 import JoinUsBa from "./JoinUsBa";
 import Banner from "../Banner";
 import OurTeamNew from "./OurTeam";
+import OurTeamSRRPage from "./OurTeamSRRPage";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,7 +67,7 @@ export default function AllTeam() {
         <JoinUsBa />
       </section>
       <section data-color="Almond" className="section">
-        <OurTeamNew />
+        <OurTeamSRRPage />
       </section>
       <section className="section">
         <Banner
