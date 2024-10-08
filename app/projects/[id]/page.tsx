@@ -5,6 +5,8 @@ import OpportunitySection from "@/components/Projects/SingelPro/OpportunitySecti
 import WhatDid from "@/components/Projects/SingelPro/WhatDid";
 import Outcome from "@/components/Projects/SingelPro/Outcome";
 import MainImagesCard from "@/components/Projects/SingelPro/CardsImages/MainImagesCard";
+import HorizontalImageScroll from "@/components/Projects/SingelPro/HorzantalImage/HorzantalImages";
+import BoxReveal from "@/components/magicui/box-reveal";
 
 async function getProject(id: string) {
   const res = await fetch(
@@ -38,7 +40,20 @@ export default async function ProjectPage({
     <div className="bg-gray-50">
       <FirstSec project={project} />
       <SecSection project={project} />
-      <MainImagesCard project={project} />
+      <section>
+        <div className="flex items-center justify-center my-10">
+          <BoxReveal
+            boxColor="#000"
+            duration={0.5}
+            width='fit-content'
+          >
+            <h1 className="text-4xl sm:text-6xl tracking-tight">
+              Project Images Gallery
+            </h1>
+          </BoxReveal>
+        </div>
+        <HorizontalImageScroll project={project} />
+      </section>
       <OpportunitySection project={project} />
       <WhatDid project={project} />
       <Outcome project={project} />

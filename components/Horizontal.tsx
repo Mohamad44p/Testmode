@@ -23,7 +23,6 @@ export default function Horizontal() {
 
     let totalWidth = calculateTotalWidth();
 
-    // Set the container width to accommodate all slides
     gsap.set(slidesRef.current, { width: totalWidth });
 
     const animation = gsap.to(slides, {
@@ -38,7 +37,6 @@ export default function Horizontal() {
       },
     });
 
-    // Handle window resize
     const handleResize = () => {
       totalWidth = calculateTotalWidth();
       gsap.set(slidesRef.current, { width: totalWidth });
