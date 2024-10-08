@@ -21,24 +21,38 @@ interface Project {
 }
 
 interface ProjectShowcaseProps {
-  initialProjects: Project[];
+  projects: Project[];
+  totalPages: number;
+  currentPage: number;
+  loading: boolean;
+  fetchMoreProjects: () => Promise<void>;
 }
 
-const PAGE_SIZE = 6;
+const PAGE_SIZE = 4;
 
-export default function ProjectShowcase({ initialProjects }: ProjectShowcaseProps) {
-  const [page, setPage] = useState(1);
+export default function ProjectShowcase({
+  projects,
+  totalPages,
+  currentPage,
+  loading,
+  fetchMoreProjects,
+}: ProjectShowcaseProps) {
   const [animationDirection, setAnimationDirection] = useState(0);
-  const [projects, setProjects] = useState(initialProjects);
+  const [page, setPage] = useState(1);
 
   const handlePrevPage = () => {
     setAnimationDirection(-1);
     setPage((prev) => Math.max(prev - 1, 1));
   };
 
-  const handleNextPage = () => {
+  const handleNextPage = async () => {
     setAnimationDirection(1);
-    setPage((prev) => prev + 1);
+    const nextPage = page + 1;
+    setPage(nextPage);
+
+    if (nextPage > projects.length / PAGE_SIZE && currentPage < totalPages) {
+      await fetchMoreProjects();
+    }
   };
 
   useEffect(() => {
@@ -48,9 +62,13 @@ export default function ProjectShowcase({ initialProjects }: ProjectShowcaseProp
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const paginatedProjects = projects.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const paginatedProjects = projects.slice(
+    (page - 1) * PAGE_SIZE,
+    page * PAGE_SIZE
+  );
 
   return (
     <section className="py-16 bg-gradient-to-br from-gray-50 via-white to-gray-100 min-h-screen">
@@ -108,11 +126,16 @@ export default function ProjectShowcase({ initialProjects }: ProjectShowcaseProp
           </Button>
           <Button
             onClick={handleNextPage}
-            disabled={page * PAGE_SIZE >= projects.length}
+            disabled={
+              (page * PAGE_SIZE >= projects.length &&
+                currentPage >= totalPages) ||
+              loading
+            }
             variant="outline"
             className="flex items-center px-6 py-3 text-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg"
           >
-            Next <ChevronRight className="ml-2 h-5 w-5" />
+            {loading ? "Loading..." : "Next"}{" "}
+            {!loading && <ChevronRight className="ml-2 h-5 w-5" />}
           </Button>
         </motion.div>
       </div>

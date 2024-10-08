@@ -1,19 +1,23 @@
 import AllProjects from "@/components/Projects/AllProjects";
 
-
-async function getProjects() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/wp-json/wp/v2/project?_embed`, { next: { revalidate: 3600 } })
+async function getProjects(page = 1) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/wp-json/wp/v2/project?per_page=4&page=${page}`,
+    { next: { revalidate: 3600 } }
+  );
   if (!res.ok) {
-    throw new Error('Failed to fetch projects')
+    throw new Error("Failed to fetch projects");
   }
-  return res.json()
+  const projects = await res.json();
+  const totalPages = parseInt(res.headers.get("X-WP-TotalPages") || "1", 10);
+  return { projects, totalPages };
 }
 
 export default async function ProjectPage() {
-  const projects = await getProjects()
+  const { projects, totalPages } = await getProjects();
   return (
     <div>
-      <AllProjects initialProjects={projects}/>
+      <AllProjects initialProjects={projects} totalPages={totalPages} />
     </div>
   );
 }

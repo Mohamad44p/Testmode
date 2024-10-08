@@ -36,7 +36,9 @@ const changeBodyBackgroundColor = () => {
       });
     });
 };
-export default function AllTeam() {
+export default function AllTeam({OurTeamSRRPage}:{
+  OurTeamSRRPage: React.ReactNode;
+}) {
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -67,7 +69,7 @@ export default function AllTeam() {
         <JoinUsBa />
       </section>
       <section data-color="Almond" className="section">
-        <OurTeamSRRPage  />
+        {OurTeamSRRPage}
       </section>
       <section className="section">
         <Banner

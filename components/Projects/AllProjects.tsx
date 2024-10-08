@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ProjectsHero from "./ProjectsHero";
 import ProjectShowcase from "./ProjectShowcase";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,25 +11,27 @@ import Banner from "../Banner";
 gsap.registerPlugin(ScrollTrigger);
 
 const changeBodyBackgroundColor = () => {
-  gsap.utils.toArray<HTMLElement>(".section").forEach((section: HTMLElement) => {
-    const color = section.dataset.color;
+  gsap.utils
+    .toArray<HTMLElement>(".section")
+    .forEach((section: HTMLElement) => {
+      const color = section.dataset.color;
 
-    ScrollTrigger.create({
-      trigger: section,
-      start: "top center",
-      end: "bottom center",
-      onEnter: () => {
-        if (color) {
-          document.body.setAttribute("theme", color);
-        }
-      },
-      onEnterBack: () => {
-        if (color) {
-          document.body.setAttribute("theme", color);
-        }
-      },
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top center",
+        end: "bottom center",
+        onEnter: () => {
+          if (color) {
+            document.body.setAttribute("theme", color);
+          }
+        },
+        onEnterBack: () => {
+          if (color) {
+            document.body.setAttribute("theme", color);
+          }
+        },
+      });
     });
-  });
 };
 
 interface Project {
@@ -48,9 +50,37 @@ interface Project {
 
 interface AllProjectsProps {
   initialProjects: Project[];
+  totalPages: number;
 }
 
-export default function AllProjects({ initialProjects }: AllProjectsProps) {
+export default function AllProjects({
+  initialProjects,
+  totalPages,
+}: AllProjectsProps) {
+  const [projects, setProjects] = useState(initialProjects);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+
+  const fetchMoreProjects = async () => {
+    if (currentPage < totalPages) {
+      setLoading(true);
+      try {
+        const nextPage = currentPage + 1;
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/wp-json/wp/v2/project?per_page=4&page=${nextPage}`
+        );
+        if (!res.ok) throw new Error("Failed to fetch more projects");
+        const newProjects = await res.json();
+        setProjects((prevProjects) => [...prevProjects, ...newProjects]);
+        setCurrentPage(nextPage);
+      } catch (error) {
+        console.error("Error fetching more projects:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -76,7 +106,13 @@ export default function AllProjects({ initialProjects }: AllProjectsProps) {
     <div>
       <section data-color="Almond" className="section mt-12">
         <ProjectsHero />
-        <ProjectShowcase initialProjects={initialProjects} />
+        <ProjectShowcase
+          projects={projects}
+          totalPages={totalPages}
+          currentPage={currentPage}
+          loading={loading}
+          fetchMoreProjects={fetchMoreProjects}
+        />
       </section>
       <section className="section">
         <Banner
