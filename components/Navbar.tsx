@@ -1,23 +1,44 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import * as React from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { motion, AnimatePresence, useScroll } from "framer-motion";
+import {
+  ChevronDown,
+  Menu,
+  X,
+  BookOpen,
+  FileText,
+  Video,
+  Users,
+  Briefcase,
+  Mail,
+  Home,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useScroll } from "framer-motion";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+import { Button } from "@/components/ui/button";
+import { Url } from "next/dist/shared/lib/router/router";
 import MegaMenu from "./MegaMenu";
-import Uiux from "./Uiux";
 
 const Navbar = () => {
-  const [textColor, setTextColor] = useState("black");
-  const [bgColor, setBgColor] = useState("white");
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [textColor, setTextColor] = React.useState("text-black");
+  const [bgColor, setBgColor] = React.useState("bg-white");
+  const [contentBgColor, setContentBgColor] = React.useState("bg-white");
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isScrolled, setIsScrolled] = React.useState(false);
 
   const { scrollYProgress } = useScroll();
 
-  useEffect(() => {
+  React.useEffect(() => {
     const unsubscribe = scrollYProgress.onChange((value) => {
       setIsScrolled(value > 0.0001);
     });
@@ -25,50 +46,56 @@ const Navbar = () => {
     return () => unsubscribe();
   }, [scrollYProgress]);
 
-  useEffect(() => {
-    const updateTextColor = () => {
+  React.useEffect(() => {
+    const updateColors = () => {
       const currentTheme = document.body.getAttribute("theme");
       switch (currentTheme) {
         case "RaisinBlack":
-          setTextColor("white");
-          setBgColor("RaisinBlack");
-          break;
         case "Black":
-          setTextColor("white");
-          setBgColor("RaisinBlack");
+          setTextColor("text-white");
+          setBgColor("bg-zinc-900");
+          setContentBgColor("bg-zinc-800");
           break;
         case "Ming":
-          setBgColor("Ming");
-          setTextColor("black");
+          setBgColor("bg-cyan-700");
+          setTextColor("text-white");
+          setContentBgColor("bg-cyan-600");
           break;
         case "Blond":
-          setBgColor("Blond");
-          setTextColor("black");
+          setBgColor("bg-amber-100");
+          setTextColor("text-black");
+          setContentBgColor("bg-amber-50");
           break;
         case "Almond":
-          setBgColor("Almond");
-          setTextColor("black");
+          setBgColor("bg-orange-50");
+          setTextColor("text-black");
+          setContentBgColor("bg-orange-100");
           break;
         case "White":
-          setBgColor("White");
-          setTextColor("black");
+          setBgColor("bg-white");
+          setTextColor("text-black");
+          setContentBgColor("bg-gray-50");
           break;
         case "light-blue":
-          setBgColor("light-blue");
-          setTextColor("black");
+          setBgColor("bg-sky-100");
+          setTextColor("text-black");
+          setContentBgColor("bg-sky-50");
           break;
         case "soft-orange":
-          setBgColor("soft-orange");
-          setTextColor("black");
+          setBgColor("bg-orange-200");
+          setTextColor("text-black");
+          setContentBgColor("bg-orange-100");
           break;
         default:
-          setTextColor("black");
+          setBgColor("bg-white");
+          setTextColor("text-black");
+          setContentBgColor("bg-gray-50");
       }
     };
 
-    updateTextColor();
+    updateColors();
 
-    const observer = new MutationObserver(updateTextColor);
+    const observer = new MutationObserver(updateColors);
     observer.observe(document.body, {
       attributes: true,
       attributeFilter: ["theme"],
@@ -80,59 +107,176 @@ const Navbar = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <header
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
       className={cn(
-        `fixed top-0 left-0 w-full py-3 z-[1000] backdrop-blur-md`,
+        `fixed top-0 left-0 w-full z-[1000] transition-all duration-300`,
         {
-          [`bg-${bgColor} shadow-md`]: isScrolled,
+          [`${bgColor} shadow-lg`]: isScrolled,
           "bg-transparent": !isScrolled,
         }
       )}
     >
       <nav className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <Link
-              href="/"
-              className={`text-2xl font-bold ${textColor === "white" ? "text-white" : "text-black"
-                }`}
-            >
+          <Link href="/" className="flex items-center space-x-2">
+            <span className={`text-2xl font-bold ${textColor}`}>
               Be Found Online
-            </Link>
-          </div>
-          <div className="hidden lg:flex items-center space-x-8">
-            <MegaMenu />
-            <Uiux />
-            <NavLink href="/Solutions" textColor={textColor}>
-              Solutions <ChevronDown className="inline-block ml-1 w-4 h-4" />
-            </NavLink>
-            <NavLink href="/About" textColor={textColor}>
-              About
-            </NavLink>
-            <NavLink href="/projects" textColor={textColor}>
-              Projects
-            </NavLink>
-            <NavLink href="/insights" textColor={textColor}>
-              Insights
-            </NavLink>
-            <NavLink href="/team" textColor={textColor}>
-              Team
-            </NavLink>
-            <NavLink href="/webinars" textColor={textColor}>
-              Webinars
-            </NavLink>
-            <NavLink href="/Careers" textColor={textColor}>
-              Careers
-            </NavLink>
-            <button className="bg-orange-500 hover:bg-orange-600 text-sm text-black font-bold py-1 px-3 rounded">
+            </span>
+          </Link>
+          <div className="hidden lg:flex items-center space-x-4">
+            <MegaMenu textColor={textColor} />
+
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger
+                    className={`${textColor} hover:text-orange-500 transition-colors duration-200`}
+                  >
+                    Insights
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className={contentBgColor}>
+                    <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                      <li className="row-span-3">
+                        <NavigationMenuLink asChild>
+                          <Link
+                            href="/insights"
+                            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                          >
+                            <BookOpen className="h-6 w-6 mb-2" />
+                            <div className="mb-2 mt-4 text-lg font-medium">
+                              Latest Insights
+                            </div>
+                            <p className="text-sm leading-tight text-muted-foreground">
+                              Discover our latest thoughts and analysis on
+                              digital marketing trends.
+                            </p>
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                      <ListItem
+                        href="/insights"
+                        title="Blog"
+                        icon={<FileText className="h-4 w-4 mr-2" />}
+                      >
+                        Read our latest articles and updates
+                      </ListItem>
+                      <ListItem
+                        href="/case-studies"
+                        title="Case Studies"
+                        icon={<Briefcase className="h-4 w-4 mr-2" />}
+                      >
+                        Explore our success stories
+                      </ListItem>
+                      <ListItem
+                        href="/webinars"
+                        title="Webinars"
+                        icon={<Video className="h-4 w-4 mr-2" />}
+                      >
+                        Join our educational sessions
+                      </ListItem>
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger
+                    className={`${textColor} hover:text-orange-500 transition-colors duration-200`}
+                  >
+                    Who We Are
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className={contentBgColor}>
+                    <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                      <li className="row-span-3">
+                        <NavigationMenuLink asChild>
+                          <Link
+                            href="/About"
+                            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                          >
+                            <Home className="h-6 w-6 mb-2" />
+                            <div className="mb-2 mt-4 text-lg font-medium">
+                              About Be Found Online
+                            </div>
+                            <p className="text-sm leading-tight text-muted-foreground">
+                              Learn about our mission, values, and expertise in
+                              digital marketing.
+                            </p>
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                      <ListItem
+                        href="/About"
+                        title="About Us"
+                        icon={<Home className="h-4 w-4 mr-2" />}
+                      >
+                        Our story and mission
+                      </ListItem>
+                      <ListItem
+                        href="/team"
+                        title="Our Team"
+                        icon={<Users className="h-4 w-4 mr-2" />}
+                      >
+                        Meet the experts behind our success
+                      </ListItem>
+                      <ListItem
+                        href="/Careers"
+                        title="Careers"
+                        icon={<Briefcase className="h-4 w-4 mr-2" />}
+                      >
+                        Join our growing team
+                      </ListItem>
+                      <ListItem
+                        href="/Contact"
+                        title="Contact Us"
+                        icon={<Mail className="h-4 w-4 mr-2" />}
+                      >
+                        Get in touch with us
+                      </ListItem>
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/Solutions" legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={cn(
+                        navigationMenuTriggerStyle(),
+                        textColor,
+                        "hover:text-orange-500 transition-colors duration-200"
+                      )}
+                    >
+                      Solutions
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/projects" legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={cn(
+                        navigationMenuTriggerStyle(),
+                        textColor,
+                        "hover:text-orange-500 transition-colors duration-200"
+                      )}
+                    >
+                      Projects
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+            <Button
+              asChild
+              variant="default"
+              className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105"
+            >
               <Link href="/Contact">Contact Us</Link>
-            </button>
+            </Button>
           </div>
           <div className="lg:hidden">
             <motion.button
               onClick={toggleMenu}
-              className={`inline-flex items-center justify-center p-2 rounded-md ${textColor === "white" ? "text-white" : "text-black"
-                }`}
+              className={`inline-flex items-center justify-center p-2 rounded-md ${textColor}`}
+              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
               <span className="sr-only">Toggle menu</span>
@@ -159,11 +303,11 @@ const Navbar = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden fixed inset-x-0 top-[60px] bg-white shadow-lg rounded-b-2xl overflow-hidden"
+            className={`lg:hidden fixed inset-x-0 top-[76px] ${bgColor} shadow-lg rounded-b-2xl overflow-hidden`}
           >
             <motion.div
               className="flex flex-col py-4"
@@ -180,91 +324,162 @@ const Navbar = () => {
               }}
             >
               {[
-                "Solutions",
-                "About",
-                "Projects",
-                "Insights",
-                "Team",
-                "Webinars",
-                "Careers",
+                {
+                  name: "Insights",
+                  icon: <BookOpen />,
+                  submenu: ["Blog", "Case Studies", "Webinars"],
+                },
+                {
+                  name: "Who We Are",
+                  icon: <Users />,
+                  submenu: ["About Us", "Our Team", "Careers", "Contact Us"],
+                },
+                { name: "Solutions", icon: <Briefcase /> },
+                { name: "Projects", icon: <FileText /> },
               ].map((item, index) => (
-                <MobileNavLink
-                  key={item}
-                  href={`/${item.toLowerCase()}`}
+                <MobileNavItem
+                  key={typeof item === "string" ? item : item.name}
+                  item={item}
                   onClick={toggleMenu}
                   index={index}
-                >
-                  {item}
-                </MobileNavLink>
+                  textColor={textColor}
+                />
               ))}
               <motion.div
                 variants={{
                   open: { opacity: 1, y: 0 },
-                  closed: { opacity: 0, y: 20 },
+                  closed: { opacity: 0, y: -10 },
                 }}
                 transition={{ duration: 0.3 }}
                 className="px-4 mt-4"
               >
-                <Link
-                  href="/Contact"
-                  onClick={toggleMenu}
-                  className="block w-full text-center bg-orange-500 text-white font-bold py-2 px-4 rounded-md hover:bg-orange-600 transition-colors duration-300"
+                <Button
+                  asChild
+                  variant="default"
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105"
                 >
-                  Contact Us
-                </Link>
+                  <Link href="/contact">Contact Us</Link>
+                </Button>
               </motion.div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 };
 
-const NavLink = ({
-  href,
-  children,
-  textColor,
-}: {
-  href: string;
-  children: React.ReactNode;
-  textColor: string;
-}) => (
-  <Link
-    href={href}
-    className={`hover:text-gray-600 font-medium ${textColor === "white" ? "text-white" : "text-black"
-      }`}
-  >
-    {children}
-  </Link>
-);
+const ListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a"> & { icon?: React.ReactNode }
+>(({ className, title, children, icon, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <Link
+          ref={ref}
+          className={cn(
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            className
+          )}
+          {...props}
+        >
+          <div className="flex items-center text-sm font-medium leading-none">
+            {icon}
+            {title}
+          </div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
+        </Link>
+      </NavigationMenuLink>
+    </li>
+  );
+});
+ListItem.displayName = "ListItem";
 
-const MobileNavLink = ({
-  href,
-  children,
+const MobileNavItem = ({
+  item,
   onClick,
   index,
+  textColor,
 }: {
-  href: string;
-  children: string;
+  item: { name: string; icon: React.ReactNode; submenu?: string[] };
   onClick: () => void;
   index: number;
-}) => (
-  <motion.div
-    variants={{
-      open: { opacity: 1, y: 0 },
-      closed: { opacity: 0, y: -10 },
-    }}
-    transition={{ duration: 0.3, delay: index * 0.1 }}
-  >
-    <Link
-      href={href}
-      onClick={onClick}
-      className="block px-4 py-2 text-lg font-medium text-gray-800 hover:bg-orange-100 transition-colors duration-300"
+  textColor: string;
+}) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  if (!item.submenu) {
+    return (
+      <motion.div
+        variants={{
+          open: { opacity: 1, y: 0 },
+          closed: { opacity: 0, y: -10 },
+        }}
+        transition={{ duration: 0.3, delay: index * 0.1 }}
+      >
+        <Link
+          href={`/${item.name.toLowerCase()}` as Url}
+          onClick={onClick}
+          className={`flex items-center px-4 py-2 text-lg font-medium ${textColor} hover:text-orange-500 transition-colors duration-300`}
+        >
+          {item.icon}
+          <span className="ml-2">{item.name}</span>
+        </Link>
+      </motion.div>
+    );
+  }
+
+  return (
+    <motion.div
+      variants={{
+        open: { opacity: 1, y: 0 },
+        closed: { opacity: 0, y: -10 },
+      }}
+      transition={{ duration: 0.3, delay: index * 0.1 }}
     >
-      {children}
-    </Link>
-  </motion.div>
-);
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className={`w-full text-left px-4 py-2 text-lg font-medium ${textColor} hover:text-orange-500 transition-colors duration-300 flex justify-between items-center`}
+      >
+        <span className="flex items-center">
+          {item.icon}
+          <span className="ml-2">{item.name}</span>
+        </span>
+        <ChevronDown
+          className={`h-4 w-4 transition-transform duration-200 ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="bg-opacity-50 backdrop-blur-sm"
+          >
+            {item.submenu.map((subItem) => (
+              <Link
+                key={subItem}
+                href={`/${subItem.toLowerCase().replace(/\s+/g, "-")}`}
+                onClick={onClick}
+                className={`block px-8 py-2 text-sm ${
+                  textColor === "text-white" ? "text-gray-200" : "text-gray-600"
+                } hover:text-orange-500 transition-colors duration-300`}
+              >
+                {subItem}
+              </Link>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+};
 
 export default Navbar;

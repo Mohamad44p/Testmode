@@ -1,9 +1,8 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 interface TeamMember {
   id: string;
@@ -12,142 +11,115 @@ interface TeamMember {
   imgSrc: string;
 }
 
-interface TeamGridProps {
-  membersData: TeamMember[];
+interface TeamShowcaseProps {
+  members: TeamMember[];
 }
 
-const SvgPath = ({ progress }: { progress: number }) => (
-  <svg
-    className="absolute bottom-0 left-0 w-full h-24 pointer-events-none"
-    style={{ zIndex: 1 }}
-  >
-    <motion.path
-      d={`M0,24 C${50 + progress * 50},${48 - progress * 24} ${
-        100 - progress * 50
-      },${progress * 24} 100,24`}
-      fill="none"
-      stroke="rgba(59, 130, 246, 0.7)"
-      strokeWidth="3"
-      strokeDasharray="0 1"
-      style={{
-        pathLength: progress,
-        strokeDashoffset: 1 - progress,
-      }}
-    />
-  </svg>
-);
+export default function TeamShowcase({ members }: TeamShowcaseProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
 
-const MemberCard = ({
-  member,
-  index,
-}: {
-  member: TeamMember;
-  index: number;
-}) => {
-  const cardRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: cardRef,
-    offset: ["start end", "end start"],
-  });
+  const nextMember = () => {
+    setDirection(1);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % members.length);
+  };
 
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.6, 1, 0.6]);
-  const y = useTransform(scrollYProgress, [0, 0.5, 1], [50, 0, -50]);
-  const rotation = useTransform(scrollYProgress, [0, 0.5, 1], [-10, 0, 10]);
-
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
-  return (
-    <motion.div
-      ref={cardRef}
-      style={{ scale, opacity, y, rotate: rotation }}
-      className="group relative"
-    >
-      <Card className="overflow-hidden transition-all duration-300 transform group-hover:scale-105 group-hover:shadow-xl bg-gradient-to-br from-blue-100 to-purple-100">
-        <CardContent className="p-0 relative">
-          <div className="aspect-w-1 aspect-h-1">
-            <img
-              src={member.imgSrc}
-              alt={member.name}
-              className="object-cover w-full h-full transition-all duration-300 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300" />
-          </div>
-          <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-all duration-300 bg-gradient-to-t from-black to-transparent">
-            <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
-            <Badge variant="secondary" className="mt-2">
-              {member.position}
-            </Badge>
-          </div>
-        </CardContent>
-      </Card>
-      <SvgPath progress={smoothProgress.get()} />
-    </motion.div>
-  );
-};
-
-export default function Component({ membersData }: TeamGridProps) {
-  const [columns, setColumns] = useState(4);
-  const gridRef = useRef<HTMLDivElement>(null);
+  const prevMember = () => {
+    setDirection(-1);
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + members.length) % members.length
+    );
+  };
 
   useEffect(() => {
-    const updateColumns = () => {
-      const width = window.innerWidth;
-      if (width < 640) setColumns(2);
-      else if (width < 1024) setColumns(3);
-      else setColumns(4);
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") prevMember();
+      if (e.key === "ArrowRight") nextMember();
     };
 
-    updateColumns();
-    window.addEventListener("resize", updateColumns);
-    return () => window.removeEventListener("resize", updateColumns);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  useEffect(() => {
-    const grid = gridRef.current;
-    if (!grid) return;
+  const getAdjacentIndex = (offset: number) =>
+    (currentIndex + offset + members.length) % members.length;
 
-    const updateLayout = () => {
-      const children = Array.from(grid.children);
-      children.forEach((child, index) => {
-        const row = Math.floor(index / columns);
-        const col = index % columns;
-        const offset = row % 2 === 0 ? 0 : 0.5;
-        const newCol = col + offset;
-        const element = child as HTMLElement;
-        element.style.gridColumn = `${newCol + 1} / span 1`;
-        element.style.transform = `translateY(${row % 2 === 0 ? "0" : "2rem"})`;
-      });
-    };
-
-    updateLayout();
-    window.addEventListener("resize", updateLayout);
-    return () => window.removeEventListener("resize", updateLayout);
-  }, [columns]);
+  if (!members || members.length === 0) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-gray-100">
+        <p className="text-xl text-gray-600">No team members available</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="bg-gradient-to-br from-white to-blue-50 min-h-screen py-16">
-      <div className="container mx-auto px-4">
-        <h1 className="text-6xl font-bold mb-16 text-center text-gray-800">
-          Meet our team
-        </h1>
-        <div
-          ref={gridRef}
-          className="grid gap-8 md:gap-12"
-          style={{
-            gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
-            gridAutoRows: "minmax(250px, auto)",
-          }}
-        >
-          {membersData.map((member, index) => (
-            <MemberCard key={member.id} member={member} index={index} />
-          ))}
+    <div className="relative w-full h-screen bg-gray-100 overflow-hidden flex flex-col items-center justify-center">
+      <div className="relative w-full max-w-6xl aspect-[16/9]">
+        <AnimatePresence initial={false} custom={direction}>
+          {[-1, 0, 1].map((offset) => {
+            const member = members[getAdjacentIndex(offset)];
+            return (
+              <motion.div
+                key={`${member.id}-${offset}`}
+                custom={direction}
+                initial={{
+                  scale: offset === 0 ? 1 : 0.8,
+                  x: `${offset * 40}%`,
+                  y: offset === 0 ? 0 : "5%",
+                  zIndex: offset === 0 ? 2 : 1,
+                  rotate: offset * -5,
+                  opacity: offset === 0 ? 1 : 0.8,
+                }}
+                animate={{
+                  scale: offset === 0 ? 1 : 0.8,
+                  x: `${offset * 40}%`,
+                  y: offset === 0 ? 0 : "5%",
+                  zIndex: offset === 0 ? 2 : 1,
+                  rotate: offset * -5,
+                  opacity: offset === 0 ? 1 : 0.8,
+                }}
+                exit={{
+                  scale: 0.8,
+                  x: `${-direction * 40}%`,
+                  y: "5%",
+                  zIndex: 1,
+                  rotate: direction * 5,
+                  opacity: 0.8,
+                }}
+                transition={{
+                  duration: 0.5,
+                  ease: "easeInOut",
+                }}
+                className="absolute top-0 left-0 w-full h-full flex flex-col items-center"
+              >
+                <div
+                  className={`relative w-full h-full ${
+                    offset !== 0 ? "overflow-hidden" : ""
+                  }`}
+                >
+                  <Image
+                    src={member.imgSrc}
+                    alt={member.name}
+                    layout="fill"
+                    objectFit="cover"
+                    className="grayscale"
+                  />
+                </div>
+                <div className="absolute bottom-0 left-0 w-full text-center pb-4">
+                  <h2 className="text-3xl font-bold">{member.name}</h2>
+                  <p className="text-xl">{member.position}</p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </AnimatePresence>
+      </div>
+      <div className="mt-8 flex items-center justify-center">
+        <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center">
+          <span className="text-white text-sm">SWIPE</span>
         </div>
       </div>
+      <div className="w-full max-w-6xl h-px bg-gray-300 mt-8"></div>
     </div>
   );
 }

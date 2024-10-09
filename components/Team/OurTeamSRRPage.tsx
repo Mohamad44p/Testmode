@@ -3,7 +3,14 @@ import OurTeamPage from "./OurTeam";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL;
 
-async function getTeamMembers() {
+interface TeamMember {
+  id: string;
+  name: string;
+  position: string;
+  imgSrc: string;
+}
+
+async function getTeamMembers(): Promise<TeamMember[]> {
   unstable_noStore();
   const res = await fetch(`${API_BASE_URL}/wp-json/our-team/v1/members`, {
     next: { revalidate: 60 },
@@ -15,6 +22,6 @@ async function getTeamMembers() {
 }
 
 export default async function OurTeamSRRPage() {
-  const membersData = await getTeamMembers();
-  return <OurTeamPage membersData={membersData} />;
+  const members = await getTeamMembers();
+  return <OurTeamPage members={members} />;
 }

@@ -1,76 +1,133 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaSearch, FaBullhorn, FaShoppingCart, FaBook, FaRegChartBar, FaGlobe, FaCog, FaFolderOpen, FaBusinessTime } from "react-icons/fa";
+import {
+  FaSearch,
+  FaBullhorn,
+  FaShoppingCart,
+  FaBook,
+  FaRegChartBar,
+  FaGlobe,
+  FaCog,
+  FaFolderOpen,
+  FaBusinessTime,
+} from "react-icons/fa";
 import { ChevronDown } from "lucide-react";
+import Link from "next/link";
 
-const menuItems = [
+const menuContent = [
   {
-    title: "Digital Marketing",
-    content: [
+    title: "Organic Search",
+    icon: <FaSearch className="text-blue-500" />,
+    links: [
+      { text: "SEO Services", href: "/seo-services" },
+      { text: "Enterprise SEO Services", href: "/enterprise-seo-services" },
       {
-        title: "Organic Search",
-        icon: <FaSearch className="text-blue-500" />,
-        links: [
-          { text: "SEO Services", icon: <FaRegChartBar className="text-green-500" /> },
-          { text: "Local SEO Services", icon: <FaGlobe className="text-purple-500" /> },
-          { text: "Google Local Services Ads", icon: <FaCog className="text-orange-500" /> },
-        ],
+        text: "Digital Marketing Services",
+        href: "/digital-marketing-services",
+      },
+      { text: "Local SEO Services", href: "/local-seo-services" },
+      {
+        text: "Google Local Services Ads Management",
+        href: "/google-local-services-ads",
+      },
+      { text: "SEO Audits", href: "/seo-audits" },
+      {
+        text: "Generative Engine & Chat Optimization",
+        href: "/generative-engine-optimization",
+      },
+    ],
+  },
+  {
+    title: "Digital Advertising",
+    icon: <FaBullhorn className="text-red-500" />,
+    links: [
+      { text: "PPC Management Services", href: "/ppc-management-services" },
+      {
+        text: "Enterprise PPC Management Services",
+        href: "/enterprise-ppc-management",
+      },
+      { text: "Social Media Advertising", href: "/social-media-advertising" },
+      {
+        text: "Enterprise Social Media Advertising",
+        href: "/enterprise-social-media-advertising",
       },
       {
-        title: "Digital Advertising",
-        icon: <FaBullhorn className="text-red-500" />,
-        links: [
-          { text: "PPC Management Services", icon: <FaBullhorn className="text-yellow-500" /> },
-          { text: "Social Media Advertising", icon: <FaGlobe className="text-blue-500" /> },
-          { text: "Content Strategy Creation", icon: <FaRegChartBar className="text-green-500" /> },
-        ],
+        text: "Programmatic Advertising Services",
+        href: "/programmatic-advertising",
       },
       {
-        title: "Ecommerce",
-        icon: <FaShoppingCart className="text-purple-500" />,
-        links: [
-          { text: "Ecommerce SEO Services", icon: <FaSearch className="text-blue-500" /> },
-          { text: "Ecommerce PPC Services", icon: <FaBullhorn className="text-red-500" /> },
-          { text: "Ecommerce Digital Marketing", icon: <FaCog className="text-green-500" /> },
-        ],
+        text: "Addressable Geofencing Services",
+        href: "/addressable-geofencing",
+      },
+      { text: "Connected TV & OTT", href: "/connected-tv-ott" },
+    ],
+  },
+  {
+    title: "Ecommerce",
+    icon: <FaShoppingCart className="text-purple-500" />,
+    links: [
+      { text: "Ecommerce SEO Services", href: "/ecommerce-seo-services" },
+      { text: "Ecommerce PPC Services", href: "/ecommerce-ppc-services" },
+      {
+        text: "Ecommerce Social Media Advertising",
+        href: "/ecommerce-social-media-advertising",
+      },
+      { text: "B2B Ecommerce Enablement", href: "/b2b-ecommerce-enablement" },
+      { text: "Shopping Feed Automation", href: "/shopping-feed-automation" },
+      {
+        text: "Ecommerce Digital Marketing Services",
+        href: "/ecommerce-digital-marketing",
       },
       {
-        title: "Learn",
-        icon: <FaBook className="text-teal-500" />,
-        links: [
-          { text: "Our SEO Results", icon: <FaRegChartBar className="text-blue-500" /> },
-          { text: "Our SEO Case Studies", icon: <FaFolderOpen className="text-green-500" /> },
-          { text: "What Is Digital Marketing?", icon: <FaBook className="text-purple-500" /> },
-        ],
+        text: "Ecommerce Marketing Resources",
+        href: "/ecommerce-marketing-resources",
+      },
+    ],
+  },
+  {
+    title: "Learn",
+    icon: <FaBook className="text-teal-500" />,
+    links: [
+      { text: "Our SEO Results", href: "/seo-results" },
+      { text: "Our SEO Case Studies", href: "/seo-case-studies" },
+      { text: "What Is an SEO Company?", href: "/what-is-seo-company" },
+      {
+        text: "How to Find the Best SEO Company",
+        href: "/find-best-seo-company",
+      },
+      {
+        text: "SEO Guide for Marketing Managers",
+        href: "/seo-guide-marketing-managers",
+      },
+      {
+        text: "What Is Digital Marketing?",
+        href: "/what-is-digital-marketing",
+      },
+      {
+        text: "Best Digital Marketing Tools",
+        href: "/best-digital-marketing-tools",
       },
     ],
   },
 ];
 
-export default function Component() {
+export default function MegaMenu({textColor}: {textColor: string}) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav>
-      <div>
-        <div className="flex justify-between">
-          <div className="flex">
-            {menuItems.map((item, index) => (
-              <div key={index} className="relative">
-                <button
-                  className="inline-flex items-center px-4 py-2 text-sm font-medium"
-                  onMouseEnter={() => setIsOpen(true)}
-                  onMouseLeave={() => setIsOpen(false)}
-                  aria-expanded={isOpen}
-                  aria-haspopup="true"
-                >
-                  {item.title}
-                  <ChevronDown className="inline-block ml-1 w-4 h-4" />
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
+      <div className="flex justify-between items-center p-4">
+        <button
+          className="inline-flex items-center px-4 py-2 text-sm font-medium"
+          onMouseEnter={() => setIsOpen(true)}
+          onMouseLeave={() => setIsOpen(false)}
+          aria-expanded={isOpen}
+          aria-haspopup="true"
+          style={{ color: textColor }}
+        >
+          Digital Marketing
+          <ChevronDown className="inline-block ml-1 w-4 h-4" />
+        </button>
       </div>
       <AnimatePresence>
         {isOpen && (
@@ -83,40 +140,48 @@ export default function Component() {
             onMouseEnter={() => setIsOpen(true)}
             onMouseLeave={() => setIsOpen(false)}
           >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {menuItems[0].content.map((section, sectionIndex) => (
-                  <motion.div
-                    key={sectionIndex}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: sectionIndex * 0.1 }}
-                    className="space-y-4"
-                  >
-                    <h3 className="text-lg font-semibold flex items-center space-x-2 text-gray-900">
-                      {section.icon}
-                      <span>{section.title}</span>
-                    </h3>
-                    <ul className="space-y-2">
-                      {section.links.map((link, linkIndex) => (
-                        <motion.li
-                          key={linkIndex}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: linkIndex * 0.1 + sectionIndex * 0.2 }}
-                        >
-                          <a
-                            href="#"
-                            className="flex items-center space-x-2 text-gray-600 hover:text-indigo-600 transition-colors duration-200"
-                          >
-                            {link.icon}
-                            <span>{link.text}</span>
-                          </a>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                ))}
+            <div className="w-full">
+              <div className="px-4 sm:px-6 lg:px-8 py-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                  {menuContent.map((section, sectionIndex) => (
+                    <div key={sectionIndex} className="space-y-4">
+                      <h3 className="text-lg font-semibold flex items-center space-x-2 text-gray-900">
+                        {section.icon}
+                        <span>{section.title}</span>
+                      </h3>
+                      <ul className="space-y-2">
+                        {section.links.map((link, linkIndex) => (
+                          <li key={linkIndex}>
+                            <Link
+                              href={link.href}
+                              className="text-sm text-gray-600 hover:text-blue-600 transition-colors duration-200"
+                            >
+                              {link.text}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="bg-blue-50 py-8 w-full">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div className="flex items-center justify-between">
+                    <div className="space-y-2">
+                      <h3 className="text-4xl font-bold text-blue-600">198%</h3>
+                      <p className="text-lg text-gray-700">
+                        Increase in organic transactions
+                      </p>
+                    </div>
+                    <Link
+                      href="/case-study"
+                      className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors duration-200"
+                    >
+                      Read Our Case Study
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>
