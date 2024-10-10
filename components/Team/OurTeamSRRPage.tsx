@@ -8,6 +8,7 @@ interface TeamMember {
   name: string;
   position: string;
   imgSrc: string;
+  bg: string;
 }
 
 async function getTeamMembers(): Promise<TeamMember[]> {

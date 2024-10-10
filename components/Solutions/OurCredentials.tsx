@@ -32,7 +32,7 @@ export default function OurCredentials() {
   return (
     <div
       data-color="soft-orange"
-      className="p-8 md:p-16 section mt-[40vh] flex flex-col justify-center"
+      className="p-8 h-screen md:p-16 section mt-[40vh] flex flex-col justify-center"
       ref={ref}
     >
       <h1 className="text-4xl md:text-5xl font-bold mb-4">Our credentials</h1>

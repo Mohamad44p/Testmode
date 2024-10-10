@@ -38,9 +38,9 @@ export default function Component() {
           </div>
         </div>
         <h2 className="text-4xl font-serif sticky bottom-8">
-          Why Choose Signifco?
+          Why Choose Be Found Online?
         </h2>
-        <button className="bg-[#fdfdc4] hover:bg-[#fdfdc4] border border-black text-black px-6 py-2 font-semibold">
+        <button className="bg-[#fdfdc4] hover:bg-[#fdfdc4] border border-black text-black px-6 py-2 mt-10 font-semibold">
           <Link href="/Connect">
             <TextReveal>CONNECT &#8599;</TextReveal>
           </Link>
@@ -59,7 +59,7 @@ export default function Component() {
         />
         <Card
           title="Freedom and Responsibility"
-          description="At Signifco, we champion autonomy and responsibility, providing the support you need to thrive while contributing meaningfully to our team's innovative endeavors."
+          description="At Be Found Online, we champion autonomy and responsibility, providing the support you need to thrive while contributing meaningfully to our team's innovative endeavors."
           Icon={Unlink}
         />
       </div>

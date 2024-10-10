@@ -6,6 +6,7 @@ import { Lenis } from "@/components/Lenis";
 import AnimatedFooter from "@/components/Footer";
 import localFont from "next/font/local";
 import PageTransition from "@/components/Transition";
+import NavBarTest1 from "@/components/Heders/NavbarTest";
 
 const neueMachina = localFont({
   src: "../public/fonts/Neue Machina Inktrap Medium.ttf",
@@ -30,7 +31,7 @@ export default function RootLayout({
       <body className={`${neueMachina.variable}`}>
         <Lenis>
           <PageTransition>
-            <Navbar />
+            <NavBarTest1 />
             <ScrollButton />
             <main>{children}</main>
             <section data-color="black">

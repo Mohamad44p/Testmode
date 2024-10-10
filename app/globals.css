@@ -408,4 +408,16 @@ body .font-neue-Light {
   }
 }
 
+.items {
+  columns: 300px 3;
+  column-gap: 2rem;
+}
 
+.items > div {
+  display: inline-block;
+  width: 100%;
+}
+
+.bg-pixelated {
+  image-rendering: pixelated;
+}

@@ -1,8 +1,8 @@
-"use client";
+'use client'
 
-import * as React from "react";
-import Link from "next/link";
-import { motion, AnimatePresence, useScroll } from "framer-motion";
+import * as React from "react"
+import Link from "next/link"
+import { motion, AnimatePresence, useScroll } from "framer-motion"
 import {
   ChevronDown,
   Menu,
@@ -14,8 +14,8 @@ import {
   Briefcase,
   Mail,
   Home,
-} from "lucide-react";
-import { cn } from "@/lib/utils";
+} from "lucide-react"
+import { cn } from "@/lib/utils"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -24,87 +24,89 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import { Button } from "@/components/ui/button";
-import { Url } from "next/dist/shared/lib/router/router";
-import MegaMenu from "./MegaMenu";
+} from "@/components/ui/navigation-menu"
+import { Button } from "@/components/ui/button"
+import { UrlObject } from "url"
+import MegaMenu from "./MegaMenu"
+
+type Href = string | UrlObject
 
 const Navbar = () => {
-  const [textColor, setTextColor] = React.useState("text-black");
-  const [bgColor, setBgColor] = React.useState("bg-white");
-  const [contentBgColor, setContentBgColor] = React.useState("bg-white");
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [isScrolled, setIsScrolled] = React.useState(false);
+  const [textColor, setTextColor] = React.useState("text-black")
+  const [bgColor, setBgColor] = React.useState("bg-white")
+  const [contentBgColor, setContentBgColor] = React.useState("bg-white")
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+  const [isScrolled, setIsScrolled] = React.useState(false)
 
-  const { scrollYProgress } = useScroll();
+  const { scrollYProgress } = useScroll()
 
   React.useEffect(() => {
     const unsubscribe = scrollYProgress.onChange((value) => {
-      setIsScrolled(value > 0.0001);
-    });
+      setIsScrolled(value > 0.0001)
+    })
 
-    return () => unsubscribe();
-  }, [scrollYProgress]);
+    return () => unsubscribe()
+  }, [scrollYProgress])
 
   React.useEffect(() => {
     const updateColors = () => {
-      const currentTheme = document.body.getAttribute("theme");
+      const currentTheme = document.body.getAttribute("theme")
       switch (currentTheme) {
         case "RaisinBlack":
         case "Black":
-          setTextColor("text-white");
-          setBgColor("bg-zinc-900");
-          setContentBgColor("bg-zinc-800");
-          break;
+          setTextColor("text-white")
+          setBgColor("bg-zinc-900")
+          setContentBgColor("bg-zinc-800")
+          break
         case "Ming":
-          setBgColor("bg-cyan-700");
-          setTextColor("text-white");
-          setContentBgColor("bg-cyan-600");
-          break;
+          setBgColor("blue-600")
+          setTextColor("text-white")
+          setContentBgColor("blue-600")
+          break
         case "Blond":
-          setBgColor("bg-amber-100");
-          setTextColor("text-black");
-          setContentBgColor("bg-amber-50");
-          break;
+          setBgColor("bg-amber-100")
+          setTextColor("text-black")
+          setContentBgColor("bg-amber-50")
+          break
         case "Almond":
-          setBgColor("bg-orange-50");
-          setTextColor("text-black");
-          setContentBgColor("bg-orange-100");
-          break;
+          setBgColor("bg-orange-50")
+          setTextColor("text-black")
+          setContentBgColor("bg-orange-100")
+          break
         case "White":
-          setBgColor("bg-white");
-          setTextColor("text-black");
-          setContentBgColor("bg-gray-50");
-          break;
+          setBgColor("bg-white")
+          setTextColor("text-black")
+          setContentBgColor("bg-gray-50")
+          break
         case "light-blue":
-          setBgColor("bg-sky-100");
-          setTextColor("text-black");
-          setContentBgColor("bg-sky-50");
-          break;
+          setBgColor("bg-sky-100")
+          setTextColor("text-black")
+          setContentBgColor("bg-sky-50")
+          break
         case "soft-orange":
-          setBgColor("bg-orange-200");
-          setTextColor("text-black");
-          setContentBgColor("bg-orange-100");
-          break;
+          setBgColor("bg-orange-200")
+          setTextColor("text-black")
+          setContentBgColor("bg-orange-100")
+          break
         default:
-          setBgColor("bg-white");
-          setTextColor("text-black");
-          setContentBgColor("bg-gray-50");
+          setBgColor("bg-white")
+          setTextColor("text-black")
+          setContentBgColor("bg-gray-50")
       }
-    };
+    }
 
-    updateColors();
+    updateColors()
 
-    const observer = new MutationObserver(updateColors);
+    const observer = new MutationObserver(updateColors)
     observer.observe(document.body, {
       attributes: true,
       attributeFilter: ["theme"],
-    });
+    })
 
-    return () => observer.disconnect();
-  }, []);
+    return () => observer.disconnect()
+  }, [])
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
   return (
     <motion.header
@@ -121,10 +123,8 @@ const Navbar = () => {
     >
       <nav className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2">
-            <span className={`text-2xl font-bold ${textColor}`}>
-              Be Found Online
-            </span>
+          <Link href="/" className={`flex items-center space-x-2 text-2xl font-bold ${textColor}`}>
+            Be Found Online
           </Link>
           <div className="hidden lg:flex items-center space-x-4">
             <MegaMenu textColor={textColor} />
@@ -264,13 +264,14 @@ const Navbar = () => {
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
-            <Button
-              asChild
-              variant="default"
-              className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105"
-            >
-              <Link href="/Contact">Contact Us</Link>
-            </Button>
+            <Link href="/contact" passHref>
+              <Button
+                variant="default"
+                className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105"
+              >
+                Contact Us
+              </Button>
+            </Link>
           </div>
           <div className="lg:hidden">
             <motion.button
@@ -353,37 +354,34 @@ const Navbar = () => {
                 transition={{ duration: 0.3 }}
                 className="px-4 mt-4"
               >
-                <Button
-                  asChild
-                  variant="default"
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105"
-                >
-                  <Link href="/contact">Contact Us</Link>
-                </Button>
+                <Link href="/contact" passHref>
+                  <Button
+                    variant="default"
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105"
+                  >
+                    Contact Us
+                  </Button>
+                </Link>
               </motion.div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
     </motion.header>
-  );
-};
+  )
+}
 
 const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a"> & { icon?: React.ReactNode }
->(({ className, title, children, icon, ...props }, ref) => {
+  React.ElementRef<"div">,
+  React.ComponentPropsWithoutRef<"div"> & { icon?: React.ReactNode; href: Href; title: string }
+>(({ className, title, children, icon, href, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
-        <Link
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          {...props}
-        >
+        <Link href={href} className={cn(
+          "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+          className
+        )}>
           <div className="flex items-center text-sm font-medium leading-none">
             {icon}
             {title}
@@ -394,9 +392,9 @@ const ListItem = React.forwardRef<
         </Link>
       </NavigationMenuLink>
     </li>
-  );
-});
-ListItem.displayName = "ListItem";
+  )
+})
+ListItem.displayName = "ListItem"
 
 const MobileNavItem = ({
   item,
@@ -409,7 +407,7 @@ const MobileNavItem = ({
   index: number;
   textColor: string;
 }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false)
 
   if (!item.submenu) {
     return (
@@ -420,16 +418,12 @@ const MobileNavItem = ({
         }}
         transition={{ duration: 0.3, delay: index * 0.1 }}
       >
-        <Link
-          href={`/${item.name.toLowerCase()}` as Url}
-          onClick={onClick}
-          className={`flex items-center px-4 py-2 text-lg font-medium ${textColor} hover:text-orange-500 transition-colors duration-300`}
-        >
+        <Link href={`/${item.name.toLowerCase().replace(/\s+/g, "-")}`} className={`flex items-center px-4 py-2 text-lg font-medium ${textColor} hover:text-orange-500 transition-colors duration-300`}>
           {item.icon}
           <span className="ml-2">{item.name}</span>
         </Link>
       </motion.div>
-    );
+    )
   }
 
   return (
@@ -449,9 +443,8 @@ const MobileNavItem = ({
           <span className="ml-2">{item.name}</span>
         </span>
         <ChevronDown
-          className={`h-4 w-4 transition-transform duration-200 ${
-            isOpen ? "rotate-180" : ""
-          }`}
+          className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
+            }`}
         />
       </button>
       <AnimatePresence>
@@ -468,9 +461,8 @@ const MobileNavItem = ({
                 key={subItem}
                 href={`/${subItem.toLowerCase().replace(/\s+/g, "-")}`}
                 onClick={onClick}
-                className={`block px-8 py-2 text-sm ${
-                  textColor === "text-white" ? "text-gray-200" : "text-gray-600"
-                } hover:text-orange-500 transition-colors duration-300`}
+                className={`block px-8 py-2 text-sm ${textColor === "text-white" ? "text-gray-200" : "text-gray-600"
+                  } hover:text-orange-500 transition-colors duration-300`}
               >
                 {subItem}
               </Link>
@@ -479,7 +471,7 @@ const MobileNavItem = ({
         )}
       </AnimatePresence>
     </motion.div>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

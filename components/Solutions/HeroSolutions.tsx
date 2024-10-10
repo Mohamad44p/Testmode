@@ -55,23 +55,20 @@ export default function HeroSolutions() {
         <motion.div className="flex items-center mb-4" variants={itemVariants}>
           <div className="w-2 h-2 bg-black rounded-full mr-2" />
           <div className="text-sm font-semibold text-gray-600 uppercase tracking-wider">
-            Insurance Solutions
+            Digital Solutions
           </div>
         </motion.div>
         <motion.h1
           className="text-5xl lg:text-6xl font-bold mb-6 leading-tight"
           variants={itemVariants}
         >
-          Technology solutions for complex challenges
+          Digital solutions for complex challenges
         </motion.h1>
         <motion.p
           className="text-gray-600 mb-8 text-lg"
           variants={itemVariants}
         >
-          Significo is a product and software development agency on a mission to
-          put humans back at the center of healthcare by simplifying complexity,
-          accelerating capacity, and improving outcomes. We work with mid-size
-          payers and insurers to help members manage and improve their health.
+          At Be Found Online, we’re dedicated to solving complex digital challenges with solutions that put people first. Our mission is to simplify processes, boost capabilities, and drive impactful results for mid-sized businesses. We focus on digital transformation, helping organizations manage and enhance their online presence, improve customer engagement, and increase overall business performance. With a human-centered approach, we ensure your digital journey is seamless and productive, always aiming for the best outcomes in everything we do.
         </motion.p>
         <motion.div variants={itemVariants}>
           <motion.button

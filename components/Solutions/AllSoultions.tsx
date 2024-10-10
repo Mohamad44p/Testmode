@@ -7,10 +7,8 @@ import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Banner from "../Banner";
-import WhatWeBuild from "./WhatWeBuild";
 import OurCredentials from "./OurCredentials";
-import WhoServe from "./WhoServe";
-import WhatWeDo from "./WhatWeDo";
+import CardProjectssr from "../CaseSt/CardProjectssr";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,20 +64,11 @@ export default function AllSolutions() {
       <section data-color="Almond" className="section mt-12">
         <HeroSolutions />
       </section>
-      {/*       <section
-        data-color="light-blue"
-        className="section"
-      >
-        <WhoServe/>
-      </section> */}
-      <section data-color="light-blue" className="section">
-        <WhatWeDo />
-      </section>
       <section data-color="light-blue" className="section">
         <SolutionsCards />
       </section>
       <section data-color="Almond" className="section">
-        <WhatWeBuild />
+        <CardProjectssr />
       </section>
       <section data-color="soft-orange" className="section">
         <OurCredentials />

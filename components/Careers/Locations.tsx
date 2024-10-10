@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
 import { ArrowRightIcon } from "lucide-react";
+import Link from "next/link";
 
 export default function Component() {
   const [hoveredLocation, setHoveredLocation] = useState<string | null>(null);
@@ -10,15 +11,15 @@ export default function Component() {
     {
       name: "Everywhere",
       address: "Fully Remote",
-      image: "/images/Earth.jpg",
+      href: "https://www.google.com/maps",
     },
     {
       name: "Palestine , Hebron",
-      image: "/images/Carecter2.jpeg",
+      href: "https://www.google.com/maps/place/Be+Found+Online+Palestine/@31.5459924,35.0928523,15z/data=!4m6!3m5!1s0x1502e763eb402a71:0xf3e70d268a16414f!8m2!3d31.5459924!4d35.0928523!16s%2Fg%2F11v0xssskl?entry=ttu&g_ep=EgoyMDI0MTAwNy4xIKXMDSoASAFQAw%3D%3D",
     },
     {
       name: "Palestine, Ramallah",
-      image: "/images/Carecter3.jpeg",
+      href: "https://www.google.com/maps/place/Be+Found+Online+Palestine/@31.5459924,35.0928523,15z/data=!4m6!3m5!1s0x1502e763eb402a71:0xf3e70d268a16414f!8m2!3d31.5459924!4d35.0928523!16s%2Fg%2F11v0xssskl?entry=ttu&g_ep=EgoyMDI0MTAwNy4xIKXMDSoASAFQAw%3D%3D"
     },
   ];
 
@@ -47,20 +48,13 @@ export default function Component() {
                   <h3 className="text-xl font-light">{location.name}</h3>
                   <p className="text-sm font-light">{location.address}</p>
                 </div>
-                <button className="flex items-center space-x-1 text-sm font-light uppercase">
-                  <span>View map</span>
-                  <ArrowRightIcon className="h-4 w-4" />
-                </button>
+                <Link href={location.href} target="_blank">
+                  <button className="flex items-center space-x-1 text-sm font-light uppercase">
+                    <span>View map</span>
+                    <ArrowRightIcon className="h-4 w-4" />
+                  </button>
+                </Link>
               </div>
-              {hoveredLocation === location.name && (
-                <div className="absolute left-1/2 -top-10 z-10 mt-2 -translate-x-1/2 transform">
-                  <img
-                    src={location.image}
-                    alt={`${location.name} office`}
-                    className="h-60 w-60 rounded-full object-cover shadow-lg"
-                  />
-                </div>
-              )}
             </div>
           ))}
         </div>

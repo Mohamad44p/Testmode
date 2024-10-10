@@ -10,6 +10,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { TextReveal } from "../ui/typography";
 import BoxReveal from "../magicui/box-reveal";
+import UIUXImage from "../../public/icons/UIUX.svg";
+import SEOImage from "../../public/icons/SEO.svg";
+import ContentImage from "../../public/icons/ContactMarketing.svg";
+import BrandingImage from "../../public/icons/Branding.svg";
+import DigitalStrategyImage from "../../public/icons/DigitalStr.svg";
+import EcommerceImage from "../../public/icons/Ecommerce.svg";
+import TrainingImage from "../../public/icons/Traning.svg";
+import SoftwareImage from "../../public/icons/Devlopment.svg"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,38 +30,73 @@ interface CardConfig {
   color?: string;
 }
 
-const cardConfigs: CardConfig[] = [
+const cardConfigs = [
   {
     className: "no1",
+    background: "#4089c1",
+    color: "#fff",
     title: "SEO & Lead Generation",
     text: "Drive organic traffic, improve search rankings, and convert leads into loyal customers with our comprehensive solutions tailored to your business.",
-    icon: TbSeo,
-    background: "#000",
-    color: "#aedee0",
+    svgPath: SEOImage,
+
   },
   {
     className: "no2",
+    background: "#4089c1",
+    color: "#fff",
     title: "UI/UX Interactive",
     text: "We craft immersive digital experiences with sleek designs and user-friendly interfaces, enhancing engagement and satisfaction for your audience.",
-    icon: TbPalette,
-    background: "#000",
-    color: "#aedee0",
+    svgPath: UIUXImage,
   },
   {
     className: "no3",
+    background: "#4089c1",
+    color: "#fff",
     title: "Content Marketing",
     text: "We craft captivating narratives and deliver strategic content to captivate your audience, spark conversations, and drive impactful results for your brand.",
-    icon: TbBrandPagekit,
-    background: "#000",
-    color: "#aedee0",
+    svgPath: ContentImage,
+
   },
   {
     className: "no4",
+    background: "#4089c1",
+    color: "#fff",
     title: "Branding & Creative Media",
     text: "Transforming visions into compelling stories and striking visuals that define and amplify your brand's unique identity and market presence.",
-    icon: TbPalette,
-    background: "#000",
-    color: "#aedee0",
+    svgPath: BrandingImage,
+
+  },
+  {
+    className: "no5",
+    background: "#4089c1",
+    color: "#fff",
+    title: "Digital Strategy and Consulting",
+    text: "Crafting Revenue-Driven Strategies to Propel Your Business Forward, Leveraging Data Insights and Innovation for Sustainable Growth.",
+    svgPath: DigitalStrategyImage,
+  },
+  {
+    className: "no6",
+    background: "#4089c1",
+    color: "#fff",
+    title: "E-commerce Solutions",
+    text: "Streamlined online stores designed for seamless customer experiences, enhanced conversions, and scalable growth.",
+    svgPath: EcommerceImage,
+  },
+  {
+    className: "no7",
+    background: "#4089c1",
+    color: "#fff",
+    title: "Digital Training and Workshops",
+    text: "Transforming Teams into Digital Experts with Customized Learning Experiences and Practical Strategies for Success.",
+    svgPath: TrainingImage,
+  },
+  {
+    className: "no8",
+    background: "#4089c1",
+    color: "#fff",
+    title: "Software Development",
+    text: "Transforming Ideas into Powerful Solutions, Tailored to Your Needs for Seamless Performance and Efficiency.",
+    svgPath: SoftwareImage,
   },
 ];
 
@@ -107,10 +150,10 @@ export default function SolutionsCards() {
         </h1>
         <div className="w-fit OP px-5 md:px-10 hidden  rounded-2xl bg-transparent text-black md:flex py-5 border-[1px] border-[#000]">
           <div className="texthover masker h-[1.5rem] overflow-hidden">
-            <Link href="/Solutions">
+            <Link href="/projects">
               <h1 className="text-lg md:text-xl">
                 <TextReveal className="cursor-pointer">
-                  EXPLORE OUR SOLUTIONS
+                  EXPLORE OUR PROJECTS
                 </TextReveal>
               </h1>
             </Link>
@@ -137,8 +180,14 @@ export default function SolutionsCards() {
                   {config.text}
                 </p>
               </div>
-              <div className="logo w-[3rem] md:w-[5rem]">
-                {React.createElement(config.icon, { size: "100%" })}
+              <div className="logo w-[7rem] md:w-[7rem]">
+                <Image
+                  src={config.svgPath}
+                  alt={config.title}
+                  width={2000}
+                  height={2000}
+                  className="object-contain"
+                />
               </div>
             </div>
           ))}

@@ -1,125 +1,93 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
+import { useState } from "react"
+import { Card, CardContent, CardTitle } from "@/components/ui/card"
+import { motion } from 'framer-motion'
+import Image from "next/image"
 
 interface TeamMember {
-  id: string;
-  name: string;
-  position: string;
-  imgSrc: string;
+  id: string
+  name: string
+  position: string
+  imgSrc: string
+  bg: string
 }
 
 interface TeamShowcaseProps {
-  members: TeamMember[];
+  members: TeamMember[]
 }
 
 export default function TeamShowcase({ members }: TeamShowcaseProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
-
-  const nextMember = () => {
-    setDirection(1);
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % members.length);
-  };
-
-  const prevMember = () => {
-    setDirection(-1);
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + members.length) % members.length
-    );
-  };
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") prevMember();
-      if (e.key === "ArrowRight") nextMember();
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
-  const getAdjacentIndex = (offset: number) =>
-    (currentIndex + offset + members.length) % members.length;
-
-  if (!members || members.length === 0) {
-    return (
-      <div className="flex items-center justify-center h-screen bg-gray-100">
-        <p className="text-xl text-gray-600">No team members available</p>
-      </div>
-    );
-  }
+  const [hoveredId, setHoveredId] = useState<string | null>(null)
 
   return (
-    <div className="relative w-full h-screen bg-gray-100 overflow-hidden flex flex-col items-center justify-center">
-      <div className="relative w-full max-w-6xl aspect-[16/9]">
-        <AnimatePresence initial={false} custom={direction}>
-          {[-1, 0, 1].map((offset) => {
-            const member = members[getAdjacentIndex(offset)];
-            return (
-              <motion.div
-                key={`${member.id}-${offset}`}
-                custom={direction}
-                initial={{
-                  scale: offset === 0 ? 1 : 0.8,
-                  x: `${offset * 40}%`,
-                  y: offset === 0 ? 0 : "5%",
-                  zIndex: offset === 0 ? 2 : 1,
-                  rotate: offset * -5,
-                  opacity: offset === 0 ? 1 : 0.8,
-                }}
-                animate={{
-                  scale: offset === 0 ? 1 : 0.8,
-                  x: `${offset * 40}%`,
-                  y: offset === 0 ? 0 : "5%",
-                  zIndex: offset === 0 ? 2 : 1,
-                  rotate: offset * -5,
-                  opacity: offset === 0 ? 1 : 0.8,
-                }}
-                exit={{
-                  scale: 0.8,
-                  x: `${-direction * 40}%`,
-                  y: "5%",
-                  zIndex: 1,
-                  rotate: direction * 5,
-                  opacity: 0.8,
-                }}
-                transition={{
-                  duration: 0.5,
-                  ease: "easeInOut",
-                }}
-                className="absolute top-0 left-0 w-full h-full flex flex-col items-center"
-              >
-                <div
-                  className={`relative w-full h-full ${
-                    offset !== 0 ? "overflow-hidden" : ""
-                  }`}
+    <section className="container mx-auto px-4 py-3">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+        {members.map((member) => (
+          <motion.div
+            key={member.id}
+            className="mb-6 break-inside-avoid relative group"
+            onHoverStart={() => setHoveredId(member.id)}
+            onHoverEnd={() => setHoveredId(null)}
+          >
+            <motion.div
+              className="absolute -inset-3 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              style={{
+                background: `linear-gradient(90deg, ${member.bg}, ${member.bg}00)`,
+              }}
+              initial={false}
+              animate={{
+                background: [
+                  `linear-gradient(0deg, ${member.bg}, ${member.bg}00)`,
+                  `linear-gradient(90deg, ${member.bg}, ${member.bg}00)`,
+                  `linear-gradient(180deg, ${member.bg}, ${member.bg}00)`,
+                  `linear-gradient(270deg, ${member.bg}, ${member.bg}00)`,
+                  `linear-gradient(360deg, ${member.bg}, ${member.bg}00)`,
+                ],
+              }}
+              transition={{
+                repeat: Infinity,
+                duration: 4,
+                ease: "linear",
+              }}
+            />
+            <Card className="flex flex-col h-full relative z-10 bg-background shadow-md group-hover:shadow-xl transition-shadow duration-300">
+              <CardTitle className="overflow-hidden relative">
+                <motion.div
+                  className="w-full h-0 pb-[100%] relative"
+                  initial={{ filter: 'brightness(0.5) blur(0px)' }}
+                  animate={{ filter: hoveredId === member.id ? 'brightness(1) blur(0px)' : 'brightness(0.5) blur(0px)' }}
+                  transition={{ duration: 0.3 }}
                 >
+                  <div className="absolute inset-0 bg-black" style={{ mixBlendMode: 'color' }} />
+                  <motion.div
+                    className="absolute inset-0 bg-pixelated"
+                    style={{
+                      backgroundImage: `url(${member.imgSrc})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                    }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: hoveredId === member.id ? 1 : 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
                   <Image
                     src={member.imgSrc}
                     alt={member.name}
-                    layout="fill"
-                    objectFit="cover"
-                    className="grayscale"
+                    width={500}
+                    height={500}
+                    className="absolute inset-0 w-full h-full object-cover rounded-t-lg"
                   />
-                </div>
-                <div className="absolute bottom-0 left-0 w-full text-center pb-4">
-                  <h2 className="text-3xl font-bold">{member.name}</h2>
-                  <p className="text-xl">{member.position}</p>
-                </div>
-              </motion.div>
-            );
-          })}
-        </AnimatePresence>
+                </motion.div>
+              </CardTitle>
+              <CardContent className="flex-grow p-4">
+                <h3 className="text-lg font-semibold">{member.name}</h3>
+                <p className="text-sm text-gray-500">{member.position}</p>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
       </div>
-      <div className="mt-8 flex items-center justify-center">
-        <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center">
-          <span className="text-white text-sm">SWIPE</span>
-        </div>
-      </div>
-      <div className="w-full max-w-6xl h-px bg-gray-300 mt-8"></div>
-    </div>
-  );
+    </section>
+  )
 }
