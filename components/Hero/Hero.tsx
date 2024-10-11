@@ -96,7 +96,6 @@ const Hero: React.FC<HeroProps> = ({ heroData }) => {
       },
     });
 
-    // Heading color change animation
     const headingTl = gsap.timeline({ repeat: -1 });
     headingTl
       .to(headingRef.current, { color: "white", duration: 0 })
@@ -112,7 +111,7 @@ const Hero: React.FC<HeroProps> = ({ heroData }) => {
   const renderElements = useCallback((className: string, rowIndex: number) => (
     <div
       data-color="transparent"
-      className={`row ${className} w-full flex items-center gap-3 pb-7 whitespace-nowrap`}
+      className={`row ${className} w-full flex section items-center gap-3 pb-7 whitespace-nowrap`}
     >
       {shuffledRows[rowIndex]?.map((word, index) => (
         <div

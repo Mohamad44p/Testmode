@@ -1,111 +1,477 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { Button } from "@/components/ui/button"
-import { motion, AnimatePresence } from 'framer-motion'
-import { Shield, Sliders, Smartphone, CreditCard, Globe, PieChart, Key, FileText, User, Activity, Banknote, Menu, X, ChevronDown, Users, Briefcase, BookOpen } from 'lucide-react'
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Shield,
+  Sliders,
+  Smartphone,
+  CreditCard,
+  Globe,
+  PieChart,
+  Key,
+  FileText,
+  User,
+  Activity,
+  Banknote,
+  Menu,
+  X,
+  ChevronDown,
+  Users,
+  Briefcase,
+  BookOpen,
+  Newspaper,
+  BarChart,
+  Lightbulb,
+  Building,
+  Heart,
+  Award,
+  Megaphone,
+  Target,
+  Palette,
+  Layout,
+  Zap,
+  Crop,
+} from "lucide-react";
 
 const navItems = [
-  { name: 'Home', href: '/' },
-  { name: 'Solutions', href: '/Solutions', dropdown: true },
-  { name: 'Projects', href: '/projects' },
-  { name: 'Insights', href: '/insights', dropdown: true },
-  { name: 'Webinars', href: '/webinars' },
-  { name: 'Who we are', href: '/About', dropdown: true }
-]
+  { name: "Home", href: "/" },
+  { name: "Solutions", href: "/Solutions", dropdown: true },
+  { name: "Projects", href: "/projects" },
+  { name: "Insights", href: "/insights", dropdown: true },
+  { name: "Digital Marketing", href: "/digital-marketing", dropdown: true },
+  { name: "UI/UX", href: "/ui-ux", dropdown: true },
+  { name: "Who we are", href: "/About", dropdown: true },
+];
 
 const solutions = [
   {
     category: "PAYMENTS",
     items: [
-      { icon: Shield, title: "PCI Compliance", description: "Become PCI compliant", href: "/solutions/pci-compliance" },
-      { icon: Sliders, title: "Payments Optimization", description: "Control your payment data", href: "/solutions/payments-optimization" },
-      { icon: Smartphone, title: "3D Secure", description: "Flexible and universal 3DS", href: "/solutions/3d-secure" },
-      { icon: CreditCard, title: "Card Issuing", description: "Provision and manage cards", href: "/solutions/card-issuing" },
-      { icon: Globe, title: "Network Tokens", description: "Modernize your payments", href: "/solutions/network-tokens" },
-      { icon: PieChart, title: "Card Insights", description: "Understand your cardholders", href: "/solutions/card-insights" },
-      { icon: Key, title: "Key Management", description: "Secure key recovery flows", href: "/solutions/key-management" },
-    ]
+      {
+        icon: Shield,
+        title: "PCI Compliance",
+        description: "Become PCI compliant",
+        href: "/Solutions",
+      },
+      {
+        icon: Sliders,
+        title: "Payments Optimization",
+        description: "Control your payment data",
+        href: "/Solutions",
+      },
+      {
+        icon: Smartphone,
+        title: "3D Secure",
+        description: "Flexible and universal 3DS",
+        href: "/Solutions",
+      },
+      {
+        icon: CreditCard,
+        title: "Card Issuing",
+        description: "Provision and manage cards",
+        href: "/Solutions",
+      },
+      {
+        icon: Globe,
+        title: "Network Tokens",
+        description: "Modernize your payments",
+        href: "/Solutions",
+      },
+      {
+        icon: PieChart,
+        title: "Card Insights",
+        description: "Understand your cardholders",
+        href: "/Solutions",
+      },
+      {
+        icon: Key,
+        title: "Key Management",
+        description: "Secure key recovery flows",
+        href: "/Solutions",
+      },
+    ],
   },
   {
     category: "BY DATA TYPE",
     items: [
-      { icon: CreditCard, title: "Card Data", description: "", href: "/solutions/card-data" },
-      { icon: Banknote, title: "Banking Data", description: "", href: "/solutions/banking-data" },
-      { icon: User, title: "PII", description: "", href: "/solutions/pii" },
-      { icon: Activity, title: "HIPAA & ePHI", description: "", href: "/solutions/hipaa-ephi" },
-      { icon: Key, title: "API Credentials", description: "", href: "/solutions/api-credentials" },
-      { icon: FileText, title: "File Encryption", description: "", href: "/solutions/file-encryption" },
-    ]
-  }
-]
+      {
+        icon: CreditCard,
+        title: "Card Data",
+        description: "Secure payment information",
+        href: "/Solutions",
+      },
+      {
+        icon: Banknote,
+        title: "Banking Data",
+        description: "Protect financial records",
+        href: "/Solutions",
+      },
+      {
+        icon: User,
+        title: "PII",
+        description: "Safeguard personal information",
+        href: "/Solutions",
+      },
+      {
+        icon: Activity,
+        title: "HIPAA & ePHI",
+        description: "Ensure healthcare data compliance",
+        href: "/Solutions",
+      },
+      {
+        icon: Key,
+        title: "API Credentials",
+        description: "Manage secure access tokens",
+        href: "/Solutions",
+      },
+      {
+        icon: FileText,
+        title: "File Encryption",
+        description: "Protect sensitive documents",
+        href: "/Solutions",
+      },
+    ],
+  },
+];
 
 const insights = [
-  { icon: BookOpen, title: "Blog", href: "/insights" },
-  { icon: Briefcase, title: "Case Studies", href: "/insights" },
-]
+  {
+    category: "CONTENT",
+    items: [
+      {
+        icon: BookOpen,
+        title: "Blog",
+        description: "Latest industry insights",
+        href: "/insights",
+      },
+      {
+        icon: Newspaper,
+        title: "News",
+        description: "Company and industry updates",
+        href: "/insights",
+      },
+      {
+        icon: BarChart,
+        title: "Reports",
+        description: "In-depth analysis and trends",
+        href: "/insights",
+      },
+      {
+        icon: Lightbulb,
+        title: "Thought Leadership",
+        description: "Expert opinions and forecasts",
+        href: "/insights",
+      },
+    ],
+  },
+  {
+    category: "RESOURCES",
+    items: [
+      {
+        icon: Briefcase,
+        title: "Case Studies",
+        description: "Real-world success stories",
+        href: "/insights",
+      },
+      {
+        icon: FileText,
+        title: "Whitepapers",
+        description: "Detailed technical documents",
+        href: "/insights",
+      },
+      {
+        icon: PieChart,
+        title: "Infographics",
+        description: "Visual data representations",
+        href: "/insights",
+      },
+      {
+        icon: Smartphone,
+        title: "Webinars",
+        description: "Online educational sessions",
+        href: "/insights",
+      },
+    ],
+  },
+];
 
 const whoWeAre = [
-  { icon: Users, title: "About Us", href: "/About" },
-  { icon: Briefcase, title: "Careers", href: "/Careers" },
-  { icon: Users, title: "Our Team", href: "/team" },
-]
+  {
+    category: "COMPANY",
+    items: [
+      {
+        icon: Users,
+        title: "About Us",
+        description: "Our story and mission",
+        href: "/About",
+      },
+      {
+        icon: Building,
+        title: "Our Offices",
+        description: "Global locations",
+        href: "/About",
+      },
+      {
+        icon: Award,
+        title: "Awards",
+        description: "Recognition and achievements",
+        href: "/About",
+      },
+      {
+        icon: Heart,
+        title: "Social Responsibility",
+        description: "Our impact on society",
+        href: "/About",
+      },
+    ],
+  },
+  {
+    category: "PEOPLE",
+    items: [
+      {
+        icon: User,
+        title: "Leadership Team",
+        description: "Meet our executives",
+        href: "/team",
+      },
+      {
+        icon: Users,
+        title: "Our Team",
+        description: "The people behind our success",
+        href: "/team",
+      },
+      {
+        icon: Briefcase,
+        title: "Careers",
+        description: "Join our growing team",
+        href: "/Careers",
+      },
+      {
+        icon: Globe,
+        title: "Culture",
+        description: "Our values and work environment",
+        href: "/Careers",
+      },
+    ],
+  },
+];
 
-export default function EnhancedResponsiveNavbar() {
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null)
-  const [showDropdown, setShowDropdown] = useState<string | null>(null)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
-  const [expandedMobileItems, setExpandedMobileItems] = useState<string[]>([])
+const digitalMarketing = [
+  {
+    category: "STRATEGIES",
+    items: [
+      {
+        icon: Megaphone,
+        title: "Social Media Marketing",
+        description: "Engage your audience on popular platforms",
+        href: "/digital-marketing/social-media",
+      },
+      {
+        icon: Target,
+        title: "SEO Optimization",
+        description: "Improve your search engine rankings",
+        href: "/digital-marketing/seo",
+      },
+      {
+        icon: Zap,
+        title: "Pay-Per-Click Advertising",
+        description: "Drive targeted traffic to your website",
+        href: "/digital-marketing/ppc",
+      },
+      {
+        icon: Smartphone,
+        title: "Mobile Marketing",
+        description: "Reach customers on their mobile devices",
+        href: "/digital-marketing/mobile",
+      },
+    ],
+  },
+  {
+    category: "ANALYTICS",
+    items: [
+      {
+        icon: BarChart,
+        title: "Performance Tracking",
+        description: "Monitor your campaign success",
+        href: "/digital-marketing/analytics",
+      },
+      {
+        icon: PieChart,
+        title: "Audience Insights",
+        description: "Understand your target market",
+        href: "/digital-marketing/audience-insights",
+      },
+      {
+        icon: Activity,
+        title: "Conversion Optimization",
+        description: "Improve your conversion rates",
+        href: "/digital-marketing/conversion",
+      },
+      {
+        icon: Globe,
+        title: "Competitor Analysis",
+        description: "Stay ahead of your competition",
+        href: "/digital-marketing/competitor-analysis",
+      },
+    ],
+  },
+];
+
+const uiUx = [
+  {
+    category: "DESIGN",
+    items: [
+      {
+        icon: Palette,
+        title: "UI Design",
+        description: "Create visually appealing interfaces",
+        href: "/ui-ux/ui-design",
+      },
+      {
+        icon: Layout,
+        title: "UX Design",
+        description: "Enhance user experience and flow",
+        href: "/ui-ux/ux-design",
+      },
+      {
+        icon: Smartphone,
+        title: "Responsive Design",
+        description: "Optimize for all devices",
+        href: "/ui-ux/responsive-design",
+      },
+      {
+        icon: Crop,
+        title: "Prototyping",
+        description: "Bring your ideas to life",
+        href: "/ui-ux/prototyping",
+      },
+    ],
+  },
+  {
+    category: "RESEARCH",
+    items: [
+      {
+        icon: Users,
+        title: "User Research",
+        description: "Understand your users' needs",
+        href: "/ui-ux/user-research",
+      },
+      {
+        icon: Activity,
+        title: "Usability Testing",
+        description: "Evaluate your design's effectiveness",
+        href: "/ui-ux/usability-testing",
+      },
+      {
+        icon: BarChart,
+        title: "Analytics & Metrics",
+        description: "Measure your design's performance",
+        href: "/ui-ux/analytics",
+      },
+      {
+        icon: Lightbulb,
+        title: "Design Thinking",
+        description: "Solve problems creatively",
+        href: "/ui-ux/design-thinking",
+      },
+    ],
+  },
+];
+
+export default function Component() {
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const [showDropdown, setShowDropdown] = useState<string | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [expandedMobileItems, setExpandedMobileItems] = useState<string[]>([]);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    handleResize()
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
+      setIsMobile(window.innerWidth < 1024);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const toggleMobileItem = (item: string) => {
-    setExpandedMobileItems(prev =>
-      prev.includes(item) ? prev.filter(i => i !== item) : [...prev, item]
-    )
-  }
+    setExpandedMobileItems((prev) =>
+      prev.includes(item) ? prev.filter((i) => i !== item) : [...prev, item]
+    );
+  };
+
+  const navItemVariants = {
+    hidden: { opacity: 0, y: -10 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const dropdownVariants = {
+    hidden: { opacity: 0, y: -20, scale: 0.95 },
+    visible: { opacity: 1, y: 0, scale: 1 },
+  };
 
   return (
     <>
-      <nav className="bg-[#0a0a0a] fixed top-0 left-0 right-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+      <nav className="bg-[#0a0a0a] fixed section top-0 left-0 right-0 z-50">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
             <div className="flex items-center">
-              <Link href="/" className="flex items-center space-x-2">
-                <svg viewBox="0 0 24 24" fill="white" className="w-8 h-8">
+              <Link
+                href="/"
+                className="flex items-center space-x-2 cursor-pointer"
+              >
+                <motion.svg
+                  viewBox="0 0 24 24"
+                  fill="white"
+                  className="w-10 h-10"
+                >
                   <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                </svg>
-                <span className="text-white text-xl font-semibold">Be Found Online</span>
+                </motion.svg>
+                <motion.span
+                  className="text-white text-2xl font-bold"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  Be Found Online
+                </motion.span>
               </Link>
             </div>
-            <div className="hidden md:block">
-              <div className="bg-[#1c1c1c] rounded-full py-1 px-1">
+            <div className="hidden lg:block">
+              <div className="bg-[#1c1c1c] rounded-full py-2 px-2">
                 <ul className="flex space-x-1">
-                  {navItems.map((item) => (
-                    <li key={item.name} className="relative">
+                  {navItems.map((item, index) => (
+                    <motion.li
+                      key={item.name}
+                      className="relative"
+                      variants={navItemVariants}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{ delay: index * 0.1 }}
+                    >
                       {item.dropdown ? (
                         <div
+                          className="relative"
                           onMouseEnter={() => {
-                            setHoveredItem(item.name)
-                            setShowDropdown(item.name)
+                            setHoveredItem(item.name);
+                            setShowDropdown(item.name);
                           }}
-                          onMouseLeave={() => {
-                            setHoveredItem(null)
-                            setShowDropdown(null)
+                          onMouseLeave={(e) => {
+                            const rect =
+                              e.currentTarget.getBoundingClientRect();
+                            const isMovingToDropdown = e.clientY > rect.bottom;
+                            if (!isMovingToDropdown) {
+                              setHoveredItem(null);
+                              setShowDropdown(null);
+                            }
                           }}
                         >
                           <Link
                             href={item.href}
-                            className="text-white px-4 py-2 rounded-full text-sm inline-block transition-all duration-300 ease-in-out"
+                            className="text-white px-4 py-2 rounded-full text-sm font-medium inline-block transition-all duration-300 ease-in-out hover:bg-white hover:bg-opacity-20 cursor-pointer"
                           >
                             {item.name}
                           </Link>
@@ -122,7 +488,7 @@ export default function EnhancedResponsiveNavbar() {
                       ) : (
                         <Link
                           href={item.href}
-                          className="text-white px-4 py-2 rounded-full text-sm inline-block transition-all duration-300 ease-in-out"
+                          className="text-white px-4 py-2 rounded-full text-sm font-medium inline-block transition-all duration-300 ease-in-out hover:bg-white hover:bg-opacity-20 cursor-pointer"
                           onMouseEnter={() => setHoveredItem(item.name)}
                           onMouseLeave={() => setHoveredItem(null)}
                         >
@@ -138,24 +504,28 @@ export default function EnhancedResponsiveNavbar() {
                           )}
                         </Link>
                       )}
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
               </div>
             </div>
-            <div className="hidden md:block">
-              <Button className="bg-white rounded-full text-black hover:bg-gray-200 transition-all duration-300 ease-in-out">
+            <div className="hidden lg:block">
+              <Button className="bg-white rounded-full text-black hover:bg-gray-200 transition-all duration-300 ease-in-out cursor-pointer">
                 Contact Us
               </Button>
             </div>
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-white"
+                className="text-white cursor-pointer"
               >
-                {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                {isMobileMenuOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
               </Button>
             </div>
           </div>
@@ -169,7 +539,7 @@ export default function EnhancedResponsiveNavbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "-100%" }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="md:hidden fixed inset-0 z-40 bg-[#0a0a0a] pt-16 overflow-y-auto"
+            className="lg:hidden fixed inset-0 section z-40 bg-[#0a0a0a] pt-20 overflow-y-auto"
           >
             <div className="px-4 py-6 space-y-4">
               {navItems.map((item) => (
@@ -178,12 +548,14 @@ export default function EnhancedResponsiveNavbar() {
                     <div>
                       <button
                         onClick={() => toggleMobileItem(item.name)}
-                        className="flex items-center justify-between w-full text-white text-lg font-medium"
+                        className="flex items-center justify-between w-full text-white text-lg font-medium cursor-pointer"
                       >
                         {item.name}
                         <ChevronDown
                           className={`h-5 w-5 transition-transform ${
-                            expandedMobileItems.includes(item.name) ? 'transform rotate-180' : ''
+                            expandedMobileItems.includes(item.name)
+                              ? "transform rotate-180"
+                              : ""
                           }`}
                         />
                       </button>
@@ -196,54 +568,136 @@ export default function EnhancedResponsiveNavbar() {
                             transition={{ duration: 0.3 }}
                             className="mt-4 space-y-4"
                           >
-                            {item.name === 'Solutions' && solutions.map((category, index) => (
-                              <div key={index} className="space-y-2">
-                                <h3 className="text-sm font-semibold text-gray-400">{category.category}</h3>
-                                <ul className="space-y-2">
-                                  {category.items.map((subItem, subIndex) => (
-                                    <li key={subIndex}>
-                                      <Link
-                                        href={subItem.href}
-                                        className="flex items-center text-white hover:text-gray-300 transition-colors duration-200"
-                                      >
-                                        <subItem.icon className="h-5 w-5 mr-2" />
-                                        <span>{subItem.title}</span>
-                                      </Link>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            ))}
-                            {item.name === 'Insights' && (
-                              <ul className="space-y-2">
-                                {insights.map((subItem, subIndex) => (
-                                  <li key={subIndex}>
-                                    <Link
-                                      href={subItem.href}
-                                      className="flex items-center text-white hover:text-gray-300 transition-colors duration-200"
-                                    >
-                                      <subItem.icon className="h-5 w-5 mr-2" />
-                                      <span>{subItem.title}</span>
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
-                            {item.name === 'Who we are' && (
-                              <ul className="space-y-2">
-                                {whoWeAre.map((subItem, subIndex) => (
-                                  <li key={subIndex}>
-                                    <Link
-                                      href={subItem.href}
-                                      className="flex items-center text-white hover:text-gray-300 transition-colors duration-200"
-                                    >
-                                      <subItem.icon className="h-5 w-5 mr-2" />
-                                      <span>{subItem.title}</span>
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
+                            {item.name === "Solutions" &&
+                              solutions.map((category, index) => (
+                                <div key={index} className="space-y-2">
+                                  <Link
+                                    href={category.items[0].href}
+                                    className="cursor-pointer"
+                                  >
+                                    <h3 className="text-sm font-semibold text-gray-400">
+                                      {category.category}
+                                    </h3>
+                                  </Link>
+                                  <ul className="space-y-2">
+                                    {category.items.map((subItem, subIndex) => (
+                                      <li key={subIndex}>
+                                        <Link
+                                          href={subItem.href}
+                                          className="flex items-center text-white hover:text-gray-300 transition-colors duration-200 cursor-pointer"
+                                        >
+                                          <subItem.icon className="h-5 w-5 mr-2" />
+                                          <span>{subItem.title}</span>
+                                        </Link>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              ))}
+                            {item.name === "Insights" &&
+                              insights.map((category, index) => (
+                                <div key={index} className="space-y-2">
+                                  <Link
+                                    href={category.items[0].href}
+                                    className="cursor-pointer"
+                                  >
+                                    <h3 className="text-sm font-semibold text-gray-400">
+                                      {category.category}
+                                    </h3>
+                                  </Link>
+                                  <ul className="space-y-2">
+                                    {category.items.map((subItem, subIndex) => (
+                                      <li key={subIndex}>
+                                        <Link
+                                          href={subItem.href}
+                                          className="flex items-center text-white hover:text-gray-300 transition-colors duration-200 cursor-pointer"
+                                        >
+                                          <subItem.icon className="h-5 w-5 mr-2" />
+                                          <span>{subItem.title}</span>
+                                        </Link>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              ))}
+                            {item.name === "Digital Marketing" &&
+                              digitalMarketing.map((category, index) => (
+                                <div key={index} className="space-y-2">
+                                  <Link
+                                    href={category.items[0].href}
+                                    className="cursor-pointer"
+                                  >
+                                    <h3 className="text-sm font-semibold text-gray-400">
+                                      {category.category}
+                                    </h3>
+                                  </Link>
+                                  <ul className="space-y-2">
+                                    {category.items.map((subItem, subIndex) => (
+                                      <li key={subIndex}>
+                                        <Link
+                                          href={subItem.href}
+                                          className="flex items-center text-white hover:text-gray-300 transition-colors duration-200 cursor-pointer"
+                                        >
+                                          <subItem.icon className="h-5 w-5 mr-2" />
+                                          <span>{subItem.title}</span>
+                                        </Link>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              ))}
+                            {item.name === "UI/UX" &&
+                              uiUx.map((category, index) => (
+                                <div key={index} className="space-y-2">
+                                  <Link
+                                    href={category.items[0].href}
+                                    className="cursor-pointer"
+                                  >
+                                    <h3 className="text-sm font-semibold text-gray-400">
+                                      {category.category}
+                                    </h3>
+                                  </Link>
+                                  <ul className="space-y-2">
+                                    {category.items.map((subItem, subIndex) => (
+                                      <li key={subIndex}>
+                                        <Link
+                                          href={subItem.href}
+                                          className="flex items-center text-white hover:text-gray-300 transition-colors duration-200 cursor-pointer"
+                                        >
+                                          <subItem.icon className="h-5 w-5 mr-2" />
+                                          <span>{subItem.title}</span>
+                                        </Link>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              ))}
+                            {item.name === "Who we are" &&
+                              whoWeAre.map((category, index) => (
+                                <div key={index} className="space-y-2">
+                                  <Link
+                                    href={category.items[0].href}
+                                    className="cursor-pointer"
+                                  >
+                                    <h3 className="text-sm font-semibold text-gray-400">
+                                      {category.category}
+                                    </h3>
+                                  </Link>
+                                  <ul className="space-y-2">
+                                    {category.items.map((subItem, subIndex) => (
+                                      <li key={subIndex}>
+                                        <Link
+                                          href={subItem.href}
+                                          className="flex items-center text-white hover:text-gray-300 transition-colors duration-200 cursor-pointer"
+                                        >
+                                          <subItem.icon className="h-5 w-5 mr-2" />
+                                          <span>{subItem.title}</span>
+                                        </Link>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              ))}
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -251,7 +705,7 @@ export default function EnhancedResponsiveNavbar() {
                   ) : (
                     <Link
                       href={item.href}
-                      className="block text-white text-lg font-medium hover:text-gray-300 transition-colors duration-200"
+                      className="block text-white text-lg font-medium hover:text-gray-300 transition-colors duration-200 cursor-pointer"
                     >
                       {item.name}
                     </Link>
@@ -260,7 +714,7 @@ export default function EnhancedResponsiveNavbar() {
               ))}
             </div>
             <div className="px-4 py-6">
-              <Button className="w-full bg-white text-black hover:bg-gray-200 transition-all duration-300 ease-in-out">
+              <Button className="w-full bg-white text-black hover:bg-gray-200 transition-all duration-300 ease-in-out cursor-pointer">
                 Contact Us
               </Button>
             </div>
@@ -275,72 +729,355 @@ export default function EnhancedResponsiveNavbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-16 left-0 right-0 bg-black bg-opacity-50 flex items-center justify-center z-30"
+            className="fixed top-20 section left-0 right-0 bg-[#0a0a0a] bg-opacity-95 flex items-start justify-center z-30 w-full"
             onMouseEnter={() => setShowDropdown(showDropdown)}
-            onMouseLeave={() => setShowDropdown(null)}
+            onMouseLeave={() => {
+              setHoveredItem(null);
+              setShowDropdown(null);
+            }}
           >
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2 }}
-              className="bg-[#1c1c1c] text-white p-8 rounded-lg shadow-lg max-w-7xl w-full mx-4"
+              variants={dropdownVariants}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              transition={{
+                duration: 0.3,
+                type: "spring",
+                stiffness: 200,
+                damping: 20,
+              }}
+              className="bg-[#1c1c1c] section text-white p-8 rounded-lg shadow-2xl w-full mx-4 max-h-[calc(100vh-6rem)] overflow-y-auto"
             >
-              {showDropdown === 'Solutions' && (
+              {showDropdown === "Solutions" && (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   <div>
-                    <h2 className="text-2xl font-bold mb-4">Solutions</h2>
+                    <Link href="/Solutions" className="cursor-pointer">
+                      <h2 className="text-2xl font-bold mb-4">Solutions</h2>
+                    </Link>
                     <p className="text-gray-400 mb-8">
-                      Customizable security and compliance solutions, robust enough to handle any use case.
+                      Customizable security and compliance solutions, robust
+                      enough to handle any use case.
                     </p>
                     <div className="bg-[#2a2a2a] p-6 rounded-lg">
-                      <h3 className="text-xl font-semibold mb-2">Evervault Encryption</h3>
+                      <h3 className="text-xl font-semibold mb-2">
+                        Evervault Encryption
+                      </h3>
                       <p className="text-gray-400 mb-4">
-                        Flexible enough to secure any type of data in any workflow.
+                        Flexible enough to secure any type of data in any
+                        workflow.
                       </p>
-                      <a href="#" className="text-blue-400 hover:underline">
+                      <Link
+                        href="#"
+                        className="text-blue-400 hover:underline cursor-pointer"
+                      >
                         Learn more →
-                      </a>
+                      </Link>
                     </div>
                   </div>
                   {solutions.map((category, index) => (
                     <div key={index}>
-                      <h3 className="text-sm font-semibold text-gray-400 mb-4">{category.category}</h3>
+                      <h3 className="text-sm section font-semibold text-gray-400 mb-4">
+                        {category.category}
+                      </h3>
                       <ul className="space-y-4">
                         {category.items.map((item, itemIndex) => (
-                          <li key={itemIndex} className="flex items-start">
-                            <div className="bg-[#2a2a2a] 
-                            p-2 rounded-lg mr-4">
-                              <item.icon className="w-6 h-6" />
-                            </div>
-                            <div>
-                              <h4 className="font-semibold">{item.title}</h4>
-                              {item.description && <p className="text-sm text-gray-400">{item.description}</p>}
-                            </div>
-                          </li>
+                          <motion.li
+                            key={itemIndex}
+                            className="flex items-start cursor-pointer"
+                            whileHover={{ scale: 1.05 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 10,
+                            }}
+                          >
+                            <Link
+                              href={item.href}
+                              className="flex items-start w-full"
+                            >
+                              <div className="bg-[#2a2a2a] p-2 rounded-lg mr-4">
+                                <item.icon className="w-6 h-6" />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold">{item.title}</h4>
+                                {item.description && (
+                                  <p className="text-sm text-gray-400">
+                                    {item.description}
+                                  </p>
+                                )}
+                              </div>
+                            </Link>
+                          </motion.li>
                         ))}
                       </ul>
                     </div>
                   ))}
                 </div>
               )}
-              {showDropdown === 'Insights' && (
-                <div className="grid grid-cols-2 gap-8">
-                  {insights.map((item, index) => (
-                    <Link key={index} href={item.href} className="flex items-center space-x-4 p-4 bg-[#2a2a2a] rounded-lg hover:bg-[#3a3a3a] transition-colors duration-200">
-                      <item.icon className="w-8 h-8" />
-                      <span className="text-lg font-semibold">{item.title}</span>
+              {showDropdown === "Insights" && (
+                <div className="grid grid-cols-1 section md:grid-cols-3 gap-8">
+                  <div>
+                    <Link href="/insights" className="cursor-pointer">
+                      <h2 className="text-2xl font-bold mb-4">Insights</h2>
                     </Link>
+                    <p className="text-gray-400 mb-8">
+                      Stay informed with our latest research, analysis, and
+                      industry trends.
+                    </p>
+                    <div className="bg-[#2a2a2a] p-6 rounded-lg">
+                      <h3 className="text-xl font-semibold mb-2">
+                        Featured Article
+                      </h3>
+                      <p className="text-gray-400 mb-4">
+                        The Future of Cybersecurity: Trends to Watch in 2024
+                      </p>
+                      <Link
+                        href="#"
+                        className="text-blue-400 hover:underline cursor-pointer"
+                      >
+                        Read more →
+                      </Link>
+                    </div>
+                  </div>
+                  {insights.map((category, index) => (
+                    <div key={index}>
+                      <h3 className="text-sm font-semibold section text-gray-400 mb-4">
+                        {category.category}
+                      </h3>
+                      <ul className="space-y-4">
+                        {category.items.map((item, itemIndex) => (
+                          <motion.li
+                            key={itemIndex}
+                            className="flex items-start cursor-pointer"
+                            whileHover={{ scale: 1.05 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 10,
+                            }}
+                          >
+                            <Link
+                              href={item.href}
+                              className="flex items-start w-full"
+                            >
+                              <div className="bg-[#2a2a2a] p-2 rounded-lg mr-4">
+                                <item.icon className="w-6 h-6" />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold">{item.title}</h4>
+                                {item.description && (
+                                  <p className="text-sm text-gray-400">
+                                    {item.description}
+                                  </p>
+                                )}
+                              </div>
+                            </Link>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </div>
                   ))}
                 </div>
               )}
-              {showDropdown === 'Who we are' && (
-                <div className="grid grid-cols-3 gap-8">
-                  {whoWeAre.map((item, index) => (
-                    <Link key={index} href={item.href} className="flex items-center space-x-4 p-4 bg-[#2a2a2a] rounded-lg hover:bg-[#3a3a3a] transition-colors duration-200">
-                      <item.icon className="w-8 h-8" />
-                      <span className="text-lg font-semibold">{item.title}</span>
+              {showDropdown === "Digital Marketing" && (
+                <div className="grid grid-cols-1 section md:grid-cols-3 gap-8">
+                  <div>
+                    <Link href="/digital-marketing" className="cursor-pointer">
+                      <h2 className="text-2xl font-bold mb-4">
+                        Digital Marketing
+                      </h2>
                     </Link>
+                    <p className="text-gray-400 mb-8">
+                      Boost your online presence and reach your target audience
+                      with our cutting-edge digital marketing strategies.
+                    </p>
+                    <div className="bg-[#2a2a2a] p-6 rounded-lg">
+                      <h3 className="text-xl font-semibold mb-2">
+                        Featured Service
+                      </h3>
+                      <p className="text-gray-400 mb-4">
+                        Comprehensive Social Media Marketing: Engage, grow, and
+                        convert your audience across all major platforms.
+                      </p>
+                      <Link
+                        href="#"
+                        className="text-blue-400 hover:underline cursor-pointer"
+                      >
+                        Explore our social media services →
+                      </Link>
+                    </div>
+                  </div>
+                  {digitalMarketing.map((category, index) => (
+                    <div key={index}>
+                      <h3 className="text-sm section font-semibold text-gray-400 mb-4">
+                        {category.category}
+                      </h3>
+                      <ul className="space-y-4">
+                        {category.items.map((item, itemIndex) => (
+                          <motion.li
+                            key={itemIndex}
+                            className="flex items-start cursor-pointer"
+                            whileHover={{ scale: 1.05 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 10,
+                            }}
+                          >
+                            <Link
+                              href={item.href}
+                              className="flex items-start w-full"
+                            >
+                              <div className="bg-[#2a2a2a] p-2 rounded-lg mr-4">
+                                <item.icon className="w-6 h-6" />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold">{item.title}</h4>
+                                {item.description && (
+                                  <p className="text-sm text-gray-400">
+                                    {item.description}
+                                  </p>
+                                )}
+                              </div>
+                            </Link>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {showDropdown === "UI/UX" && (
+                <div className="grid section grid-cols-1 md:grid-cols-3 gap-8">
+                  <div>
+                    <Link href="/ui-ux" className="cursor-pointer">
+                      <h2 className="text-2xl font-bold mb-4">UI/UX Design</h2>
+                    </Link>
+                    <p className="text-gray-400 mb-8">
+                      Create intuitive, beautiful, and user-centric designs that
+                      elevate your digital products and delight your users.
+                    </p>
+                    <div className="bg-[#2a2a2a] p-6 rounded-lg">
+                      <h3 className="text-xl font-semibold mb-2">
+                        Featured Service
+                      </h3>
+                      <p className="text-gray-400 mb-4">
+                        End-to-End UX Design: From research to prototyping, we
+                        create seamless user experiences that drive engagement
+                        and conversions.
+                      </p>
+                      <Link
+                        href="#"
+                        className="text-blue-400 hover:underline cursor-pointer"
+                      >
+                        Discover our UX design process →
+                      </Link>
+                    </div>
+                  </div>
+                  {uiUx.map((category, index) => (
+                    <div key={index}>
+                      <h3 className="text-sm section font-semibold text-gray-400 mb-4">
+                        {category.category}
+                      </h3>
+                      <ul className="space-y-4">
+                        {category.items.map((item, itemIndex) => (
+                          <motion.li
+                            key={itemIndex}
+                            className="flex items-start cursor-pointer"
+                            whileHover={{ scale: 1.05 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 10,
+                            }}
+                          >
+                            <Link
+                              href={item.href}
+                              className="flex items-start w-full"
+                            >
+                              <div className="bg-[#2a2a2a] p-2 rounded-lg mr-4">
+                                <item.icon className="w-6 h-6" />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold">{item.title}</h4>
+                                {item.description && (
+                                  <p className="text-sm text-gray-400">
+                                    {item.description}
+                                  </p>
+                                )}
+                              </div>
+                            </Link>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {showDropdown === "Who we are" && (
+                <div className="grid section grid-cols-1 md:grid-cols-3 gap-8">
+                  <div>
+                    <Link href="/About" className="cursor-pointer">
+                      <h2 className="text-2xl font-bold mb-4">Who We Are</h2>
+                    </Link>
+                    <p className="text-gray-400 mb-8">
+                      Learn about our company, our people, and our commitment to
+                      innovation and excellence.
+                    </p>
+                    <div className="bg-[#2a2a2a] p-6 rounded-lg">
+                      <h3 className="text-xl font-semibold mb-2">
+                        Our Mission
+                      </h3>
+                      <p className="text-gray-400 mb-4">
+                        To empower businesses with cutting-edge security
+                        solutions and foster a safer digital world.
+                      </p>
+                      <Link
+                        href="#"
+                        className="text-blue-400 hover:underline cursor-pointer"
+                      >
+                        Learn more about our vision →
+                      </Link>
+                    </div>
+                  </div>
+                  {whoWeAre.map((category, index) => (
+                    <div key={index}>
+                      <h3 className="text-sm font-semibold text-gray-400 mb-4">
+                        {category.category}
+                      </h3>
+                      <ul className="space-y-4">
+                        {category.items.map((item, itemIndex) => (
+                          <motion.li
+                            key={itemIndex}
+                            className="flex items-start cursor-pointer"
+                            whileHover={{ scale: 1.05 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 10,
+                            }}
+                          >
+                            <Link
+                              href={item.href}
+                              className="flex items-start w-full"
+                            >
+                              <div className="bg-[#2a2a2a] p-2 rounded-lg mr-4">
+                                <item.icon className="w-6 h-6" />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold">{item.title}</h4>
+                                {item.description && (
+                                  <p className="text-sm text-gray-400">
+                                    {item.description}
+                                  </p>
+                                )}
+                              </div>
+                            </Link>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </div>
                   ))}
                 </div>
               )}
@@ -349,5 +1086,5 @@ export default function EnhancedResponsiveNavbar() {
         )}
       </AnimatePresence>
     </>
-  )
+  );
 }

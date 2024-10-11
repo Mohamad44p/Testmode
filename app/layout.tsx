@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ScrollButton from "@/components/ScrollButton";
-import Navbar from "@/components/Navbar";
 import { Lenis } from "@/components/Lenis";
 import AnimatedFooter from "@/components/Footer";
 import localFont from "next/font/local";
@@ -16,6 +15,7 @@ const neueMachina = localFont({
 export const metadata: Metadata = {
   title: "Be Found Online",
   description: "Be Found Online is a digital marketing agency in Palestine.",
+  icons: "/BeFoundLogo.png",
 };
 
 export default function RootLayout({
