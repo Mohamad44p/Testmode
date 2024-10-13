@@ -15,7 +15,7 @@ const neueMachina = localFont({
 export const metadata: Metadata = {
   title: "Be Found Online",
   description: "Be Found Online is a digital marketing agency in Palestine.",
-  icons: "/BeFoundLogo.png",
+  icons: "/BeFoundLogo.jpg",
 };
 
 export default function RootLayout({

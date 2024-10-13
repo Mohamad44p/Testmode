@@ -34,15 +34,24 @@ import {
   Layout,
   Zap,
   Crop,
+  ShoppingCart,
+  Share2,
+  HelpCircle,
+  Book,
+  TrendingDown,
+  DollarSign,
+  Database,
+  Code,
 } from "lucide-react";
+import Image from "next/image";
 
 const navItems = [
   { name: "Home", href: "/" },
+  { name: "Digital Marketing", href: "/digital-marketing", dropdown: true },
+  { name: "UI/UX", href: "/ui-ux", dropdown: true },
   { name: "Solutions", href: "/Solutions", dropdown: true },
   { name: "Projects", href: "/projects" },
   { name: "Insights", href: "/insights", dropdown: true },
-  { name: "Digital Marketing", href: "/digital-marketing", dropdown: true },
-  { name: "UI/UX", href: "/ui-ux", dropdown: true },
   { name: "Who we are", href: "/About", dropdown: true },
 ];
 
@@ -379,6 +388,158 @@ const uiUx = [
       },
     ],
   },
+  {
+    category: "SOFTWARE DEVELOPMENT",
+    items: [
+      {
+        icon: Globe,
+        title: "Digital Experience Development",
+        description: "Create engaging digital experiences",
+        href: "/ui-ux/digital-experience-development",
+      },
+      {
+        icon: Code,
+        title: "Digital Solutions Development",
+        description: "Build custom digital solutions",
+        href: "/ui-ux/digital-solutions-development",
+      },
+      {
+        icon: Database,
+        title: "ERP and Business Solutions",
+        description: "Implement enterprise resource planning systems",
+        href: "/ui-ux/erp-business-solutions",
+      },
+      {
+        icon: Smartphone,
+        title: "Mobile App Development",
+        description: "Develop mobile applications for iOS and Android",
+        href: "/ui-ux/mobile-app-development",
+      },
+    ],
+  },
+  {
+    category: "CHALLENGES WE SOLVED",
+    items: [
+      {
+        icon: Target,
+        title: "My Website Doesn't Drive Leads",
+        description: "Improve lead generation from your website",
+        href: "/ui-ux/website-lead-generation",
+      },
+      {
+        icon: TrendingDown,
+        title: "My Website Doesn't Convert",
+        description: "Enhance website conversion rates",
+        href: "/ui-ux/website-conversion-optimization",
+      },
+      {
+        icon: DollarSign,
+        title: "My Website Isn't Making Money",
+        description: "Monetize your website effectively",
+        href: "/ui-ux/website-monetization",
+      },
+      {
+        icon: PieChart,
+        title: "I Can't design revenue-driven marketing Strategy",
+        description: "Develop effective marketing strategies",
+        href: "/ui-ux/revenue-driven-marketing",
+      },
+      {
+        icon: Share2,
+        title: "I'm lost trying to develop Cross social channels content strategy",
+        description: "Create cohesive social media content",
+        href: "/ui-ux/cross-channel-content-strategy",
+      },
+      {
+        icon: TrendingDown,
+        title: "My social Media Ads results are low",
+        description: "Improve social media advertising performance",
+        href: "/ui-ux/social-media-ads-optimization",
+      },
+    ],
+  },
+  {
+    category: "Content Marketing",
+    items: [
+      {
+        icon: Target,
+        title: "SEO Copywriting",
+        description: "Improve lead generation from your website",
+        href: "/ui-ux/website-lead-generation",
+      },
+      {
+        icon: TrendingDown,
+        title: "Content Marketing Services",
+        description: "Enhance website conversion rates",
+        href: "/ui-ux/website-conversion-optimization",
+      },
+      {
+        icon: DollarSign,
+        title: "Social Media Management",
+        description: "Monetize your website effectively",
+        href: "/ui-ux/website-monetization",
+      },
+      {
+        icon: PieChart,
+        title: "Social Media Management Infographics & Motion Graphics",
+        description: "Develop effective marketing strategies",
+        href: "/ui-ux/revenue-driven-marketing",
+      },
+      {
+        icon: Share2,
+        title: "Web Video Production Services",
+        description: "Create cohesive social media content",
+        href: "/ui-ux/cross-channel-content-strategy",
+      },
+      {
+        icon: TrendingDown,
+        title: "YouTube Advertising",
+        description: "Improve social media advertising performance",
+        href: "/ui-ux/social-media-ads-optimization",
+      },
+    ],
+  },
+  {
+    category: "Design",
+    items: [
+      {
+        icon: Target,
+        title: "Design Website Design",
+        description: "Improve lead generation from your website",
+        href: "/ui-ux/website-lead-generation",
+      },
+      {
+        icon: TrendingDown,
+        title: "Website Design",
+        description: "Enhance website conversion rates",
+        href: "/ui-ux/website-conversion-optimization",
+      },
+      {
+        icon: DollarSign,
+        title: "Ecommerce Website Design",
+        description: "Monetize your website effectively",
+        href: "/ui-ux/website-monetization",
+      },
+      {
+        icon: PieChart,
+        title: "Branding and Visual Identity",
+        description: "Develop effective marketing strategies",
+        href: "/ui-ux/revenue-driven-marketing",
+      },
+      {
+        icon: Share2,
+        title: "Web Video Production Services",
+        description: "Create cohesive social media content",
+        href: "/ui-ux/cross-channel-content-strategy",
+      },
+      {
+        icon: TrendingDown,
+        title: "YouTube Advertising",
+        description: "Improve social media advertising performance",
+        href: "/ui-ux/social-media-ads-optimization",
+      },
+    ],
+  },
 ];
 
 export default function Component() {
@@ -423,13 +584,16 @@ export default function Component() {
                 href="/"
                 className="flex items-center space-x-2 cursor-pointer"
               >
-                <motion.svg
-                  viewBox="0 0 24 24"
-                  fill="white"
-                  className="w-10 h-10"
-                >
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                </motion.svg>
+                <div className="w-12 h-12">
+                  <Image
+                    src="/BeFoundLogo.jpg"
+                    alt="Impactful image 3"
+                    width={2000}
+                    height={3020}
+                    quality={100}
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                </div>
                 <motion.span
                   className="text-white text-2xl font-bold"
                   initial={{ opacity: 0, x: -20 }}
@@ -510,9 +674,11 @@ export default function Component() {
               </div>
             </div>
             <div className="hidden lg:block">
-              <Button className="bg-white rounded-full text-black hover:bg-gray-200 transition-all duration-300 ease-in-out cursor-pointer">
-                Contact Us
-              </Button>
+              <Link href="/Contact" passHref>
+                <Button className="bg-white rounded-full text-black hover:bg-gray-200 transition-all duration-300 ease-in-out cursor-pointer">
+                  Contact Us
+                </Button>
+              </Link>
             </div>
             <div className="lg:hidden">
               <Button
@@ -552,11 +718,10 @@ export default function Component() {
                       >
                         {item.name}
                         <ChevronDown
-                          className={`h-5 w-5 transition-transform ${
-                            expandedMobileItems.includes(item.name)
-                              ? "transform rotate-180"
-                              : ""
-                          }`}
+                          className={`h-5 w-5 transition-transform ${expandedMobileItems.includes(item.name)
+                            ? "transform rotate-180"
+                            : ""
+                            }`}
                         />
                       </button>
                       <AnimatePresence>
@@ -620,32 +785,62 @@ export default function Component() {
                                   </ul>
                                 </div>
                               ))}
-                            {item.name === "Digital Marketing" &&
-                              digitalMarketing.map((category, index) => (
-                                <div key={index} className="space-y-2">
-                                  <Link
-                                    href={category.items[0].href}
-                                    className="cursor-pointer"
-                                  >
-                                    <h3 className="text-sm font-semibold text-gray-400">
-                                      {category.category}
-                                    </h3>
+
+                            {showDropdown === "Digital Marketing" && (
+                              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                                <div className="md:col-span-1">
+                                  <Link href="/digital-marketing" className="cursor-pointer">
+                                    <h2 className="text-2xl font-bold mb-4">Digital Marketing</h2>
                                   </Link>
-                                  <ul className="space-y-2">
-                                    {category.items.map((subItem, subIndex) => (
-                                      <li key={subIndex}>
-                                        <Link
-                                          href={subItem.href}
-                                          className="flex items-center text-white hover:text-gray-300 transition-colors duration-200 cursor-pointer"
-                                        >
-                                          <subItem.icon className="h-5 w-5 mr-2" />
-                                          <span>{subItem.title}</span>
-                                        </Link>
-                                      </li>
-                                    ))}
-                                  </ul>
+                                  <p className="text-gray-400 mb-8">
+                                    Boost your online presence and reach your target audience
+                                    with our cutting-edge digital marketing strategies.
+                                  </p>
+                                  <div className="bg-[#2a2a2a] p-6 rounded-lg">
+                                    <h3 className="text-xl font-semibold mb-2">Featured Service</h3>
+                                    <p className="text-gray-400 mb-4">
+                                      Comprehensive Social Media Marketing: Engage, grow, and
+                                      convert your audience across all major platforms.
+                                    </p>
+                                    <Link href="#" className="text-blue-400 hover:underline cursor-pointer">
+                                      Explore our social media services →
+                                    </Link>
+                                  </div>
                                 </div>
-                              ))}
+                                <div className="md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-8">
+                                  {digitalMarketing.map((category, index) => (
+                                    <div key={index}>
+                                      <h3 className="text-sm font-semibold text-gray-400 mb-4">
+                                        {category.category}
+                                      </h3>
+                                      <ul className="space-y-2">
+                                        {category.items.map((item, itemIndex) => (
+                                          <motion.li
+                                            key={itemIndex}
+                                            className="flex items-center cursor-pointer"
+                                            whileHover={{ scale: 1.05 }}
+                                            transition={{
+                                              type: "spring",
+                                              stiffness: 400,
+                                              damping: 10,
+                                            }}
+                                          >
+                                            <Link href={item.href} className="flex items-center w-full">
+                                              <div className="bg-[#2a2a2a] p-1 rounded-lg mr-2">
+                                                <item.icon className="w-4 h-4" />
+                                              </div>
+                                              <div>
+                                                <h4 className="font-semibold text-sm">{item.title}</h4>
+                                              </div>
+                                            </Link>
+                                          </motion.li>
+                                        ))}
+                                      </ul>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
                             {item.name === "UI/UX" &&
                               uiUx.map((category, index) => (
                                 <div key={index} className="space-y-2">
@@ -714,9 +909,11 @@ export default function Component() {
               ))}
             </div>
             <div className="px-4 py-6">
-              <Button className="w-full bg-white text-black hover:bg-gray-200 transition-all duration-300 ease-in-out cursor-pointer">
-                Contact Us
-              </Button>
+              <Link href="/Contact" passHref>
+                <Button className="bg-white w-full rounded-full text-black hover:bg-gray-200 transition-all duration-300 ease-in-out cursor-pointer">
+                  Contact Us
+                </Button>
+              </Link>
             </div>
           </motion.div>
         )}
@@ -949,8 +1146,8 @@ export default function Component() {
                 </div>
               )}
               {showDropdown === "UI/UX" && (
-                <div className="grid section grid-cols-1 md:grid-cols-3 gap-8">
-                  <div>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                  <div className="md:col-span-1">
                     <Link href="/ui-ux" className="cursor-pointer">
                       <h2 className="text-2xl font-bold mb-4">UI/UX Design</h2>
                     </Link>
@@ -959,60 +1156,49 @@ export default function Component() {
                       elevate your digital products and delight your users.
                     </p>
                     <div className="bg-[#2a2a2a] p-6 rounded-lg">
-                      <h3 className="text-xl font-semibold mb-2">
-                        Featured Service
-                      </h3>
+                      <h3 className="text-xl font-semibold mb-2">Featured Service</h3>
                       <p className="text-gray-400 mb-4">
                         End-to-End UX Design: From research to prototyping, we
                         create seamless user experiences that drive engagement
                         and conversions.
                       </p>
-                      <Link
-                        href="#"
-                        className="text-blue-400 hover:underline cursor-pointer"
-                      >
+                      <Link href="#" className="text-blue-400 hover:underline cursor-pointer">
                         Discover our UX design process →
                       </Link>
                     </div>
                   </div>
-                  {uiUx.map((category, index) => (
-                    <div key={index}>
-                      <h3 className="text-sm section font-semibold text-gray-400 mb-4">
-                        {category.category}
-                      </h3>
-                      <ul className="space-y-4">
-                        {category.items.map((item, itemIndex) => (
-                          <motion.li
-                            key={itemIndex}
-                            className="flex items-start cursor-pointer"
-                            whileHover={{ scale: 1.05 }}
-                            transition={{
-                              type: "spring",
-                              stiffness: 400,
-                              damping: 10,
-                            }}
-                          >
-                            <Link
-                              href={item.href}
-                              className="flex items-start w-full"
+                  <div className="md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {uiUx.map((category, index) => (
+                      <div key={index}>
+                        <h3 className="text-sm font-semibold text-gray-400 mb-4">
+                          {category.category}
+                        </h3>
+                        <ul className="space-y-2">
+                          {category.items.map((item, itemIndex) => (
+                            <motion.li
+                              key={itemIndex}
+                              className="flex items-center cursor-pointer"
+                              whileHover={{ scale: 1.05 }}
+                              transition={{
+                                type: "spring",
+                                stiffness: 400,
+                                damping: 10,
+                              }}
                             >
-                              <div className="bg-[#2a2a2a] p-2 rounded-lg mr-4">
-                                <item.icon className="w-6 h-6" />
-                              </div>
-                              <div>
-                                <h4 className="font-semibold">{item.title}</h4>
-                                {item.description && (
-                                  <p className="text-sm text-gray-400">
-                                    {item.description}
-                                  </p>
-                                )}
-                              </div>
-                            </Link>
-                          </motion.li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+                              <Link href={item.href} className="flex items-center w-full">
+                                <div className="bg-[#2a2a2a] p-1 rounded-lg mr-2">
+                                  <item.icon className="w-4 h-4" />
+                                </div>
+                                <div>
+                                  <h4 className="font-semibold text-sm">{item.title}</h4>
+                                </div>
+                              </Link>
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
               {showDropdown === "Who we are" && (
