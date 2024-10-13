@@ -584,7 +584,7 @@ export default function Component() {
                 href="/"
                 className="flex items-center space-x-2 cursor-pointer"
               >
-                <div className="w-12 h-12">
+                <div className="w-8 h-8 md:w-12 md:h-12">
                   <Image
                     src="/BeFoundLogo.jpg"
                     alt="Impactful image 3"
