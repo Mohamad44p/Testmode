@@ -42,8 +42,16 @@ import {
   DollarSign,
   Database,
   Code,
+  Video,
+  Youtube,
+  MousePointer,
+  MessageSquare,
+  MapPin,
+  Search,
+  FileSearch,
 } from "lucide-react";
 import Image from "next/image";
+import { FaGoogle, FaMobile } from "react-icons/fa";
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -270,121 +278,174 @@ const whoWeAre = [
 
 const digitalMarketing = [
   {
-    category: "STRATEGIES",
+    category: "ORGANIC SEARCH",
     items: [
       {
-        icon: Megaphone,
-        title: "Social Media Marketing",
-        description: "Engage your audience on popular platforms",
-        href: "/digital-marketing/social-media",
+        icon: Search,
+        title: "SEO Services",
+        description: "Improve your website's search engine rankings",
+        href: "/digital-marketing/seo-services",
       },
       {
-        icon: Target,
-        title: "SEO Optimization",
-        description: "Improve your search engine rankings",
-        href: "/digital-marketing/seo",
+        icon: MapPin,
+        title: "Local SEO Services",
+        description: "Boost your local online presence",
+        href: "/digital-marketing/local-seo-services",
+      },
+      {
+        icon: FaGoogle,
+        title: "Google Local Services Ads Management",
+        description: "Manage and optimize your Google Local Services Ads",
+        href: "/digital-marketing/google-local-services-ads",
+      },
+      {
+        icon: FileSearch,
+        title: "SEO Audits",
+        description: "Comprehensive analysis of your website's SEO performance",
+        href: "/digital-marketing/seo-audits",
       },
       {
         icon: Zap,
-        title: "Pay-Per-Click Advertising",
-        description: "Drive targeted traffic to your website",
-        href: "/digital-marketing/ppc",
-      },
-      {
-        icon: Smartphone,
-        title: "Mobile Marketing",
-        description: "Reach customers on their mobile devices",
-        href: "/digital-marketing/mobile",
+        title: "Page Speed Optimization",
+        description: "Improve your website's loading speed for better user experience",
+        href: "/digital-marketing/page-speed-optimization",
       },
     ],
   },
   {
-    category: "ANALYTICS",
+    category: "DIGITAL ADVERTISING",
     items: [
       {
-        icon: BarChart,
-        title: "Performance Tracking",
-        description: "Monitor your campaign success",
-        href: "/digital-marketing/analytics",
+        icon: MousePointer,
+        title: "PPC Management Services",
+        description: "Manage and optimize your pay-per-click advertising campaigns",
+        href: "/digital-marketing/ppc-management",
       },
       {
-        icon: PieChart,
-        title: "Audience Insights",
-        description: "Understand your target market",
-        href: "/digital-marketing/audience-insights",
+        icon: Share2,
+        title: "Social Media Advertising",
+        description: "Create and manage effective social media ad campaigns",
+        href: "/digital-marketing/social-media-advertising",
       },
       {
-        icon: Activity,
-        title: "Conversion Optimization",
-        description: "Improve your conversion rates",
-        href: "/digital-marketing/conversion",
+        icon: Users,
+        title: "Enterprise Social Media Advertising",
+        description: "Large-scale social media advertising for enterprise clients",
+        href: "/digital-marketing/enterprise-social-media-advertising",
       },
       {
-        icon: Globe,
-        title: "Competitor Analysis",
-        description: "Stay ahead of your competition",
-        href: "/digital-marketing/competitor-analysis",
+        icon: MessageSquare,
+        title: "Cross Social Media channels Strategy",
+        description: "Develop a cohesive strategy across multiple social platforms",
+        href: "/digital-marketing/cross-social-media-strategy",
+      },
+      {
+        icon: FileText,
+        title: "Content Strategy Creation",
+        description: "Develop a comprehensive content strategy for your brand",
+        href: "/digital-marketing/content-strategy-creation",
       },
     ],
   },
-];
+  {
+    category: "ECOMMERCE",
+    items: [
+      {
+        icon: ShoppingCart,
+        title: "Ecommerce SEO Services",
+        description: "Optimize your online store for search engines",
+        href: "/digital-marketing/ecommerce-seo-services",
+      },
+      {
+        icon: DollarSign,
+        title: "Ecommerce PPC Services",
+        description: "Drive targeted traffic to your ecommerce site through PPC",
+        href: "/digital-marketing/ecommerce-ppc-services",
+      },
+      {
+        icon: Share2,
+        title: "Ecommerce Social Media Advertising",
+        description: "Promote your products on social media platforms",
+        href: "/digital-marketing/ecommerce-social-media-advertising",
+      },
+      {
+        icon: Globe,
+        title: "Ecommerce Digital Marketing Services",
+        description: "Comprehensive digital marketing solutions for online stores",
+        href: "/digital-marketing/ecommerce-digital-marketing-services",
+      },
+    ],
+  },
+]
 
 const uiUx = [
   {
     category: "DESIGN",
     items: [
       {
-        icon: Palette,
-        title: "UI Design",
-        description: "Create visually appealing interfaces",
-        href: "/ui-ux/ui-design",
-      },
-      {
         icon: Layout,
-        title: "UX Design",
-        description: "Enhance user experience and flow",
-        href: "/ui-ux/ux-design",
+        title: "Website Design",
+        description: "Create stunning and functional websites",
+        href: "/ui-ux/website-design",
       },
       {
-        icon: Smartphone,
-        title: "Responsive Design",
-        description: "Optimize for all devices",
-        href: "/ui-ux/responsive-design",
+        icon: Share2,
+        title: "Social Media Design",
+        description: "Design eye-catching social media graphics and layouts",
+        href: "/ui-ux/social-media-design",
       },
       {
-        icon: Crop,
-        title: "Prototyping",
-        description: "Bring your ideas to life",
-        href: "/ui-ux/prototyping",
+        icon: ShoppingCart,
+        title: "Ecommerce Website Design",
+        description: "Design user-friendly and conversion-optimized online stores",
+        href: "/ui-ux/ecommerce-website-design",
+      },
+      {
+        icon: Palette,
+        title: "Branding and Visual Identity",
+        description: "Develop a cohesive brand identity and visual language",
+        href: "/ui-ux/branding-and-visual-identity",
       },
     ],
   },
   {
-    category: "RESEARCH",
+    category: "CONTENT MARKETING",
     items: [
       {
-        icon: Users,
-        title: "User Research",
-        description: "Understand your users' needs",
-        href: "/ui-ux/user-research",
+        icon: FileText,
+        title: "SEO Copywriting",
+        description: "Create SEO-friendly content that ranks well in search engines",
+        href: "/ui-ux/seo-copywriting",
       },
       {
-        icon: Activity,
-        title: "Usability Testing",
-        description: "Evaluate your design's effectiveness",
-        href: "/ui-ux/usability-testing",
+        icon: Megaphone,
+        title: "Content Marketing Services",
+        description: "Develop and execute effective content marketing strategies",
+        href: "/ui-ux/content-marketing-services",
       },
       {
-        icon: BarChart,
-        title: "Analytics & Metrics",
-        description: "Measure your design's performance",
-        href: "/ui-ux/analytics",
+        icon: Share2,
+        title: "Social Media Management",
+        description: "Manage and grow your social media presence",
+        href: "/ui-ux/social-media-management",
       },
       {
-        icon: Lightbulb,
-        title: "Design Thinking",
-        description: "Solve problems creatively",
-        href: "/ui-ux/design-thinking",
+        icon: FileText,
+        title: "Infographics & Motion Graphics",
+        description: "Create engaging visual content and animations",
+        href: "/ui-ux/infographics-and-motion-graphics",
+      },
+      {
+        icon: Video,
+        title: "Web Video Production Services",
+        description: "Produce high-quality videos for your web presence",
+        href: "/ui-ux/web-video-production",
+      },
+      {
+        icon: Youtube,
+        title: "YouTube Advertising",
+        description: "Create and manage effective YouTube ad campaigns",
+        href: "/ui-ux/youtube-advertising",
       },
     ],
   },
@@ -392,155 +453,32 @@ const uiUx = [
     category: "SOFTWARE DEVELOPMENT",
     items: [
       {
-        icon: Globe,
+        icon: Code,
         title: "Digital Experience Development",
-        description: "Create engaging digital experiences",
+        description: "Build immersive digital experiences for your users",
         href: "/ui-ux/digital-experience-development",
       },
       {
-        icon: Code,
+        icon: Globe,
         title: "Digital Solutions Development",
-        description: "Build custom digital solutions",
+        description: "Develop custom digital solutions for your business needs",
         href: "/ui-ux/digital-solutions-development",
       },
       {
         icon: Database,
         title: "ERP and Business Solutions",
-        description: "Implement enterprise resource planning systems",
-        href: "/ui-ux/erp-business-solutions",
+        description: "Implement and customize ERP and business management systems",
+        href: "/ui-ux/erp-and-business-solutions",
       },
       {
-        icon: Smartphone,
+        icon: FaMobile,
         title: "Mobile App Development",
-        description: "Develop mobile applications for iOS and Android",
+        description: "Create powerful and user-friendly mobile applications",
         href: "/ui-ux/mobile-app-development",
       },
     ],
   },
-  {
-    category: "CHALLENGES WE SOLVED",
-    items: [
-      {
-        icon: Target,
-        title: "My Website Doesn't Drive Leads",
-        description: "Improve lead generation from your website",
-        href: "/ui-ux/website-lead-generation",
-      },
-      {
-        icon: TrendingDown,
-        title: "My Website Doesn't Convert",
-        description: "Enhance website conversion rates",
-        href: "/ui-ux/website-conversion-optimization",
-      },
-      {
-        icon: DollarSign,
-        title: "My Website Isn't Making Money",
-        description: "Monetize your website effectively",
-        href: "/ui-ux/website-monetization",
-      },
-      {
-        icon: PieChart,
-        title: "I Can't design revenue-driven marketing Strategy",
-        description: "Develop effective marketing strategies",
-        href: "/ui-ux/revenue-driven-marketing",
-      },
-      {
-        icon: Share2,
-        title: "I'm lost trying to develop Cross social channels content strategy",
-        description: "Create cohesive social media content",
-        href: "/ui-ux/cross-channel-content-strategy",
-      },
-      {
-        icon: TrendingDown,
-        title: "My social Media Ads results are low",
-        description: "Improve social media advertising performance",
-        href: "/ui-ux/social-media-ads-optimization",
-      },
-    ],
-  },
-  {
-    category: "Content Marketing",
-    items: [
-      {
-        icon: Target,
-        title: "SEO Copywriting",
-        description: "Improve lead generation from your website",
-        href: "/ui-ux/website-lead-generation",
-      },
-      {
-        icon: TrendingDown,
-        title: "Content Marketing Services",
-        description: "Enhance website conversion rates",
-        href: "/ui-ux/website-conversion-optimization",
-      },
-      {
-        icon: DollarSign,
-        title: "Social Media Management",
-        description: "Monetize your website effectively",
-        href: "/ui-ux/website-monetization",
-      },
-      {
-        icon: PieChart,
-        title: "Social Media Management Infographics & Motion Graphics",
-        description: "Develop effective marketing strategies",
-        href: "/ui-ux/revenue-driven-marketing",
-      },
-      {
-        icon: Share2,
-        title: "Web Video Production Services",
-        description: "Create cohesive social media content",
-        href: "/ui-ux/cross-channel-content-strategy",
-      },
-      {
-        icon: TrendingDown,
-        title: "YouTube Advertising",
-        description: "Improve social media advertising performance",
-        href: "/ui-ux/social-media-ads-optimization",
-      },
-    ],
-  },
-  {
-    category: "Design",
-    items: [
-      {
-        icon: Target,
-        title: "Design Website Design",
-        description: "Improve lead generation from your website",
-        href: "/ui-ux/website-lead-generation",
-      },
-      {
-        icon: TrendingDown,
-        title: "Website Design",
-        description: "Enhance website conversion rates",
-        href: "/ui-ux/website-conversion-optimization",
-      },
-      {
-        icon: DollarSign,
-        title: "Ecommerce Website Design",
-        description: "Monetize your website effectively",
-        href: "/ui-ux/website-monetization",
-      },
-      {
-        icon: PieChart,
-        title: "Branding and Visual Identity",
-        description: "Develop effective marketing strategies",
-        href: "/ui-ux/revenue-driven-marketing",
-      },
-      {
-        icon: Share2,
-        title: "Web Video Production Services",
-        description: "Create cohesive social media content",
-        href: "/ui-ux/cross-channel-content-strategy",
-      },
-      {
-        icon: TrendingDown,
-        title: "YouTube Advertising",
-        description: "Improve social media advertising performance",
-        href: "/ui-ux/social-media-ads-optimization",
-      },
-    ],
-  },
-];
+]
 
 export default function Component() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
@@ -787,7 +725,7 @@ export default function Component() {
                               ))}
 
                             {showDropdown === "Digital Marketing" && (
-                              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                 <div className="md:col-span-1">
                                   <Link href="/digital-marketing" className="cursor-pointer">
                                     <h2 className="text-2xl font-bold mb-4">Digital Marketing</h2>
@@ -1078,7 +1016,7 @@ export default function Component() {
                 </div>
               )}
               {showDropdown === "Digital Marketing" && (
-                <div className="grid grid-cols-1 section md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                   <div>
                     <Link href="/digital-marketing" className="cursor-pointer">
                       <h2 className="text-2xl font-bold mb-4">
@@ -1107,7 +1045,7 @@ export default function Component() {
                   </div>
                   {digitalMarketing.map((category, index) => (
                     <div key={index}>
-                      <h3 className="text-sm section font-semibold text-gray-400 mb-4">
+                      <h3 className="text-sm font-semibold text-gray-400 mb-4">
                         {category.category}
                       </h3>
                       <ul className="space-y-4">
@@ -1147,58 +1085,71 @@ export default function Component() {
               )}
               {showDropdown === "UI/UX" && (
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                  <div className="md:col-span-1">
+                  <div>
                     <Link href="/ui-ux" className="cursor-pointer">
-                      <h2 className="text-2xl font-bold mb-4">UI/UX Design</h2>
+                      <h2 className="text-2xl font-bold mb-4">
+                        UI/UX Design
+                      </h2>
                     </Link>
                     <p className="text-gray-400 mb-8">
                       Create intuitive, beautiful, and user-centric designs that
                       elevate your digital products and delight your users.
                     </p>
                     <div className="bg-[#2a2a2a] p-6 rounded-lg">
-                      <h3 className="text-xl font-semibold mb-2">Featured Service</h3>
+                      <h3 className="text-xl font-semibold mb-2">
+                        Featured Service
+                      </h3>
                       <p className="text-gray-400 mb-4">
                         End-to-End UX Design: From research to prototyping, we
                         create seamless user experiences that drive engagement
                         and conversions.
                       </p>
-                      <Link href="#" className="text-blue-400 hover:underline cursor-pointer">
+                      <Link
+                        href="#"
+                        className="text-blue-400 hover:underline cursor-pointer"
+                      >
                         Discover our UX design process →
                       </Link>
                     </div>
                   </div>
-                  <div className="md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {uiUx.map((category, index) => (
-                      <div key={index}>
-                        <h3 className="text-sm font-semibold text-gray-400 mb-4">
-                          {category.category}
-                        </h3>
-                        <ul className="space-y-2">
-                          {category.items.map((item, itemIndex) => (
-                            <motion.li
-                              key={itemIndex}
-                              className="flex items-center cursor-pointer"
-                              whileHover={{ scale: 1.05 }}
-                              transition={{
-                                type: "spring",
-                                stiffness: 400,
-                                damping: 10,
-                              }}
+                  {uiUx.map((category, index) => (
+                    <div key={index}>
+                      <h3 className="text-sm font-semibold text-gray-400 mb-4">
+                        {category.category}
+                      </h3>
+                      <ul className="space-y-4">
+                        {category.items.map((item, itemIndex) => (
+                          <motion.li
+                            key={itemIndex}
+                            className="flex items-start cursor-pointer"
+                            whileHover={{ scale: 1.05 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 10,
+                            }}
+                          >
+                            <Link
+                              href={item.href}
+                              className="flex items-start w-full"
                             >
-                              <Link href={item.href} className="flex items-center w-full">
-                                <div className="bg-[#2a2a2a] p-1 rounded-lg mr-2">
-                                  <item.icon className="w-4 h-4" />
-                                </div>
-                                <div>
-                                  <h4 className="font-semibold text-sm">{item.title}</h4>
-                                </div>
-                              </Link>
-                            </motion.li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
+                              <div className="bg-[#2a2a2a] p-2 rounded-lg mr-4">
+                                <item.icon className="w-6 h-6" />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold">{item.title}</h4>
+                                {item.description && (
+                                  <p className="text-sm text-gray-400">
+                                    {item.description}
+                                  </p>
+                                )}
+                              </div>
+                            </Link>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                 </div>
               )}
               {showDropdown === "Who we are" && (
