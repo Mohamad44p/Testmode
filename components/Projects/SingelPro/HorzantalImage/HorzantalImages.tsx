@@ -8,15 +8,18 @@ import gsap from 'gsap'
 
 gsap.registerPlugin(ScrollTrigger)
 
-interface CardData {
+interface MediaItem {
     id: string
-    image: string
+    type: 'image' | 'video'
+    src: string
 }
 
 interface MainImagesCardProps {
     project: {
         custom_fields: {
-            sub_images: string[]
+            sub_images?: string[]
+            images?: string[]
+            video?: string
         }
     }
 }
@@ -25,10 +28,26 @@ export default function FixedHorizontalScroll({ project }: MainImagesCardProps) 
     const containerRef = useRef<HTMLDivElement>(null)
     const slidesRef = useRef<HTMLDivElement>(null)
 
-    const cardsData: CardData[] = project.custom_fields.sub_images.map((image, index) => ({
-        id: (index + 1).toString(),
-        image: image,
-    }))
+    const mediaItems: MediaItem[] = [
+        ...(project.custom_fields.sub_images || []).map((image, index) => ({
+            id: `sub_${index + 1}`,
+            type: 'image' as 'image',
+            src: image,
+        })),
+        ...(project.custom_fields.images || []).filter(Boolean).map((image, index) => ({
+            id: `main_${index + 1}`,
+            type: 'image' as 'image',
+            src: image,
+        }))
+    ]
+
+    if (project.custom_fields.video) {
+        mediaItems.push({
+            id: 'video',
+            type: 'video',
+            src: project.custom_fields.video,
+        })
+    }
 
     useEffect(() => {
         if (!containerRef.current || !slidesRef.current) return
@@ -36,7 +55,7 @@ export default function FixedHorizontalScroll({ project }: MainImagesCardProps) 
         const slides = gsap.utils.toArray<HTMLElement>(slidesRef.current.children)
 
         const calculateTotalWidth = () => {
-            return slides.reduce((acc, slide) => acc + slide.offsetWidth, 0)
+            return slides.reduce((acc, slide) => acc + slide.offsetWidth, 0) - window.innerWidth
         }
 
         let totalWidth = calculateTotalWidth()
@@ -44,12 +63,12 @@ export default function FixedHorizontalScroll({ project }: MainImagesCardProps) 
         gsap.set(slidesRef.current, { width: totalWidth })
 
         const animation = gsap.to(slidesRef.current, {
-            x: () => `-${totalWidth - window.innerWidth}`,
+            x: () => `-${totalWidth}`,
             ease: "none",
             scrollTrigger: {
                 trigger: containerRef.current,
                 pin: true,
-                scrub: 1,
+                scrub: 0.5,
                 end: () => `+=${totalWidth}`,
                 invalidateOnRefresh: true,
             },
@@ -69,18 +88,22 @@ export default function FixedHorizontalScroll({ project }: MainImagesCardProps) 
         }
     }, [])
 
+    if (mediaItems.length === 0) {
+        return <div className="text-center py-10">No media available for this project.</div>
+    }
+
     return (
         <div className="h-screen overflow-hidden" ref={containerRef}>
             <motion.div className="flex h-full" ref={slidesRef}>
-                {cardsData.map((image, index) => (
-                    <ImagePanel key={index} image={image} index={index} />
+                {mediaItems.map((item, index) => (
+                    <MediaPanel key={item.id} item={item} index={index} />
                 ))}
             </motion.div>
         </div>
     )
 }
 
-function ImagePanel({ image, index }: { image: CardData; index: number }) {
+function MediaPanel({ item, index }: { item: MediaItem; index: number }) {
     const controls = useAnimation()
     const ref = useRef(null)
     const isInView = useInView(ref, { once: true, amount: 0.5 })
@@ -100,8 +123,8 @@ function ImagePanel({ image, index }: { image: CardData; index: number }) {
             opacity: 1,
             scale: 1,
             transition: {
-                duration: 0.5,
-                delay: index * 0.1,
+                duration: 0.3,
+                delay: index * 0.05,
                 ease: 'easeOut'
             }
         }
@@ -109,22 +132,30 @@ function ImagePanel({ image, index }: { image: CardData; index: number }) {
 
     return (
         <motion.div
-            className="panel w-screen flex items-center justify-center h-full flex-shrink-0 p-4"
+            className="panel w-[70vw] flex items-center justify-center h-full flex-shrink-0 p-4"
             ref={ref}
         >
             <motion.div
-                className="rounded-lg overflow-hidden relative shadow-lg w-[50vw] h-[65vh]"
+                className="rounded-lg overflow-hidden relative shadow-lg w-[40vw] h-[55vh] mx-4"
                 initial="hidden"
                 animate={controls}
                 variants={variants}
             >
-                <Image
-                    src={image.image}
-                    alt={image.id}
-                    width={1900}
-                    height={2000}
-                    className="rounded-xl w-full h-full object-cover"
-                />
+                {item.type === 'image' ? (
+                    <Image
+                        src={item.src}
+                        alt={`Project image ${item.id}`}
+                        width={1900}
+                        height={2000}
+                        className="rounded-xl w-full h-full object-cover"
+                    />
+                ) : (
+                    <video
+                        src={item.src}
+                        controls
+                        className="rounded-xl w-full h-full object-cover"
+                    />
+                )}
             </motion.div>
         </motion.div>
     )

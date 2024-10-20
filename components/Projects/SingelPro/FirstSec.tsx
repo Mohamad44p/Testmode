@@ -1,52 +1,62 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react"
+import Image from "next/image"
+import { motion } from "framer-motion"
+import Link from "next/link"
 
 const TypewriterEffect = ({ text }: { text?: string }) => {
-  const [displayText, setDisplayText] = useState("");
+  const [displayText, setDisplayText] = useState("")
 
   useEffect(() => {
-    if (!text) return;
+    if (!text) return
 
-    let i = 0;
+    let i = 0
     const typingInterval = setInterval(() => {
       if (i < text.length) {
-        setDisplayText((prev) => prev + text.charAt(i));
-        i++;
+        setDisplayText((prev) => prev + text.charAt(i))
+        i++
       } else {
-        clearInterval(typingInterval);
+        clearInterval(typingInterval)
       }
-    }, 50);
+    }, 25)
 
-    return () => clearInterval(typingInterval);
-  }, [text]);
+    return () => clearInterval(typingInterval)
+  }, [text])
 
-  return <span>{displayText}</span>;
-};
+  return <span>{displayText}</span>
+}
 
 interface Project {
   title: {
-    rendered: string;
-  };
-  featured_image: string;
+    rendered: string
+  }
+  featured_image: string
   custom_fields: {
-    project_title?: string;
-    short_description?: string;
-    category_?: string[];
-    services?: string[];
-    client_name?: string;
-  };
+    project_title?: string
+    short_description?: string
+    category_?: string[]
+    services?: string | string[]
+    client_name?: string
+    about_client?: string
+    project_link?: string
+    bg_color?: string
+    text_color?: string
+  }
 }
 
 export default function FirstSec({ project }: { project: Project }) {
   if (!project || !project.custom_fields) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
 
-  const imageUrl =
-    project.featured_image || "/placeholder.svg?height=1800&width=1400";
+  const imageUrl = project.featured_image || "/placeholder.svg?height=1800&width=1400"
+
+  const services = Array.isArray(project.custom_fields.services)
+    ? project.custom_fields.services
+    : project.custom_fields.services
+      ? [project.custom_fields.services]
+      : []
 
   return (
     <div className="py-20 px-6 overflow-hidden">
@@ -81,10 +91,18 @@ export default function FirstSec({ project }: { project: Project }) {
               {project.custom_fields.project_title || project.title.rendered}
             </motion.h1>
             <p className="text-xl text-gray-600 leading-relaxed">
-              <TypewriterEffect
-                text={project.custom_fields.short_description}
-              />
+              <TypewriterEffect text={project.custom_fields.short_description} />
             </p>
+            <Link
+              className="inline-block px-4 py-3 text-lg font-medium rounded-2xl shadow-lg"
+              target="_blank"
+              style={{
+                backgroundColor: project.custom_fields.bg_color || "#f9f9f9",
+                color: project.custom_fields.text_color || "#333",
+              }}
+              href={project.custom_fields.project_link || "#"}>
+              View Project
+            </Link>
           </div>
           <motion.div
             initial={{ opacity: 0 }}
@@ -94,7 +112,7 @@ export default function FirstSec({ project }: { project: Project }) {
           >
             <p className="text-xl font-semibold text-gray-800">Services:</p>
             <div className="flex flex-wrap gap-3">
-              {project.custom_fields.services?.map((service, index) => (
+              {services.map((service, index) => (
                 <motion.span
                   key={service}
                   initial={{ opacity: 0, x: -20 }}
@@ -111,12 +129,15 @@ export default function FirstSec({ project }: { project: Project }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 3, duration: 0.5 }}
-            className="space-y-2"
+            className="space-y-4"
           >
             <p className="text-xl font-semibold text-gray-800">Client:</p>
-            <p className="text-lg text-gray-600">
-              {project.custom_fields.client_name}
-            </p>
+            <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
+              <p className="text-lg font-medium text-gray-700">{project.custom_fields.client_name}</p>
+              {project.custom_fields.about_client && (
+                <p className="text-base text-gray-600 max-w-md">{project.custom_fields.about_client}</p>
+              )}
+            </div>
           </motion.div>
         </motion.div>
         <motion.div
@@ -137,5 +158,5 @@ export default function FirstSec({ project }: { project: Project }) {
         </motion.div>
       </div>
     </div>
-  );
+  )
 }

@@ -1,7 +1,7 @@
 import All from "@/components/All";
 import React from "react";
 
-export default function page() {
+export default function FrontPage() {
   return (
     <div>
       <All />
